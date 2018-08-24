@@ -40,7 +40,7 @@ public class Principal extends JPanel {
     }
     private JLabel label(String text,ImageIcon icon){
         JLabel label=new JLabel(text,icon,SwingConstants.CENTER);
-        label.setFont(Fuentes.purisa18);
+        label.setFont(Fuentes.PURISA18.getFont());
         label.setVerticalTextPosition(SwingConstants.BOTTOM);
         label.setHorizontalTextPosition(SwingConstants.CENTER);
         label.setCursor(new Cursor(Cursor.HAND_CURSOR));
