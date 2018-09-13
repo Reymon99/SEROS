@@ -1,4 +1,5 @@
 package gui.principal;
+import fuentes.Fuentes;
 import logica.*;
 import logica.Image;
 import javax.swing.*;
