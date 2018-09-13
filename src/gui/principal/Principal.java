@@ -11,85 +11,73 @@ public class Principal extends JPanel {
         init();
     }
     private void init() {
-        JLabel tda=label("TDA", Image.image("/image/TDA.png", 88, -1), new MouseAdapter() {
+        JLabel tda=label("TDA","Tipos de Datos Abstratos", Image.image("/image/TDA.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel modularidad=label("Modularidad", Image.image("/image/Modularidad y Mapas.png", 88, -1), new MouseAdapter() {
+        JLabel modularidad=label("Modularidad","Complejidad Algoritmica", Image.image("/image/Modularidad y Mapas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel recursividad=label("Recursividad", Image.image("/image/Recursividad.png", 88, -1), new MouseAdapter() {
+        JLabel recursividad=label("Recursividad","Metodos Recursivos", Image.image("/image/Recursividad.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel arreglos=label("Arreglos", Image.image("/image/Arreglos y Arboles.png", 88, -1), new MouseAdapter() {
+        JLabel arreglos=label("Arreglos","Vectores y Matrices", Image.image("/image/Arreglos y Arboles.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel nodos=label("Nodos", Image.image("/image/Nodos.png", 88, -1), new MouseAdapter() {
+        JLabel nodos=label("Nodos","Enlazamiento de Datos", Image.image("/image/Nodos.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel ordenamiento=label("Ordenamiento", Image.image("/image/Ordenamiento.png", 88, -1), new MouseAdapter() {
+        JLabel ordenamiento=label("Ordenamiento", "Metodos de Ordenamiento Interno",Image.image("/image/Ordenamiento.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel busqueda=label("Busqueda", Image.image("/image/Busqueda.png", 88, -1), new MouseAdapter() {
+        JLabel busqueda=label("Busqueda","Metodos de Busqueda", Image.image("/image/Busqueda.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel pila=label("Pilas", Image.image("/image/Pilas.png", 88, -1), new MouseAdapter() {
+        JLabel pila=label("Pilas","Pilas Dinamicas y Estaticas", Image.image("/image/Pilas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel cola=label("Colas", Image.image("/image/Colas.png", 88, -1), new MouseAdapter() {
+        JLabel cola=label("Colas","Colas Dinamicas y Estaticas", Image.image("/image/Colas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel lista=label("Listas", Image.image("/image/Listas Enlazadas.png", 88, -1), new MouseAdapter() {
+        JLabel lista=label("Listas","Listas Enlazadas", Image.image("/image/Listas Enlazadas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel arboles=label("Árboles", Image.image("/image/Arreglos y Arboles.png", 88, -1), new MouseAdapter() {
+        JLabel arboles=label("Árboles","Arboles Binarios y AVL", Image.image("/image/Arreglos y Arboles.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel grafos=label("Grafos", Image.image("/image/Grafos.png", 88, -1), new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-        });
-        JLabel mapas=label("Mapas", Image.image("/image/Modularidad y Mapas.png", 88, -1), new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-        });
-        JLabel hash=label("Tablas Hash", Image.image("/image/Hash.png", 88, -1), new MouseAdapter() {
+        JLabel grafos=label("Grafos","Algoritmo del Camino más Corto", Image.image("/image/Grafos.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
@@ -105,17 +93,16 @@ public class Principal extends JPanel {
         Constrains.addCompY(pila,this,3,0,1,2,0.1,30,13,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
         Constrains.addCompY(cola,this,3,1,1,2,0.1,13,13,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
         Constrains.addCompY(lista,this,3,2,1,2,0.1,13,13,30,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(arboles,this,4,0,1,2,0.1,30,13,13,13,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addCompY(grafos,this,4,2,1,2,0.1,13,13,30,13,GridBagConstraints.NORTH,GridBagConstraints.NONE);
-        Constrains.addCompY(mapas,this,5,0,1,2,0.1,30,13,13,35,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addCompY(hash,this,5,2,1,2,0.1,13,13,30,35,GridBagConstraints.NORTH,GridBagConstraints.NONE);
+        Constrains.addCompY(arboles,this,4,0,1,2,0.1,30,13,13,35,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
+        Constrains.addCompY(grafos,this,4,2,1,2,0.1,13,13,30,35,GridBagConstraints.NORTH,GridBagConstraints.NONE);
     }
-    private JLabel label(String text, ImageIcon icon, MouseAdapter adapter){
+    private JLabel label(String text,String tip, ImageIcon icon, MouseAdapter adapter){
         JLabel label=new JLabel(text,icon,SwingConstants.CENTER);
         label.setFont(Fuentes.PURISA18.getFont());
         label.setVerticalTextPosition(SwingConstants.BOTTOM);
         label.setHorizontalTextPosition(SwingConstants.CENTER);
         label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        label.setToolTipText(tip);
         label.addMouseListener(adapter);
         return label;
     }
