@@ -1,6 +1,5 @@
 package gui.editor;
 import fuentes.Fuentes;
-
 import javax.swing.*;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;

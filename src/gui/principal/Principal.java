@@ -1,4 +1,5 @@
 package gui.principal;
+import eventos.Eventos;
 import fuentes.Fuentes;
 import logica.*;
 import logica.Image;
@@ -15,7 +16,7 @@ public class Principal extends JPanel {
         JLabel tda=label("TDA","Tipos de Datos Abstratos", Image.image("/image/TDA.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.TDA.toString());
             }
         });
         JLabel modularidad=label("Modularidad","Complejidad Algoritmica", Image.image("/image/Modularidad y Mapas.png", 88, -1), new MouseAdapter() {
