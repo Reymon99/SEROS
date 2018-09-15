@@ -1,9 +1,7 @@
 package gui.editor;
 import fuentes.Fuentes;
 import javax.swing.*;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
+import javax.swing.text.*;
 import java.awt.*;
 public class Editor extends JPanel {
     private JTextPane editor;
@@ -22,16 +20,24 @@ public class Editor extends JPanel {
         };
         editor.setBackground(new Color(48,47,51));
         editor.setForeground(Color.WHITE);
-        editor.setFont(Fuentes.UBUNTULIGHT10.getFont());
-        editor.setPreferredSize(new Dimension(300,300));
+        editor.setFont(Fuentes.UBUNTULIGHT15.getFont());
+        //editor.setPreferredSize(new Dimension(300,300));
+        //editor.setMaximumSize(new Dimension(150,300));
         editor.setEditable(false);
+        editor.setMargin(new Insets(0,10,5,0));
+        editor.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         scroll=new JScrollPane(editor);
         repaint();
     }
     public void append(Color color,String n){
-        editor.setCharacterAttributes(StyleContext.getDefaultStyleContext().addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground,color),false);
+        editor.setEditable(true);
+        StyleContext sc=StyleContext.getDefaultStyleContext();
+        AttributeSet set=sc.addAttribute(SimpleAttributeSet.EMPTY,StyleConstants.Foreground,color);
+        editor.setCaretPosition(editor.getStyledDocument().getLength());
+        editor.setCharacterAttributes(set,false);
         editor.replaceSelection(n);
-        //Corregir
+        editor.setCaretPosition(editor.getStyledDocument().getLength());
+        editor.setEditable(false);
     }
     @Override
     public void paint(Graphics g) {
