@@ -85,7 +85,7 @@ public class Principal extends JPanel {
 
             }
         });
-        Constrains.addCompY(tda,this,0,0,1,4,0.1,30,50,30,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(tda,this,0,0,1,4,0.1,30,57,30,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
         Constrains.addCompY(modularidad, this,1,0,1,1,0.1,30,13,0,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
         Constrains.addCompY(recursividad,this,1,1,1,1,0.1,13,13,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
         Constrains.addCompY(arreglos,this,1,2,1,1,0.1,13,13,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
@@ -95,8 +95,8 @@ public class Principal extends JPanel {
         Constrains.addCompY(pila,this,3,0,1,2,0.1,30,13,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
         Constrains.addCompY(cola,this,3,1,1,2,0.1,13,13,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
         Constrains.addCompY(lista,this,3,2,1,2,0.1,13,13,30,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(arboles,this,4,0,1,2,0.1,30,13,13,50,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addCompY(grafos,this,4,2,1,2,0.1,13,13,30,50,GridBagConstraints.NORTH,GridBagConstraints.NONE);
+        Constrains.addCompY(arboles,this,4,0,1,2,0.1,30,13,13,75,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
+        Constrains.addCompY(grafos,this,4,2,1,2,0.1,13,13,30,75,GridBagConstraints.NORTH,GridBagConstraints.NONE);
     }
     private JLabel label(String text,String tip, ImageIcon icon, MouseAdapter adapter){
         JLabel label=new JLabel(text,icon,SwingConstants.CENTER);
@@ -107,5 +107,11 @@ public class Principal extends JPanel {
         label.setToolTipText(tip);
         label.addMouseListener(adapter);
         return label;
+    }
+    @Override
+    public void paint(Graphics g) {
+        g.drawImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/Lienzo.jpg")),0,0,getWidth(),getHeight(),this);
+        setOpaque(false);
+        super.paint(g);
     }
 }

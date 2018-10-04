@@ -21,7 +21,7 @@ public class Editor extends JPanel {
         editor.setBackground(new Color(48,47,51));
         editor.setForeground(Color.WHITE);
         editor.setFont(Fuentes.UBUNTULIGHT15.getFont());
-        //editor.setPreferredSize(new Dimension(300,300));
+        //editor.setPreferredSize(new Dimension(300,30));
         //editor.setMaximumSize(new Dimension(150,300));
         editor.setEditable(false);
         editor.setMargin(new Insets(0,10,5,0));
