@@ -1,0 +1,23 @@
+public classn_ Punto{b_
+	private intn_ xm_,n_ym_;
+	publicn_ Puntoa_(b_intn_ xb_,intn_ ym_){b_
+		thisn_.b_xm_=xb_;
+		thisn_.b_ym_=yb_;n_
+	}b_
+	public intn_ getXa_(){b_
+		returnn_ xm_;n_
+	}b_
+	public intn_ getYa_(){b_
+		returnn_ ym_;n_
+	}b_
+	public voidn_ setXa_(b_intn_ x){b_
+		thisn_.b_xm_=xb_;n_
+	}
+	public voidn_ setYa_(b_intn_ y){b_
+		thisn_.b_ym_=yb_;n_
+	}
+	@Overridea_
+	publicn_ Stringb_ toStringa_(){b_
+		returnn_ "["v_+b_xm_+b_","v_+b_ym_+b_"]"v_;n_
+	}
+}b_

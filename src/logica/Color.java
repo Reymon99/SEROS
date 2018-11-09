@@ -4,7 +4,7 @@ public enum Color {
     BLANCO(java.awt.Color.WHITE),
     MORADO(176,117,174),
     NARANJA(237,118,14),
-    VERDE(61,100,45);
+    VERDE(164,205,146);
     private java.awt.Color color;
     private Color(int r,int g,int b){
         this(new java.awt.Color(r,g,b));

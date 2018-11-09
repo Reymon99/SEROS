@@ -3,6 +3,7 @@ import fuentes.Fuentes;
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
+import java.io.*;
 public class Editor extends JPanel {
     private JTextPane editor;
     public JScrollPane scroll;
@@ -18,6 +19,7 @@ public class Editor extends JPanel {
                 Editor.this.repaint();
             }
         };
+        editor.setContentType("text/plain");
         editor.setBackground(new Color(48,47,51));
         editor.setForeground(Color.WHITE);
         editor.setFont(Fuentes.UBUNTULIGHT15.getFont());
@@ -29,7 +31,21 @@ public class Editor extends JPanel {
         scroll=new JScrollPane(editor);
         repaint();
     }
-    public void append(Color color,String n){
+    public void text(String path) throws IOException {
+        File file;
+        BufferedReader br= new BufferedReader(new FileReader(path));
+        String cadena,txt="";
+        while ((cadena=br.readLine())!=null) txt+=cadena+"\t\n";
+        br.close();
+        for (String e:txt.replaceAll("\t","       ").split("_")){
+            if (e.endsWith("n")) append(e.substring(0,e.length()-1), logica.Color.NARANJA.getColor());
+            else if(e.endsWith("m")) append(e.substring(0,e.length()-1), logica.Color.MORADO.getColor());
+            else if(e.endsWith("a")) append(e.substring(0,e.length()-1), logica.Color.AMARILLO.getColor());
+            else if(e.endsWith("b")) append(e.substring(0,e.length()-1), logica.Color.BLANCO.getColor());
+            else if(e.endsWith("v")) append(e.substring(0,e.length()-1), logica.Color.VERDE.getColor());
+        }
+    }
+    private void append(String n, Color color){
         editor.setEditable(true);
         StyleContext sc=StyleContext.getDefaultStyleContext();
         AttributeSet set=sc.addAttribute(SimpleAttributeSet.EMPTY,StyleConstants.Foreground,color);
