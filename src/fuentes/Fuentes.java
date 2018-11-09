@@ -2,9 +2,11 @@ package fuentes;
 import java.awt.*;
 public enum Fuentes {
     UBUNTULIGHT15(new FuentesModificadas("/fuentes/UbuntuLight.ttf").getFont(Font.PLAIN,15)),
+    UBUNTULIGHT30(new FuentesModificadas("/fuentes/UbuntuLight.ttf").getFont(Font.BOLD,30)),
+    UBUNTULIGHT20(new FuentesModificadas("/fuentes/UbuntuLight.ttf").getFont(Font.PLAIN,20)),
     PURISA18(new FuentesModificadas("/fuentes/Purisa-Bold.ttf").getFont(Font.PLAIN,18)),
     MYHAPPYENDING30(new FuentesModificadas("/fuentes/My Happy Ending.ttf").getFont(Font.PLAIN,30)),
-    PURISA30(new FuentesModificadas("/fuentes/Purisa-Bold.ttf").getFont(Font.PLAIN,30));
+    PURISA15(new FuentesModificadas("/fuentes/Purisa-Bold.ttf").getFont(Font.PLAIN,15));
     private Font font;
     private Fuentes(Font font){
         this.font=font;

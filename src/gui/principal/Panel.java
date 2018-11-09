@@ -12,7 +12,7 @@ public class Panel extends JPanel {
     }
     private void init() {
         add(Paneles.PRINCIPAL.toString(), new Principal());
-        add(Paneles.TDA.toString(), new JScrollPane(new TDA()));
+        add(Paneles.TDA.toString(), new JScrollPane(new TDA(),ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER));
         Eventos.setPanel(this);
     }
 }

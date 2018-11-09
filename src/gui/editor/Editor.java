@@ -55,6 +55,9 @@ public class Editor extends JPanel {
         editor.setCaretPosition(editor.getStyledDocument().getLength());
         editor.setEditable(false);
     }
+    public void setText(String text){
+        editor.setText(text);
+    }
     @Override
     public void paint(Graphics g) {
         super.paint(g);
