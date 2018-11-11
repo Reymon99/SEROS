@@ -12,12 +12,12 @@ public classn_ Punto{b_
 	}b_
 	public voidn_ setXa_(b_intn_ x){b_
 		thisn_.b_xm_=xb_;n_
-	}
+	}b_
 	public voidn_ setYa_(b_intn_ y){b_
 		thisn_.b_ym_=yb_;n_
-	}
+	}b_
 	@Overridea_
 	publicn_ Stringb_ toStringa_(){b_
-		returnn_ "["v_+b_xm_+b_","v_+b_ym_+b_"]"v_;n_
+		returnn_ "("v_+b_xm_+b_","v_+b_ym_+b_")"v_;n_
 	}
 }b_

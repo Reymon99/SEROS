@@ -31,13 +31,8 @@ public class Editor extends JPanel {
         scroll=new JScrollPane(editor);
         repaint();
     }
-    public void text(String path) throws IOException {
-        File file;
-        BufferedReader br= new BufferedReader(new FileReader(path));
-        String cadena,txt="";
-        while ((cadena=br.readLine())!=null) txt+=cadena+"\t\n";
-        br.close();
-        for (String e:txt.replaceAll("\t","       ").split("_")){
+    public void text(String n) throws IOException {
+        for (String e:n.replaceAll("\t","       ").split("_")){
             if (e.endsWith("n")) append(e.substring(0,e.length()-1), logica.Color.NARANJA.getColor());
             else if(e.endsWith("m")) append(e.substring(0,e.length()-1), logica.Color.MORADO.getColor());
             else if(e.endsWith("a")) append(e.substring(0,e.length()-1), logica.Color.AMARILLO.getColor());

@@ -2,6 +2,7 @@ package gui.tda;
 import eventos.Eventos;
 import fuentes.Fuentes;
 import gui.editor.Editor;
+import logica.Archivos;
 import logica.Constrains;
 import logica.Paneles;
 import logica.TXT;
@@ -10,7 +11,6 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.net.URISyntaxException;
 public class TDA extends JPanel {
     public TDA(){
         setLayout(new GridBagLayout());
@@ -31,8 +31,8 @@ public class TDA extends JPanel {
         panel.add(editor,BorderLayout.WEST);
         panel.add(editor.scroll,BorderLayout.CENTER);
         try {
-            editor.text(getClass().getResource("/codes/Punto.txt").toURI().getPath());
-        } catch (IOException | URISyntaxException e) {
+            editor.text(Archivos.codefiles("/codes/Punto.txt"));
+        } catch (IOException e) {
             editor.setText(e.getMessage());
         }
         JTextArea area1=new JTextArea(TXT.TDA1.toString());
@@ -46,7 +46,7 @@ public class TDA extends JPanel {
         formula.setFont(Fuentes.PURISA15.getFont());
         formula.setOpaque(false);
         formula.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        JLabel back=new JLabel(logica.Image.image("/image/back.png",48,48));
+        JLabel back=new JLabel(Archivos.image("/image/back.png",48,48));
         back.setCursor(new Cursor(Cursor.HAND_CURSOR));
         back.setOpaque(false);
         back.setToolTipText("Ventana Principal");
@@ -56,7 +56,7 @@ public class TDA extends JPanel {
                 Eventos.show(Paneles.PRINCIPAL.toString());
             }
         });
-        JLabel next=new JLabel(logica.Image.image("/image/next.png",48,48));
+        JLabel next=new JLabel(Archivos.image("/image/next.png",48,48));
         next.setCursor(new Cursor(Cursor.HAND_CURSOR));
         next.setOpaque(false);
         next.setToolTipText("Simulador");
@@ -67,6 +67,12 @@ public class TDA extends JPanel {
         Constrains.addComp(formula,this,1,4,1,1,1,0,0,10,15,10, GridBagConstraints.NORTH,GridBagConstraints.NONE);
         Constrains.addComp(back,this,0,5,1,1,0,0,10,2,2,2,GridBagConstraints.SOUTHWEST,GridBagConstraints.NONE);
         Constrains.addComp(next,this,2,5,1,1,0,0,10,2,2,2, GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
+    }
+    public JScrollPane scroll(){
+        JScrollPane pane=new JScrollPane(new TDA(),ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        pane.setWheelScrollingEnabled(true);
+        pane.getViewport().setView(this);
+        return pane;
     }
     @Override
     public void paint(Graphics g) {
