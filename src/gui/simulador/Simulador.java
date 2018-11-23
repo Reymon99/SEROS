@@ -41,19 +41,19 @@ public class Simulador extends JPanel {
         vari.setForeground(Color.WHITE);
         vari.setBackground(logica.Color.AZULTITLE.getColor());
         vari.setOpaque(true);
-        datos=new JTable(3,2);
+        datos=new JTable();
         datos.setDragEnabled(false);
         datos.setPreferredScrollableViewportSize(new Dimension(120,120));
         JScrollPane scroll=new JScrollPane(datos);
         scroll.getViewport().setBackground(logica.Color.AZULTEXT.getColor());
         Constrains.addComp(back,panel,0,0,1,1,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
         Constrains.addComp(canvas,this,0,0,1,6,0,0,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addComp(panel,this,0,6,1,1,0,0,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(desc,this,1,0,1,1,0,0,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(texto,this,1,1,1,1,0,0,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addComp(vari,this,1,2,1,1,0,0,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(scroll,this,1,3,1,1,0,0,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-        Constrains.addComp(code,this,1,4,1,3,0,0,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+        Constrains.addComp(panel,this,0,6,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp(desc,this,1,0,1,1,1,0,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(texto,this,1,1,1,1,0,0.6,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp(vari,this,1,2,1,1,1,0,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(scroll,this,1,3,1,1,1,0.6,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+        Constrains.addComp(code,this,1,4,1,3,1,0.6,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
     }
     public JTextArea getTexto() {
         return texto;
@@ -79,7 +79,7 @@ public class Simulador extends JPanel {
     public void setBack(JLabel back) {
         this.back = back;
     }
-    public void addCodes(JPanel code){
+    public void addCodes(JScrollPane code){
         this.code.add("Punto",code);
     }
 }

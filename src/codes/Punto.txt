@@ -1,23 +1,23 @@
-public classn_ Punto{b_
+public classn_ Punto {w_
 	private intn_ xm_,n_ym_;
-	publicn_ Puntoa_(b_intn_ xb_,intn_ ym_){b_
-		thisn_.b_xm_=xb_;
-		thisn_.b_ym_=yb_;n_
+	publicn_ Puntoa_(w_intn_ xw_,intn_ ym_){w_
+		thisn_.w_xm_=xw_;
+		thisn_.w_ym_=yw_;n_
 	}b_
-	public intn_ getXa_(){b_
+	public intn_ getXa_(){w_
 		returnn_ xm_;n_
 	}b_
-	public intn_ getYa_(){b_
+	public intn_ getYa_(){w_
 		returnn_ ym_;n_
 	}b_
-	public voidn_ setXa_(b_intn_ x){b_
-		thisn_.b_xm_=xb_;n_
+	public voidn_ setXa_(w_intn_ x){w_
+		thisn_.w_xm_=xw_;n_
 	}b_
-	public voidn_ setYa_(b_intn_ y){b_
-		thisn_.b_ym_=yb_;n_
-	}b_
+	public voidn_ setYa_(w_intn_ y){w_
+		thisn_.w_ym_=yw_;n_
+	}w_
 	@Overridea_
-	publicn_ Stringb_ toStringa_(){b_
-		returnn_ "("v_+b_xm_+b_","v_+b_ym_+b_")"v_;n_
+	publicn_ Stringw_ toStringa_(){w_
+		returnn_ "("v_+w_xm_+w_","v_+w_ym_+w_")"v_;n_
 	}
-}b_
+}w_

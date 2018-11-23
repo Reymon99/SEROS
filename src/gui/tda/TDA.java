@@ -42,7 +42,7 @@ public class TDA extends JPanel {
         area1.setWrapStyleWord(true);
         area1.setTabSize(4);
         area1.setOpaque(false);
-        JLabel formula=new JLabel(TXT.FORMULA.toString(),SwingConstants.CENTER);
+        JLabel formula=new JLabel(TXT.FORMULATDA.toString(),SwingConstants.CENTER);
         formula.setFont(Fuentes.PURISA15.getFont());
         formula.setOpaque(false);
         formula.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -60,6 +60,12 @@ public class TDA extends JPanel {
         next.setCursor(new Cursor(Cursor.HAND_CURSOR));
         next.setOpaque(false);
         next.setToolTipText("Simulador");
+        next.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.SIMULADORTDA.toString());
+            }
+        });
         Constrains.addComp(title,this,0,0,3,1,1,1,15,15,10,10,GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(area,this,0,1,3,1,1,10,10,5,7, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(panel,this,1,2,1,1,0,0,5,5,5,5,GridBagConstraints.CENTER,GridBagConstraints.NONE);

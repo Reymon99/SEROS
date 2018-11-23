@@ -23,11 +23,9 @@ public class Editor extends JPanel {
         editor.setBackground(new Color(48,47,51));
         editor.setForeground(Color.WHITE);
         editor.setFont(Fuentes.UBUNTULIGHT15.getFont());
-        //editor.setPreferredSize(new Dimension(300,30));
-        //editor.setMaximumSize(new Dimension(150,300));
         editor.setEditable(false);
         editor.setMargin(new Insets(0,10,5,0));
-        editor.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        //editor.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         scroll=new JScrollPane(editor);
         repaint();
     }
@@ -36,8 +34,9 @@ public class Editor extends JPanel {
             if (e.endsWith("n")) append(e.substring(0,e.length()-1), logica.Color.NARANJA.getColor());
             else if(e.endsWith("m")) append(e.substring(0,e.length()-1), logica.Color.MORADO.getColor());
             else if(e.endsWith("a")) append(e.substring(0,e.length()-1), logica.Color.AMARILLO.getColor());
-            else if(e.endsWith("b")) append(e.substring(0,e.length()-1), logica.Color.BLANCO.getColor());
+            else if(e.endsWith("b")) append(e.substring(0,e.length()-1), logica.Color.AZUL.getColor());
             else if(e.endsWith("v")) append(e.substring(0,e.length()-1), logica.Color.VERDE.getColor());
+            else if(e.endsWith("w")) append(e.substring(0,e.length()-1), logica.Color.BLANCO.getColor());
         }
     }
     private void append(String n, Color color){

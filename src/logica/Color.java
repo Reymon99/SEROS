@@ -1,5 +1,6 @@
 package logica;
 public enum Color {
+    AZUL(95,176,214),
     AMARILLO(245,208,51),
     BLANCO(java.awt.Color.WHITE),
     MORADO(176,117,174),
