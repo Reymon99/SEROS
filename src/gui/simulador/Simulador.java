@@ -1,26 +1,32 @@
 package gui.simulador;
 import fuentes.Fuentes;
-import gui.tda.Graficador;
 import logica.Archivos;
 import logica.Constrains;
 import javax.swing.*;
 import java.awt.*;
-public class Simulador extends JPanel {
+public abstract class Simulador extends JPanel {
     private Canvas canvas;
     private JTextArea texto;
     private JTable datos;
     private JTabbedPane code;
     private JPanel panel;
     private JLabel back;
+    /**
+     * Esquema de los simuladores del proyecto
+     * @param canvas {@link Canvas}
+     */
     public Simulador(Canvas canvas) {
         this.canvas = canvas;
         setLayout(new GridBagLayout());
         init();
     }
+    /**
+     * Instanciacion y acomodamiento de los componentes del panel
+     */
     public void init(){
         code=new JTabbedPane();
-        panel=new JPanel(new GridBagLayout());
-        panel.setBackground(logica.Color.GRISPANEL.getColor());
+        JPanel panel1=new JPanel(new GridBagLayout());
+        panel1.setBackground(logica.Color.GRISPANEL.getColor());
         back=new JLabel(Archivos.image("/image/back.png",48,48));
         JLabel desc=new JLabel("Descripción");
         desc.setFont(Fuentes.UBUNTULIGHT14.getFont());
@@ -46,7 +52,10 @@ public class Simulador extends JPanel {
         datos.setPreferredScrollableViewportSize(new Dimension(120,120));
         JScrollPane scroll=new JScrollPane(datos);
         scroll.getViewport().setBackground(logica.Color.AZULTEXT.getColor());
-        Constrains.addComp(back,panel,0,0,1,1,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
+        panel=new JPanel(new GridBagLayout());
+        panel.setOpaque(false);
+        Constrains.addComp(back,panel1,0,0,1,1,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addComp(panel,panel1,1,0,1,1,1,1,5,5,5,5,GridBagConstraints.CENTER, GridBagConstraints.BOTH);
         Constrains.addComp(canvas,this,0,0,1,6,0,0,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addComp(panel,this,0,6,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addComp(desc,this,1,0,1,1,1,0,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
@@ -55,30 +64,38 @@ public class Simulador extends JPanel {
         Constrains.addComp(scroll,this,1,3,1,1,1,0.6,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
         Constrains.addComp(code,this,1,4,1,3,1,0.6,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
     }
+    /**
+     * Notificaciones
+     * @return texto {@link JTextArea}
+     */
     public JTextArea getTexto() {
         return texto;
     }
-    public void setTexto(JTextArea texto) {
-        this.texto = texto;
-    }
+    /**
+     * Valor de las variables
+     * @return
+     */
     public JTable getDatos() {
         return datos;
     }
-    public void setDatos(JTable datos) {
-        this.datos = datos;
-    }
+    /**
+     * panel de comandos del simulador
+     * @return
+     */
     public JPanel getPanel() {
         return panel;
     }
-    public void setPanel(JPanel panel) {
-        this.panel = panel;
-    }
+    /**
+     * Retornar al panel anterior
+     * @return
+     */
     public JLabel getBack() {
         return back;
     }
-    public void setBack(JLabel back) {
-        this.back = back;
-    }
+    /**
+     * Añade los codigos que necesita el simulador
+     * @param code {@link JScrollPane}
+     */
     public void addCodes(JScrollPane code){
         this.code.add("Punto",code);
     }

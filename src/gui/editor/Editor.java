@@ -7,6 +7,9 @@ import java.io.*;
 public class Editor extends JPanel {
     private JTextPane editor;
     public JScrollPane scroll;
+    /**
+     * Editor sintexico de codigo utilizado en la interfaz grafica del proyecto
+     */
     public Editor(){
         setPreferredSize(new Dimension(30,30));
         setMinimumSize(new Dimension(30,30));
@@ -25,10 +28,15 @@ public class Editor extends JPanel {
         editor.setFont(Fuentes.UBUNTULIGHT15.getFont());
         editor.setEditable(false);
         editor.setMargin(new Insets(0,10,5,0));
-        //editor.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        editor.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         scroll=new JScrollPane(editor);
         repaint();
     }
+    /**
+     * Decodifica el texto del archivo para diferenciar los diferentes colores de la sintaxis
+     * @param n {@link String}
+     * @throws IOException
+     */
     public void text(String n) throws IOException {
         for (String e:n.replaceAll("\t","       ").split("_")){
             if (e.endsWith("n")) append(e.substring(0,e.length()-1), logica.Color.NARANJA.getColor());
@@ -39,6 +47,11 @@ public class Editor extends JPanel {
             else if(e.endsWith("w")) append(e.substring(0,e.length()-1), logica.Color.BLANCO.getColor());
         }
     }
+    /**
+     * Añade texto de un determinado color al editor
+     * @param n {@link String}
+     * @param color {@link Color}
+     */
     private void append(String n, Color color){
         editor.setEditable(true);
         StyleContext sc=StyleContext.getDefaultStyleContext();
@@ -49,9 +62,17 @@ public class Editor extends JPanel {
         editor.setCaretPosition(editor.getStyledDocument().getLength());
         editor.setEditable(false);
     }
+    /**
+     * Define texto al editor sin diferenciacion de sintaxis
+     * @param text {@link String}
+     */
     public void setText(String text){
         editor.setText(text);
     }
+    /**
+     * Dibuja una columna con los indices de las filas de texto
+     * @param g {@link Graphics}
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);

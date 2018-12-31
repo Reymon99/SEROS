@@ -1,10 +1,13 @@
-package gui.tda;
+package gui.paneles.tda;
 import fuentes.Fuentes;
 import java.awt.*;
 import java.awt.geom.Line2D;
 public class Graficador extends Canvas {
     private boolean graficar;
     protected int x,y;
+    /**
+     * Grafica un punto en una coordenada dada
+     */
     public Graficador(){
         graficar=false;
         x=y=0;
@@ -12,23 +15,43 @@ public class Graficador extends Canvas {
         setMinimumSize(new Dimension(750,580));
         setPreferredSize(new Dimension(750,580));
     }
+    /**
+     * Grafica un punto con las coordenadas dadas
+     * @param x int
+     * @param y int
+     */
     public void graficar(int x,int y){
         this.x=x;
         this.y=y;
         graficar=true;
         repaint();
     }
+    /**
+     * Limpia la grafica de las coordenadas que han sido graficadas
+     */
     public void limpiar(){
         x=y=0;
         graficar=false;
         repaint();
     }
+    /**
+     * Estado de graficacion
+     * @return
+     */
     public boolean isGraficar() {
         return graficar;
     }
+    /**
+     * Modifica el estado de graficacion
+     * @param graficar boolean
+     */
     public void setGraficar(boolean graficar) {
         this.graficar = graficar;
     }
+    /**
+     * Dibuja y grafica el punto en las coordenadas dadas
+     * @param g {@link Graphics}
+     */
     @Override
     public void paint(Graphics g) {
         Graphics2D g2=(Graphics2D)g;

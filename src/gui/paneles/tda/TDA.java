@@ -1,6 +1,7 @@
-package gui.tda;
+package gui.paneles.tda;
 import eventos.Eventos;
 import fuentes.Fuentes;
+import gui.contenido.Contenido;
 import gui.editor.Editor;
 import logica.Archivos;
 import logica.Constrains;
@@ -11,14 +12,24 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-public class TDA extends JPanel {
+public class TDA extends Contenido {
+    /**
+     * Contenido del panel TDA
+     * @see Contenido
+     * @see SimuladorTDA
+     * @see Graficador
+     */
     public TDA(){
-        setLayout(new GridBagLayout());
-        init();
+        getTitle().setText("Tipos de Datos Abstratos (tda)");
+        getBack().setToolTipText("Ventana Principal");
+        getBack().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.PRINCIPAL.toString());
+            }
+        });
     }
-    private void init(){
-        JLabel title=new JLabel("Tipos de Datos Abstratos (TDA)",SwingConstants.CENTER);
-        title.setFont(Fuentes.UBUNTULIGHT30.getFont());
+    /*private void init(){
         JTextArea area= new JTextArea(TXT.TDA.toString());
         area.setFont(Fuentes.UBUNTULIGHT20.getFont());
         area.setTabSize(4);
@@ -31,7 +42,7 @@ public class TDA extends JPanel {
         panel.add(editor,BorderLayout.WEST);
         panel.add(editor.scroll,BorderLayout.CENTER);
         try {
-            editor.text(Archivos.codefiles("/codes/Punto.txt"));
+            editor.text(Archivos.codefiles("/codes/tda/Punto.txt"));
         } catch (IOException e) {
             editor.setText(e.getMessage());
         }
@@ -46,16 +57,6 @@ public class TDA extends JPanel {
         formula.setFont(Fuentes.PURISA15.getFont());
         formula.setOpaque(false);
         formula.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        JLabel back=new JLabel(Archivos.image("/image/back.png",48,48));
-        back.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        back.setOpaque(false);
-        back.setToolTipText("Ventana Principal");
-        back.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Eventos.show(Paneles.PRINCIPAL.toString());
-            }
-        });
         JLabel next=new JLabel(Archivos.image("/image/next.png",48,48));
         next.setCursor(new Cursor(Cursor.HAND_CURSOR));
         next.setOpaque(false);
@@ -73,17 +74,5 @@ public class TDA extends JPanel {
         Constrains.addComp(formula,this,1,4,1,1,1,0,0,10,15,10, GridBagConstraints.NORTH,GridBagConstraints.NONE);
         Constrains.addComp(back,this,0,5,1,1,0,0,10,2,2,2,GridBagConstraints.SOUTHWEST,GridBagConstraints.NONE);
         Constrains.addComp(next,this,2,5,1,1,0,0,10,2,2,2, GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
-    }
-    public JScrollPane scroll(){
-        JScrollPane pane=new JScrollPane(new TDA(),ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        pane.setWheelScrollingEnabled(true);
-        pane.getViewport().setView(this);
-        return pane;
-    }
-    @Override
-    public void paint(Graphics g) {
-        g.drawImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/Lienzo.jpg")),0,0,getWidth(),getHeight(),this);
-        setOpaque(false);
-        super.paint(g);
-    }
+    }*/
 }

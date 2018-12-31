@@ -8,12 +8,15 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 public class Principal extends JPanel {
+    /**
+     * Menu principal de la interfaz grafica del proyecto
+     */
     public Principal(){
         setLayout(new GridBagLayout());
         init();
     }
     private void init()  {
-        JLabel tda=label("TDA","Tipos de Datos Abstratos", Archivos.image("/image/TDA.png", 88, -1), new MouseAdapter() {
+        JLabel tda=label("tda","Tipos de Datos Abstratos", Archivos.image("/image/TDA.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.TDA.toString());
@@ -85,19 +88,27 @@ public class Principal extends JPanel {
 
             }
         });
-        Constrains.addCompY(tda,this,0,0,1,4,0.1,30,57,30,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(modularidad, this,1,0,1,1,0.1,30,13,0,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(recursividad,this,1,1,1,1,0.1,13,13,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(arreglos,this,1,2,1,1,0.1,13,13,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(nodos,this,1,3,1,1,0.1,13,13,30,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(ordenamiento,this,2,0,1,2,0.1,30,13,13,13, GridBagConstraints.SOUTH, GridBagConstraints.NONE);
-        Constrains.addCompY(busqueda,this,2,2,1,2,0.1,13,13,30,13,GridBagConstraints.NORTH,GridBagConstraints.NONE);
-        Constrains.addCompY(pila,this,3,0,1,2,0.1,30,13,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(cola,this,3,1,1,2,0.1,13,13,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(lista,this,3,2,1,2,0.1,13,13,30,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(arboles,this,4,0,1,2,0.1,30,13,13,75,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addCompY(grafos,this,4,2,1,2,0.1,13,13,30,75,GridBagConstraints.NORTH,GridBagConstraints.NONE);
+        Constrains.addCompY(tda,this,0,0,1,4,0.1,30,57,30,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(modularidad, this,1,0,1,1,0.1,30,18,0,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(recursividad,this,1,1,1,1,0.1,13,18,13,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(arreglos,this,1,2,1,1,0.1,13,18,13,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(nodos,this,1,3,1,1,0.1,13,18,30,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(ordenamiento,this,2,0,1,2,0.1,30,18,13,18, GridBagConstraints.SOUTH, GridBagConstraints.NONE);
+        Constrains.addCompY(busqueda,this,2,2,1,2,0.1,13,18,30,18,GridBagConstraints.NORTH,GridBagConstraints.NONE);
+        Constrains.addCompY(pila,this,3,0,1,2,0.1,30,18,13,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(cola,this,3,1,1,2,0.1,13,18,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(lista,this,3,2,1,2,0.1,13,18,30,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(arboles,this,4,0,1,2,0.1,30,18,13,75,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
+        Constrains.addCompY(grafos,this,4,2,1,2,0.1,13,18,30,75,GridBagConstraints.NORTH,GridBagConstraints.NONE);
     }
+    /**
+     * Etiqueta con parametros predefinidos enfocados hacia el proyecto
+     * @param text {@link String}
+     * @param tip {@link String}
+     * @param icon {@link ImageIcon}
+     * @param adapter {@link MouseAdapter}
+     * @return label {@link JLabel}
+     */
     private JLabel label(String text,String tip, ImageIcon icon, MouseAdapter adapter){
         JLabel label=new JLabel(text,icon,SwingConstants.CENTER);
         label.setFont(Fuentes.PURISA18.getFont());
@@ -108,6 +119,10 @@ public class Principal extends JPanel {
         label.addMouseListener(adapter);
         return label;
     }
+    /**
+     * Tapiz del panel
+     * @param g {@link Graphics}
+     */
     @Override
     public void paint(Graphics g) {
         g.drawImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/Lienzo.jpg")),0,0,getWidth(),getHeight(),this);

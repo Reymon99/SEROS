@@ -18,6 +18,10 @@ public enum Color {
     private Color(java.awt.Color color){
         this.color=color;
     }
+    /**
+     *Colores RGB predefinidas para utilizar en el proyecto
+     * @return java.awt.Color
+     */
     public java.awt.Color getColor() {
         return color;
     }

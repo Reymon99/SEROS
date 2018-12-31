@@ -1,13 +1,16 @@
 package gui.principal;
 import java.awt.*;
 import javax.swing.*;
-public class Desktop extends JFrame {
+public final class Desktop extends JFrame {
+    /**
+     * Ventana principal de proyecto
+     */
     public Desktop() {
         super("Desktop");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
         init();
-        pack();
+        setExtendedState(MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
     }
     private void init() {

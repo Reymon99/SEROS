@@ -1,19 +1,21 @@
-package gui.tda;
-
+package gui.paneles.tda;
 import eventos.Eventos;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
 import logica.Archivos;
 import logica.Paneles;
 import logica.TXT;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-
 public class SimuladorTDA extends Simulador {
+    /**
+     * Simulador enfocado a explicar los TDA
+     * @see Simulador {@link Simulador#Simulador(Canvas)}
+     * @param canvas {@link Canvas}
+     */
     public SimuladorTDA(Canvas canvas) {
         super(canvas);
         getTexto().setText(TXT.SIMULADORTDA2.toString());
@@ -26,8 +28,8 @@ public class SimuladorTDA extends Simulador {
         panel1.add(editorPunto.scroll,BorderLayout.CENTER);
         panel1.setPreferredSize(new Dimension(200,450));
         try {
-            editorMain.text(Archivos.codefiles("/codes/MainPunto.txt"));
-            editorPunto.text(Archivos.codefiles("/codes/Punto.txt"));
+            editorMain.text(Archivos.codefiles("/codes/tda/MainPunto.txt"));
+            editorPunto.text(Archivos.codefiles("/codes/tda/Punto.txt"));
         } catch (IOException e) {
             getTexto().setText(e.getMessage());
         }
