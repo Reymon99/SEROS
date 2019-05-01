@@ -3,16 +3,16 @@ public classn_ Punto {w_
 	publicn_ Puntoa_(w_intn_ xw_,intn_ ym_){w_
 		thisn_.w_xm_=xw_;
 		thisn_.w_ym_=yw_;n_
-	}b_
+	}w_
 	public intn_ getXa_(){w_
 		returnn_ xm_;n_
-	}b_
+	}w_
 	public intn_ getYa_(){w_
 		returnn_ ym_;n_
-	}b_
+	}w_
 	public voidn_ setXa_(w_intn_ x){w_
 		thisn_.w_xm_=xw_;n_
-	}b_
+	}w_
 	public voidn_ setYa_(w_intn_ y){w_
 		thisn_.w_ym_=yw_;n_
 	}w_

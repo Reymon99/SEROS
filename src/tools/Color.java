@@ -1,4 +1,4 @@
-package logica;
+package tools;
 public enum Color {
     AZUL(95,176,214),
     AMARILLO(245,208,51),
@@ -21,6 +21,7 @@ public enum Color {
     /**
      *Colores RGB predefinidas para utilizar en el proyecto
      * @return java.awt.Color
+     * @author Sergio Majé
      */
     public java.awt.Color getColor() {
         return color;

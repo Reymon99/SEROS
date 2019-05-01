@@ -1,5 +1,5 @@
 package gui.paneles.tda;
-import fuentes.Fuentes;
+import tools.Fuentes;
 import java.awt.*;
 import java.awt.geom.Line2D;
 public class Graficador extends Canvas {
@@ -7,6 +7,7 @@ public class Graficador extends Canvas {
     protected int x,y;
     /**
      * Grafica un punto en una coordenada dada
+     * @author Sergio Majé
      */
     public Graficador(){
         graficar=false;
@@ -17,8 +18,9 @@ public class Graficador extends Canvas {
     }
     /**
      * Grafica un punto con las coordenadas dadas
-     * @param x int
-     * @param y int
+     * @param x int coordenada en x
+     * @param y int coordenada en y
+     * @author Sergio Majé
      */
     public void graficar(int x,int y){
         this.x=x;
@@ -28,6 +30,7 @@ public class Graficador extends Canvas {
     }
     /**
      * Limpia la grafica de las coordenadas que han sido graficadas
+     * @author Sergio Majé
      */
     public void limpiar(){
         x=y=0;
@@ -36,7 +39,8 @@ public class Graficador extends Canvas {
     }
     /**
      * Estado de graficacion
-     * @return
+     * @return boolean
+     * @author Sergio Majé
      */
     public boolean isGraficar() {
         return graficar;
@@ -44,6 +48,7 @@ public class Graficador extends Canvas {
     /**
      * Modifica el estado de graficacion
      * @param graficar boolean
+     * @author Sergio Majé
      */
     public void setGraficar(boolean graficar) {
         this.graficar = graficar;
@@ -51,6 +56,7 @@ public class Graficador extends Canvas {
     /**
      * Dibuja y grafica el punto en las coordenadas dadas
      * @param g {@link Graphics}
+     * @author Sergio Majé
      */
     @Override
     public void paint(Graphics g) {

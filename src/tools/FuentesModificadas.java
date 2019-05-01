@@ -1,4 +1,4 @@
-package fuentes;
+package tools;
 import java.awt.*;
 import java.io.InputStream;
 public class FuentesModificadas {
@@ -6,6 +6,7 @@ public class FuentesModificadas {
     /**
      * Crea nuevas fuentes de texto al proyecto
      * @param url {@link String}
+     * @author Sergio Majé
      */
     protected FuentesModificadas(String url){
         try{
@@ -21,6 +22,7 @@ public class FuentesModificadas {
      * @param style int
      * @param size int
      * @return Font
+     * @author Sergio Majé
      */
     protected Font getFont(int style,int size) {
         return font.deriveFont(style,size);

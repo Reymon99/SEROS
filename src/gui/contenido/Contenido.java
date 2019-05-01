@@ -1,7 +1,7 @@
 package gui.contenido;
-import fuentes.Fuentes;
-import logica.Archivos;
-import logica.Constrains;
+import tools.Fuentes;
+import tools.Archivos;
+import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
 public abstract class Contenido extends JPanel {
@@ -9,6 +9,7 @@ public abstract class Contenido extends JPanel {
     private JLabel back,next,title;
     /**
      * Esquema de los paneles de contenido del proyecto
+     * @author Sergio Majé
      */
     public Contenido(){
         setLayout(new GridBagLayout());
@@ -16,6 +17,7 @@ public abstract class Contenido extends JPanel {
     }
     /**
      * Instanciacion y acomodamiento de los componentes del panel
+     * @author Sergio Majé
      */
     private void init() {
         title=new JLabel();
@@ -28,20 +30,21 @@ public abstract class Contenido extends JPanel {
         pane.setWheelScrollingEnabled(true);
         pane.getViewport().setView(this);
         //pane.getVerticalScrollBar().setUnitIncrement(6);
-        back=new JLabel(Archivos.image("/image/back.png",48,48));
+        back=new JLabel(Archivos.image("/recourses/image/back.png",48,48));
         back.setCursor(new Cursor(Cursor.HAND_CURSOR));
         back.setOpaque(false);
-        next=new JLabel(Archivos.image("/image/next.png",48,48));
+        next=new JLabel(Archivos.image("/recourses/image/next.png",48,48));
         next.setCursor(new Cursor(Cursor.HAND_CURSOR));
         next.setOpaque(false);
         Constrains.addComp(title,this,0,0,3,1,1,1,15,15,10,10, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(contenido,this,0,1,3,1,1,1,15,15,10,10, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+        Constrains.addComp(contenido,this,0,1,3,1,1,1,15,20,10,15, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
         Constrains.addComp(back,this,0,2,1,1,0,0,10,7,10,2, GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
         Constrains.addComp(next,this,2,2,1,1,0,0,10,2,10,7, GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
     }
     /**
-     * Descripcion del contenido del panel
+     * Descripcion del contenido de la temática
      * @return contenido {@link JPanel}
+     * @author Sergio Majé
      */
     public JPanel getContenido() {
         return contenido;
@@ -49,6 +52,7 @@ public abstract class Contenido extends JPanel {
     /**
      * Boton de retoceder
      * @return back {@link JLabel}
+     * @author Sergio Majé
      */
     public JLabel getBack() {
         return back;
@@ -56,6 +60,7 @@ public abstract class Contenido extends JPanel {
     /**
      * Boton de avanzar
      * @return next {@link JLabel}
+     * @author Sergio Majé
      */
     public JLabel getNext() {
         return next;
@@ -63,6 +68,7 @@ public abstract class Contenido extends JPanel {
     /**
      * Titulo del contenido
      * @return title {@link JLabel}
+     * @author Sergio Majé
      */
     public JLabel getTitle() {
         return title;
@@ -70,10 +76,11 @@ public abstract class Contenido extends JPanel {
     /**
      * Tapiz del panel
      * @param g {@link Graphics}
+     * @author Sergio Majé
      */
     @Override
     public void paint(Graphics g) {
-        g.drawImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/Lienzo.jpg")),0,0,getWidth(),getHeight(),this);
+        g.drawImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/recourses/image/Lienzo.jpg")),0,0,getWidth(),getHeight(),this);
         setOpaque(false);
         super.paint(g);
     }

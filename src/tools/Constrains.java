@@ -1,4 +1,4 @@
-package logica;
+package tools;
 import javax.swing.*;
 import java.awt.*;
 public abstract class Constrains {
@@ -17,6 +17,7 @@ public abstract class Constrains {
      * @param right int
      * @param place int
      * @param stretch int
+     * @author Sergio Majé
      */
     public static void addCompX(JComponent component,Container container, int x, int y, int width, int height, double weightx, int top, int left, int bottom, int right, int place, int stretch){
         GridBagConstraints grid=new GridBagConstraints();
@@ -45,6 +46,7 @@ public abstract class Constrains {
      * @param right int
      * @param place int
      * @param stretch int
+     * @author Sergio Majé
      */
     public static void addCompY(JComponent component,Container container,int x,int y,int width,int height,double weighty,int top,int left,int bottom,int right,int place,int stretch){
         GridBagConstraints grid=new GridBagConstraints();
@@ -74,6 +76,7 @@ public abstract class Constrains {
      * @param right int
      * @param place int
      * @param stretch int
+     * @author Sergio Majé
      */
     public static void addComp(JComponent component,Container container,int x,int y,int width,int height,double weightx,double weighty,int top,int left,int bottom,int right,int place,int stretch){
         GridBagConstraints grid=new GridBagConstraints();
@@ -105,6 +108,7 @@ public abstract class Constrains {
      * @param ipadx int
      * @param place int
      * @param stretch int
+     * @author Sergio Majé
      */
     public static void addCompIx(JComponent component,Container container,int x,int y,int width,int height,double weightx,double weighty,int top,int left,int bottom,int right,int ipadx,int place,int stretch) {
         GridBagConstraints grid=new GridBagConstraints();
@@ -137,6 +141,7 @@ public abstract class Constrains {
      * @param ipady int
      * @param place int
      * @param stretch int
+     * @author Sergio Majé
      */
     public static void addCompIy(JComponent component,Container container,int x,int y,int width,int height,double weightx,double weighty,int top,int left,int bottom,int right,int ipady,int place,int stretch) {
         GridBagConstraints grid=new GridBagConstraints();
@@ -168,6 +173,7 @@ public abstract class Constrains {
      * @param ipadx int
      * @param place int
      * @param stretch int
+     * @author Sergio Majé
      */
     public static void addCompXIx(JComponent component,Container container,int x,int y,int width,int height,double weightx,int top,int left,int bottom,int right,int ipadx,int place,int stretch) {
         GridBagConstraints grid=new GridBagConstraints();
@@ -198,6 +204,7 @@ public abstract class Constrains {
      * @param ipady int
      * @param place int
      * @param street int
+     * @author Sergio Majé
      */
     public static void addCompXIy(JComponent component,Container container,int x,int y,int width,int height,double weightx,int top,int left,int bottom,int right,int ipady,int place,int street){
         GridBagConstraints grid=new GridBagConstraints();
@@ -230,6 +237,7 @@ public abstract class Constrains {
      * @param ipady int
      * @param place int
      * @param street int
+     * @author Sergio Majé
      */
     public static void addCompI(JComponent component,Container container,int x,int y, int width,int height,double weightx,double weighty,int top,int left,int bottom,int right,int ipadx,int ipady,int place,int street){
         GridBagConstraints grid=new GridBagConstraints();
@@ -262,6 +270,7 @@ public abstract class Constrains {
      * @param right int
      * @param place int
      * @param stretch int
+     * @author Sergio Majé
      */
     public static void addComp(Component component,Container container,int x,int y,int width,int height,double weightx,double weighty,int top,int left,int bottom,int right,int place,int stretch){
         GridBagConstraints grid=new GridBagConstraints();

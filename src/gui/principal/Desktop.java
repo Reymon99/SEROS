@@ -4,13 +4,14 @@ import javax.swing.*;
 public final class Desktop extends JFrame {
     /**
      * Ventana principal de proyecto
+     * @author Sergio Majé
      */
     public Desktop() {
         super("Desktop");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
         init();
-        setExtendedState(MAXIMIZED_BOTH);
+        pack();
         setLocationRelativeTo(null);
     }
     private void init() {

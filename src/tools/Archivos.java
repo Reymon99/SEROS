@@ -1,4 +1,4 @@
-package logica;
+package tools;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.io.*;
@@ -10,6 +10,7 @@ public abstract class Archivos {
      * @param width int
      * @param height int
      * @return ImageIcon
+     * @author Sergio Majé
      */
     public static ImageIcon image(String path,int width,int height) {
         try{
@@ -20,18 +21,21 @@ public abstract class Archivos {
     }
     /**
      * Lee los archivos de texto que contiene el codigo formateado para ser utilizado en el proyecto
-     * @param path {@link String}
-     * @return String
+     * @param path {@link String} ruta del archivo
+     * @return {@link String} texto convertido en cadena
+     * @throws {@link IOException}
+     * @author Sergio Majé
      */
-    public static String codefiles(String path){
+    public static String codefiles(String path) throws IOException {
         try {
             BufferedReader br=new BufferedReader(new FileReader(Archivos.class.getResource(path).toURI().getPath()));
-            String cadena,txt="";
-            while ((cadena=br.readLine())!=null) txt+=cadena+"\t\n";
+            String cadena;
+            StringBuilder txt= new StringBuilder();
+            while ((cadena=br.readLine())!=null) txt.append(cadena).append("\n");
             br.close();
-            return txt;
+            return txt.toString();
         } catch (URISyntaxException | IOException e) {
-            return null;
+            throw new IOException(e.getMessage());
         }
     }
 }

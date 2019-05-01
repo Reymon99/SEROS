@@ -1,14 +1,16 @@
 package gui.editor;
-import fuentes.Fuentes;
+import tools.Archivos;
+import tools.Fuentes;
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
 import java.io.*;
 public class Editor extends JPanel {
     private JTextPane editor;
-    public JScrollPane scroll;
+    public JScrollPane scroll;//Cambiar a privado despues de corregir en el simulador tda
     /**
-     * Editor sintexico de codigo utilizado en la interfaz grafica del proyecto
+     * Editor sintexico de codigo a utilizar en la interfaz grafica del proyecto
+     * @author Sergio Majé
      */
     public Editor(){
         setPreferredSize(new Dimension(30,30));
@@ -27,30 +29,31 @@ public class Editor extends JPanel {
         editor.setForeground(Color.WHITE);
         editor.setFont(Fuentes.UBUNTULIGHT15.getFont());
         editor.setEditable(false);
-        editor.setMargin(new Insets(0,10,5,0));
+        editor.setMargin(new Insets(0,10,5,39));
         editor.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         scroll=new JScrollPane(editor);
         repaint();
     }
     /**
      * Decodifica el texto del archivo para diferenciar los diferentes colores de la sintaxis
-     * @param n {@link String}
-     * @throws IOException
+     * @param n {@link String} cadena con texto codificado
+     * @author Sergio Majé
      */
-    public void text(String n) throws IOException {
+    public void text(String n) {
         for (String e:n.replaceAll("\t","       ").split("_")){
-            if (e.endsWith("n")) append(e.substring(0,e.length()-1), logica.Color.NARANJA.getColor());
-            else if(e.endsWith("m")) append(e.substring(0,e.length()-1), logica.Color.MORADO.getColor());
-            else if(e.endsWith("a")) append(e.substring(0,e.length()-1), logica.Color.AMARILLO.getColor());
-            else if(e.endsWith("b")) append(e.substring(0,e.length()-1), logica.Color.AZUL.getColor());
-            else if(e.endsWith("v")) append(e.substring(0,e.length()-1), logica.Color.VERDE.getColor());
-            else if(e.endsWith("w")) append(e.substring(0,e.length()-1), logica.Color.BLANCO.getColor());
+            if (e.endsWith("n")) append(e.substring(0,e.length()-1), tools.Color.NARANJA.getColor());
+            else if(e.endsWith("m")) append(e.substring(0,e.length()-1), tools.Color.MORADO.getColor());
+            else if(e.endsWith("a")) append(e.substring(0,e.length()-1), tools.Color.AMARILLO.getColor());
+            else if(e.endsWith("b")) append(e.substring(0,e.length()-1), tools.Color.AZUL.getColor());
+            else if(e.endsWith("v")) append(e.substring(0,e.length()-1), tools.Color.VERDE.getColor());
+            else if(e.endsWith("w")) append(e.substring(0,e.length()-1), tools.Color.BLANCO.getColor());
         }
     }
     /**
      * Añade texto de un determinado color al editor
-     * @param n {@link String}
-     * @param color {@link Color}
+     * @param n {@link String} texto que sera personalizado
+     * @param color {@link Color} color a personalizar
+     * @author Sergio Majé
      */
     private void append(String n, Color color){
         editor.setEditable(true);
@@ -65,13 +68,35 @@ public class Editor extends JPanel {
     /**
      * Define texto al editor sin diferenciacion de sintaxis
      * @param text {@link String}
+     * @author Sergio Majé
      */
-    public void setText(String text){
+    private void setText(String text){
         editor.setText(text);
+    }
+
+    /**
+     * Creacion de un nuevo Editor
+     * @param path {@link String} ruta del archivo a mostrar
+     * @return {@link JPanel} panel con el editor integrado
+     * @see Archivos#codefiles(String)
+     * @author Sergio Majé
+     */
+    public static JPanel editor(String path){
+        Editor editor=new Editor();
+        JPanel panel=new JPanel(new BorderLayout());
+        panel.add(editor, BorderLayout.WEST);
+        panel.add(editor.scroll, BorderLayout.CENTER);
+        try{
+            editor.text(Archivos.codefiles(path));
+        } catch (IOException e) {
+            editor.setText(e.getMessage());
+        }
+        return panel;
     }
     /**
      * Dibuja una columna con los indices de las filas de texto
      * @param g {@link Graphics}
+     * @author Sergio Majé
      */
     @Override
     public void paint(Graphics g) {

@@ -1,7 +1,7 @@
 package gui.simulador;
-import fuentes.Fuentes;
-import logica.Archivos;
-import logica.Constrains;
+import tools.Fuentes;
+import tools.Archivos;
+import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
 public abstract class Simulador extends JPanel {
@@ -14,6 +14,7 @@ public abstract class Simulador extends JPanel {
     /**
      * Esquema de los simuladores del proyecto
      * @param canvas {@link Canvas}
+     * @author Sergio Majé
      */
     public Simulador(Canvas canvas) {
         this.canvas = canvas;
@@ -22,16 +23,17 @@ public abstract class Simulador extends JPanel {
     }
     /**
      * Instanciacion y acomodamiento de los componentes del panel
+     * @author Sergio Majé
      */
     public void init(){
         code=new JTabbedPane();
         JPanel panel1=new JPanel(new GridBagLayout());
-        panel1.setBackground(logica.Color.GRISPANEL.getColor());
-        back=new JLabel(Archivos.image("/image/back.png",48,48));
+        panel1.setBackground(tools.Color.GRISPANEL.getColor());
+        back=new JLabel(Archivos.image("/recourses/image/back.png",48,48));
         JLabel desc=new JLabel("Descripción");
         desc.setFont(Fuentes.UBUNTULIGHT14.getFont());
         desc.setForeground(Color.WHITE);
-        desc.setBackground(logica.Color.AZULTITLE.getColor());
+        desc.setBackground(tools.Color.AZULTITLE.getColor());
         desc.setOpaque(true);
         texto=new JTextArea(3,15);
         texto.setCaretColor(Color.WHITE);
@@ -40,18 +42,18 @@ public abstract class Simulador extends JPanel {
         texto.setFont(Fuentes.UBUNTULIGHT18.getFont());
         texto.setWrapStyleWord(true);
         texto.setForeground(Color.WHITE);
-        texto.setBackground(logica.Color.AZULTEXT.getColor());
+        texto.setBackground(tools.Color.AZULTEXT.getColor());
         texto.setMargin(new Insets(28,24,20,20));
         JLabel vari=new JLabel("Variables");
         vari.setFont(Fuentes.UBUNTULIGHT14.getFont());
         vari.setForeground(Color.WHITE);
-        vari.setBackground(logica.Color.AZULTITLE.getColor());
+        vari.setBackground(tools.Color.AZULTITLE.getColor());
         vari.setOpaque(true);
         datos=new JTable();
         datos.setDragEnabled(false);
         datos.setPreferredScrollableViewportSize(new Dimension(120,120));
         JScrollPane scroll=new JScrollPane(datos);
-        scroll.getViewport().setBackground(logica.Color.AZULTEXT.getColor());
+        scroll.getViewport().setBackground(tools.Color.AZULTEXT.getColor());
         panel=new JPanel(new GridBagLayout());
         panel.setOpaque(false);
         Constrains.addComp(back,panel1,0,0,1,1,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
@@ -67,27 +69,31 @@ public abstract class Simulador extends JPanel {
     /**
      * Notificaciones
      * @return texto {@link JTextArea}
+     * @author Sergio Majé
      */
     public JTextArea getTexto() {
         return texto;
     }
     /**
      * Valor de las variables
-     * @return
+     * @return JTable
+     * @author Sergio Majé
      */
     public JTable getDatos() {
         return datos;
     }
     /**
      * panel de comandos del simulador
-     * @return
+     * @return Jpanel
+     * @author Sergio Majé
      */
     public JPanel getPanel() {
         return panel;
     }
     /**
      * Retornar al panel anterior
-     * @return
+     * @return JLabel
+     * @author Sergio Majé
      */
     public JLabel getBack() {
         return back;
@@ -95,6 +101,7 @@ public abstract class Simulador extends JPanel {
     /**
      * Añade los codigos que necesita el simulador
      * @param code {@link JScrollPane}
+     * @author Sergio Majé
      */
     public void addCodes(JScrollPane code){
         this.code.add("Punto",code);
