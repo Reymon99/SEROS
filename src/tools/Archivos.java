@@ -1,6 +1,7 @@
 package tools;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.net.URISyntaxException;
 public abstract class Archivos {
@@ -14,8 +15,9 @@ public abstract class Archivos {
      */
     public static ImageIcon image(String path,int width,int height) {
         try{
-            return new ImageIcon(ImageIO.read(Archivos.class.getResource(path)).getScaledInstance(width,height,java.awt.Image.SCALE_DEFAULT));
+            return new ImageIcon(ImageIO.read(Archivos.class.getResource(path)).getScaledInstance(width,height, Image.SCALE_DEFAULT));
         } catch (IOException e) {
+            System.err.println(e.getMessage());
             return null;
         }
     }

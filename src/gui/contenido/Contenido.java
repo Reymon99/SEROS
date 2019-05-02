@@ -29,6 +29,8 @@ public abstract class Contenido extends JPanel {
         JScrollPane pane = new JScrollPane(contenido, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         pane.setWheelScrollingEnabled(true);
         pane.getViewport().setView(this);
+        pane.setBorder(null);
+        pane.setOpaque(false);
         //pane.getVerticalScrollBar().setUnitIncrement(6);
         back=new JLabel(Archivos.image("/recourses/image/back.png",48,48));
         back.setCursor(new Cursor(Cursor.HAND_CURSOR));

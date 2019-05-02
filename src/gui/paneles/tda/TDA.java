@@ -31,6 +31,7 @@ public class TDA extends Contenido {
 
             }
         });
+        //pane con ipadx
         JTextArea area=new Texto(Text.TDA.toString());
         Constrains.addCompX(area, getContenido(), 0, 0, 1, 1, 1, 10, 25, 15, 12, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(Editor.editor("/recourses/codes/tda/Punto.txt"),getContenido(),0,1,1,1,0,0,5,5,5,5,GridBagConstraints.CENTER, GridBagConstraints.NONE);

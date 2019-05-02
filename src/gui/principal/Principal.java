@@ -1,8 +1,7 @@
 package gui.principal;
 import eventos.Eventos;
-import tools.Fuentes;
+import gui.paneles.about.About;
 import tools.*;
-import tools.Archivos;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -92,7 +91,8 @@ public class Principal extends JPanel {
         JLabel about=label("", "Acerca de", Archivos.image("/recourses/image/about.png",48,48), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                new About().setVisible(true);
+                System.gc();
             }
         });
         Constrains.addCompY(tda,this,0,0,1,4,0.1,30,57,30,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
