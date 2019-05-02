@@ -5,7 +5,8 @@ public enum Text {
     FORMULATDA("tda = REPRESENTACION(datos) + OPERACIONES(funciones y metodos)"),
     SIMULADORTDA("Instancia el objeto punto asignando sus respectivos parametros X,Y"),
     SIMULADORTDA1("Muestra las coordenadas X,Y dadas"),
-    SIMULADORTDA2("Ingrese las coordenadas (x,y)");
+    SIMULADORTDA2("Ingrese las coordenadas (x,y)"),
+    ABOUT("Descripción explicita de cada Estructura de Datos desde lo conceptual, visión y simulación de las mismas con ejemplos cotidianos resueltos con las escrutura de datos.\n\n\nDesarrollado por\nSergio Andrés Majé Franco\n\n\nVersion 1.0");
     private String n;
     private Text(String n){
         this.n=n;

@@ -88,10 +88,10 @@ public class Principal extends JPanel {
 
             }
         });
-        JLabel about=label("", "Acerca de", Archivos.image("/recourses/image/about.png",48,48), new MouseAdapter() {
+        JLabel about=label("", "Acerca de Seros", Archivos.image("/recourses/image/about.png",48,48), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new About().setVisible(true);
+                new About(Principal.this).setVisible(true);
                 System.gc();
             }
         });
