@@ -32,12 +32,8 @@ public abstract class Contenido extends JPanel {
         pane.setBorder(null);
         pane.setOpaque(false);
         //pane.getVerticalScrollBar().setUnitIncrement(6);
-        back=new JLabel(Archivos.image("/recourses/image/back.png",48,48));
-        back.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        back.setOpaque(false);
-        next=new JLabel(Archivos.image("/recourses/image/next.png",48,48));
-        next.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        next.setOpaque(false);
+        back=new Boton(Archivos.image("/recourses/image/back.png",48,48));
+        next=new Boton(Archivos.image("/recourses/image/next.png",48,48));
         Constrains.addComp(title,this,0,0,3,1,1,1,15,15,10,10, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(contenido,this,0,1,3,1,1,1,15,20,10,15, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
         Constrains.addComp(back,this,0,2,1,1,0,0,10,7,10,2, GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);

@@ -1,5 +1,6 @@
 package gui.principal;
 import eventos.Eventos;
+import gui.contenido.Boton;
 import gui.paneles.about.About;
 import tools.*;
 import javax.swing.*;
@@ -16,79 +17,79 @@ public class Principal extends JPanel {
         init();
     }
     private void init()  {
-        JLabel tda=label("TDA","Tipos de Datos Abstratos", Archivos.image("/recourses/image/TDA.png", 88, -1), new MouseAdapter() {
+        JLabel tda=new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/recourses/image/TDA.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.TDA.toString());
             }
         });
-        JLabel modularidad=label("Modularidad","Complejidad Algoritmica", Archivos.image("/recourses/image/Modularidad y Mapas.png", 88, -1), new MouseAdapter() {
+        JLabel modularidad=new Boton("Modularidad","Complejidad Algoritmica", Archivos.image("/recourses/image/Modularidad y Mapas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel recursividad=label("Recursividad","Metodos Recursivos", Archivos.image("/recourses/image/Recursividad.png", 88, -1), new MouseAdapter() {
+        JLabel recursividad=new Boton("Recursividad","Metodos Recursivos", Archivos.image("/recourses/image/Recursividad.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel arreglos=label("Arreglos","Vectores y Matrices", Archivos.image("/recourses/image/Arreglos y Arboles.png", 88, -1), new MouseAdapter() {
+        JLabel arreglos=new Boton("Arreglos","Vectores y Matrices", Archivos.image("/recourses/image/Arreglos y Arboles.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel nodos=label("Nodos","Enlazamiento de Datos", Archivos.image("/recourses/image/Nodos.png", 88, -1), new MouseAdapter() {
+        JLabel nodos=new Boton("Nodos","Enlazamiento de Datos", Archivos.image("/recourses/image/Nodos.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel ordenamiento=label("Ordenamiento", "Metodos de Ordenamiento Interno", Archivos.image("/recourses/image/Ordenamiento.png", 88, -1), new MouseAdapter() {
+        JLabel ordenamiento=new Boton("Ordenamiento", "Metodos de Ordenamiento Interno", Archivos.image("/recourses/image/Ordenamiento.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel busqueda=label("Busqueda","Metodos de Busqueda", Archivos.image("/recourses/image/Busqueda.png", 88, -1), new MouseAdapter() {
+        JLabel busqueda=new Boton("Busqueda","Metodos de Busqueda", Archivos.image("/recourses/image/Busqueda.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel pila=label("Pilas","Pilas Dinamicas y Estaticas", Archivos.image("/recourses/image/Pilas.png", 88, -1), new MouseAdapter() {
+        JLabel pila=new Boton("Pilas","Pilas Dinamicas y Estaticas", Archivos.image("/recourses/image/Pilas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel cola=label("Colas","Colas Dinamicas y Estaticas", Archivos.image("/recourses/image/Colas.png", 88, -1), new MouseAdapter() {
+        JLabel cola=new Boton("Colas","Colas Dinamicas y Estaticas", Archivos.image("/recourses/image/Colas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel lista=label("Listas","Listas Enlazadas", Archivos.image("/recourses/image/Listas Enlazadas.png", 88, -1), new MouseAdapter() {
+        JLabel lista=new Boton("Listas","Listas Enlazadas", Archivos.image("/recourses/image/Listas Enlazadas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel arboles=label("Árboles","Arboles Binarios y AVL", Archivos.image("/recourses/image/Arreglos y Arboles.png", 88, -1), new MouseAdapter() {
+        JLabel arboles=new Boton("Árboles","Arboles Binarios y AVL", Archivos.image("/recourses/image/Arreglos y Arboles.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel grafos=label("Grafos","Algoritmo del Camino más Corto", Archivos.image("/recourses/image/Grafos.png", 88, -1), new MouseAdapter() {
+        JLabel grafos=new Boton("Grafos","Algoritmo del Camino más Corto", Archivos.image("/recourses/image/Grafos.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
             }
         });
-        JLabel about=label("", "Acerca de Seros", Archivos.image("/recourses/image/about.png",48,48), new MouseAdapter() {
+        JLabel about=new Boton("Acerca de Seros", Archivos.image("/recourses/image/about.png",48,48), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 new About(Principal.this).setVisible(true);
@@ -108,25 +109,6 @@ public class Principal extends JPanel {
         Constrains.addCompY(arboles,this,4,0,1,2,0.1,30,18,13,75,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
         Constrains.addCompY(grafos,this,4,2,1,2,0.1,13,18,30,75,GridBagConstraints.NORTH,GridBagConstraints.NONE);
         Constrains.addComp(about,this,6,3,1,1,0,0,0,0,6,0,GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
-    }
-    /**
-     * Etiqueta con parametros predefinidos enfocados hacia el proyecto
-     * @param text {@link String} text de la etiqueta
-     * @param tip {@link String} tool tip de la etiqueta
-     * @param icon {@link ImageIcon} icono de la etiqueta
-     * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
-     * @return label {@link JLabel}
-     * @author Sergio Majé
-     */
-    private JLabel label(String text,String tip, ImageIcon icon, MouseAdapter adapter){
-        JLabel label=new JLabel(text,icon,SwingConstants.CENTER);
-        label.setFont(Fuentes.PURISA18.getFont());
-        label.setVerticalTextPosition(SwingConstants.BOTTOM);
-        label.setHorizontalTextPosition(SwingConstants.CENTER);
-        label.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        label.setToolTipText(tip);
-        label.addMouseListener(adapter);
-        return label;
     }
     /**
      * Tapiz del panel

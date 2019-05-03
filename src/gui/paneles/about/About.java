@@ -4,15 +4,14 @@ import tools.Archivos;
 import tools.Constrains;
 import tools.Fuentes;
 import tools.Text;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
-
 public class About extends JDialog {
     public About(Component component){
         setTitle("Acerca de Seros");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new GridBagLayout());
         init();
         pack();
