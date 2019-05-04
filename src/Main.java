@@ -4,8 +4,7 @@ public class Main { //1342 lines 906 code lines
         new Thread(() -> {
             System.out.println("start...");
             Desktop desktop=new Desktop();
-            try {
-                //Se pone a dormir el programa para que los componentes cargen perfectamente y se muestren adecuadamente
+            try {//Se pone a dormir el programa para que los componentes cargen perfectamente y se muestren adecuadamente
                 Thread.sleep(150);
                 System.out.println("showing");
             } catch (InterruptedException e) {

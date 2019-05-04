@@ -1,13 +1,14 @@
 package gui.principal;
 import eventos.Eventos;
 import gui.contenido.Boton;
+import gui.contenido.Lienzo;
 import gui.paneles.about.About;
 import tools.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-public class Principal extends JPanel {
+public class Principal extends Lienzo {
     /**
      * Menu principal de la interfaz grafica del proyecto
      * @author Sergio Majé
@@ -109,16 +110,5 @@ public class Principal extends JPanel {
         Constrains.addCompY(arboles,this,4,0,1,2,0.1,30,18,13,75,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
         Constrains.addCompY(grafos,this,4,2,1,2,0.1,13,18,30,75,GridBagConstraints.NORTH,GridBagConstraints.NONE);
         Constrains.addComp(about,this,6,3,1,1,0,0,0,0,6,0,GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
-    }
-    /**
-     * Tapiz del panel
-     * @param g {@link Graphics}
-     * @author Sergio Majé
-     */
-    @Override
-    public void paint(Graphics g) {
-        g.drawImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/recourses/image/Lienzo.jpg")),0,0,getWidth(),getHeight(),this);
-        setOpaque(false);
-        super.paint(g);
     }
 }
