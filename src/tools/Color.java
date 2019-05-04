@@ -10,7 +10,8 @@ public enum Color {
     AZULTEXT(0,19,65),
     GRIS(102,95,133),
     GRISPANEL(142,134,134),
-    GRISBUTTON(182,182,182);
+    GRISBUTTON(182,182,182),
+    CURIOUSBLUE(3,127,188);
     private java.awt.Color color;
     private Color(int r,int g,int b){
         this(new java.awt.Color(r,g,b));

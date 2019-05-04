@@ -1,11 +1,15 @@
 package gui.paneles.about;
+import eventos.Eventos;
 import gui.contenido.Texto;
 import tools.Archivos;
+import tools.Color;
 import tools.Constrains;
 import tools.Fuentes;
 import tools.Text;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Objects;
 public class About extends JDialog {
     /**
@@ -34,9 +38,20 @@ public class About extends JDialog {
         seros1.setHorizontalTextPosition(SwingConstants.CENTER);
         Texto texto=new Texto(Text.ABOUT.toString());
         texto.setFont(Fuentes.UBUNTULIGHT14.getFont());
-        Constrains.addComp(new JLabel(Archivos.image("/recourses/image/logo.png",-1,180)),getContentPane(),0,0,1,1,0,0,30,15,8,15,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addComp(seros,getContentPane(),0,1,1,1,0,0,5,18,5,15,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        JLabel label = new JLabel(Text.LINK.toString());
+        label.setFont(Fuentes.UBUNTULIGHT14.getFont());
+        label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        label.setForeground(Color.CURIOUSBLUE.getColor());
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.link(Text.LINK.toString(),About.this);
+            }
+        });
+        Constrains.addComp(new JLabel(Archivos.image("/recourses/image/logo.png",-1,180)),getContentPane(),0,0,1,1,0,0,30,15,3,15,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addComp(seros,getContentPane(),0,1,1,1,0,0,3,18,5,15,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(seros1,getContentPane(),0,2,1,1,0,0,5,15,5,15,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(texto,getContentPane(),0,3,1,1,1,0,15,15,30,15,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(texto,getContentPane(),0,3,1,1,1,0,15,15,3,15,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(label,getContentPane(),0,4,1,1,1,0,0,15,30,15,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
     }
 }

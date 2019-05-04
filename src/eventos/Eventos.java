@@ -1,6 +1,9 @@
 package eventos;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import tools.Paneles;
 public class Eventos {
     /**
@@ -23,5 +26,19 @@ public class Eventos {
      */
     public static void show(String panel){
         ((CardLayout)Eventos.panel.getLayout()).show(Eventos.panel,panel);
+    }
+
+    /**
+     * abre el navegador con el link fijado
+     * @param url url a abrir por el usuario
+     * @param container panel correspondiente con el cual se va a centrar
+     */
+    public static void link(String url, Container container){
+        try{
+            URL url1=new URL(url);
+            Desktop.getDesktop().browse(url1.toURI());
+        } catch (IOException | URISyntaxException e) {
+
+        }
     }
 }
