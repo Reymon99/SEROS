@@ -21,8 +21,9 @@ public class Panel extends JPanel {
      * @author Sergio Majé
      */
     private void init() {
-        add(Paneles.PRINCIPAL.toString(), new Principal());
         add(Paneles.TDA.toString(), new TDA());
+        add(Paneles.PRINCIPAL.toString(), new Principal());
+
         add(Paneles.SIMULADORTDA.toString(), new SimuladorTDA(new Graficador()));
         Eventos.setPanel(this);
     }
