@@ -73,7 +73,6 @@ public class Editor extends JPanel {
     private void setText(String text){
         editor.setText(text);
     }
-
     /**
      * Creacion de un nuevo Editor
      * @param path {@link String} ruta del archivo a mostrar

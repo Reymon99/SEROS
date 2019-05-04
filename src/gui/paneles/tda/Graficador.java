@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 public class Graficador extends Canvas {
     private boolean graficar;
-    protected int x,y;
+    private int x,y;
     /**
      * Grafica un punto en una coordenada dada
      * @author Sergio Majé
@@ -27,6 +27,14 @@ public class Graficador extends Canvas {
         this.y=y;
         graficar=true;
         repaint();
+    }
+    /**
+     * Coordenadas dadas del punto
+     * @return {@link String}
+     * @author Sergio Majé
+     */
+    public String coordenas(){
+        return "("+this.x+","+this.y+")";
     }
     /**
      * Limpia la grafica de las coordenadas que han sido graficadas
@@ -88,13 +96,13 @@ public class Graficador extends Canvas {
             }
         }
         if (graficar){
-            if (this.x>0 && this.y>0) g2.drawString("("+this.x+","+this.y+")",point.x+7,point.y);
-            else if (this.x<0 && this.y>0) g2.drawString("("+this.x+","+this.y+")",point.x-22,point.y-7);
-            else if (this.x<0 && this.y<0) g2.drawString("("+this.x+","+this.y+")",point.x-22,point.y+17);
-            else if (this.x>0 && this.y<0) g2.drawString("("+this.x+","+this.y+")",point.x-17,point.y+17);
-            else if (this.x==0 && this.y==0) g2.drawString("("+this.x+","+this.y+")",point.x-35,point.y+22);
-            else if (this.x==0) g2.drawString("("+this.x+","+this.y+")",point.x-45,point.y-2);
-            else if (this.y==0) g2.drawString("("+this.x+","+this.y+")",point.x-17,point.y+19);
+            if (this.x>0 && this.y>0) g2.drawString(coordenas(),point.x+7,point.y);
+            else if (this.x<0 && this.y>0) g2.drawString(coordenas(),point.x-22,point.y-7);
+            else if (this.x<0 && this.y<0) g2.drawString(coordenas(),point.x-22,point.y+17);
+            else if (this.x>0 && this.y<0) g2.drawString(coordenas(),point.x-17,point.y+17);
+            else if (this.x==0 && this.y==0) g2.drawString(coordenas(),point.x-35,point.y+22);
+            else if (this.x==0) g2.drawString(coordenas(),point.x-45,point.y-2);
+            else g2.drawString(coordenas(),point.x-17,point.y+19);//y==0
             g2.setFont(Fuentes.DIALOG30.getFont());
             g2.setPaint(Color.RED);
             g2.drawString(".",point.x-5,point.y+4);

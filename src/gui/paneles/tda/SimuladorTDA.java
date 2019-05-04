@@ -2,10 +2,7 @@ package gui.paneles.tda;
 import eventos.Eventos;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
-import tools.Archivos;
-import tools.Paneles;
-import tools.Text;
-
+import tools.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;

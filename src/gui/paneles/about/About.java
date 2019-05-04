@@ -8,6 +8,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 public class About extends JDialog {
+    /**
+     * Ventana Acerca de Seros.
+     * Logo y descripción del proyecto.
+     * Desarrollo y version.
+     * @param component componente del cual es dependiente, para que al ejecutarse se centre respectivamente hacia este.
+     * @author Sergio Majé
+     */
     public About(Component component){
         setTitle("Acerca de Seros");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

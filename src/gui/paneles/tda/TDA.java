@@ -1,7 +1,6 @@
 package gui.paneles.tda;
 import eventos.Eventos;
-import gui.contenido.Contenido;
-import gui.contenido.Texto;
+import gui.contenido.*;
 import gui.editor.Editor;
 import tools.*;
 import javax.swing.*;
