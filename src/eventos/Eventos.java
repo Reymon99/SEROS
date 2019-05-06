@@ -11,7 +11,7 @@ public class Eventos {
      */
     private static JPanel panel;
     /**
-     *Establece el panel pricipal que contiene todos los paneles de proyecto
+     *Establece el panel principal que contiene todos los paneles de proyecto
      * @param panel {@link JPanel}
      * @author Sergio Majé
      */
@@ -19,7 +19,7 @@ public class Eventos {
         Eventos.panel=panel;
     }
     /**
-     * Mediante el nombre de los paneneles definidos mediante un enum de String muestra el panel deseado en la intefaz grafica
+     * Mediante el nombre de los paneles definidos mediante un enum de String muestra el panel deseado en la intefaz grafica
      * @see Paneles
      * @param panel {@link String}
      * @author Sergio Majé
@@ -27,13 +27,12 @@ public class Eventos {
     public static void show(String panel){
         ((CardLayout)Eventos.panel.getLayout()).show(Eventos.panel,panel);
     }
-
     /**
      * abre el navegador con el link fijado
-     * @param url url a abrir por el usuario
-     * @param container panel correspondiente con el cual se va a centrar
+     * @param url {@String} url a abrir por el usuario
+     * @author Sergio Majé
      */
-    public static void link(String url, Container container){
+    public static void link(String url){
         try{
             URL url1=new URL(url);
             Desktop.getDesktop().browse(url1.toURI());

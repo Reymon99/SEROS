@@ -13,8 +13,8 @@ import java.awt.event.MouseEvent;
 import java.util.Objects;
 public class About extends JDialog {
     /**
-     * Ventana Acerca de Seros.
-     * Logo y descripción del proyecto.
+     * Ventana Acerca de Seros.<br>
+     * Logo y descripción del proyecto.<br>
      * Desarrollo y version.
      * @param component componente del cual es dependiente, para que al ejecutarse se centre respectivamente hacia este.
      * @author Sergio Majé
@@ -45,7 +45,7 @@ public class About extends JDialog {
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Eventos.link(Text.LINK.toString(),About.this);
+                Eventos.link(Text.LINK.toString());
             }
         });
         Constrains.addComp(new JLabel(Archivos.image("/recourses/image/logo.png",-1,180)),getContentPane(),0,0,1,1,0,0,30,15,3,15,GridBagConstraints.CENTER,GridBagConstraints.NONE);

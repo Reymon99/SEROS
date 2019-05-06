@@ -15,7 +15,7 @@ public class Panel extends JPanel {
         Eventos.setPanel(this);
     }
     /**
-     * Se añaden los paneles secundarios al principal
+     * Se añaden los paneles secundarios al principal<br>
      * Se agrega el evento para circular entre los paneles
      * @see Eventos#setPanel(JPanel)
      * @author Sergio Majé
