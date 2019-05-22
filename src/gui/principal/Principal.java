@@ -27,7 +27,7 @@ public class Principal extends Lienzo {
         JLabel modularidad=new Boton("Modularidad","Complejidad Algoritmica", Archivos.image("/recourses/image/Modularidad y Mapas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.MODULARIDAD.toString());
             }
         });
         JLabel recursividad=new Boton("Recursividad","Metodos Recursivos", Archivos.image("/recourses/image/Recursividad.png", 88, -1), new MouseAdapter() {

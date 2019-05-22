@@ -2,6 +2,7 @@ package eventos;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import tools.Paneles;
@@ -35,9 +36,13 @@ public class Eventos {
     public static void link(String url){
         try{
             URL url1=new URL(url);
-            Desktop.getDesktop().browse(url1.toURI());
-        } catch (IOException | URISyntaxException e) {
-
+            if (Desktop.isDesktopSupported()) Desktop.getDesktop().browse(url1.toURI());
+        } catch (MalformedURLException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (URISyntaxException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

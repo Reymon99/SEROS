@@ -1,5 +1,6 @@
 package gui.principal;
 import eventos.Eventos;
+import gui.paneles.modularidad.Modularidad;
 import gui.paneles.tda.*;
 import tools.Paneles;
 import javax.swing.*;
@@ -24,6 +25,7 @@ public class Panel extends JPanel {
         add(Paneles.PRINCIPAL.toString(), new Principal());
         add(Paneles.TDA.toString(), new TDA());
         add(Paneles.SIMULADORTDA.toString(), new SimuladorTDA(new Graficador()));
+        add(Paneles.MODULARIDAD.toString(), new Modularidad());
         Eventos.setPanel(this);
     }
 }

@@ -13,9 +13,8 @@ public final class Desktop extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new GridBagLayout());
         init();
-        pack();
-        setLocationRelativeTo(null);
-        setIconImage(Objects.requireNonNull(Archivos.image("/recourses/image/logo.png", -1, 48)).getImage());
+        setExtendedState(MAXIMIZED_BOTH);
+        setIconImage(Objects.requireNonNull(Archivos.image("/recourses/image/logo.png", -1, 52)).getImage());
     }
     private void init() {
         setContentPane(new Panel());

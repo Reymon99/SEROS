@@ -48,7 +48,7 @@ public class About extends JDialog {
                 Eventos.link(Text.LINK.toString());
             }
         });
-        Constrains.addComp(new JLabel(Archivos.image("/recourses/image/logo.png",-1,180)),getContentPane(),0,0,1,1,0,0,30,15,3,15,GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addComp(new JLabel(Archivos.image("/recourses/image/logo.png",200,-1)),getContentPane(),0,0,1,1,0,0,30,15,3,15,GridBagConstraints.CENTER,GridBagConstraints.NONE);
         Constrains.addComp(seros,getContentPane(),0,1,1,1,0,0,3,18,5,15,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(seros1,getContentPane(),0,2,1,1,0,0,5,15,5,15,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(texto,getContentPane(),0,3,1,1,1,0,15,15,3,15,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);

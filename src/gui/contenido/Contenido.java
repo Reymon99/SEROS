@@ -1,9 +1,13 @@
 package gui.contenido;
+import eventos.Eventos;
 import tools.Fuentes;
 import tools.Archivos;
 import tools.Constrains;
+import tools.Paneles;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 public abstract class Contenido extends Lienzo {
     private JPanel contenido;
     private JLabel back,next,title;
@@ -34,6 +38,13 @@ public abstract class Contenido extends Lienzo {
         pane.requestFocus();
         back=new Boton(Archivos.image("/recourses/image/back.png",48,48));
         next=new Boton(Archivos.image("/recourses/image/next.png",48,48));
+        back.setToolTipText("Ventana Principal");
+        back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.PRINCIPAL.toString());
+            }
+        });
         Constrains.addComp(title,this,0,0,3,1,1,1,15,15,8,10, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(pane,this,0,1,3,1,1,25,5,20,10,15, GridBagConstraints.NORTH, GridBagConstraints.BOTH);
         Constrains.addComp(back,this,0,2,1,1,0,0,10,7,10,2, GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
