@@ -5,6 +5,11 @@ import tools.Constrains;
 import tools.Text;
 import java.awt.*;
 public class Modularidad extends Contenido {
+    /**
+     * Contenido del panel Modularidad
+     * @see Contenido
+     * @author Sergio Majé
+     */
     public Modularidad(){
         getTitle().setText("Modularidad");
         getNext().setToolTipText("");

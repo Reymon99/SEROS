@@ -1,11 +1,9 @@
 package gui.paneles.tda;
-import eventos.Eventos;
 import gui.contenido.*;
 import gui.editor.Editor;
 import tools.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 public class TDA extends Contenido {
@@ -27,7 +25,6 @@ public class TDA extends Contenido {
         JLabel formula=new JLabel(Text.FORMULATDA.toString(),SwingConstants.CENTER);
         formula.setFont(Fuentes.PURISA18.getFont());
         formula.setOpaque(false);
-        formula.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         Constrains.addComp(new Texto(Text.TDA.toString()), getContenido(), 0, 0, 1, 1, 1,1, 10, 25, 15, 12, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(Editor.editor("/recourses/codes/tda/Punto.txt"),getContenido(),0,1,1,1,0,0,5,5,5,5,GridBagConstraints.CENTER, GridBagConstraints.NONE);
         Constrains.addComp(new Texto(Text.TDA1.toString()), getContenido(),0,2,1,1,1,1,10,25,3,12, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);

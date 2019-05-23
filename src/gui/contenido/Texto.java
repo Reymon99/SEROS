@@ -10,7 +10,7 @@ public class Texto extends JTextArea {
     public Texto(String text){
         super(text);
         setFont(Fuentes.UBUNTULIGHT20.getFont());
-        setTabSize(4);
+        setTabSize(2);
         setEditable(false);
         setOpaque(false);
         setLineWrap(true);

@@ -4,7 +4,9 @@ import java.io.InputStream;
 public class FuentesModificadas {
     private Font font=null;
     /**
-     * Crea nuevas fuentes de texto al proyecto
+     * Crea nuevas fuentes de texto al proyecto,<br/>
+     * y las registra en el GraphicsEnvironment,<br/>
+     * para poder ser utilizada desde el
      * @param url {@link String}
      * @author Sergio Majé
      */
@@ -12,6 +14,7 @@ public class FuentesModificadas {
         try{
             InputStream stream=getClass().getResourceAsStream(url);
             font=Font.createFont(Font.TRUETYPE_FONT,stream);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
         }catch (Exception e){
             System.err.println("No se encontro la fuente");
             font=new Font(Font.MONOSPACED,Font.PLAIN,10);

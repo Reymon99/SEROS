@@ -29,7 +29,7 @@ public abstract class Contenido extends Lienzo {
         title.setFont(Fuentes.UBUNTULIGHT43.getFont());
         title.setOpaque(false);
         contenido=new Lienzo(new GridBagLayout());
-        JScrollPane pane = new JScrollPane(contenido, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane pane = new JScrollPane(contenido, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         pane.setWheelScrollingEnabled(true);
         pane.getViewport().setView(contenido);
         pane.setBorder(null);
