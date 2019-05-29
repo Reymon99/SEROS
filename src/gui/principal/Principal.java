@@ -39,7 +39,7 @@ public class Principal extends Lienzo {
         JLabel arreglos=new Boton("Arreglos","Vectores y Matrices", Archivos.image("/recourses/image/Arreglos y Arboles.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.ARREGLOS.toString());
             }
         });
         JLabel nodos=new Boton("Nodos","Enlazamiento de Datos", Archivos.image("/recourses/image/Nodos.png", 88, -1), new MouseAdapter() {

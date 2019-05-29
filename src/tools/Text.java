@@ -1,7 +1,4 @@
 package tools;
-
-import gui.paneles.recursividad.Recursividad;
-
 public enum Text {
     TDA("Un TDA o tipo de dato abstrato es un tipo de dato (clase) definida por el programador, que consta de datos (los cuales pueden ser primitivos, definidos por el lenguaje de programación u otro TDA) y operaciones (lo cuales son los metodos y funciones que controlan el comportamiento del TDA) que se pueden realizar sobre ellos."),
     TDA1("Los TDA también constan de dos especificaciones cuyas son:"),
@@ -16,7 +13,10 @@ public enum Text {
     MODULARIDAD("La modularidad es la estructura de un TDA, con la cuál nos permite darle un comportamiento específico y deseado al objeto que deseamos trabajar."),
     MODULARIDAD1("La modularidad se enfoca principalmente a la agrupación de métodos que permiten realizar trabajos complejos, mediante la filosofía “divide y vencerás”; también nos permite una mejor comprensión de lo que estamos codificando, de las tareas a realizar y la reutilización de los métodos(módulos) ya utilizados.\n\nCon esto podemos concluir que la modularidad se basa en las acciones que puede realizar un objeto y cuantas veces quiera tomarlas."),
     RECURSIVIDAD("La recursividad es la simplificación de tareas mediante una función que se llama así misma, buscando un resultado explicito por medio de un resultado implícito, a través de un caso base que aproxima esta respuesta.\n\nLa recursividad se estructura por dos casos, domino y base, yendo desde una respuesta implícita, que nos da una solución compuesta, a una repuesta explicita, siendo ya la solución deseada.\n\nLa recursividad tiene dos tipos de implementación, las cuales son:\n•\tLa Recursividad Directa, determinada por una función que se llama a sí misma.\n•\tLa Recursividad Indirecta, determinada por una función que se llama así misma mediante otra función."),
-    RECURSIVIDAD1("Directa\tf(x) \u279c f(x) \u279c f(x) \u279c x’\nIndirecta\tf(x) \u279c g(x) \u279c f(x) \u279c x’");
+    RECURSIVIDAD1("Directa\tf(x) \u279c f(x) \u279c f(x) \u279c x’\nIndirecta\tf(x) \u279c g(x) \u279c f(x) \u279c x’"),
+    ARREGLOS("Como sabemos un arreglo o array es una secuencia de datos dados por ítems consecutivos desde el cero hasta la longitud del arreglo."),
+    ARREGLOS1("En estructura de datos son utilizadas para dar forma a estructuras estáticas (determinado por un tamaño limite) como veremos mas adelante en las estructuras de datos lineales (pilas, colas y listas) ayudándonos mediante los índices a crear algoritmos eficientes con una determinada estructura de datos."),
+    ARREGLOS2("Además de esto los arreglos pueden ser utilizados en múltiples dimensiones, siendo mayormente utilizadas en la segunda dimensión (arreglos bidimensionales o matrices) que nos permite simular una especie de tabla en la que podemos trabajar con múltiples datos anidados al mismo tiempo, permitiendo resolver distintos problemas determinados.");
     private String n;
     private Text(String n){
         this.n=n;

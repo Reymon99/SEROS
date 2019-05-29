@@ -30,6 +30,6 @@ public class TDA extends Contenido {
         Constrains.addComp(new Texto(Text.TDA1.toString()), getContenido(),0,2,1,1,1,1,10,25,3,12, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new Texto(Text.TDA2.toString()), getContenido(),0,3,1,1,1,1,3,40,3,12, GridBagConstraints.NORTHEAST,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new Texto(Text.TDA3.toString()), getContenido(),0,4,1,1,1,1,5,25,5,12, GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(formula, getContenido(),0,5,1,1,1,1,10,25,20,25, GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addComp(formula, getContenido(),0,5,1,1,1,1,10,25,5,25, GridBagConstraints.CENTER,GridBagConstraints.NONE);
     }
 }

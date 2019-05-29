@@ -1,5 +1,6 @@
 package gui.principal;
 import eventos.Eventos;
+import gui.paneles.arreglos.Arreglos;
 import gui.paneles.modularidad.Modularidad;
 import gui.paneles.recursividad.Recursividad;
 import gui.paneles.tda.*;
@@ -28,6 +29,6 @@ public class Panel extends JPanel {
         add(Paneles.SIMULADORTDA.toString(), new SimuladorTDA(new Graficador()));
         add(Paneles.MODULARIDAD.toString(), new Modularidad());
         add(Paneles.RECURSIVIDAD.toString(), new Recursividad());
-        Eventos.setPanel(this);
+        add(Paneles.ARREGLOS.toString(), new Arreglos());
     }
 }

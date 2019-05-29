@@ -27,7 +27,7 @@ public class Recursividad extends Contenido {
             if (!n.equals(recur[recur.length-1])) append("\u279c",Fuentes.SEGOEUISYMBOL22.getFont(),editor);
         }
         Constrains.addComp(new Texto(Text.RECURSIVIDAD.toString()), getContenido(), 0,0,1,1,1,1,10, 25, 1, 12, GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(editor, getContenido(),0,1,1,1,0.2,1,2,25,20,25, GridBagConstraints.NORTH,GridBagConstraints.NONE);
+        Constrains.addComp(editor, getContenido(),0,1,1,1,0.2,1,2,25,180,25, GridBagConstraints.NORTH,GridBagConstraints.NONE);
     }
     /**
      * Da un determinado estilo de fuente al texto añadido al JTextPane

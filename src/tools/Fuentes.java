@@ -3,7 +3,7 @@ import java.awt.Font;
 public enum Fuentes {
     UBUNTULIGHT14(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.BOLD,14)),
     UBUNTULIGHT15(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.PLAIN,15)),
-    UBUNTULIGHT43(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.PLAIN,43)),
+    UBUNTULIGHT50(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.BOLD,47)),
     UBUNTULIGHT18(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.PLAIN,18)),
     UBUNTULIGHT20(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.PLAIN,20)),
     UBUNTULIGHT30(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.PLAIN,30)),
