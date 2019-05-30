@@ -24,7 +24,7 @@ public abstract class Contenido extends Lienzo {
      * @author Sergio Majé
      */
     private void init() {
-        title=new JLabel();
+        title=new JLabel(getClass().getSimpleName());
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(Fuentes.UBUNTULIGHT50.getFont());
         title.setOpaque(false);

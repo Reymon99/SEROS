@@ -45,49 +45,49 @@ public class Principal extends Lienzo {
         JLabel nodos=new Boton("Nodos","Enlazamiento de Datos", Archivos.image("/recourses/image/Nodos.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.NODOS.toString());
             }
         });
         JLabel ordenamiento=new Boton("Ordenamiento", "Metodos de Ordenamiento Interno", Archivos.image("/recourses/image/Ordenamiento.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.ORDENAMIENTO.toString());
             }
         });
         JLabel busqueda=new Boton("Busqueda","Metodos de Busqueda", Archivos.image("/recourses/image/Busqueda.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.BUSQUEDA.toString());
             }
         });
         JLabel pila=new Boton("Pilas","Pilas Dinamicas y Estaticas", Archivos.image("/recourses/image/Pilas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.PILAS.toString());
             }
         });
         JLabel cola=new Boton("Colas","Colas Dinamicas y Estaticas", Archivos.image("/recourses/image/Colas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.COLAS.toString());
             }
         });
         JLabel lista=new Boton("Listas","Listas Enlazadas", Archivos.image("/recourses/image/Listas Enlazadas.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.LISTAS_ENLAZADAS.toString());
             }
         });
         JLabel arboles=new Boton("Árboles","Arboles Binarios y AVL", Archivos.image("/recourses/image/Arreglos y Arboles.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.ARBOLES.toString());
             }
         });
         JLabel grafos=new Boton("Grafos","Algoritmo del Camino más Corto", Archivos.image("/recourses/image/Grafos.png", 88, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.GRAFOS.toString());
             }
         });
         JLabel about=new Boton("Acerca de Seros", Archivos.image("/recourses/image/about.png",48,48), new MouseAdapter() {

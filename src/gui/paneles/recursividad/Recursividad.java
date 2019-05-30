@@ -17,7 +17,6 @@ public class Recursividad extends Contenido {
      * @author Sergio Majé
      */
     public Recursividad(){
-        getTitle().setText("Recursividad");
         JTextPane editor=new JTextPane();
         editor.setEditable(false);
         editor.setOpaque(false);

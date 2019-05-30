@@ -13,7 +13,6 @@ public class Modularidad extends Contenido {
      * @author Sergio Majé
      */
     public Modularidad(){
-        getTitle().setText("Modularidad");
         getNext().setToolTipText("");
         getNext().addMouseListener(new MouseAdapter() {
             @Override

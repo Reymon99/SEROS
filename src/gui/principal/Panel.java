@@ -1,7 +1,15 @@
 package gui.principal;
 import eventos.Eventos;
+import gui.paneles.arboles.Arboles;
 import gui.paneles.arreglos.Arreglos;
+import gui.paneles.busqueda.Busqueda;
+import gui.paneles.colas.Colas;
+import gui.paneles.grafos.Grafos;
+import gui.paneles.listas.Listas;
 import gui.paneles.modularidad.Modularidad;
+import gui.paneles.nodos.Nodos;
+import gui.paneles.ordenamiento.Ordenamiento;
+import gui.paneles.pilas.Pilas;
 import gui.paneles.recursividad.Recursividad;
 import gui.paneles.tda.*;
 import tools.Paneles;
@@ -30,5 +38,13 @@ public class Panel extends JPanel {
         add(Paneles.MODULARIDAD.toString(), new Modularidad());
         add(Paneles.RECURSIVIDAD.toString(), new Recursividad());
         add(Paneles.ARREGLOS.toString(), new Arreglos());
+        add(Paneles.NODOS.toString(), new Nodos());
+        add(Paneles.ORDENAMIENTO.toString(), new Ordenamiento());
+        add(Paneles.BUSQUEDA.toString(), new Busqueda());
+        add(Paneles.PILAS.toString(), new Pilas());
+        add(Paneles.COLAS.toString(), new Colas());
+        add(Paneles.LISTAS_ENLAZADAS.toString(), new Listas());
+        add(Paneles.ARBOLES.toString(), new Arboles());
+        add(Paneles.GRAFOS.toString(), new Grafos());
     }
 }
