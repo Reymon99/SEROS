@@ -8,10 +8,10 @@ import tools.Fuentes;
 import tools.Text;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.Objects;
 public class About extends JDialog {
+    public static boolean show = true;
     /**
      * Ventana Acerca de Seros.<br>
      * Logo y descripción del proyecto.<br>
@@ -21,13 +21,20 @@ public class About extends JDialog {
      */
     public About(Component component){
         setTitle("Acerca de Seros");
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setUndecorated(true);
+        setFocusable(true);
         getContentPane().setLayout(new GridBagLayout());
         init();
         pack();
         setLocationRelativeTo(component);
         setIconImage(Objects.requireNonNull(Archivos.image("/recourses/image/logo.png", -1, 48)).getImage());
+        addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                About.show=true;
+                dispose();
+            }
+        });
     }
     private void init(){
         JLabel seros=new JLabel("Simulador de Estructura de Datos",SwingConstants.CENTER);

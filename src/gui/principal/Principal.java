@@ -6,8 +6,7 @@ import gui.paneles.about.About;
 import tools.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 public class Principal extends Lienzo {
     /**
      * Menu principal de la interfaz grafica del proyecto
@@ -93,8 +92,10 @@ public class Principal extends Lienzo {
         JLabel about=new Boton("Acerca de Seros", Archivos.image("/recourses/image/about.png",48,48), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new About(Principal.this).setVisible(true);
-                System.gc();
+                if (About.show) {
+                    About.show=false;
+                    new About(Principal.this).setVisible(true);
+                }
             }
         });
         Constrains.addCompY(tda,this,0,0,1,4,0,30,57,30,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
