@@ -14,14 +14,8 @@ public class Boton extends JLabel {
      * @author Sergio Majé
      */
     public Boton(String text, String tip, ImageIcon icon, MouseAdapter adapter){
-        super(text,icon,CENTER);
-        setFont(Fuentes.PURISA18.getFont());
-        setVerticalTextPosition(BOTTOM);
-        setHorizontalTextPosition(CENTER);
-        setCursor(new Cursor(Cursor.HAND_CURSOR));
+        this(icon, text, adapter);
         setToolTipText(tip);
-        setOpaque(false);
-        addMouseListener(adapter);
     }
     /**
      * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
@@ -33,11 +27,8 @@ public class Boton extends JLabel {
      */
     public Boton(String tip, ImageIcon icon, MouseAdapter adapter){
         super(icon,CENTER);
-        setFont(Fuentes.PURISA18.getFont());
-        setCursor(new Cursor(Cursor.HAND_CURSOR));
         setToolTipText(tip);
-        setOpaque(false);
-        addMouseListener(adapter);
+        init(adapter);
     }
     /**
      * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
@@ -49,5 +40,25 @@ public class Boton extends JLabel {
         super(icon,CENTER);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setOpaque(false);
+    }
+    /**
+     * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
+     * para permitirles funcionar como botones
+     * @param icon {@link ImageIcon} icono de la etiqueta
+     * @param text {@link String} text de la etiqueta
+     * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
+     * @author Sergio Majé
+     */
+    public Boton(ImageIcon icon, String text, MouseAdapter adapter){
+        super(text,icon,CENTER);
+        setVerticalTextPosition(BOTTOM);
+        setHorizontalTextPosition(CENTER);
+        init(adapter);
+    }
+    private void init(MouseAdapter adapter){
+        setFont(Fuentes.PURISA18.getFont());
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
+        setOpaque(false);
+        addMouseListener(adapter);
     }
 }

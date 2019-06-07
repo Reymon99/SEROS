@@ -1,6 +1,7 @@
 package gui.principal;
 import eventos.Eventos;
 import gui.contenido.Contenido;
+import gui.contenido.Ejercicios;
 import gui.simulador.lienzos.Graficador;
 import gui.contenido.TextPane;
 import gui.contenido.Texto;

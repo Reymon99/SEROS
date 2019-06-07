@@ -2,10 +2,6 @@ package gui.contenido;
 import eventos.Eventos;
 import tools.*;
 import javax.swing.*;
-import javax.swing.text.Style;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
-import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,7 +17,7 @@ public class Contenido extends Lienzo {
         init();
     }
     /**
-     * Instanciacion y acomodamiento de los componentes del panel
+     * Instanciación y acomodamiento de los componentes del panel
      * @author Sergio Majé
      */
     private void init() {
@@ -33,19 +29,16 @@ public class Contenido extends Lienzo {
         JScrollPane pane = new JScrollPane(contenido, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         pane.setWheelScrollingEnabled(true);
         pane.getViewport().setView(contenido);
-        pane.setBorder(null);
-        pane.setOpaque(false);
+        pane.setBorder(BorderFactory.createEmptyBorder());
         pane.getVerticalScrollBar().setUnitIncrement(40);
-        pane.requestFocus();
-        back=new Boton(Archivos.image("/recourses/image/back.png",48,48));
-        next=new Boton(Archivos.image("/recourses/image/next.png",48,48));
-        back.setToolTipText("Ventana Principal");
-        back.addMouseListener(new MouseAdapter() {
+        pane.setFocusable(true);
+        back=new Boton("Ventana Principal",Archivos.image("/recourses/image/back.png",48,48),new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Eventos.show(Paneles.PRINCIPAL.toString());
+                Eventos.show(Paneles.PRINCIPAL);
             }
         });
+        next=new Boton(Archivos.image("/recourses/image/next.png",48,48));
         Constrains.addComp(title,this,0,0,3,1,1,1,15,15,8,10, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(pane,this,0,1,3,1,1,25,5,20,10,15, GridBagConstraints.NORTH, GridBagConstraints.BOTH);
         Constrains.addComp(back,this,0,2,1,1,0,0,10,7,10,2, GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
