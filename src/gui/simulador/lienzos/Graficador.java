@@ -1,4 +1,4 @@
-package gui.paneles.tda;
+package gui.simulador.lienzos;
 import tools.Fuentes;
 import java.awt.*;
 import java.awt.geom.Line2D;

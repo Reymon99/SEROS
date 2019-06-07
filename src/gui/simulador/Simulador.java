@@ -4,7 +4,7 @@ import tools.Archivos;
 import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
-public abstract class Simulador extends JPanel {
+public class Simulador extends JPanel {
     private Canvas canvas;
     private JTextArea texto;
     private JTable datos;
@@ -103,7 +103,7 @@ public abstract class Simulador extends JPanel {
      * @param code {@link JScrollPane}
      * @author Sergio Majé
      */
-    public void addCodes(JScrollPane code){
-        this.code.add("Punto",code);
+    public void addCodes(JPanel code, String title){
+        this.code.add(title,code);
     }
 }

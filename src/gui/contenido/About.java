@@ -1,11 +1,7 @@
-package gui.paneles.about;
+package gui.contenido;
 import eventos.Eventos;
-import gui.contenido.Texto;
-import tools.Archivos;
+import tools.*;
 import tools.Color;
-import tools.Constrains;
-import tools.Fuentes;
-import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

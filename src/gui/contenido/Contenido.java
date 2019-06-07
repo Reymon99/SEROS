@@ -1,14 +1,15 @@
 package gui.contenido;
 import eventos.Eventos;
-import tools.Fuentes;
-import tools.Archivos;
-import tools.Constrains;
-import tools.Paneles;
+import tools.*;
 import javax.swing.*;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-public abstract class Contenido extends Lienzo {
+public class Contenido extends Lienzo {
     private JPanel contenido;
     private JLabel back,next,title;
     /**
@@ -24,7 +25,7 @@ public abstract class Contenido extends Lienzo {
      * @author Sergio Majé
      */
     private void init() {
-        title=new JLabel(getClass().getSimpleName());
+        title=new JLabel();
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(Fuentes.UBUNTULIGHT50.getFont());
         title.setOpaque(false);
@@ -34,7 +35,7 @@ public abstract class Contenido extends Lienzo {
         pane.getViewport().setView(contenido);
         pane.setBorder(null);
         pane.setOpaque(false);
-        pane.getVerticalScrollBar().setUnitIncrement(8);
+        pane.getVerticalScrollBar().setUnitIncrement(40);
         pane.requestFocus();
         back=new Boton(Archivos.image("/recourses/image/back.png",48,48));
         next=new Boton(Archivos.image("/recourses/image/next.png",48,48));

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import gui.contenido.About;
 import tools.Paneles;
 public class Eventos {
     /**
@@ -25,8 +26,8 @@ public class Eventos {
      * @param panel {@link String}
      * @author Sergio Majé
      */
-    public static void show(String panel){
-        ((CardLayout)Eventos.panel.getLayout()).show(Eventos.panel,panel);
+    public static void show(Paneles panel){
+        ((CardLayout)Eventos.panel.getLayout()).show(Eventos.panel,panel.toString());
     }
     /**
      * abre el navegador con el link fijado
@@ -43,6 +44,17 @@ public class Eventos {
             System.out.println(e.getMessage());
         } catch (URISyntaxException e) {
             System.out.println(e.getMessage());
+        }
+    }
+    /**
+     * About de Seros,<br>
+     * se ejecuta una única vez por ejecución
+     * @param component {@Component} componente en el cual se va a ejecutar el about
+     */
+    public static void about(Component component){
+        if (About.show) {
+            About.show=false;
+            new About(component).setVisible(true);
         }
     }
 }

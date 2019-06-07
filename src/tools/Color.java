@@ -11,7 +11,9 @@ public enum Color {
     GRIS(102,95,133),
     GRISPANEL(142,134,134),
     GRISBUTTON(182,182,182),
-    CURIOUSBLUE(3,127,188);
+    CURIOUSBLUE(3,127,188),
+    NEGROEDITOR(48,47,51),
+    NEGROINDICE(73, 72, 76);
     private java.awt.Color color;
     private Color(int r,int g,int b){
         this(new java.awt.Color(r,g,b));
