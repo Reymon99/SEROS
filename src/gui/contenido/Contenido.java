@@ -1,5 +1,6 @@
 package gui.contenido;
 import eventos.Eventos;
+import gui.contenido.scroll.ModernScrollPane;
 import tools.*;
 import javax.swing.*;
 import java.awt.*;
@@ -25,10 +26,13 @@ public class Contenido extends Lienzo {
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(Fuentes.UBUNTULIGHT50.getFont());
         title.setOpaque(false);
-        contenido=new Lienzo(new GridBagLayout());
-        JScrollPane pane = new JScrollPane(contenido, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        contenido=new JPanel(new GridBagLayout());
+        contenido.setOpaque(false);
+        JScrollPane pane = new ModernScrollPane(contenido);
         pane.setWheelScrollingEnabled(true);
         pane.getViewport().setView(contenido);
+        pane.setOpaque(false);
+        pane.getViewport().setOpaque(false);
         pane.setBorder(BorderFactory.createEmptyBorder());
         pane.getVerticalScrollBar().setUnitIncrement(40);
         pane.setFocusable(true);

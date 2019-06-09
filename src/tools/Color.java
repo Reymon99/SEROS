@@ -13,10 +13,17 @@ public enum Color {
     GRISBUTTON(182,182,182),
     CURIOUSBLUE(3,127,188),
     NEGROEDITOR(48,47,51),
-    NEGROINDICE(73, 72, 76);
+    NEGROINDICE(73, 72, 76),
+    BORDESCROLL(144,144,144),
+    SCROLLDRAGGING(145,151,151,200),
+    SCROLLROLLOVER(85,100,120,200),
+    SCROLLPRESSED(220,220,200,200);
     private java.awt.Color color;
     private Color(int r,int g,int b){
         this(new java.awt.Color(r,g,b));
+    }
+    private Color(int r,int g,int b,int a){
+        this(new java.awt.Color(r,g,b,a));
     }
     private Color(java.awt.Color color){
         this.color=color;

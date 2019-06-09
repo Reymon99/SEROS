@@ -1,4 +1,5 @@
 package gui.simulador;
+import gui.contenido.scroll.ModernScrollPane;
 import tools.Fuentes;
 import tools.Archivos;
 import tools.Constrains;
@@ -103,7 +104,7 @@ public class Simulador extends JPanel {
      * @param code {@link JScrollPane}
      * @author Sergio Majé
      */
-    public void addCodes(JPanel code, String title){
+    public void addCodes(ModernScrollPane code, String title){
         this.code.add(title,code);
     }
 }
