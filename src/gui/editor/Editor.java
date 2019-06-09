@@ -1,5 +1,6 @@
 package gui.editor;
 import gui.contenido.TextPane;
+import gui.contenido.Texto;
 import gui.contenido.scroll.ModernScrollPane;
 import tools.Archivos;
 import tools.Color;
@@ -9,17 +10,25 @@ import java.io.*;
 public class Editor {
     private TextPane editor;
     private ModernScrollPane scroll;
-    private JTextArea area;
+    private Texto area;
     /**
      * Editor sintexico de codigo a utilizar en la interfaz grafica del proyecto
      * @author Sergio Majé
      */
-    public Editor(){
+    private Editor(){
         editor=new TextPane();
-        area=new JTextArea();
+        area=new Texto(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.setColor(Color.SCROLLROLLOVER.getColor());
+                g.drawLine(getWidth()-1,getY(),getWidth()-1,getHeight());
+            }
+        };
+        area.setEditable(false);
         area.setBackground(Color.NEGROINDICE.getColor());
         area.setForeground(Color.BLANCO.getColor());
-        area.setMargin(new Insets(3,8,0,4));
+        area.setMargin(new Insets(3,5,0,7));
         area.setFont(editor.getFont());
         scroll=new ModernScrollPane(editor,area);
     }

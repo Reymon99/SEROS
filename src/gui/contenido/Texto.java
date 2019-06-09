@@ -1,7 +1,20 @@
 package gui.contenido;
+import tools.Color;
 import tools.Fuentes;
 import javax.swing.*;
+import java.awt.*;
 public class Texto extends JTextArea {
+    /**
+     * Area de texto con parametros predefinidos enfocados hacia el proyecto
+     * @author Sergio Majé
+     */
+    public Texto(){
+        setEditable(false);
+        setBackground(Color.NEGROINDICE.getColor());
+        setForeground(Color.BLANCO.getColor());
+        setMargin(new Insets(3,5,0,7));
+        setFont(Fuentes.UBUNTULIGHT15.getFont());
+    }
     /**
      * Area de texto con parametros predefinidos enfocados hacia el proyecto
      * @param text {@link String}
