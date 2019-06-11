@@ -1,6 +1,5 @@
 package gui.contenido.scroll;
 import tools.Colour;
-
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;

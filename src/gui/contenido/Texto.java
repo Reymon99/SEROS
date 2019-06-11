@@ -36,6 +36,24 @@ public class Texto extends JTextArea {
         init();
         setBorder(BorderFactory.createSoftBevelBorder(1));
     }
+    /**
+     * Area de texto con parametros predefinidos enfocados hacia el proyecto
+     * @param rows int
+     * @param columns int
+     * @author Sergio Majé
+     */
+    public Texto(int rows, int columns){
+        super(rows, columns);
+        setEditable(false);
+        setLineWrap(true);
+        setWrapStyleWord(true);
+        setFont(Fuentes.UBUNTULIGHT15.getFont());
+        setCaretColor(Color.WHITE);
+        setForeground(Color.WHITE);
+        setBackground(Colour.AZULTEXT.getColor());
+        setMargin(new Insets(28,24,20,20));
+        //setMinimumSize(new Dimension(150,70));
+    }
     private void init(){
         setFont(Fuentes.UBUNTULIGHT20.getFont());
         setTabSize(2);

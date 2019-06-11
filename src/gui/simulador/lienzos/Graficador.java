@@ -65,6 +65,7 @@ public class Graficador extends Canvas {
     /**
      * Divide el ancho de la dimensión del Canvas
      * @return mitad del ancho del Canvas
+     * @author Sergio Majé
      */
     private int halfScreenWidth(){
         return Simulador.cavasSize.width/2;
@@ -72,6 +73,7 @@ public class Graficador extends Canvas {
     /**
      * Divide el alto de la dimensión del Canvas
      * @return mitad del alto del Canvas
+     * @author Sergio Majé
      */
     private int halfScreenHeight(){
         return Simulador.cavasSize.height/2;
@@ -79,6 +81,7 @@ public class Graficador extends Canvas {
     /**
      * Inicio o fin de la linea X
      * @param cuadrante + | -
+     * @author Sergio Majé
      */
     private int positionX(char cuadrante){
         return cuadrante=='+' ? halfScreenWidth()+280 : halfScreenWidth()-280;
@@ -86,6 +89,7 @@ public class Graficador extends Canvas {
     /**
      * Inicio o fin de la linea Y
      * @param cuadrante + | -
+     * @author Sergio Majé
      */
     private int positionY(char cuadrante){
         return cuadrante=='+' ? halfScreenHeight()-280 : halfScreenHeight()+280;

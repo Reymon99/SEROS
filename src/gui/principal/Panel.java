@@ -275,8 +275,9 @@ public class Panel extends JPanel {
      * @author Sergio Majé
      */
     private Simulador simuladorTDA(){
-        Simulador simulador=new Simulador(new Canvas());
-        simulador.getTexto().setText(Text.SIMULADORTDA2.toString());
+        Graficador graficador = new Graficador();
+        Simulador simulador=new Simulador(graficador);
+        simulador.setTexto(Text.SIMULADORTDA2.toString());
         simulador.getBack().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
