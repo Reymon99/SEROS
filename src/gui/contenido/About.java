@@ -1,7 +1,7 @@
 package gui.contenido;
 import eventos.Eventos;
 import tools.*;
-import tools.Color;
+import tools.Colour;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -44,7 +44,7 @@ public class About extends JDialog {
         JLabel label = new JLabel(Text.LINK.toString());
         label.setFont(Fuentes.UBUNTULIGHT14.getFont());
         label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        label.setForeground(Color.CURIOUSBLUE.getColor());
+        label.setForeground(Colour.CURIOUSBLUE.getColor());
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

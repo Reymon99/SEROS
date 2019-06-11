@@ -1,5 +1,5 @@
 package gui.contenido;
-import tools.Color;
+import tools.Colour;
 import tools.Fuentes;
 import javax.swing.*;
 import javax.swing.text.*;
@@ -18,8 +18,8 @@ public class TextPane extends JTextPane {
      */
     public TextPane() {
         setContentType("text/plain");
-        setBackground(Color.NEGROEDITOR.getColor());
-        setForeground(Color.BLANCO.getColor());
+        setBackground(Colour.NEGROEDITOR.getColor());
+        setForeground(Colour.BLANCO.getColor());
         setFont(Fuentes.UBUNTULIGHT15.getFont());
         setEditable(false);
         setMargin(new Insets(0,10,5,39));
@@ -46,10 +46,10 @@ public class TextPane extends JTextPane {
     /**
      * Añade texto de un determinado color al editor
      * @param n {@link String} texto que será personalizado
-     * @param color {@link Color} color a personalizar
+     * @param color {@link Colour} color a personalizar
      * @author Sergio Majé
      */
-    public void append(String n, java.awt.Color color){
+    public void append(String n, Color color){
         setEditable(true);
         StyleContext sc=StyleContext.getDefaultStyleContext();
         AttributeSet set=sc.addAttribute(SimpleAttributeSet.EMPTY,StyleConstants.Foreground,color);

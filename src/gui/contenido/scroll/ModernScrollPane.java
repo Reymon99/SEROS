@@ -4,14 +4,33 @@ import java.awt.*;
 public class ModernScrollPane extends JScrollPane {
     protected static final int THUMB_SIZE = 8;
     protected static final int SB_SIZE = 10;
+    /**
+     * JScrollPane con interfaz personalizada
+     * @param view componente a integrar el scroll
+     * @author Sergio Majé
+     */
     public ModernScrollPane(Component view){
-        this(view,VERTICAL_SCROLLBAR_AS_NEEDED,VERTICAL_SCROLLBAR_AS_NEEDED);
+        this(view,VERTICAL_SCROLLBAR_AS_NEEDED,HORIZONTAL_SCROLLBAR_AS_NEEDED);
     }
+    /**
+     * JScrollPane con interfaz personalizada
+     * @param view componente a integrar el scroll
+     * @param area componente a agregar al header
+     * @author Sergio Majé
+     */
     public ModernScrollPane(Component view,JTextArea area){
         this(view);
         setRowHeaderView(area);
     }
+    /**
+     * JScrollPane con interfaz personalizada
+     * @param view componente a integrar el scroll
+     * @param vsb acción del scroll vertical
+     * @param hsb acción del scroll horizontal
+     * @author Sergio Majé
+     */
     public ModernScrollPane(Component view,int vsb,int hsb){
+        super(vsb,hsb);
         setBorder(BorderFactory.createEmptyBorder());
         JScrollBar vertical=getVerticalScrollBar();
         vertical.setOpaque(false);
@@ -50,11 +69,21 @@ public class ModernScrollPane extends JScrollPane {
         setComponentZOrder(getViewport(),2);
         viewport.setView(view);
     }
+    /**
+     * Nos da a saber si el scroll trabajado es vertical
+     * @return verdadero si el scroll es vertical
+     * @author Sergio Majé
+     */
     private boolean isVerticalScrollBarfNecessary() {
         Rectangle viewRect = viewport.getViewRect();
         Dimension viewSize = viewport.getViewSize();
         return viewSize.getHeight() > viewRect.getHeight();
     }
+    /**
+     * Nos da a saber si el scroll trabajado es horizontal
+     * @return verdadero si el scroll es horizontal
+     * @author Sergio Majé
+     */
     private boolean isHorizontalScrollBarNecessary() {
         Rectangle viewRect = viewport.getViewRect();
         Dimension viewSize = viewport.getViewSize();

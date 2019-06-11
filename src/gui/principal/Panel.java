@@ -7,10 +7,7 @@ import gui.contenido.TextPane;
 import gui.contenido.Texto;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
-import tools.Constrains;
-import tools.Fuentes;
-import tools.Paneles;
-import tools.Text;
+import tools.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -32,9 +29,10 @@ public class Panel extends JPanel {
      * @author Sergio Majé
      */
     private void init() {
+        add(Paneles.SIMULADORTDA.toString(), simuladorTDA());
         add(Paneles.PRINCIPAL.toString(), new Principal());
         add(Paneles.TDA.toString(), tda());
-        add(Paneles.SIMULADORTDA.toString(), simuladorTDA());
+
         add(Paneles.MODULARIDAD.toString(), modularidad());
         add(Paneles.RECURSIVIDAD.toString(), recursividad());
         add(Paneles.ARREGLOS.toString(), arreglos());
@@ -60,7 +58,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                Eventos.show(Paneles.SIMULADORTDA);
             }
         });
         JLabel formula=new JLabel(Text.FORMULATDA.toString(),SwingConstants.CENTER);
@@ -277,7 +275,7 @@ public class Panel extends JPanel {
      * @author Sergio Majé
      */
     private Simulador simuladorTDA(){
-        Simulador simulador=new Simulador(new Graficador());
+        Simulador simulador=new Simulador(new Canvas());
         simulador.getTexto().setText(Text.SIMULADORTDA2.toString());
         simulador.getBack().addMouseListener(new MouseAdapter() {
             @Override
@@ -285,7 +283,6 @@ public class Panel extends JPanel {
                 Eventos.show(Paneles.TDA);
             }
         });
-        simulador.addCodes(Editor.editor("/recourses/codes/tda/MainPunto.txt"),"Main");
         simulador.addCodes(Editor.editor("/recourses/codes/tda/Punto.txt"),"Punto");
         return simulador;
     }

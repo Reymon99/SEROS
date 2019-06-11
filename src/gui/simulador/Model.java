@@ -9,10 +9,8 @@ public class Model extends DefaultTableModel {
         super();
     }
     /**
-     * Se bloquea la edicion de todas las celdas de la tabla
-     * @param row
-     * @param column
-     * @return boolean
+     * Se bloquea la edición de todas las celdas de la tabla
+     * @return bloqueo de edición de las celdas
      * @author Sergio Majé
      */
     @Override

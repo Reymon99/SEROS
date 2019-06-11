@@ -1,5 +1,5 @@
 package tools;
-public enum Color {
+public enum Colour {
     AZUL(95,176,214),
     AMARILLO(245,208,51),
     BLANCO(java.awt.Color.WHITE),
@@ -19,18 +19,18 @@ public enum Color {
     SCROLLROLLOVER(85,100,120,200),
     SCROLLPRESSED(220,220,200,200);
     private java.awt.Color color;
-    private Color(int r,int g,int b){
+    private Colour(int r, int g, int b){
         this(new java.awt.Color(r,g,b));
     }
-    private Color(int r,int g,int b,int a){
+    private Colour(int r, int g, int b, int a){
         this(new java.awt.Color(r,g,b,a));
     }
-    private Color(java.awt.Color color){
+    private Colour(java.awt.Color color){
         this.color=color;
     }
     /**
      *Colores RGB predefinidas para utilizar en el proyecto
-     * @return java.awt.Color
+     * @return java.awt.Colour
      * @author Sergio Majé
      */
     public java.awt.Color getColor() {

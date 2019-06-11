@@ -1,4 +1,5 @@
 package gui.simulador.lienzos;
+import gui.simulador.Simulador;
 import tools.Fuentes;
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -10,11 +11,11 @@ public class Graficador extends Canvas {
      * @author Sergio Majé
      */
     public Graficador(){
+        setPreferredSize(Simulador.cavasSize);
+        setMaximumSize(Simulador.cavasSize);
+        setMinimumSize(Simulador.cavasSize);
         graficar=false;
         x=y=0;
-        setMaximumSize(new Dimension(750,580));
-        setMinimumSize(new Dimension(750,580));
-        setPreferredSize(new Dimension(750,580));
     }
     /**
      * Grafica un punto con las coordenadas dadas
@@ -62,6 +63,34 @@ public class Graficador extends Canvas {
         this.graficar = graficar;
     }
     /**
+     * Divide el ancho de la dimensión del Canvas
+     * @return mitad del ancho del Canvas
+     */
+    private int halfScreenWidth(){
+        return Simulador.cavasSize.width/2;
+    }
+    /**
+     * Divide el alto de la dimensión del Canvas
+     * @return mitad del alto del Canvas
+     */
+    private int halfScreenHeight(){
+        return Simulador.cavasSize.height/2;
+    }
+    /**
+     * Inicio o fin de la linea X
+     * @param cuadrante + | -
+     */
+    private int positionX(char cuadrante){
+        return cuadrante=='+' ? halfScreenWidth()+280 : halfScreenWidth()-280;
+    }
+    /**
+     * Inicio o fin de la linea Y
+     * @param cuadrante + | -
+     */
+    private int positionY(char cuadrante){
+        return cuadrante=='+' ? halfScreenHeight()-280 : halfScreenHeight()+280;
+    }
+    /**
      * Dibuja y grafica el punto en las coordenadas dadas
      * @param g {@link Graphics}
      * @author Sergio Majé
@@ -69,28 +98,28 @@ public class Graficador extends Canvas {
     @Override
     public void paint(Graphics g) {
         Graphics2D g2=(Graphics2D)g;
-        g2.draw(new Line2D.Double(95,290,655,290));
-        g2.draw(new Line2D.Double(375,10,375,570));
+        g2.draw(new Line2D.Double(positionX('-'),halfScreenHeight(),positionX('+'),halfScreenHeight()));//horizontal
+        g2.draw(new Line2D.Double(halfScreenWidth(),positionY('+'),halfScreenWidth(),positionY('-')));//vertical
         int x=-10,y=10;
         Point point=new Point();
-        for (int i = 20,j = 105; i <= 570; i+=27, j+=27) {
+        for (int i = positionY('+')+10,j = positionX('-')+10; i <= positionY('-'); i+=27, j+=27) {
             if (this.x==x && graficar) {
-                point.x=(this.x==0)?375:j;
+                point.x=(this.x==0)?halfScreenWidth():j;
             }
             if (this.y==y && graficar) {
-                point.y=(this.y==0)?290:i;
+                point.y=(this.y==0)?halfScreenHeight():i;
             }
-            if (i!=290 && j!=375){
-                g2.draw(new Line2D.Double(373,i,377,i));
-                g2.draw(new Line2D.Double(j,288,j,292));
+            if (i!=290 && j!=halfScreenWidth()){
+                g2.draw(new Line2D.Double(halfScreenWidth()-2,i,halfScreenWidth()+2,i));//y
+                g2.draw(new Line2D.Double(j,halfScreenHeight()-2,j,halfScreenHeight()+2));//x
                 if (x==0 && y==0) {
                     x = 1;
                     y = -1;
                     if (this.x==1) point.x=j;
                     if (this.y==-1) point.y=i;
                 }
-                g2.drawString(String.valueOf(y),383,i+4);
-                g2.drawString(String.valueOf(x),j-4,282);
+                g2.drawString(String.valueOf(y),(x<0) ? halfScreenWidth()+8 : (Math.abs(x)==10) ? halfScreenWidth()-22 : halfScreenWidth()-16,i+4);//y
+                g2.drawString(String.valueOf(x),j-4,(x>0) ? halfScreenHeight()-8 : halfScreenHeight()+17);//x
                 x++;
                 y--;
             }
@@ -104,13 +133,13 @@ public class Graficador extends Canvas {
             else if (this.x==0) g2.drawString(coordenas(),point.x-45,point.y-2);
             else g2.drawString(coordenas(),point.x-17,point.y+19);//y==0
             g2.setFont(Fuentes.DIALOG30.getFont());
-            g2.setPaint(Color.RED);
+            g2.setPaint(Color.RED);//punto
             g2.drawString(".",point.x-5,point.y+4);
             graficar=false;
-            g2.setPaint(Color.gray);
+            g2.setPaint(Color.GRAY);//lineas
             g2.setStroke(new BasicStroke(1,BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER,5.0f,new float[]{10},0.0f));
-            g2.draw(new Line2D.Double(375,point.y,point.x,point.y));
-            g2.draw(new Line2D.Double(point.x,290,point.x,point.y));
+            g2.draw(new Line2D.Double(halfScreenWidth(),point.y,point.x,point.y));
+            g2.draw(new Line2D.Double(point.x,halfScreenHeight(),point.x,point.y));
         }
     }
 }

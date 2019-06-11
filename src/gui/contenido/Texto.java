@@ -1,5 +1,5 @@
 package gui.contenido;
-import tools.Color;
+import tools.Colour;
 import tools.Fuentes;
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +10,8 @@ public class Texto extends JTextArea {
      */
     public Texto(){
         setEditable(false);
-        setBackground(Color.NEGROINDICE.getColor());
-        setForeground(Color.BLANCO.getColor());
+        setBackground(Colour.NEGROINDICE.getColor());
+        setForeground(Colour.BLANCO.getColor());
         setMargin(new Insets(3,5,0,7));
         setFont(Fuentes.UBUNTULIGHT15.getFont());
     }

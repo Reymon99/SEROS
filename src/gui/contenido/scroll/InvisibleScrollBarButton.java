@@ -1,6 +1,10 @@
 package gui.contenido.scroll;
 import javax.swing.*;
 public class InvisibleScrollBarButton extends JButton {
+    /**
+     * Ocultar el boton de incremento y decremento en el ScrollBar
+     * @author Sergio Majé
+     */
     protected InvisibleScrollBarButton() {
         setOpaque(false);
         setFocusable(false);

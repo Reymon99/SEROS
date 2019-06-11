@@ -1,5 +1,6 @@
 package gui.simulador;
 import gui.contenido.scroll.ModernScrollPane;
+import tools.Colour;
 import tools.Fuentes;
 import tools.Archivos;
 import tools.Constrains;
@@ -12,6 +13,7 @@ public class Simulador extends JPanel {
     private JTabbedPane code;
     private JPanel panel;
     private JLabel back;
+    public static Dimension cavasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.756));
     /**
      * Esquema de los simuladores del proyecto
      * @param canvas {@link Canvas}
@@ -29,43 +31,47 @@ public class Simulador extends JPanel {
     public void init(){
         code=new JTabbedPane();
         JPanel panel1=new JPanel(new GridBagLayout());
-        panel1.setBackground(tools.Color.GRISPANEL.getColor());
+        panel1.setBackground(Colour.GRISPANEL.getColor());
         back=new JLabel(Archivos.image("/recourses/image/back.png",48,48));
         JLabel desc=new JLabel("Descripción");
         desc.setFont(Fuentes.UBUNTULIGHT14.getFont());
         desc.setForeground(Color.WHITE);
-        desc.setBackground(tools.Color.AZULTITLE.getColor());
+        desc.setBackground(Colour.AZULTITLE.getColor());
         desc.setOpaque(true);
-        texto=new JTextArea(3,15);
+        texto=new JTextArea(4,50);
         texto.setCaretColor(Color.WHITE);
         texto.setLineWrap(true);
         texto.setEditable(true);
-        texto.setFont(Fuentes.UBUNTULIGHT18.getFont());
+        texto.setFont(Fuentes.UBUNTULIGHT15.getFont());
         texto.setWrapStyleWord(true);
         texto.setForeground(Color.WHITE);
-        texto.setBackground(tools.Color.AZULTEXT.getColor());
+        texto.setBackground(Colour.AZULTEXT.getColor());
         texto.setMargin(new Insets(28,24,20,20));
+        texto.setEditable(false);
         JLabel vari=new JLabel("Variables");
         vari.setFont(Fuentes.UBUNTULIGHT14.getFont());
         vari.setForeground(Color.WHITE);
-        vari.setBackground(tools.Color.AZULTITLE.getColor());
+        vari.setBackground(Colour.AZULTITLE.getColor());
         vari.setOpaque(true);
-        datos=new JTable();
+        Model model=new Model();
+        model.addColumn("Varible");
+        model.addColumn("Dato");
+        model.addRow(new Object[]{"x",0});
+        datos=new JTable(model);
         datos.setDragEnabled(false);
-        datos.setPreferredScrollableViewportSize(new Dimension(120,120));
-        JScrollPane scroll=new JScrollPane(datos);
-        scroll.getViewport().setBackground(tools.Color.AZULTEXT.getColor());
+        ModernScrollPane scroll=new ModernScrollPane(datos);
+        scroll.getViewport().setBackground(Colour.AZULTEXT.getColor());
         panel=new JPanel(new GridBagLayout());
         panel.setOpaque(false);
         Constrains.addComp(back,panel1,0,0,1,1,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addComp(panel,panel1,1,0,1,1,1,1,5,5,5,5,GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-        Constrains.addComp(canvas,this,0,0,1,6,0,0,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addComp(panel,this,0,6,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp(panel,panel1,1,0,1,1,1,1,0,5,0,0,GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+        Constrains.addComp(canvas,this,0,0,1,6,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp(panel1,this,0,6,1,1,1,1,0,0,0,0,GridBagConstraints.WEST,GridBagConstraints.BOTH);
         Constrains.addComp(desc,this,1,0,1,1,1,0,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(texto,this,1,1,1,1,0,0.6,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addComp(vari,this,1,2,1,1,1,0,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(scroll,this,1,3,1,1,1,0.6,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-        Constrains.addComp(code,this,1,4,1,3,1,0.6,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+        Constrains.addComp(texto,this,1,1,1,1,0.3,0,0,0,0,0,GridBagConstraints.WEST,GridBagConstraints.BOTH);
+        Constrains.addComp(vari,this,1,2,1,1,0,0,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(scroll,this,1,3,1,1,0.3,0.2,0,0,0,0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(code,this,1,4,1,3,0.3,1,0,0,0,0, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
     }
     /**
      * Notificaciones
