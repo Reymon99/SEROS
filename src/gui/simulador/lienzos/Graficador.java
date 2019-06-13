@@ -11,9 +11,9 @@ public class Graficador extends Canvas {
      * @author Sergio Majé
      */
     public Graficador(){
-        setPreferredSize(Simulador.cavasSize);
-        setMaximumSize(Simulador.cavasSize);
-        setMinimumSize(Simulador.cavasSize);
+        setPreferredSize(Simulador.canvasSize);
+        setMaximumSize(Simulador.canvasSize);
+        setMinimumSize(Simulador.canvasSize);
         graficar=false;
         x=y=0;
     }
@@ -68,7 +68,7 @@ public class Graficador extends Canvas {
      * @author Sergio Majé
      */
     private int halfScreenWidth(){
-        return Simulador.cavasSize.width/2;
+        return Simulador.canvasSize.width/2;
     }
     /**
      * Divide el alto de la dimensión del Canvas
@@ -76,7 +76,7 @@ public class Graficador extends Canvas {
      * @author Sergio Majé
      */
     private int halfScreenHeight(){
-        return Simulador.cavasSize.height/2;
+        return Simulador.canvasSize.height/2;
     }
     /**
      * Inicio o fin de la linea X
@@ -107,12 +107,8 @@ public class Graficador extends Canvas {
         int x=-10,y=10;
         Point point=new Point();
         for (int i = positionY('+')+10,j = positionX('-')+10; i <= positionY('-'); i+=27, j+=27) {
-            if (this.x==x && graficar) {
-                point.x=(this.x==0)?halfScreenWidth():j;
-            }
-            if (this.y==y && graficar) {
-                point.y=(this.y==0)?halfScreenHeight():i;
-            }
+            if (this.x==x && graficar) point.x=(this.x==0)?halfScreenWidth():j;
+            if (this.y==y && graficar) point.y=(this.y==0)?halfScreenHeight():i;
             if (i!=290 && j!=halfScreenWidth()){
                 g2.draw(new Line2D.Double(halfScreenWidth()-2,i,halfScreenWidth()+2,i));//y
                 g2.draw(new Line2D.Double(j,halfScreenHeight()-2,j,halfScreenHeight()+2));//x

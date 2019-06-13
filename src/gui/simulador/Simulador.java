@@ -7,15 +7,18 @@ import tools.Fuentes;
 import tools.Archivos;
 import tools.Constrains;
 import javax.swing.*;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 public class Simulador extends JPanel {
     private Canvas canvas;
     private Texto texto;
-    private JTable datos;
+    private JPanel datos;
     private JTabbedPane code;
     private JPanel panel;
     private JLabel back;
-    public static Dimension cavasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.756));
+    private DefaultTreeModel model;
+    public static Dimension canvasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.756));
     /**
      * Esquema de los simuladores del proyecto
      * @param canvas {@link Canvas}
@@ -41,13 +44,14 @@ public class Simulador extends JPanel {
         desc.setForeground(Color.WHITE);
         desc.setBackground(Colour.AZULTITLE.getColor());
         desc.setOpaque(true);
-        Constrains.addComp(canvas,this,0,0,1,3,0,0,0,0,0,0,GridBagConstraints.NORTHEAST,GridBagConstraints.NONE);
+        Constrains.addComp(canvas,this,0,0,1,4,0,0,0,0,0,0,GridBagConstraints.NORTHEAST,GridBagConstraints.NONE);
         Constrains.addComp(back,panel1,0,0,1,1,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
         Constrains.addComp(panel,panel1,1,0,1,1,1,1,0,5,0,0,GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-        Constrains.addComp(panel1,this,0,3,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp(panel1,this,0,4,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompX(desc,this,1,0,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp((texto=new Texto(4,55)),this,1,1,1,1,1,0,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addComp((code=new JTabbedPane(JTabbedPane.TOP)),this,1,2,1,2,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addCompIy((texto=new Texto(4,55)),this,1,1,1,1,1,0,0,0,0,0,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addCompIy(new ModernScrollPane(datos),this,1,2,1,1,1,0,0,0,0,0,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp((code=new JTabbedPane(JTabbedPane.TOP)),this,1,3,1,2,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
     }
     /**
      * Notificaciones
@@ -62,7 +66,7 @@ public class Simulador extends JPanel {
      * @return JTable
      * @author Sergio Majé
      */
-    public JTable getDatos() {
+    public JTree getDatos() {
         return datos;
     }
     /**
