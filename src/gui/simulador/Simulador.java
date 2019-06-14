@@ -1,6 +1,7 @@
 package gui.simulador;
 import gui.contenido.Boton;
 import gui.contenido.Texto;
+import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
 import tools.Colour;
 import tools.Fuentes;
@@ -10,6 +11,8 @@ import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
+import java.util.ArrayList;
+
 public class Simulador extends JPanel {
     private Canvas canvas;
     private Texto texto;
@@ -18,7 +21,7 @@ public class Simulador extends JPanel {
     private JPanel panel;
     private JLabel back;
     private DefaultTreeModel model;
-    public static Dimension canvasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.756));
+    public static Dimension canvasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.8  ));
     /**
      * Esquema de los simuladores del proyecto
      * @param canvas {@link Canvas}
@@ -44,6 +47,8 @@ public class Simulador extends JPanel {
         desc.setForeground(Color.WHITE);
         desc.setBackground(Colour.AZULTITLE.getColor());
         desc.setOpaque(true);
+        datos=new JPanel();
+        datos.setLayout(new BoxLayout(datos,BoxLayout.Y_AXIS));
         Constrains.addComp(canvas,this,0,0,1,4,0,0,0,0,0,0,GridBagConstraints.NORTHEAST,GridBagConstraints.NONE);
         Constrains.addComp(back,panel1,0,0,1,1,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
         Constrains.addComp(panel,panel1,1,0,1,1,1,1,0,5,0,0,GridBagConstraints.CENTER, GridBagConstraints.BOTH);
@@ -62,12 +67,12 @@ public class Simulador extends JPanel {
         return texto;
     }
     /**
-     * Valor de las variables
-     * @return JTable
+     * Variables que se van a agregar
+     * @param trees {@link Tree} a agregar
      * @author Sergio Majé
      */
-    public JTree getDatos() {
-        return datos;
+    public void setDatos(Tree... trees){
+        for (Tree tree:trees) datos.add(tree);
     }
     /**
      * panel de comandos del simulador

@@ -1,8 +1,9 @@
 package tools;
+import java.awt.*;
 public enum Colour {
     AZUL(95,176,214),
     AMARILLO(245,208,51),
-    BLANCO(java.awt.Color.WHITE),
+    BLANCO(Color.WHITE),
     MORADO(176,117,174),
     NARANJA(237,118,14),
     VERDE(164,205,146),
@@ -17,8 +18,11 @@ public enum Colour {
     BORDESCROLL(144,144,144),
     SCROLLDRAGGING(145,151,151,200),
     SCROLLROLLOVER(85,100,120,200),
-    SCROLLPRESSED(220,220,200,200);
-    private java.awt.Color color;
+    SCROLLPRESSED(220,220,200,200),
+    GRAYDISABLED(131,131,131),
+    VERDEACTIVO(75,216,101),
+    BLANCODESHABILITADO(216,217,219);
+    private Color color;
     private Colour(int r, int g, int b){
         this(new java.awt.Color(r,g,b));
     }
@@ -29,11 +33,11 @@ public enum Colour {
         this.color=color;
     }
     /**
-     *Colores RGB predefinidas para utilizar en el proyecto
-     * @return java.awt.Colour
+     * Colores RGB predefinidas para utilizar en el proyecto
+     * @return Color
      * @author Sergio Majé
      */
-    public java.awt.Color getColor() {
+    public Color getColor() {
         return color;
     }
 }

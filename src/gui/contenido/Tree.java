@@ -18,5 +18,6 @@ public class Tree extends JTree {
         renderer.setLeafIcon(icon);
         renderer.setClosedIcon(icon);
         setCellRenderer(renderer);
+        setOpaque(false);
     }
 }

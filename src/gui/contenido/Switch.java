@@ -1,0 +1,132 @@
+package gui.contenido;
+import tools.Colour;
+import tools.Constrains;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
+public class Switch extends JComponent {
+    private boolean modificable;
+    private boolean onOff;//Estado del interruptor
+    private Color backgroundColor;//Color del fondo del interruptor
+    private Color buttonColor;//Color del boton circular del interruptor
+    private final Color DISABLED_COMPONENT_COLOR= Colour.GRAYDISABLED.getColor();//Color del interruptor cuando está deshabilitado
+    /**
+     * Componente de estados Switch
+     * @param onOff estado del Switch
+     * @author Sergio Majé
+     */
+    public Switch(boolean onOff){
+        super();
+        this.onOff=onOff;
+        modificable=true;
+        setSize(new Dimension(35,20));
+        setPreferredSize(new Dimension(35,20));
+        setMaximumSize(new Dimension(35,20));
+        setMaximumSize(new Dimension(35,20));
+        setVisible(true);
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
+        backgroundColor=Colour.VERDEACTIVO.getColor();
+        buttonColor=Colour.BLANCO.getColor();
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (isEnabled() && modificable){
+                    Switch.this.onOff=!Switch.this.onOff;
+                    repaint();
+                }
+            }
+        });
+    }
+    /**
+     * Retorna el estado del interruptor
+     * @return boolean true: On false: OFF
+     * @author Sergio Majé
+     */
+    public boolean isOnOff() {
+        return onOff;
+    }
+    /**
+     * Modifica el estado del Switch
+     * @param onOff nuevo estado del Switch
+     * @author Sergio Majé
+     */
+    public void setOnOff(boolean onOff) {
+        this.onOff = onOff;
+        repaint();
+    }
+    /**
+     * Retorna el color de fondo del componente
+     * @return color de fondo del componente
+     * @author Sergio Majé
+     */
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+    /**
+     * Modifica el color de fondo del componente
+     * @param backgroundColor nuevo color de fondo del componente
+     * @author Sergio Majé
+     */
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+        repaint();
+    }
+    /**
+     * Retorna el color de estado del Switch
+     * @return color de estado del Switch
+     * @author Sergio Majé
+     */
+    public Color getButtonColor() {
+        return buttonColor;
+    }
+    /**
+     * Modifica el color de estado del Switch
+     * @param buttonColor nuevo color de estado del Switch
+     * @author Sergio Majé
+     */
+    public void setButtonColor(Color buttonColor) {
+        this.buttonColor = buttonColor;
+        repaint();
+    }
+    /**
+     * Retorna si el estado del Switch puede ser modificado
+     * @return true: modificable false: no modificable
+     * @author Sergio Majé
+     */
+    public boolean isModificable() {
+        return modificable;
+    }
+    /**
+     * Modifica si el estado del Switch puede ser modificado
+     * @param modificable nuevo estado de modificación
+     * @author Sergio Majé
+     */
+    public void setModificable(boolean modificable) {
+        this.modificable = modificable;
+    }
+    /**
+     * Construcción del componente Switch
+     * @author Sergio Majé
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        if (isOpaque()) {//Pinta el fondo del componente
+            g2.setColor(getBackground());
+            g2.fill(new Rectangle2D.Double(0, 0, getWidth(), getHeight()));
+        }
+        g2.setColor(isEnabled() ? onOff ? backgroundColor : Colour.BLANCODESHABILITADO.getColor() : DISABLED_COMPONENT_COLOR);
+        final int MARGIN = 2;//Margen entre el borde del componente y el interruptor
+        if(isEnabled()) g2.fill(new RoundRectangle2D.Double((float) MARGIN, (float) MARGIN, (float) getWidth() - MARGIN * 2, (float) getHeight() - MARGIN * 2, getHeight() - MARGIN * 2, getHeight() - MARGIN * 2));//componente habilitado
+        else g2.draw(new RoundRectangle2D.Double((float) MARGIN, (float) MARGIN, (float) getWidth() - MARGIN * 2, (float) getHeight() - MARGIN * 2, getHeight() - MARGIN * 2, getHeight() - MARGIN * 2));//componente deshabilitado
+        g2.setColor((isEnabled()) ? buttonColor : DISABLED_COMPONENT_COLOR);
+        final int BORDER = 5;//Margen entre el boton circular y el interruptor
+        if (onOff) g2.fillOval(MARGIN + BORDER / 2, MARGIN + BORDER / 2, getHeight() - MARGIN * 2 - BORDER, getHeight() - MARGIN * 2 - BORDER);//ON a la izquierda
+        else g2.fillOval(getWidth() - getHeight() + MARGIN + BORDER / 2, MARGIN + BORDER / 2, getHeight() - MARGIN * 2 - BORDER, getHeight() - MARGIN * 2 - BORDER);//OFF a la derecha
+    }
+}
