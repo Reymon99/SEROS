@@ -1,23 +1,20 @@
 package gui.principal;
 import eventos.Eventos;
-import gui.contenido.Contenido;
-import gui.contenido.Ejercicios;
+import gui.contenido.*;
 import gui.simulador.lienzos.Graficador;
-import gui.contenido.TextPane;
-import gui.contenido.Texto;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
 import tools.*;
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 public class Panel extends JPanel {
     /**
      * Panel principal de proyecto
      * @author Sergio Majé
      */
-    public Panel() {
+    protected Panel() {
         setLayout(new CardLayout());
         init();
         Eventos.setPanel(this);
@@ -59,6 +56,7 @@ public class Panel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.SIMULADORTDA);
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         JLabel formula=new JLabel(Text.FORMULATDA.toString(),SwingConstants.CENTER);
@@ -84,7 +82,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         Constrains.addComp(new Texto(Text.MODULARIDAD.toString()),con.getContenido(),0,0,1,1,1,1,10, 25, 15, 12, GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
@@ -103,7 +101,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         return con;
@@ -122,6 +120,12 @@ public class Panel extends JPanel {
             editor.append(n,Fuentes.PURISA22.getFont());
             if (!n.equals(recur[recur.length-1])) editor.append("\u279c",Fuentes.SEGOEUISYMBOL22.getFont());
         }
+        con.getNext().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                con.getPane().getVerticalScrollBar().setValue(0);
+            }
+        });
         Constrains.addComp(new Texto(Text.RECURSIVIDAD.toString()), con.getContenido(), 0,0,1,1,1,1,10, 25, 1, 12, GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(editor, con.getContenido(),0,1,1,1,0.2,1,2,25,180,25, GridBagConstraints.NORTH,GridBagConstraints.NONE);
         return con;
@@ -138,7 +142,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         return con;
@@ -155,7 +159,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         Constrains.addComp(new Texto(Text.NODOS.toString()),con.getContenido(),0,0,1,1,1,1,10, 25, 15, 12, GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
@@ -175,7 +179,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         return con;
@@ -192,7 +196,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         return con;
@@ -209,7 +213,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         return con;
@@ -226,7 +230,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         return con;
@@ -243,7 +247,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         Constrains.addComp(new Texto(Text.ARREGLOS.toString()),con.getContenido(),0,0,1,1,1,1,10, 25, 15, 12, GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
@@ -263,7 +267,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                con.getPane().getVerticalScrollBar().setValue(0);
             }
         });
         return con;
@@ -275,8 +279,7 @@ public class Panel extends JPanel {
      * @author Sergio Majé
      */
     private Simulador simuladorTDA(){
-        Graficador graficador = new Graficador();
-        Simulador simulador=new Simulador(graficador);
+        Simulador simulador=new Simulador(new Graficador());
         simulador.setTexto(Text.SIMULADORTDA2.toString());
         simulador.getBack().addMouseListener(new MouseAdapter() {
             @Override
@@ -285,6 +288,44 @@ public class Panel extends JPanel {
             }
         });
         simulador.addCodes(Editor.editor("/recourses/codes/tda/Punto.txt"),"Punto");
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode("punto {Punto}");
+        DefaultMutableTreeNode nodeX=new DefaultMutableTreeNode("x {}");
+        DefaultMutableTreeNode nodeY=new DefaultMutableTreeNode("y {}");
+        node.add(nodeX);
+        node.add(nodeY);
+        Tree punto=new Tree(node);
+        simulador.setDatos(punto);
+        JButton send=new ButtonSimulador("Graficar", true);
+        JButton clean=new ButtonSimulador("Limpiar", false);
+        JButton next=new ButtonSimulador("Siguiente", false);
+        JSpinner x=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
+        JSpinner y=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
+        Switch pause=new Switch("Paso a Paso",false);
+        Box box=Box.createHorizontalBox();
+        box.add(x);
+        box.add(Box.createHorizontalStrut(1));
+        box.add(y);
+        box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),"(x,y)"));
+        send.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ((Graficador)simulador.getCanvas()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
+                nodeX.setUserObject("x {"+x.getValue().toString()+"}");
+                nodeY.setUserObject("y {"+y.getValue().toString()+"}");
+                punto.updateUI();
+                send.setEnabled(false);
+                clean.setEnabled(true);
+                x.setEnabled(false);
+                y.setEnabled(false);
+                pause.setModificable(false);
+                if (pause.isOnOff()) next.setEnabled(true);
+            }
+        });
+        Constrains.addCompX(box,simulador.getPanel(),1,0,2,1,1,3,80,5,5,GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(send,simulador.getPanel(),3,0,2,1,1,10,5,5,100,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(pause,simulador.getPanel(),1,1,1,1,1,5,35,10,8,GridBagConstraints.EAST,GridBagConstraints.NONE);
+        Constrains.addCompX(next,simulador.getPanel(),2,1,2,1,1,5,8,10,8,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(clean,simulador.getPanel(),4,1,1,1,1,5,5,10,100,GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
         return simulador;
     }
 }

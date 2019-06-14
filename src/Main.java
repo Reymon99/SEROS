@@ -1,15 +1,10 @@
 import gui.principal.Desktop;
-public class Main { //2098 lines
-    public static void main(String[] args) {
+public class Main { //2198 lines
+    public static void main(String[] args) throws InterruptedException {
             System.out.println("start...");
             Desktop desktop=new Desktop();
-            try {//Se pone a dormir el programa para que los componentes cargen perfectamente y se muestren adecuadamente
-                Thread.sleep(150);
-                System.out.println("showing");
-            } catch (InterruptedException e) {
-
-            }finally {
-                desktop.setVisible(true);
-            }
+            Thread.sleep(150);//Se pone a dormir el programa para que los componentes cargen perfectamente y se muestren adecuadamente
+            System.out.println("showing");
+            desktop.setVisible(true);
     }
 }

@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 public class Contenido extends Lienzo {
     private JPanel contenido;
     private JLabel back,next,title;
+    private ModernScrollPane pane;
     /**
      * Esquema de los paneles de contenido del proyecto
      * @author Sergio Majé
@@ -28,7 +29,7 @@ public class Contenido extends Lienzo {
         title.setOpaque(false);
         contenido=new JPanel(new GridBagLayout());
         contenido.setOpaque(false);
-        JScrollPane pane = new ModernScrollPane(contenido);
+        pane = new ModernScrollPane(contenido);
         pane.setWheelScrollingEnabled(true);
         pane.getViewport().setView(contenido);
         pane.setOpaque(false);
@@ -40,6 +41,7 @@ public class Contenido extends Lienzo {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.PRINCIPAL);
+                pane.getVerticalScrollBar().setValue(0);
             }
         });
         next=new Boton(Archivos.image("/recourses/image/next.png",48,48));
@@ -79,5 +81,13 @@ public class Contenido extends Lienzo {
      */
     public JLabel getTitle() {
         return title;
+    }
+    /**
+     * Retorna el Scroll del Contenido
+     * @return scroll del contenido
+     * @author Sergio Majé
+     */
+    public ModernScrollPane getPane() {
+        return pane;
     }
 }

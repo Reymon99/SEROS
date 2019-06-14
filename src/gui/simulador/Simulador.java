@@ -8,11 +8,8 @@ import tools.Fuentes;
 import tools.Archivos;
 import tools.Constrains;
 import javax.swing.*;
-import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
-import java.util.ArrayList;
-
 public class Simulador extends JPanel {
     private Canvas canvas;
     private Texto texto;
@@ -36,23 +33,19 @@ public class Simulador extends JPanel {
      * Instanciacion y acomodamiento de los componentes del panel
      * @author Sergio Majé
      */
-    public void init(){
+    private void init(){
         back=new Boton(Archivos.image("/recourses/image/back.png",48,48));
-        JPanel panel1=new JPanel(new GridBagLayout());
-        panel1.setBackground(Colour.GRISPANEL.getColor());
         panel=new JPanel(new GridBagLayout());
-        panel.setOpaque(false);
+        panel.setBackground(Colour.GRISPANEL.getColor());
         JLabel desc=new JLabel("Descripción");
         desc.setFont(Fuentes.UBUNTULIGHT14.getFont());
         desc.setForeground(Color.WHITE);
         desc.setBackground(Colour.AZULTITLE.getColor());
         desc.setOpaque(true);
-        datos=new JPanel();
-        datos.setLayout(new BoxLayout(datos,BoxLayout.Y_AXIS));
-        Constrains.addComp(canvas,this,0,0,1,4,0,0,0,0,0,0,GridBagConstraints.NORTHEAST,GridBagConstraints.NONE);
-        Constrains.addComp(back,panel1,0,0,1,1,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addComp(panel,panel1,1,0,1,1,1,1,0,5,0,0,GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-        Constrains.addComp(panel1,this,0,4,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        datos=new JPanel(new GridBagLayout());
+        Constrains.addComp(canvas,this,0,0,1,4,0,0,0,0,0,0,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
+        Constrains.addComp(back,panel,0,0,1,2,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addComp(panel,this,0,4,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompX(desc,this,1,0,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompIy((texto=new Texto(4,55)),this,1,1,1,1,1,0,0,0,0,0,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompIy(new ModernScrollPane(datos),this,1,2,1,1,1,0,0,0,0,0,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
@@ -72,7 +65,7 @@ public class Simulador extends JPanel {
      * @author Sergio Majé
      */
     public void setDatos(Tree... trees){
-        for (Tree tree:trees) datos.add(tree);
+        for (int i = 0; i < trees.length; i++) Constrains.addComp(trees[i],datos,0,i,1,1,1,1,i==0 ? 7:2,10,1,5,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
     }
     /**
      * panel de comandos del simulador
@@ -107,5 +100,21 @@ public class Simulador extends JPanel {
         this.texto.setEditable(true);
         this.texto.setText(texto);
         this.texto.setEditable(false);
+    }
+    /**
+     * Retorna el cavas del simulador
+     * @return canvas del simulador
+     * @author Sergio Majé
+     */
+    public Canvas getCanvas() {
+        return canvas;
+    }
+    /**
+     * Modifica el camvas del simulador
+     * @param canvas nuevo canvas del simulador
+     * @author Sergio Majé
+     */
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
     }
 }

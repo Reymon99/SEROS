@@ -1,6 +1,8 @@
 package gui.contenido;
 import tools.Colour;
 import tools.Constrains;
+import tools.Fuentes;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -9,25 +11,29 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 public class Switch extends JComponent {
     private boolean modificable;
+    private String text;
     private boolean onOff;//Estado del interruptor
     private Color backgroundColor;//Color del fondo del interruptor
     private Color buttonColor;//Color del boton circular del interruptor
     private final Color DISABLED_COMPONENT_COLOR= Colour.GRAYDISABLED.getColor();//Color del interruptor cuando está deshabilitado
     /**
      * Componente de estados Switch
+     * @param text texto del componente
      * @param onOff estado del Switch
      * @author Sergio Majé
      */
-    public Switch(boolean onOff){
+    public Switch(String text,boolean onOff){
         super();
         this.onOff=onOff;
+        this.text=text;
         modificable=true;
-        setSize(new Dimension(35,20));
-        setPreferredSize(new Dimension(35,20));
-        setMaximumSize(new Dimension(35,20));
-        setMaximumSize(new Dimension(35,20));
+        setSize(new Dimension(110,20));
+        setPreferredSize(new Dimension(110,20));
+        setMinimumSize(new Dimension(110,20));
+        setMaximumSize(new Dimension(110,20));
         setVisible(true);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
+        setOpaque(false);
         backgroundColor=Colour.VERDEACTIVO.getColor();
         buttonColor=Colour.BLANCO.getColor();
         addMouseListener(new MouseAdapter() {
@@ -108,6 +114,23 @@ public class Switch extends JComponent {
         this.modificable = modificable;
     }
     /**
+     * Retorna el texto del componente
+     * @return texto del componente
+     * @author Sergio Majé
+     */
+    public String getText() {
+        return text;
+    }
+    /**
+     * Modifica el texto del componente
+     * @param text nuevo texto
+     * @author Sergio Majé
+     */
+    public void setText(String text) {
+        this.text = text;
+        repaint();
+    }
+    /**
      * Construcción del componente Switch
      * @author Sergio Majé
      */
@@ -118,15 +141,15 @@ public class Switch extends JComponent {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         if (isOpaque()) {//Pinta el fondo del componente
             g2.setColor(getBackground());
-            g2.fill(new Rectangle2D.Double(0, 0, getWidth(), getHeight()));
+            g2.fill(new Rectangle2D.Double(0, 0, getWidth()+g2.getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text), getHeight()));
         }
         g2.setColor(isEnabled() ? onOff ? backgroundColor : Colour.BLANCODESHABILITADO.getColor() : DISABLED_COMPONENT_COLOR);
-        final int MARGIN = 2;//Margen entre el borde del componente y el interruptor
-        if(isEnabled()) g2.fill(new RoundRectangle2D.Double((float) MARGIN, (float) MARGIN, (float) getWidth() - MARGIN * 2, (float) getHeight() - MARGIN * 2, getHeight() - MARGIN * 2, getHeight() - MARGIN * 2));//componente habilitado
-        else g2.draw(new RoundRectangle2D.Double((float) MARGIN, (float) MARGIN, (float) getWidth() - MARGIN * 2, (float) getHeight() - MARGIN * 2, getHeight() - MARGIN * 2, getHeight() - MARGIN * 2));//componente deshabilitado
+        if(isEnabled()) g2.fill(new RoundRectangle2D.Double(2, 2, 31, 16, 16, 16));//componente habilitado
+        else g2.draw(new RoundRectangle2D.Double(2, 2, 31, 16, 16, 16));//componente deshabilitado
         g2.setColor((isEnabled()) ? buttonColor : DISABLED_COMPONENT_COLOR);
-        final int BORDER = 5;//Margen entre el boton circular y el interruptor
-        if (onOff) g2.fillOval(MARGIN + BORDER / 2, MARGIN + BORDER / 2, getHeight() - MARGIN * 2 - BORDER, getHeight() - MARGIN * 2 - BORDER);//ON a la izquierda
-        else g2.fillOval(getWidth() - getHeight() + MARGIN + BORDER / 2, MARGIN + BORDER / 2, getHeight() - MARGIN * 2 - BORDER, getHeight() - MARGIN * 2 - BORDER);//OFF a la derecha
+        if (onOff) g2.fillOval(4, 4, 11, 11);//ON a la izquierda
+        else g2.fillOval(19, 4, 11, 11);//OFF a la derecha
+        g2.setFont(Fuentes.UBUNTULIGHT14.getFont());
+        g2.drawString(text,36, 15);
     }
 }
