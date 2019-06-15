@@ -1,8 +1,6 @@
 package gui.contenido;
 import tools.Colour;
-import tools.Constrains;
 import tools.Fuentes;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -27,10 +25,10 @@ public class Switch extends JComponent {
         this.onOff=onOff;
         this.text=text;
         modificable=true;
-        setSize(new Dimension(110,20));
-        setPreferredSize(new Dimension(110,20));
-        setMinimumSize(new Dimension(110,20));
-        setMaximumSize(new Dimension(110,20));
+        setSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text),20));
+        setPreferredSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text),20));
+        setMinimumSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text),20));
+        setMaximumSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text),20));
         setVisible(true);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setOpaque(false);
