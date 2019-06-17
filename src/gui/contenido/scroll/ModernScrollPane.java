@@ -18,7 +18,7 @@ public class ModernScrollPane extends JScrollPane {
      * @param area componente a agregar al header
      * @author Sergio Majé
      */
-    public ModernScrollPane(Component view,JTextArea area){
+    public ModernScrollPane(Component view,JPanel area){
         this(view);
         setRowHeaderView(area);
     }
@@ -42,7 +42,7 @@ public class ModernScrollPane extends JScrollPane {
             @Override
             public void layoutContainer(Container parent) {
                 super.layoutContainer(parent);
-                Rectangle availR = ((JScrollPane) parent).getBounds();
+                Rectangle availR = parent.getBounds();
                 availR.x = availR.y = 0;
                 Insets insets = parent.getInsets();// viewport, no se toca
                 availR.x = insets.left;

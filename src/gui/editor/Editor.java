@@ -1,36 +1,21 @@
 package gui.editor;
-import gui.contenido.TextPane;
-import gui.contenido.Texto;
 import gui.contenido.scroll.ModernScrollPane;
 import tools.Archivos;
 import tools.Colour;
 import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 public class Editor {
-    private TextPane editor;
+    private View editor;
     private ModernScrollPane scroll;
-    private Texto area;
+    private Indice indice;
     /**
      * Editor sintexico de código a utilizar en la interfaz grafica del proyecto
      * @author Sergio Majé
      */
     private Editor(){
-        editor=new TextPane();
-        area=new Texto(){
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                g.setColor(Colour.SCROLLROLLOVER.getColor());
-                g.drawLine(getWidth()-1,getY(),getWidth()-1,getHeight());
-            }
-        };
-        area.setEditable(false);
-        area.setBackground(Colour.NEGROINDICE.getColor());
-        area.setForeground(Colour.BLANCO.getColor());
-        area.setMargin(new Insets(3,5,0,7));
-        area.setFont(editor.getFont());
-        scroll=new ModernScrollPane(editor,area);
+        editor=new View();
+        indice=new Indice(editor);
+        scroll=new ModernScrollPane(editor,indice);
     }
     /**
      * Decodifica el texto del archivo para diferenciar los diferentes colores de la sintaxis
@@ -46,7 +31,6 @@ public class Editor {
             else if(e.endsWith("v")) editor.append(e.substring(0,e.length()-1), Colour.VERDE.getColor());
             else if(e.endsWith("w")) editor.append(e.substring(0,e.length()-1), Colour.BLANCO.getColor());
         }
-        for (int i = 1; i <= n.split("\n").length; i++) area.append(String.valueOf(i)+'\n');
     }
     /**
      * Define texto al editor sin diferenciacion de sintaxis
