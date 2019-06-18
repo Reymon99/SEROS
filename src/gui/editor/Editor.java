@@ -22,7 +22,7 @@ public class Editor {
      * @param n {@link String} cadena con texto codificado
      * @author Sergio Majé
      */
-    public void text(String n) {
+    private void text(String n) {
         for (String e:n.replaceAll("\t","       ").split("_")){
             if (e.endsWith("n")) editor.append(e.substring(0,e.length()-1), Colour.NARANJA.getColor());
             else if(e.endsWith("m")) editor.append(e.substring(0,e.length()-1), Colour.MORADO.getColor());
@@ -37,7 +37,7 @@ public class Editor {
      * @param text {@link String}
      * @author Sergio Majé
      */
-    private void setText(String text){
+    public void setText(String text){
         editor.setText(text);
     }
     /**
@@ -55,5 +55,29 @@ public class Editor {
             editor.setText(e.getMessage());
         }
         return editor.scroll;
+    }
+    /**
+     * Retorna el editor de texto
+     * @return {@link View} de texto
+     * @author Sergio Majé
+     */
+    public View getEditor() {
+        return editor;
+    }
+    /**
+     * Retorna el scroll del editor
+     * @return {@link ModernScrollPane} del editor
+     * @author Sergio Majé
+     */
+    public ModernScrollPane getScroll() {
+        return scroll;
+    }
+    /**
+     * Retorna el control de indice del editor
+     * @return {@link Indice} del editor
+     * @author Sergio Majé
+     */
+    public Indice getIndice() {
+        return indice;
     }
 }

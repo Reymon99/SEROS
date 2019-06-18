@@ -1,6 +1,6 @@
 public classn_ Punto {w_
-	private intn_ xm_,n_ym_;
-	publicn_ Puntoa_(w_intn_ xw_,intn_ ym_){w_
+	private intn_ xm_,n_ ym_;
+	publicn_ Puntoa_(w_intn_ xw_, intn_ y){w_
 		thisn_.w_xm_=xw_;
 		thisn_.w_ym_=yw_;n_
 	}w_

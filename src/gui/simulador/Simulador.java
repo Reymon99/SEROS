@@ -8,7 +8,6 @@ import tools.Fuentes;
 import tools.Archivos;
 import tools.Constrains;
 import javax.swing.*;
-import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 public class Simulador extends JPanel {
     private Canvas canvas;
@@ -16,8 +15,7 @@ public class Simulador extends JPanel {
     private JPanel datos;
     private JTabbedPane code;
     private JPanel panel;
-    private JLabel back;
-    private DefaultTreeModel model;
+    private Boton back;
     public static Dimension canvasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.8  ));
     /**
      * Esquema de los simuladores del proyecto
@@ -80,7 +78,7 @@ public class Simulador extends JPanel {
      * @return JLabel
      * @author Sergio Majé
      */
-    public JLabel getBack() {
+    public Boton getBack() {
         return back;
     }
     /**

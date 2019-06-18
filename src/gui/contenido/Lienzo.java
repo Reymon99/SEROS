@@ -1,6 +1,8 @@
 package gui.contenido;
+import tools.Archivos;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 public class Lienzo extends JPanel {
     public Lienzo(){
         super();
@@ -15,7 +17,7 @@ public class Lienzo extends JPanel {
      */
     @Override
     public void paint(Graphics g) {
-        g.drawImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/recourses/image/Lienzo.jpg")),0,0,getWidth(),getHeight(),this);
+        g.drawImage(Objects.requireNonNull(Archivos.image("/recourses/image/Lienzo.jpg", -1, -1)).getImage(),0,0,getWidth(),getHeight(),this);
         setOpaque(false);
         super.paint(g);
     }
