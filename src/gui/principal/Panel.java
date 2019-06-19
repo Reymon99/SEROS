@@ -1,6 +1,7 @@
 package gui.principal;
 import eventos.Eventos;
 import gui.contenido.*;
+import gui.simulador.Dato;
 import gui.simulador.lienzos.Graficador;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
@@ -288,9 +289,9 @@ public class Panel extends JPanel {
             }
         });
         simulador.addCodes(Editor.editor("/recourses/codes/tda/Punto.txt"),"Punto");
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode("punto {Punto}");
-        DefaultMutableTreeNode nodeX=new DefaultMutableTreeNode("x {}");
-        DefaultMutableTreeNode nodeY=new DefaultMutableTreeNode("y {}");
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new Dato("Punto","punto","",true));
+        DefaultMutableTreeNode nodeX=new DefaultMutableTreeNode(new Dato("int","x",""));
+        DefaultMutableTreeNode nodeY=new DefaultMutableTreeNode(new Dato("int","y",""));
         node.add(nodeX);
         node.add(nodeY);
         Tree punto=new Tree(node);
@@ -310,8 +311,8 @@ public class Panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ((Graficador)simulador.getCanvas()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
-                nodeX.setUserObject("x {"+x.getValue().toString()+"}");
-                nodeY.setUserObject("y {"+y.getValue().toString()+"}");
+                ((Dato)nodeX.getUserObject()).setValor(x.getValue().toString());
+                ((Dato)nodeY.getUserObject()).setValor(y.getValue().toString());
                 punto.updateUI();
                 send.setEnabled(false);
                 clean.setEnabled(true);
