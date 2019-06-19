@@ -64,7 +64,7 @@ public class Panel extends JPanel {
         formula.setFont(Fuentes.PURISA18.getFont());
         formula.setOpaque(false);
         Constrains.addComp(new Texto(Text.TDA.toString()), con.getContenido(), 0, 0, 1, 1, 1,1, 10, 25, 15, 12, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(Editor.editor("/recourses/codes/tda/Punto.txt"),con.getContenido(),0,1,1,1,0,0,5,5,5,5,GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addComp(Editor.editor("/recourses/codes/tda/Punto.seros"),con.getContenido(),0,1,1,1,0,0,5,5,5,5,GridBagConstraints.CENTER, GridBagConstraints.NONE);
         Constrains.addComp(new Texto(Text.TDA1.toString()), con.getContenido(),0,2,1,1,1,1,10,25,3,12, GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new Texto(Text.TDA2.toString()), con.getContenido(),0,3,1,1,1,1,3,40,3,12, GridBagConstraints.NORTHEAST,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new Texto(Text.TDA3.toString()), con.getContenido(),0,4,1,1,1,1,5,25,5,12, GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
@@ -288,7 +288,7 @@ public class Panel extends JPanel {
                 Eventos.show(Paneles.TDA);
             }
         });
-        simulador.addCodes(Editor.editor("/recourses/codes/tda/Punto.txt"),"Punto");
+        simulador.addCodes(Editor.editor("/recourses/codes/tda/Punto.seros"),"Punto");
         DefaultMutableTreeNode node = new DefaultMutableTreeNode(new Dato("Punto","punto","",true));
         DefaultMutableTreeNode nodeX=new DefaultMutableTreeNode(new Dato("int","x",""));
         DefaultMutableTreeNode nodeY=new DefaultMutableTreeNode(new Dato("int","y",""));

@@ -33,6 +33,15 @@ public class Editor {
         }
     }
     /**
+     * Selecciona una linea determinada
+     * @param i linea a seleccionar
+     * @author Sergio Majé
+     */
+    public void drawLineIn(int i){
+        editor.drawLineIn(i);
+        indice.lineForegroundIn(i);
+    }
+    /**
      * Define texto al editor sin diferenciacion de sintaxis
      * @param text {@link String}
      * @author Sergio Majé
