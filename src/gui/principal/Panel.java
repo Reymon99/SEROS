@@ -290,19 +290,18 @@ public class Panel extends JPanel {
             }
         });
         simulador.addCodes(Editor.editor("/recourses/codes/tda/Punto.seros"),"Punto");
-        DefaultMutableTreeNode node = new DefaultMutableTreeNode(new Dato("Punto","punto","",true));
-        DefaultMutableTreeNode nodeX=new DefaultMutableTreeNode(new Dato("int","x",""));
-        DefaultMutableTreeNode nodeY=new DefaultMutableTreeNode(new Dato("int","y",""));
-        node.add(nodeX);
-        node.add(nodeY);
-        Tree punto=new Tree(node);
-        
+        Tree punto=new Tree(new DefaultMutableTreeNode(new Dato("Punto","punto","",true)));
+        punto.addNode(new DefaultMutableTreeNode(new Dato("int","x","")));
+        punto.addNode(new DefaultMutableTreeNode(new Dato("int","y","")));
+        punto.expandNode(0);
         simulador.setDatos(punto);
         JButton send=new ButtonSimulador("Graficar", true);
         JButton clean=new ButtonSimulador("Limpiar", false);
         JButton next=new ButtonSimulador("Siguiente", false);
         JSpinner x=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
         JSpinner y=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
+        ((JSpinner.NumberEditor)x.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.NumberEditor)y.getEditor()).getTextField().setEditable(false);
         Switch pause=new Switch("Paso a Paso",false);
         Box box=Box.createHorizontalBox();
         box.add(x);
@@ -316,23 +315,20 @@ public class Panel extends JPanel {
             Eventos.enable(false,send,x,y,pause);
             Eventos.enable(true,clean);
             Eventos.texto(simulador.getTexto(),SIMULADORTDA1);
+            punto.expandNode(0);
             if (pause.isOnOff()) Eventos.enable(true,next);
         });
         clean.addActionListener(e -> {
             ((Graficador)simulador.getCanvas()).limpiar();
-            ((Dato)nodeX.getUserObject()).setValor("");
-            ((Dato)nodeY.getUserObject()).setValor("");
-            punto.updateUI();
-            send.setEnabled(true);
-            clean.setEnabled(false);
-            y.setEnabled(true);
-            x.setEnabled(true);
+            Eventos.variable(punto,0,"");
+            Eventos.variable(punto,1,"");
+            Eventos.enable(true,send,x,y,pause);
+            Eventos.enable(false,clean,next);
+            Eventos.texto(simulador.getTexto(),SIMULADORTDA2);
             x.setValue(0);
             y.setValue(0);
-            simulador.getTexto().setText(Text.SIMULADORTDA2.toString());
-            pause.setModificable(true);
+            punto.expandNode(0);
             pause.setOnOff(false);
-            next.setEnabled(false);
         });
         Constrains.addCompX(box,simulador.getPanel(),1,0,2,1,1,3,80,5,5,GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(send,simulador.getPanel(),3,0,2,1,1,10,5,5,100,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);

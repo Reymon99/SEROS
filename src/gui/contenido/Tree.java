@@ -8,6 +8,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 public class Tree extends JTree {
+    private DefaultMutableTreeNode node;
     /**
      * JTree configurado al proyecto
      * @param node nodo raíz
@@ -15,6 +16,7 @@ public class Tree extends JTree {
      */
     public Tree(DefaultMutableTreeNode node){
         super(new DefaultTreeModel(node));
+        this.node=node;
         ImageIcon icon = Archivos.image("/recourses/image/variable.png",-1,-1);
         setCellRenderer(new DefaultTreeCellRenderer(){
             @Override
@@ -33,6 +35,17 @@ public class Tree extends JTree {
      * @author Sergio Majé
      */
     public Dato getDato(int index){
-        return ((Dato)((DefaultMutableTreeNode)getModel().getChild(getModel().getRoot(), index)).getUserObject());
+        return (Dato) ((DefaultMutableTreeNode)node.getChildAt(index)).getUserObject();
+    }
+    /**
+     * Añade nodos al nodo raíz
+     * @param node {@link DefaultMutableTreeNode} a agregar
+     * @author Sergio Majé
+     */
+    public void addNode(DefaultMutableTreeNode node){
+        this.node.add(node);
+    }
+    public void expandNode(int row){
+        fireTreeExpanded(getPathForRow(row));
     }
 }
