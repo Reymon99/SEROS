@@ -40,13 +40,12 @@ public class Simulador extends JPanel {
         desc.setForeground(Color.WHITE);
         desc.setBackground(Colour.AZULTITLE.getColor());
         desc.setOpaque(true);
-        datos=new JPanel(new GridBagLayout());
         Constrains.addComp(canvas,this,0,0,1,4,0,0,0,0,0,0,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
         Constrains.addComp(back,panel,0,0,1,2,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
         Constrains.addComp(panel,this,0,4,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompX(desc,this,1,0,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompIy((texto=new Texto(4,55)),this,1,1,1,1,1,0,0,0,0,0,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addCompIy(new ModernScrollPane(datos),this,1,2,1,1,1,0,0,0,0,0,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,1,2,1,1,1,0,0,0,0,0,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addComp((code=new JTabbedPane(JTabbedPane.TOP)),this,1,3,1,2,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
     }
     /**

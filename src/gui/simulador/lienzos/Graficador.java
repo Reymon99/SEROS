@@ -14,6 +14,7 @@ public class Graficador extends Canvas {
         setPreferredSize(Simulador.canvasSize);
         setMaximumSize(Simulador.canvasSize);
         setMinimumSize(Simulador.canvasSize);
+        setFont(Fuentes.UBUNTULIGHT12.getFont());
         graficar=false;
         x=y=0;
     }
@@ -118,8 +119,8 @@ public class Graficador extends Canvas {
                     if (this.x==1) point.x=j;
                     if (this.y==-1) point.y=i;
                 }
-                g2.drawString(String.valueOf(y),(x<0) ? halfScreenWidth()+8 : (Math.abs(x)==10) ? halfScreenWidth()-22 : halfScreenWidth()-16,i+4);//y
-                g2.drawString(String.valueOf(x),j-4,(x>0) ? halfScreenHeight()-8 : halfScreenHeight()+17);//x
+                g2.drawString(String.valueOf(y),x<0 ? halfScreenWidth()+5 : Math.abs(x)==10 ? halfScreenWidth()-22 : halfScreenWidth()-16,i+4);//y
+                g2.drawString(String.valueOf(x),x>0 ? j-4 : j-8,x>0 ? halfScreenHeight()-6 : halfScreenHeight()+15);//x
                 x++;
                 y--;
             }
@@ -132,14 +133,13 @@ public class Graficador extends Canvas {
             else if (this.x==0 && this.y==0) g2.drawString(coordenadas(),point.x-29,point.y-9);//Punto medio
             else if (this.x==0) g2.drawString(coordenadas(),point.x-45,point.y-2);
             else g2.drawString(coordenadas(),point.x-17,point.y+19);//y==0
-            g2.setFont(Fuentes.DIALOG30.getFont());
-            g2.setPaint(Color.RED);//punto
-            g2.drawString(".",point.x-5,point.y+4);
-            graficar=false;
             g2.setPaint(Color.GRAY);//lineas
             g2.setStroke(new BasicStroke(1,BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER,5.0f,new float[]{10},0.0f));
             g2.draw(new Line2D.Double(halfScreenWidth(),point.y,point.x,point.y));
             g2.draw(new Line2D.Double(point.x,halfScreenHeight(),point.x,point.y));
+            g2.setFont(Fuentes.DIALOG35.getFont());
+            g2.setPaint(Color.RED);//punto
+            g2.drawString(".",point.x-5,point.y+4);
         }
     }
 }

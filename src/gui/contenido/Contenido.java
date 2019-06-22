@@ -35,13 +35,13 @@ public class Contenido extends Lienzo {
         pane.setOpaque(false);
         pane.getViewport().setOpaque(false);
         pane.setBorder(BorderFactory.createEmptyBorder());
-        pane.getVerticalScrollBar().setUnitIncrement(40);
+        pane.getVerticalScrollBar().setUnitIncrement(30);
         pane.setFocusable(true);
         back=new Boton("Ventana Principal",Archivos.image("/recourses/image/back.png",48,48),new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.PRINCIPAL);
-                pane.getVerticalScrollBar().setValue(0);
+                Eventos.scroll(pane,0);
             }
         });
         next=new Boton(Archivos.image("/recourses/image/next.png",48,48));

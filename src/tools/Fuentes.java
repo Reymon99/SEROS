@@ -1,6 +1,7 @@
 package tools;
 import java.awt.Font;
 public enum Fuentes {
+    UBUNTULIGHT12(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.PLAIN,12)),
     UBUNTULIGHT14(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.BOLD,14)),
     UBUNTULIGHT15(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.PLAIN,15)),
     UBUNTULIGHT50(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.BOLD,50)),
@@ -9,7 +10,7 @@ public enum Fuentes {
     UBUNTULIGHTB30(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.BOLD,30)),
     PURISA18(new FuentesModificadas("/recourses/fonts/Purisa-Bold.ttf").getFont(Font.PLAIN,18)),
     PURISA22(new FuentesModificadas("/recourses/fonts/Purisa-Bold.ttf").getFont(Font.PLAIN,22)),
-    DIALOG30(new Font(Font.DIALOG,Font.BOLD,30)),
+    DIALOG35(new Font(Font.DIALOG,Font.BOLD,35)),
     SEGOEUISYMBOL22(new FuentesModificadas("/recourses/fonts/Segoe UI Symbol.ttf").getFont(Font.PLAIN,22));
     private Font font;
     private Fuentes(Font font){
