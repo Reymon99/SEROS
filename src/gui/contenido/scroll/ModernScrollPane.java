@@ -4,6 +4,9 @@ import java.awt.*;
 public class ModernScrollPane extends JScrollPane {
     protected static final int THUMB_SIZE = 8;
     protected static final int SB_SIZE = 10;
+    public ModernScrollPane(){
+
+    }
     /**
      * JScrollPane con interfaz personalizada
      * @param view componente a integrar el scroll
@@ -88,5 +91,21 @@ public class ModernScrollPane extends JScrollPane {
         Rectangle viewRect = viewport.getViewRect();
         Dimension viewSize = viewport.getViewSize();
         return viewSize.getWidth() > viewRect.getWidth();
+    }
+    /**
+     * Obtiene el componente añadido al scroll
+     * @return componente en el scroll
+     * @author Sergio Majé
+     */
+    public Component getView(){
+        return viewport.getView();
+    }
+    /**
+     * Obtiene el componente de Indice en el scroll
+     * @return indice
+     * @author Sergio Majé
+     */
+    public Component getIndice(){
+        return rowHeader.getView();
     }
 }

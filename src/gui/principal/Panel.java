@@ -1,6 +1,7 @@
 package gui.principal;
 import eventos.Eventos;
 import gui.contenido.*;
+import gui.contenido.scroll.ModernScrollPane;
 import gui.simulador.Dato;
 import gui.simulador.lienzos.Graficador;
 import gui.editor.Editor;
@@ -289,7 +290,8 @@ public class Panel extends JPanel {
                 Eventos.show(Paneles.TDA);
             }
         });
-        simulador.addCodes(Editor.editor("/recourses/codes/tda/Punto.seros"),"Punto");
+        Editor code=Editor.editor("/recourses/codes/tda/Punto.seros");
+        simulador.addCodes(code,"Punto");
         Tree punto=new Tree(new DefaultMutableTreeNode(new Dato("Punto","punto","",true)));
         punto.addNode(new DefaultMutableTreeNode(new Dato("int","x","")));
         punto.addNode(new DefaultMutableTreeNode(new Dato("int","y","")));
@@ -316,7 +318,10 @@ public class Panel extends JPanel {
             Eventos.enable(true,clean);
             Eventos.texto(simulador.getTexto(),SIMULADORTDA1);
             punto.expandNode(0);
-            if (pause.isOnOff()) Eventos.enable(true,next);
+            if (pause.isOnOff()) {
+
+                Eventos.enable(true,next);
+            }
         });
         clean.addActionListener(e -> {
             ((Graficador)simulador.getCanvas()).limpiar();

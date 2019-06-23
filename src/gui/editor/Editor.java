@@ -2,20 +2,14 @@ package gui.editor;
 import gui.contenido.scroll.ModernScrollPane;
 import tools.Archivos;
 import tools.Colour;
-import javax.swing.*;
 import java.io.*;
-public class Editor {
-    private View editor;
-    private ModernScrollPane scroll;
-    private Indice indice;
+public class Editor extends ModernScrollPane{
     /**
      * Editor sintexico de código a utilizar en la interfaz grafica del proyecto
      * @author Sergio Majé
      */
-    private Editor(){
-        editor=new View();
-        indice=new Indice(editor);
-        scroll=new ModernScrollPane(editor,indice);
+    private Editor(View view, Indice indice) {
+        super(view, indice);
     }
     /**
      * Decodifica el texto del archivo para diferenciar los diferentes colores de la sintaxis
@@ -24,12 +18,12 @@ public class Editor {
      */
     private void text(String n) {
         for (String e:n.replaceAll("\t","       ").split("_")){
-            if (e.endsWith("n")) editor.append(e.substring(0,e.length()-1), Colour.NARANJA.getColor());
-            else if(e.endsWith("m")) editor.append(e.substring(0,e.length()-1), Colour.MORADO.getColor());
-            else if(e.endsWith("a")) editor.append(e.substring(0,e.length()-1), Colour.AMARILLO.getColor());
-            else if(e.endsWith("b")) editor.append(e.substring(0,e.length()-1), Colour.AZUL.getColor());
-            else if(e.endsWith("v")) editor.append(e.substring(0,e.length()-1), Colour.VERDE.getColor());
-            else if(e.endsWith("w")) editor.append(e.substring(0,e.length()-1), Colour.BLANCO.getColor());
+            if (e.endsWith("n")) ((View)getView()).append(e.substring(0,e.length()-1), Colour.NARANJA.getColor());
+            else if(e.endsWith("m")) ((View)getView()).append(e.substring(0,e.length()-1), Colour.MORADO.getColor());
+            else if(e.endsWith("a")) ((View)getView()).append(e.substring(0,e.length()-1), Colour.AMARILLO.getColor());
+            else if(e.endsWith("b")) ((View)getView()).append(e.substring(0,e.length()-1), Colour.AZUL.getColor());
+            else if(e.endsWith("v")) ((View)getView()).append(e.substring(0,e.length()-1), Colour.VERDE.getColor());
+            else if(e.endsWith("w")) ((View)getView()).append(e.substring(0,e.length()-1), Colour.BLANCO.getColor());
         }
     }
     /**
@@ -38,55 +32,32 @@ public class Editor {
      * @author Sergio Majé
      */
     public void drawLineIn(int i){
-        editor.drawLineIn(i);
-        indice.lineForegroundIn(i);
+        ((View)getView()).drawLineIn(i);
+        ((Indice)getIndice()).lineForegroundIn(i);
     }
     /**
-     * Define texto al editor sin diferenciacion de sintaxis
+     * Define texto al view sin diferenciacion de sintaxis
      * @param text {@link String}
      * @author Sergio Majé
      */
     public void setText(String text){
-        editor.setText(text);
+        ((View)getView()).setText(text);
     }
     /**
-     * Creacion de un nuevo Editor
+     * Creación de un nuevo Editor
      * @param path {@link String} ruta del archivo a mostrar
-     * @return {@link JPanel} panel con el editor integrado
+     * @return editor con contenido integrado
      * @see Archivos#codefiles(String)
      * @author Sergio Majé
      */
-    public static ModernScrollPane editor(String path){
-        Editor editor=new Editor();
-        try{
+    public static Editor editor(String path){
+        View view=new View();
+        Editor editor=new Editor(view,new Indice(view));
+        try {
             editor.text(Archivos.codefiles(path));
         } catch (IOException e) {
             editor.setText(e.getMessage());
         }
-        return editor.scroll;
-    }
-    /**
-     * Retorna el editor de texto
-     * @return {@link View} de texto
-     * @author Sergio Majé
-     */
-    public View getEditor() {
         return editor;
-    }
-    /**
-     * Retorna el scroll del editor
-     * @return {@link ModernScrollPane} del editor
-     * @author Sergio Majé
-     */
-    public ModernScrollPane getScroll() {
-        return scroll;
-    }
-    /**
-     * Retorna el control de indice del editor
-     * @return {@link Indice} del editor
-     * @author Sergio Majé
-     */
-    public Indice getIndice() {
-        return indice;
     }
 }

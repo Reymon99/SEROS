@@ -10,6 +10,7 @@ import gui.contenido.About;
 import gui.contenido.Switch;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
+import gui.editor.Editor;
 import tools.Paneles;
 import tools.Text;
 public abstract class Eventos {
@@ -101,4 +102,5 @@ public abstract class Eventos {
     public static void texto(JTextComponent component,Text text){
         component.setText(text.toString());
     }
+    //public void static asignacionVariable(Editor editor,)
 }

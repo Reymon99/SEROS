@@ -3,6 +3,7 @@ import gui.contenido.Boton;
 import gui.contenido.Texto;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
+import gui.editor.Editor;
 import tools.Colour;
 import tools.Fuentes;
 import tools.Archivos;
@@ -85,7 +86,7 @@ public class Simulador extends JPanel {
      * @param code {@link JScrollPane}
      * @author Sergio Majé
      */
-    public void addCodes(ModernScrollPane code, String title){
+    public void addCodes(Editor code, String title){
         this.code.add(title,code);
     }
     /**
