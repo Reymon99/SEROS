@@ -1,9 +1,9 @@
 package gui.principal;
 import eventos.Eventos;
 import gui.contenido.*;
-import gui.contenido.scroll.ModernScrollPane;
 import gui.simulador.Dato;
-import gui.simulador.lienzos.Graficador;
+import gui.simulador.Tda;
+import gui.simulador.liezos.Graficador;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
 import tools.*;
@@ -29,10 +29,9 @@ public class Panel extends JPanel {
      * @author Sergio Majé
      */
     private void init() {
-        add(Paneles.SIMULADORTDA.toString(), simuladorTDA());
         add(Paneles.PRINCIPAL.toString(), new Principal());
         add(Paneles.TDA.toString(), tda());
-
+        add(Paneles.SIMULADORTDA.toString(), new Tda(new Graficador()));
         add(Paneles.MODULARIDAD.toString(), modularidad());
         add(Paneles.RECURSIVIDAD.toString(), recursividad());
         add(Paneles.ARREGLOS.toString(), arreglos());
@@ -48,7 +47,7 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel TDA
      * @see Contenido
-     * @see Panel#simuladorTDA()
+     * @see Tda
      * @author Sergio Majé
      */
     private Contenido tda(){
@@ -274,72 +273,5 @@ public class Panel extends JPanel {
             }
         });
         return con;
-    }
-    /**
-     * Simulador enfocado a explicar los TDA
-     * @see Simulador#Simulador(Canvas)
-     * @see Graficador
-     * @author Sergio Majé
-     */
-    private Simulador simuladorTDA(){
-        Simulador simulador=new Simulador(new Graficador());
-        Eventos.texto(simulador.getTexto(),SIMULADORTDA2);
-        simulador.getBack().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Eventos.show(Paneles.TDA);
-            }
-        });
-        Editor code=Editor.editor("/recourses/codes/tda/Punto.seros");
-        simulador.addCodes(code,"Punto");
-        Tree punto=new Tree(new DefaultMutableTreeNode(new Dato("Punto","punto","",true)));
-        punto.addNode(new DefaultMutableTreeNode(new Dato("int","x","")));
-        punto.addNode(new DefaultMutableTreeNode(new Dato("int","y","")));
-        punto.expandNode(0);
-        simulador.setDatos(punto);
-        JButton send=new ButtonSimulador("Graficar", true);
-        JButton clean=new ButtonSimulador("Limpiar", false);
-        JButton next=new ButtonSimulador("Siguiente", false);
-        JSpinner x=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
-        JSpinner y=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
-        ((JSpinner.NumberEditor)x.getEditor()).getTextField().setEditable(false);
-        ((JSpinner.NumberEditor)y.getEditor()).getTextField().setEditable(false);
-        Switch pause=new Switch("Paso a Paso",false);
-        Box box=Box.createHorizontalBox();
-        box.add(x);
-        box.add(Box.createHorizontalStrut(1));
-        box.add(y);
-        box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),"(x,y)"));
-        send.addActionListener(e -> {
-            ((Graficador)simulador.getCanvas()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
-            Eventos.variable(punto,0,x.getValue());
-            Eventos.variable(punto,1,y.getValue());
-            Eventos.enable(false,send,x,y,pause);
-            Eventos.enable(true,clean);
-            Eventos.texto(simulador.getTexto(),SIMULADORTDA1);
-            punto.expandNode(0);
-            if (pause.isOnOff()) {
-
-                Eventos.enable(true,next);
-            }
-        });
-        clean.addActionListener(e -> {
-            ((Graficador)simulador.getCanvas()).limpiar();
-            Eventos.variable(punto,0,"");
-            Eventos.variable(punto,1,"");
-            Eventos.enable(true,send,x,y,pause);
-            Eventos.enable(false,clean,next);
-            Eventos.texto(simulador.getTexto(),SIMULADORTDA2);
-            x.setValue(0);
-            y.setValue(0);
-            punto.expandNode(0);
-            pause.setOnOff(false);
-        });
-        Constrains.addCompX(box,simulador.getPanel(),1,0,2,1,1,3,80,5,5,GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(send,simulador.getPanel(),3,0,2,1,1,10,5,5,100,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(pause,simulador.getPanel(),1,1,1,1,1,5,35,10,8,GridBagConstraints.EAST,GridBagConstraints.NONE);
-        Constrains.addCompX(next,simulador.getPanel(),2,1,2,1,1,5,8,10,8,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(clean,simulador.getPanel(),4,1,1,1,1,5,5,10,100,GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
-        return simulador;
     }
 }

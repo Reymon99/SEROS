@@ -36,6 +36,14 @@ public class Editor extends ModernScrollPane{
         ((Indice)getIndice()).lineForegroundIn(i);
     }
     /**
+     * Fija si la linea se dibuja
+     * @param line true: Se dibuja false: No se dibuja
+     * @author Sergio Majé
+     */
+    public void setLine(boolean line){
+        ((View)getView()).setLine(line);
+    }
+    /**
      * Define texto al view sin diferenciacion de sintaxis
      * @param text {@link String}
      * @author Sergio Majé

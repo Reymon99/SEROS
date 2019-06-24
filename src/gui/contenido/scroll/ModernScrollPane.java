@@ -4,9 +4,6 @@ import java.awt.*;
 public class ModernScrollPane extends JScrollPane {
     protected static final int THUMB_SIZE = 8;
     protected static final int SB_SIZE = 10;
-    public ModernScrollPane(){
-
-    }
     /**
      * JScrollPane con interfaz personalizada
      * @param view componente a integrar el scroll

@@ -10,7 +10,7 @@ import tools.Archivos;
 import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
-public class Simulador extends JPanel {
+public abstract class Simulador extends JPanel {
     private Canvas canvas;
     private Texto texto;
     private JPanel datos;
@@ -67,7 +67,7 @@ public class Simulador extends JPanel {
     }
     /**
      * panel de comandos del simulador
-     * @return Jpanel
+     * @return {@link JPanel} de gestión
      * @author Sergio Majé
      */
     public JPanel getPanel() {
@@ -115,4 +115,19 @@ public class Simulador extends JPanel {
     public void setCanvas(Canvas canvas) {
         this.canvas = canvas;
     }
+    /**
+     * Iteración del simulador cuando no se ejecuta el paso a paso
+     * @author Sergio Majé
+     */
+    abstract protected void iteracion0();
+    /**
+     * Primera iteración del simulador con paso a paso
+     * @author Sergio Majé
+     */
+    abstract protected void iteracion1();
+    /**
+     * Restaura los componente al origen
+     * @author Sergio Majé
+     */
+    abstract protected void clean();
 }

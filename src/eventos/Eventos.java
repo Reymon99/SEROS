@@ -10,7 +10,6 @@ import gui.contenido.About;
 import gui.contenido.Switch;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
-import gui.editor.Editor;
 import tools.Paneles;
 import tools.Text;
 public abstract class Eventos {
@@ -42,15 +41,8 @@ public abstract class Eventos {
      */
     public static void link(String url){
         try{
-            URL url1=new URL(url);
-            if (Desktop.isDesktopSupported()) Desktop.getDesktop().browse(url1.toURI());
-        } catch (MalformedURLException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (URISyntaxException e) {
-            System.out.println(e.getMessage());
-        }
+            if (Desktop.isDesktopSupported()) Desktop.getDesktop().browse(new URL(url).toURI());
+        } catch (Exception e) { }
     }
     /**
      * About de Seros,<br>
@@ -93,14 +85,4 @@ public abstract class Eventos {
         tree.getDato(index).setValor(valor.toString());
         tree.updateUI();
     }
-    /**
-     * Texto a dar al componente de texto
-     * @param component {@link JTextComponent} a modificar texto
-     * @param text {@link Text} a dar al componente
-     * @author Sergio Majé
-     */
-    public static void texto(JTextComponent component,Text text){
-        component.setText(text.toString());
-    }
-    //public void static asignacionVariable(Editor editor,)
 }
