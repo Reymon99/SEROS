@@ -84,7 +84,7 @@ public class Tda extends Simulador {
     @Override
     protected void iteracion1() {
         Eventos.enable(true,next);
-        Eventos.enable(false,send,x,y,pause,clean);
+        Eventos.enable(false,send,x,y,pause,clean,getBack());
         if (interaccion==0) asignacionX();
         else if (interaccion==1) asignacionY();
         else mostrarCoordenadas();
@@ -104,7 +104,7 @@ public class Tda extends Simulador {
         pause.setOnOff(false);
         interaccion=0;
         Eventos.scroll(code,0);
-        if (pause.isOnOff()) code.setLine(false);
+        code.setLine(false);
     }
     /**
      * Muestra los datos y códigos que se asignan al eje x
