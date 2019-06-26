@@ -59,6 +59,12 @@ public abstract class Simulador extends JPanel {
         desc.setForeground(Color.WHITE);
         desc.setBackground(Colour.AZULTITLE.getColor());
         desc.setOpaque(true);
+        clean.addActionListener(e -> clean());
+        send.addActionListener(e -> {
+            if (pause.isOnOff()) iteracion1();
+            else iteracion0();
+        });
+        next.addActionListener(e -> iteracion1());
         Constrains.addComp(component,this,0,0,1,4,0,0,0,0,0,0,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
         Constrains.addComp(back,panel,0,0,1,2,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
         Constrains.addComp(panel,this,0,4,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);

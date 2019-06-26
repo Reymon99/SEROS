@@ -20,7 +20,7 @@ public class TextPane extends JTextPane {
         setContentType("text/plain");
         setBackground(Colour.NEGROEDITOR.getColor());
         setForeground(Colour.BLANCO.getColor());
-        setFont(Fuentes.UBUNTULIGHT15.getFont());
+        setFont(Fuentes.UBUNTUMONO15.getFont());
         setEditable(false);
         setMargin(new Insets(0,10,5,39));
         setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);

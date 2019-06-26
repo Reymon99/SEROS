@@ -1,7 +1,5 @@
 package gui.simulador;
 import eventos.Eventos;
-import gui.contenido.ButtonSimulador;
-import gui.contenido.Switch;
 import gui.contenido.Tree;
 import gui.editor.Editor;
 import gui.simulador.liezos.Graficador;
@@ -41,12 +39,6 @@ public class Tda extends Simulador {
         box.add(Box.createHorizontalStrut(1));
         box.add(y);
         box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),"(x,y)"));
-        clean.addActionListener(e -> clean());
-        send.addActionListener(e -> {
-            if (pause.isOnOff()) iteracion1();
-            else iteracion0();
-        });
-        next.addActionListener(e -> iteracion1());
         getBack().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

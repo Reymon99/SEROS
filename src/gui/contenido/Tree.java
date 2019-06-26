@@ -43,7 +43,7 @@ public class Tree extends JTree {
      * @author Sergio Majé
      */
     public Dato getDato(int index){
-        return (Dato) ((DefaultMutableTreeNode)node.getChildAt(index)).getUserObject();
+        return index==-1 ?  (Dato) node.getUserObject() : (Dato) ((DefaultMutableTreeNode)node.getChildAt(index)).getUserObject();
     }
     /**
      * Añade nodos al nodo raíz

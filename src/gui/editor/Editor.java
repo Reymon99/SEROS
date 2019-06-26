@@ -17,7 +17,7 @@ public class Editor extends ModernScrollPane{
      * @author Sergio Majé
      */
     private void text(String n) {
-        for (String e:n.replaceAll("\t","       ").split("_")){
+        for (String e:n.replaceAll("\t","   ").split("_")){
             if (e.endsWith("n")) ((View)getView()).append(e.substring(0,e.length()-1), Colour.NARANJA.getColor());
             else if(e.endsWith("m")) ((View)getView()).append(e.substring(0,e.length()-1), Colour.MORADO.getColor());
             else if(e.endsWith("a")) ((View)getView()).append(e.substring(0,e.length()-1), Colour.AMARILLO.getColor());
