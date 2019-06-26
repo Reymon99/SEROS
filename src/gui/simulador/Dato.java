@@ -4,10 +4,10 @@ public class Dato {
     private String variable;
     private String valor;
     private boolean hash;
-    public Dato(String tipoDato, String variable, String valor) {
+    protected Dato(String tipoDato, String variable, String valor) {
         this(tipoDato,variable,valor,false);
     }
-    public Dato(String tipoDato, String variable, String valor, boolean hash) {
+    protected Dato(String tipoDato, String variable, String valor, boolean hash) {
         this.tipoDato = tipoDato;
         this.variable = variable;
         this.valor = valor;
@@ -81,7 +81,7 @@ public class Dato {
      * @return hash del dato
      * @author Sergio Majé
      */
-    public String hashGenerator(){
+    private String hashGenerator(){
         return tipoDato+'@'+hashHex();
     }
     /**
@@ -89,8 +89,8 @@ public class Dato {
      * @return hash
      * @author Sergio Majé
      */
-    public String hashHex(){
-        return valor.isEmpty() || valor.equals("null") ? "null" : Integer.toHexString(hashCode());
+    private String hashHex(){
+        return valor.isEmpty() || valor.equals("null") ? "null" : Integer.toHexString(valor.hashCode());
     }
     @Override
     public String toString() {

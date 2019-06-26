@@ -5,13 +5,11 @@ import gui.editor.Editor;
 import tools.Colour;
 import tools.Constrains;
 import tools.Fuentes;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
-
 import static tools.Text.*;
 public class Factorial extends Simulador {
     private Editor code;
@@ -33,10 +31,10 @@ public class Factorial extends Simulador {
         format=new DecimalFormat("#,###,###");
         valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
         ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
-        number=new JLabel(format.format(fac(10)),SwingConstants.CENTER);
+        number=new JLabel("0",SwingConstants.CENTER);
         number.setFont(Fuentes.UBUNTULIGHTB120.getFont());
         getComponent().setBackground(Colour.BLANCO.getColor());
-        sucesion=new JLabel("10 * (9 * (8* (7 * (6 * (5 * (4 * (3 * (2 * (1)))))))))",SwingConstants.CENTER);
+        sucesion=new JLabel("n!    =    ",SwingConstants.CENTER);
         sucesion.setFont(Fuentes.UBUNTULIGHT40.getFont());
         getBack().addMouseListener(new MouseAdapter() {
             @Override
@@ -56,6 +54,7 @@ public class Factorial extends Simulador {
     protected void iteracion0() {
         getTexto().setText(FACTORIAL1.toString());
         number.setText(format.format(fac(Integer.parseInt(valorI.getValue().toString()))));
+        sucesion.setText(Integer.parseInt(valorI.getValue().toString())+"!    =    "+sucesion("",Integer.parseInt(valorI.getValue().toString())));
         Eventos.variable(variaI,-1,valorI.getValue());
         Eventos.enable(true,clean);
         Eventos.enable(false,next,send,valorI,pause,getBack());
@@ -68,8 +67,20 @@ public class Factorial extends Simulador {
     protected void clean() {
         getTexto().setText(FACTORIAL.toString());
         Eventos.variable(variaI,-1,"");
+        Eventos.enable(true,send,valorI,pause,getBack());
+        Eventos.enable(false,clean,next);
+        pause.setOnOff(false);
+        valorI.setValue(0);
+        interaccion=0;
+        Eventos.scroll(code,0);
+        code.setLine(false);
+        number.setText("0");
+        sucesion.setText("n!    =    ");
     }
     private long fac(int i){
         return (i==0 || i==1) ? 1 : i*fac(i-1);
+    }
+    private String sucesion(String n,int i){
+        return (i==0 || i==1) ? "1" : n+i+" * "+sucesion(n,i-1);
     }
 }
