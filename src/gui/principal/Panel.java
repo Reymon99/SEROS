@@ -1,17 +1,14 @@
 package gui.principal;
 import eventos.Eventos;
 import gui.contenido.*;
-import gui.simulador.Dato;
+import gui.simulador.Factorial;
 import gui.simulador.Tda;
-import gui.simulador.liezos.Graficador;
 import gui.editor.Editor;
-import gui.simulador.Simulador;
 import tools.*;
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.awt.event.*;
-import static tools.Text.*;
+import static tools.Paneles.*;
 public class Panel extends JPanel {
     /**
      * Panel principal de proyecto
@@ -26,23 +23,25 @@ public class Panel extends JPanel {
      * Se añaden los paneles secundarios al principal<br>
      * Se agrega el evento para circular entre los paneles
      * @see Eventos#setPanel(JPanel)
+     * @see Paneles
      * @author Sergio Majé
      */
     private void init() {
-        add(Paneles.PRINCIPAL.toString(), new Principal());
-        add(Paneles.TDA.toString(), tda());
-        add(Paneles.SIMULADORTDA.toString(), new Tda(new Graficador()));
-        add(Paneles.MODULARIDAD.toString(), modularidad());
-        add(Paneles.RECURSIVIDAD.toString(), recursividad());
-        add(Paneles.ARREGLOS.toString(), arreglos());
-        add(Paneles.NODOS.toString(), nodos());
-        add(Paneles.ORDENAMIENTO.toString(), ordenamiento());
-        add(Paneles.BUSQUEDA.toString(), busqueda());
-        add(Paneles.PILAS.toString(), pilas());
-        add(Paneles.COLAS.toString(), colas());
-        add(Paneles.LISTAS_ENLAZADAS.toString(), listas());
-        add(Paneles.ARBOLES.toString(), arboles());
-        add(Paneles.GRAFOS.toString(), grafos());
+        add(FACTORIAL.toString(),new Factorial());
+        add(PRINCIPAL.toString(), new Principal());
+        add(TDA.toString(), tda());
+        add(SIMULADORTDA.toString(), new Tda());
+        add(MODULARIDAD.toString(), modularidad());
+        add(RECURSIVIDAD.toString(), recursividad());
+        add(ARREGLOS.toString(), arreglos());
+        add(NODOS.toString(), nodos());
+        add(ORDENAMIENTO.toString(), ordenamiento());
+        add(BUSQUEDA.toString(), busqueda());
+        add(PILAS.toString(), pilas());
+        add(COLAS.toString(), colas());
+        add(LISTAS_ENLAZADAS.toString(), listas());
+        add(ARBOLES.toString(), arboles());
+        add(GRAFOS.toString(), grafos());
     }
     /**
      * Contenido del panel TDA
@@ -57,7 +56,7 @@ public class Panel extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Eventos.show(Paneles.SIMULADORTDA);
+                Eventos.show(SIMULADORTDA);
                 Eventos.scroll(con.getPane(),0);
             }
         });

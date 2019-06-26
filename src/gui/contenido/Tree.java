@@ -29,6 +29,14 @@ public class Tree extends JTree {
         setOpaque(false);
     }
     /**
+     * JTree configurado al proyecto
+     * @param dato dato en el nodo raíz
+     * @author Sergio Majé
+     */
+    public Tree(Dato dato){
+        this(new DefaultMutableTreeNode(dato));
+    }
+    /**
      * Obtiene un nodo hijo en una determinada posición
      * @param index posición del nodo
      * @return dato del nodo

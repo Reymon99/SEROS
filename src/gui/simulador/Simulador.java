@@ -1,7 +1,5 @@
 package gui.simulador;
-import gui.contenido.Boton;
-import gui.contenido.Texto;
-import gui.contenido.Tree;
+import gui.contenido.*;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.editor.Editor;
 import tools.Colour;
@@ -11,20 +9,36 @@ import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
 public abstract class Simulador extends JPanel {
-    private Canvas canvas;
+    private Component component;
     private Texto texto;
     private JPanel datos;
     private JTabbedPane code;
     private JPanel panel;
     private Boton back;
-    public static Dimension canvasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.8  ));
+    public static Dimension canvasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.8));
+    protected int interaccion;
+    protected Switch pause;
+    protected ButtonSimulador send;
+    protected ButtonSimulador clean;
+    protected ButtonSimulador next;
     /**
      * Esquema de los simuladores del proyecto
-     * @param canvas {@link Canvas}
      * @author Sergio Majé
      */
-    public Simulador(Canvas canvas) {
-        this.canvas = canvas;
+    public Simulador(){
+        this(new JPanel(new GridBagLayout()));
+        component.setPreferredSize(canvasSize);
+        component.setSize(canvasSize);
+        component.setMinimumSize(canvasSize);
+    }
+    /**
+     * Esquema de los simuladores del proyecto
+     * @param component {@link Component}
+     * @author Sergio Majé
+     */
+    public Simulador(Component component) {
+        this.component = component;
+        interaccion=0;
         setLayout(new GridBagLayout());
         init();
     }
@@ -33,6 +47,10 @@ public abstract class Simulador extends JPanel {
      * @author Sergio Majé
      */
     private void init(){
+        pause=new Switch("Paso a paso",false);
+        send=new ButtonSimulador("Enviar",true);
+        clean=new ButtonSimulador("Limpiar",false);
+        next=new ButtonSimulador("Siguiente",false);
         back=new Boton(Archivos.image("/recourses/image/back.png",48,48));
         panel=new JPanel(new GridBagLayout());
         panel.setBackground(Colour.GRISPANEL.getColor());
@@ -41,7 +59,7 @@ public abstract class Simulador extends JPanel {
         desc.setForeground(Color.WHITE);
         desc.setBackground(Colour.AZULTITLE.getColor());
         desc.setOpaque(true);
-        Constrains.addComp(canvas,this,0,0,1,4,0,0,0,0,0,0,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
+        Constrains.addComp(component,this,0,0,1,4,0,0,0,0,0,0,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
         Constrains.addComp(back,panel,0,0,1,2,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
         Constrains.addComp(panel,this,0,4,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompX(desc,this,1,0,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
@@ -100,20 +118,20 @@ public abstract class Simulador extends JPanel {
         this.texto.setEditable(false);
     }
     /**
-     * Retorna el cavas del simulador
-     * @return canvas del simulador
+     * Retorna el área grafica del simulador
+     * @return área grafica del simulador
      * @author Sergio Majé
      */
-    public Canvas getCanvas() {
-        return canvas;
+    public Component getComponent() {
+        return component;
     }
     /**
-     * Modifica el camvas del simulador
-     * @param canvas nuevo canvas del simulador
+     * Modifica el área grafica del simulador
+     * @param component nueva área grafica del simulador
      * @author Sergio Majé
      */
-    public void setCanvas(Canvas canvas) {
-        this.canvas = canvas;
+    public void setComponent(Component component) {
+        this.component = component;
     }
     /**
      * Iteración del simulador cuando no se ejecuta el paso a paso

@@ -7,46 +7,35 @@ import gui.editor.Editor;
 import gui.simulador.liezos.Graficador;
 import tools.Constrains;
 import tools.Paneles;
-
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import static tools.Text.*;
 public class Tda extends Simulador {
-    private int interaccion;
     private Editor code;
     private Tree punto;
     private JSpinner x;
     private JSpinner y;
-    private Switch pause;
-    private ButtonSimulador send;
-    private ButtonSimulador clean;
-    private ButtonSimulador next;
     /**
      * Simulador para la tematica TDA<br>
      * Simula un punto en el eje cartesiano
-     * @param canvas {@link Graficador} en el que se verá reflejado el plano cartesiano
+     * @see Graficador
+     * @see Simulador
      * @author Sergio Majé
      */
-    public Tda(Graficador canvas) {
-        super(canvas);
-        interaccion=0;
+    public Tda() {
+        super(new Graficador());
         getTexto().setText(SIMULADORTDA2.toString());
         addCodes(code=Editor.editor("/recourses/codes/tda/Punto.seros"),"Punto");
         punto=new Tree(new JTree.DynamicUtilTreeNode(new Dato("Punto","punto","",true),new Dato[]{new Dato("int","x",""),new Dato("int","y","")}));
         punto.expandNode(0);
         setDatos(punto);
-        send=new ButtonSimulador("Graficar",true);
-        clean=new ButtonSimulador("Limpiar",false);
-        next=new ButtonSimulador("Siguiente",false);
+        send.setText("Graficar");
         x=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
         y=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
         ((JSpinner.NumberEditor)x.getEditor()).getTextField().setEditable(false);
         ((JSpinner.NumberEditor)y.getEditor()).getTextField().setEditable(false);
-        pause=new Switch("Paso a Paso",false);
         Box box=Box.createHorizontalBox();
         box.add(x);
         box.add(Box.createHorizontalStrut(1));
@@ -73,7 +62,7 @@ public class Tda extends Simulador {
     }
     @Override
     protected void iteracion0() {
-        ((Graficador)getCanvas()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
+        ((Graficador)getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
         Eventos.enable(true,clean);
         Eventos.enable(false,next,send,x,y,pause,getBack());
         getTexto().setText(SIMULADORTDA1.toString());
@@ -92,7 +81,7 @@ public class Tda extends Simulador {
     }
     @Override
     protected void clean() {
-        ((Graficador)getCanvas()).limpiar();
+        ((Graficador)getComponent()).limpiar();
         Eventos.variable(punto,0,"");
         Eventos.variable(punto,1,"");
         Eventos.enable(true,send,x,y,pause,getBack());
@@ -136,6 +125,6 @@ public class Tda extends Simulador {
         Eventos.scroll(code,code.getVerticalScrollBar().getMaximum());
         code.drawLineIn(21);
         getTexto().setText(SIMULADORTDA1.toString());
-        ((Graficador)getCanvas()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
+        ((Graficador)getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
     }
 }
