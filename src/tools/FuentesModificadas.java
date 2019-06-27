@@ -2,7 +2,7 @@ package tools;
 import java.awt.*;
 import java.io.InputStream;
 public class FuentesModificadas {
-    private Font font=null;
+    private Font font;
     /**
      * Crea nuevas fuentes de texto al proyecto,<br/>
      * y las registra en el GraphicsEnvironment,<br/>
@@ -16,7 +16,6 @@ public class FuentesModificadas {
             font=Font.createFont(Font.TRUETYPE_FONT,stream);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
         }catch (Exception e){
-            System.err.println("No se encontro la fuente");
             font=new Font(Font.MONOSPACED,Font.PLAIN,10);
         }
     }

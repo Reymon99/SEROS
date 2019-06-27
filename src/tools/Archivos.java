@@ -22,10 +22,10 @@ public abstract class Archivos {
         }
     }
     /**
-     * Lee los archivos de texto que contiene el codigo formateado para ser utilizado en el proyecto
+     * Lee los archivos de texto que contiene el código formateado para ser utilizado en el proyecto
      * @param path {@link String} ruta del archivo
      * @return {@link String} texto convertido en cadena
-     * @throws {@link IOException}
+     * @throws {@link IOException} error de lectura
      * @author Sergio Majé
      */
     public static String codefiles(String path) throws IOException {

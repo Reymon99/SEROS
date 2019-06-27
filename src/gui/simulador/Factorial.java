@@ -54,7 +54,7 @@ public class Factorial extends Simulador {
     protected void iteracion0() {
         getTexto().setText(FACTORIAL1.toString());
         number.setText(format.format(fac(Integer.parseInt(valorI.getValue().toString()))));
-        sucesion.setText(Integer.parseInt(valorI.getValue().toString())+"!    =    "+sucesion("",Integer.parseInt(valorI.getValue().toString())));
+        sucesion.setText(Integer.parseInt(valorI.getValue().toString())+"!    =    "+producto(Integer.parseInt(valorI.getValue().toString())));
         Eventos.variable(variaI,-1,valorI.getValue());
         Eventos.enable(true,clean);
         Eventos.enable(false,next,send,valorI,pause,getBack());
@@ -80,7 +80,7 @@ public class Factorial extends Simulador {
     private long fac(int i){
         return (i==0 || i==1) ? 1 : i*fac(i-1);
     }
-    private String sucesion(String n,int i){
-        return (i==0 || i==1) ? "1" : n+i+" * "+sucesion(n,i-1);
+    private String producto(int i){
+        return (i==0 || i==1) ? "1" : i+" * "+producto(i-1);
     }
 }

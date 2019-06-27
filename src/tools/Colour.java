@@ -25,7 +25,7 @@ public enum Colour {
     REDLINESELECTED(new Color(235,0,0,50)),
     LINEFOREGROUND(new Color(15, 125, 162));
     private Color color;
-    private Colour(java.awt.Color color){
+    Colour(java.awt.Color color){
         this.color=color;
     }
     /**
