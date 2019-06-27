@@ -42,6 +42,7 @@ public class Editor extends ModernScrollPane{
      */
     public void setLine(boolean line){
         ((View)getView()).setLine(line);
+        ((Indice)getIndice()).lineForegroundIn(-1);
     }
     /**
      * Define texto al view sin diferenciacion de sintaxis
