@@ -27,7 +27,7 @@ public class Panel extends JPanel {
      * @author Sergio Majé
      */
     private void init() {
-        //add(FACTORIAL.toString(),new Factorial());
+        add(FACTORIAL.toString(),new Factorial());
         add(PRINCIPAL.toString(), new Principal());
         add(TDA.toString(), tda());
         add(SIMULADORTDA.toString(), new Tda());

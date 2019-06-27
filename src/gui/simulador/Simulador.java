@@ -12,15 +12,15 @@ public abstract class Simulador extends JPanel {
     private Component component;
     private Texto texto;
     private JPanel datos;
-    private JTabbedPane code;
+    private JTabbedPane codigos;
     private JPanel panel;
     private Boton back;
     public static Dimension canvasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.8));
-    protected int interaccion;
-    protected Switch pause;
-    protected ButtonSimulador send;
-    protected ButtonSimulador clean;
-    protected ButtonSimulador next;
+    private int interaccion;
+    private Switch pause;
+    private ButtonSimulador send;
+    private ButtonSimulador clean;
+    private ButtonSimulador next;
     /**
      * Esquema de los simuladores del proyecto
      * @author Sergio Majé
@@ -71,7 +71,7 @@ public abstract class Simulador extends JPanel {
         Constrains.addCompX(desc,this,1,0,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompIy((texto=new Texto(4,55)),this,1,1,1,1,1,0,0,0,0,0,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,1,2,1,1,1,0,0,0,0,0,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addComp((code=new JTabbedPane(JTabbedPane.TOP)),this,1,3,1,2,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp((codigos=new JTabbedPane(JTabbedPane.TOP)),this,1,3,1,2,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
     }
     /**
      * Notificaciones
@@ -111,7 +111,7 @@ public abstract class Simulador extends JPanel {
      * @author Sergio Majé
      */
     public void addCodes(Editor code, String title){
-        this.code.add(title,code);
+        this.codigos.add(title,code);
     }
     /**
      * Fijar texto en el campo de descripción
@@ -154,4 +154,25 @@ public abstract class Simulador extends JPanel {
      * @author Sergio Majé
      */
     abstract protected void clean();
+    public void setInteraccion(int interaccion) {
+        this.interaccion = interaccion;
+    }
+    public JTabbedPane getCodigos() {
+        return codigos;
+    }
+    public int getInteraccion() {
+        return interaccion;
+    }
+    protected Switch getPause() {
+        return pause;
+    }
+    protected ButtonSimulador getSend() {
+        return send;
+    }
+    protected ButtonSimulador getClean() {
+        return clean;
+    }
+    protected ButtonSimulador getNext() {
+        return next;
+    }
 }

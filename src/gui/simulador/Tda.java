@@ -29,7 +29,7 @@ public class Tda extends Simulador {
         punto=new Tree(new JTree.DynamicUtilTreeNode(new Dato("Punto","punto","",true),new Dato[]{new Dato("int","x",""),new Dato("int","y","")}));
         punto.expandNode(0);
         setDatos(punto);
-        send.setText("Graficar");
+        getSend().setText("Graficar");
         x=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
         y=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
         ((JSpinner.NumberEditor)x.getEditor()).getTextField().setEditable(false);
@@ -47,16 +47,16 @@ public class Tda extends Simulador {
             }
         });
         Constrains.addCompX(box,getPanel(),1,0,2,1,1,3,80,5,5, GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(send,getPanel(),3,0,2,1,1,10,5,5,100,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(pause,getPanel(),1,1,1,1,1,5,35,10,8,GridBagConstraints.EAST,GridBagConstraints.NONE);
-        Constrains.addCompX(next,getPanel(),2,1,2,1,1,5,8,10,8,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(clean,getPanel(),4,1,1,1,1,5,5,10,100,GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getSend(),getPanel(),3,0,2,1,1,10,5,5,100,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getPause(),getPanel(),1,1,1,1,1,5,35,10,8,GridBagConstraints.EAST,GridBagConstraints.NONE);
+        Constrains.addCompX(getNext(),getPanel(),2,1,2,1,1,5,8,10,8,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getClean(),getPanel(),4,1,1,1,1,5,5,10,100,GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
     }
     @Override
     protected void iteracion0() {
         ((Graficador)getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
-        Eventos.enable(true,clean);
-        Eventos.enable(false,next,send,x,y,pause,getBack());
+        Eventos.enable(true,getClean());
+        Eventos.enable(false,getNext(),getSend(),x,y,getPause(),getBack());
         getTexto().setText(SIMULADORTDA1.toString());
         Eventos.variable(punto,0,x.getValue());
         Eventos.variable(punto,1,y.getValue());
@@ -64,26 +64,26 @@ public class Tda extends Simulador {
     }
     @Override
     protected void iteracion1() {
-        Eventos.enable(true,next);
-        Eventos.enable(false,send,x,y,pause,clean,getBack());
-        if (interaccion==0) asignacionX();
-        else if (interaccion==1) asignacionY();
+        Eventos.enable(true,getNext());
+        Eventos.enable(false,getSend(),x,y,getPause(),getClean(),getBack());
+        if (getInteraccion()==0) asignacionX();
+        else if (getInteraccion()==1) asignacionY();
         else mostrarCoordenadas();
-        interaccion++;
+        setInteraccion(getInteraccion()+1);
     }
     @Override
     protected void clean() {
         ((Graficador)getComponent()).limpiar();
         Eventos.variable(punto,0,"");
         Eventos.variable(punto,1,"");
-        Eventos.enable(true,send,x,y,pause,getBack());
-        Eventos.enable(false,clean,next);
+        Eventos.enable(true,getSend(),x,y,getPause(),getBack());
+        Eventos.enable(false,getClean(),getNext());
         getTexto().setText(SIMULADORTDA2.toString());
         x.setValue(0);
         y.setValue(0);
         punto.expandNode(0);
-        pause.setOnOff(false);
-        interaccion=0;
+        getPause().setOnOff(false);
+        setInteraccion(0);
         Eventos.scroll(code,0);
         code.setLine(false);
     }
@@ -112,8 +112,8 @@ public class Tda extends Simulador {
      * @author Sergio Majé
      */
     private void mostrarCoordenadas(){
-        Eventos.enable(true,clean);
-        Eventos.enable(false,next);
+        Eventos.enable(true,getClean());
+        Eventos.enable(false,getNext());
         Eventos.scroll(code,code.getVerticalScrollBar().getMaximum());
         code.drawLineIn(21);
         getTexto().setText(SIMULADORTDA1.toString());

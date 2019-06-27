@@ -1,17 +1,13 @@
 package eventos;
 import javax.swing.*;
-import javax.swing.text.JTextComponent;
 import java.awt.*;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import gui.contenido.About;
 import gui.contenido.Switch;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
 import tools.Paneles;
-import tools.Text;
 public abstract class Eventos {
     /**
      * Variable estatica que contiene todos los paneles agregados al proyecto
@@ -42,7 +38,9 @@ public abstract class Eventos {
     public static void link(String url){
         try{
             if (Desktop.isDesktopSupported()) Desktop.getDesktop().browse(new URL(url).toURI());
-        } catch (Exception e) { }
+        } catch (Exception e) {
+            //None
+        }
     }
     /**
      * About de Seros,<br>
@@ -84,5 +82,19 @@ public abstract class Eventos {
     public static void variable(Tree tree,int index,Object valor){
         tree.getDato(index).setValor(valor.toString());
         tree.updateUI();
+    }
+    /**
+     * Duerme el la ejecución lineal del proceso por los milisegundo establecidos
+     * @param mili milisegundos a establecer
+     */
+    public static void sleep(long mili){
+        try {
+            Thread.sleep(mili);
+        } catch (InterruptedException e) {
+            //None
+        }
+    }
+    public static String formatNumber(Object number,String pattern){
+        return new DecimalFormat(pattern).format(number);
     }
 }
