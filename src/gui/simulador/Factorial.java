@@ -74,35 +74,71 @@ public class Factorial extends Simulador {
         number.setText("0");
         producto.setText("n!    =    ");
     }
+    /**
+     * Genera el factorial de n
+     * @param i número a dar el factorial
+     * @return factorial de n
+     */
     public long fac(int i){
         return (i==0 || i==1) ? 1 : i*fac(i-1);
     }
+    /**
+     * Genera la multiplicación de un factorial n
+     * @param i número a generar la multiplicación del factorial
+     * @return multiplicación del factorial n
+     */
     public String producto(int i){
         return (i==0 || i==1) ? "1" : i+" * "+producto(i-1);
     }
+    /**
+     * Ejecución del paso a paso en el caso de un valor llevado directamente al caso base el factorial
+     */
     private void casoBase(){
         Eventos.enable(false, getNext(), valorI, getBack(), getPause(), getSend());
         Eventos.enable(true, getClean());
         getTexto().setText(FACTORIAL2.toString());
         new hilos.Factorial(this,hilos.Factorial.CASO_BASE).start();
     }
+    /**
+     * Ejecución del paso a paso en el caso de un valor que requiera iniciar en el caso recursivo
+     */
     private void casoRecursivo(){
         Eventos.enable(false, getClean(), valorI,getBack(),getPause(),getSend(),getClean());
         Eventos.enable(true,getNext());
         new hilos.Factorial(this,hilos.Factorial.CASO_RECURSIVO,true);
     }
+    /**
+     * Obtiene le código utilizado en el simulador
+     * @return código de factorial
+     */
     public Editor getCode() {
         return code;
     }
+    /**
+     * Árbol de variables del factorial
+     * @return variable ingresada
+     */
     public Tree getVariaI() {
         return variaI;
     }
+    /**
+     * Datos posibles a efectuar al factorial
+     * @return datos entre 0 y 10
+     */
     public JSpinner getValorI() {
         return valorI;
     }
+    /**
+     * Obtiene la etiqueta del resultado del factorial
+     * @return resultado del factorial
+     */
     public JLabel getNumber() {
         return number;
     }
+    /**
+     * Obtiene la etiqueta del resultado del producto del factorial
+     * @return producto del factorial
+     */
     public JLabel getProducto() {
         return producto;
     }

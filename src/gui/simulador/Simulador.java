@@ -143,24 +143,51 @@ public abstract class Simulador extends JPanel {
     public void setInteraccion(int interaccion) {
         this.interaccion = interaccion;
     }
+    /**
+     * Obtiene el contenedor de los códigos del simulador
+     * @return Contenedor de los códigos del simulador
+     */
     public JTabbedPane getCodigos() {
         return codigos;
     }
+    /**
+     * Obtiene la cantidad pulsaciones del paso a paso del simulador
+     * @return cantidad de pulsaciones
+     */
     public int getInteraccion() {
         return interaccion;
     }
+    /**
+     * Obtiene le componente de paso a paso del simulador
+     * @return elección del paso a paso del simulador
+     */
     protected Switch getPause() {
         return pause;
     }
+    /**
+     * Boton de envio de datos al simulador
+     * @return envio de datos
+     */
     protected ButtonSimulador getSend() {
         return send;
     }
+    /**
+     * Boton de reinicio del simulador
+     * @return reinicio del simulador
+     */
     protected ButtonSimulador getClean() {
         return clean;
     }
+    /**
+     * Boton de paso a paso del simulador
+     * @return boton del paso a paso
+     */
     protected ButtonSimulador getNext() {
         return next;
     }
+    /**
+     * Incrementa a paso uno las pulsaciones del paso a paso del simulador en la ejecución
+     */
     public void incrementIteraccion(){
         interaccion++;
     }
