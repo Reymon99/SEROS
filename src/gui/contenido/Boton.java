@@ -11,7 +11,6 @@ public class Boton extends JLabel {
      * @param tip {@link String} tool tip de la etiqueta
      * @param icon {@link ImageIcon} icono de la etiqueta
      * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
-     * @author Sergio Majé
      */
     public Boton(String text, String tip, ImageIcon icon, MouseAdapter adapter){
         this(icon, text, adapter);
@@ -23,7 +22,6 @@ public class Boton extends JLabel {
      * @param tip {@link String} tool tip de la etiqueta
      * @param icon {@link ImageIcon} icono de la etiqueta
      * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
-     * @author Sergio Majé
      */
     public Boton(String tip, ImageIcon icon, MouseAdapter adapter){
         super(icon,CENTER);
@@ -34,7 +32,6 @@ public class Boton extends JLabel {
      * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
      * para permitirles funcionar como botones
      * @param icon {@link ImageIcon} icono de la etiqueta
-     * @author Sergio Majé
      */
     public Boton(ImageIcon icon){
         super(icon,CENTER);
@@ -47,7 +44,6 @@ public class Boton extends JLabel {
      * @param icon {@link ImageIcon} icono de la etiqueta
      * @param text {@link String} text de la etiqueta
      * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
-     * @author Sergio Majé
      */
     public Boton(ImageIcon icon, String text, MouseAdapter adapter){
         super(text,icon,CENTER);

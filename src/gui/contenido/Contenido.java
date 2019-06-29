@@ -12,7 +12,6 @@ public class Contenido extends Lienzo {
     private ModernScrollPane pane;
     /**
      * Esquema de los paneles de contenido del proyecto
-     * @author Sergio Majé
      */
     public Contenido(){
         setLayout(new GridBagLayout());
@@ -20,7 +19,6 @@ public class Contenido extends Lienzo {
     }
     /**
      * Instanciación y acomodamiento de los componentes del panel
-     * @author Sergio Majé
      */
     private void init() {
         title=new JLabel();
@@ -51,25 +49,22 @@ public class Contenido extends Lienzo {
         Constrains.addComp(next,this,2,2,1,1,0,0,10,2,10,7, GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
     }
     /**
-     * Descripcion del contenido de la temática
+     * Descripción del contenido de la temática
      * @return contenido {@link JPanel}
-     * @author Sergio Majé
      */
     public JPanel getContenido() {
         return contenido;
     }
     /**
-     * Boton de retoceder
-     * @return back {@link JLabel}
-     * @author Sergio Majé
+     * Boton de retroceder
+     * @return back {@link Boton}
      */
     public JLabel getBack() {
         return back;
     }
     /**
      * Boton de avanzar
-     * @return next {@link JLabel}
-     * @author Sergio Majé
+     * @return next {@link Boton}
      */
     public JLabel getNext() {
         return next;
@@ -77,7 +72,6 @@ public class Contenido extends Lienzo {
     /**
      * Titulo del contenido
      * @return title {@link JLabel}
-     * @author Sergio Majé
      */
     public JLabel getTitle() {
         return title;
@@ -85,7 +79,6 @@ public class Contenido extends Lienzo {
     /**
      * Retorna el Scroll del Contenido
      * @return scroll del contenido
-     * @author Sergio Majé
      */
     public ModernScrollPane getPane() {
         return pane;

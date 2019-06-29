@@ -3,6 +3,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.io.IOException;
 import java.net.URISyntaxException;
 public abstract class Archivos {
     /**
@@ -11,33 +12,28 @@ public abstract class Archivos {
      * @param width int
      * @param height int
      * @return ImageIcon
-     * @author Sergio Majé
      */
-    public static ImageIcon image(String path,int width,int height) {
+    public static ImageIcon image(String path, int width, int height) {
         try{
             return new ImageIcon(ImageIO.read(Archivos.class.getResource(path)).getScaledInstance(width,height, Image.SCALE_DEFAULT));
         } catch (IOException e) {
-            System.err.println(e.getMessage());
             return null;
         }
     }
     /**
      * Lee los archivos de texto que contiene el código formateado para ser utilizado en el proyecto
-     * @param path {@link String} ruta del archivo
-     * @return {@link String} texto convertido en cadena
-     * @throws {@link IOException} error de lectura
-     * @author Sergio Majé
+     * @param path ruta del archivo
+     * @return contenido del archivo
      */
-    public static String codefiles(String path) throws IOException {
-        try {
+    public static String codefiles(String path){
+        StringBuilder txt=new StringBuilder();
+        try{
             BufferedReader br=new BufferedReader(new FileReader(Archivos.class.getResource(path).toURI().getPath()));
             String cadena;
-            StringBuilder txt= new StringBuilder();
-            while ((cadena=br.readLine())!=null) txt.append(cadena).append("\n");
+            while ((cadena=br.readLine())!=null) txt.append(cadena).append('\n');
             br.close();
-            return txt.toString();
-        } catch (URISyntaxException | IOException e) {
-            throw new IOException(e.getMessage());
+        } catch (URISyntaxException | IOException e) {//None
         }
+        return txt.toString();
     }
 }

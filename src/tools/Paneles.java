@@ -2,7 +2,6 @@ package tools;
 public enum Paneles {
     /**
      * Nombre de los paneles predefinidos
-     * @author Sergio Majé
      */
     PRINCIPAL,
     TDA,

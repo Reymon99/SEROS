@@ -6,7 +6,6 @@ import java.awt.*;
 public class Texto extends JTextArea {
     /**
      * Area de texto con parametros predefinidos enfocados hacia el proyecto
-     * @author Sergio Majé
      */
     public Texto(){
         setEditable(false);
@@ -17,8 +16,7 @@ public class Texto extends JTextArea {
     }
     /**
      * Area de texto con parametros predefinidos enfocados hacia el proyecto
-     * @param text {@link String}
-     * @author Sergio Majé
+     * @param text {@link String} a dar en el {@link Texto}
      */
     public Texto(String text){
         super(text);
@@ -26,10 +24,9 @@ public class Texto extends JTextArea {
     }
     /**
      * Area de texto con parametros predefinidos enfocados hacia el proyecto
-     * @param text {@link String}
-     * @param rows int
-     * @param columns int
-     * @author Sergio Majé
+     * @param text {@link String} a dar en el {@link Texto}
+     * @param rows filas
+     * @param columns columnas
      */
     public Texto(String text,int rows,int columns){
         super(text,rows,columns);
@@ -38,9 +35,8 @@ public class Texto extends JTextArea {
     }
     /**
      * Area de texto con parametros predefinidos enfocados hacia el proyecto
-     * @param rows int
-     * @param columns int
-     * @author Sergio Majé
+     * @param rows filas
+     * @param columns columnas
      */
     public Texto(int rows, int columns){
         super(rows, columns);

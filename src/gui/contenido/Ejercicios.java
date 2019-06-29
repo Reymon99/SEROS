@@ -11,7 +11,6 @@ public class Ejercicios extends Lienzo {
     private JPanel panel;
     /**
      * Planilla de los paneles de Ejercicios del Simulador
-     * @author Sergio Majé
      */
     public Ejercicios(){
         botones=new ArrayList<>();
@@ -20,7 +19,6 @@ public class Ejercicios extends Lienzo {
     }
     /**
      * Inicialización y acomodamiento de los componentes en el panel
-     * @author Sergio Majé
       */
     private void init() {
         back=new Boton(Archivos.image("/recourses/image/back.png",48,48));
@@ -34,7 +32,6 @@ public class Ejercicios extends Lienzo {
     }
     /**
      * Se añaden los items al panel si no está vacia la lista de botones
-     * @author Sergio Majé
      */
     private void items(){
         if (!botones.isEmpty()) for (Boton boton:botones) panel.add(boton);
@@ -42,7 +39,6 @@ public class Ejercicios extends Lienzo {
     /**
      * Listado de los Botones de los ejercicios
      * @return botones
-     * @author Sergio Majé
      */
     public ArrayList<Boton> getBotones() {
         return botones;
@@ -57,7 +53,6 @@ public class Ejercicios extends Lienzo {
      *     <li>mouseClicked - acción a realizar cuando hallá un click en el componente</li>
      * </ul>
      * @param botones {@link ArrayList} listados de botones listo para añadir al panel
-     * @author Sergio Majé
      */
     public void setBotones(ArrayList<Boton> botones) {
         this.botones = botones;
@@ -66,7 +61,6 @@ public class Ejercicios extends Lienzo {
     /**
      * Boton de retroceder
      * @return back
-     * @author Sergio Majé
      */
     public Boton getBack() {
         return back;
@@ -74,7 +68,6 @@ public class Ejercicios extends Lienzo {
     /**
      * Componente de Texto
      * @return texto
-     * @author Sergio Majé
      */
     public Texto getTexto() {
         return texto;

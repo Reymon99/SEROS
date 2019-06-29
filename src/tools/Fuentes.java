@@ -1,5 +1,5 @@
 package tools;
-import java.awt.Font;
+import java.awt.*;
 public enum Fuentes {
     UBUNTULIGHT12(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.PLAIN,12)),
     UBUNTULIGHT14(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.BOLD,14)),
@@ -20,9 +20,8 @@ public enum Fuentes {
         this.font=font;
     }
     /**
-     *Fuentes de texto predefinidas para utilizar en el proyecto
-     * @return Font
-     * @author Sergio Majé
+     * Fuentes de texto predefinidas para utilizar en el proyecto
+     * @return {@link Font} deseada
      */
     public Font getFont() {
         return font;

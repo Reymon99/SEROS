@@ -17,7 +17,6 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
      * Se oculta el boton de decremento en el JScrollBar
      * @param orientation orientación del scroll
      * @return boton de decremento oculto
-     * @author Sergio Majé
      */
     @Override
     protected JButton createDecreaseButton(int orientation) {
@@ -27,7 +26,6 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
      * Se oculta el boton de incremento en el JScrollBar
      * @param orientation orientación del scroll
      * @return boton de incremento oculto
-     * @author Sergio Majé
      */
     @Override
     protected JButton createIncreaseButton(int orientation) {
@@ -37,7 +35,6 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
     protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) { }
     /**
      * Se le da una nueva interfaz al JScrollBar
-     * @author Sergio Majé
      */
     @Override
     protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {

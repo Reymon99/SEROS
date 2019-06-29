@@ -16,7 +16,6 @@ public class Dato {
     /**
      * Obtiene el tipo de dato utilizado
      * @return tipo de dato
-     * @author Sergio Majé
      */
     public String getTipoDato() {
         return tipoDato;
@@ -32,7 +31,6 @@ public class Dato {
     /**
      * Obtiene la variable
      * @return variable
-     * @author Sergio Majé
      */
     public String getVariable() {
         return variable;
@@ -40,7 +38,6 @@ public class Dato {
     /**
      * Modifica la variable
      * @param variable nueva variable
-     * @author Sergio Majé
      */
     public void setVariable(String variable) {
         this.variable = variable;
@@ -48,7 +45,6 @@ public class Dato {
     /**
      * Obtiene el valor dado a la variable
      * @return valor de la variable
-     * @author Sergio Majé
      */
     public String getValor() {
         return valor;
@@ -56,7 +52,6 @@ public class Dato {
     /**
      * Modifica el valor de la variable
      * @param valor nuevo valor para la variable
-     * @author Sergio Majé
      */
     public void setValor(String valor) {
         this.valor = valor;
@@ -71,7 +66,6 @@ public class Dato {
     /**
      * Modifica si se utiliza el hash
      * @param hash nuevo hash a utilizar
-     * @author Sergio Majé
      */
     public void setHash(boolean hash) {
         this.hash = hash;
@@ -79,7 +73,6 @@ public class Dato {
     /**
      * hash a utilizar en el dato
      * @return hash del dato
-     * @author Sergio Majé
      */
     private String hashGenerator(){
         return tipoDato+'@'+hashHex();
@@ -87,7 +80,6 @@ public class Dato {
     /**
      * hash de la clase
      * @return hash
-     * @author Sergio Majé
      */
     private String hashHex(){
         return valor.isEmpty() || valor.equals("null") ? "null" : Integer.toHexString(valor.hashCode());

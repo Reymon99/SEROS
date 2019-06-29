@@ -18,7 +18,6 @@ public class Switch extends JComponent {
      * Componente de estados Switch
      * @param text texto del componente
      * @param onOff estado del Switch
-     * @author Sergio Majé
      */
     public Switch(String text,boolean onOff){
         super();
@@ -47,7 +46,6 @@ public class Switch extends JComponent {
     /**
      * Retorna el estado del interruptor
      * @return boolean true: On false: OFF
-     * @author Sergio Majé
      */
     public boolean isOnOff() {
         return onOff;
@@ -55,7 +53,6 @@ public class Switch extends JComponent {
     /**
      * Modifica el estado del Switch
      * @param onOff nuevo estado del Switch
-     * @author Sergio Majé
      */
     public void setOnOff(boolean onOff) {
         this.onOff = onOff;
@@ -64,7 +61,6 @@ public class Switch extends JComponent {
     /**
      * Retorna el color de fondo del componente
      * @return color de fondo del componente
-     * @author Sergio Majé
      */
     public Color getBackgroundColor() {
         return backgroundColor;
@@ -72,7 +68,6 @@ public class Switch extends JComponent {
     /**
      * Modifica el color de fondo del componente
      * @param backgroundColor nuevo color de fondo del componente
-     * @author Sergio Majé
      */
     public void setBackgroundColor(Color backgroundColor) {
         this.backgroundColor = backgroundColor;
@@ -81,7 +76,6 @@ public class Switch extends JComponent {
     /**
      * Retorna el color de estado del Switch
      * @return color de estado del Switch
-     * @author Sergio Majé
      */
     public Color getButtonColor() {
         return buttonColor;
@@ -89,7 +83,6 @@ public class Switch extends JComponent {
     /**
      * Modifica el color de estado del Switch
      * @param buttonColor nuevo color de estado del Switch
-     * @author Sergio Majé
      */
     public void setButtonColor(Color buttonColor) {
         this.buttonColor = buttonColor;
@@ -98,7 +91,6 @@ public class Switch extends JComponent {
     /**
      * Retorna si el estado del Switch puede ser modificado
      * @return true: modificable false: no modificable
-     * @author Sergio Majé
      */
     public boolean isModificable() {
         return modificable;
@@ -106,7 +98,6 @@ public class Switch extends JComponent {
     /**
      * Modifica si el estado del Switch puede ser modificado
      * @param modificable nuevo estado de modificación
-     * @author Sergio Majé
      */
     public void setModificable(boolean modificable) {
         this.modificable = modificable;
@@ -114,7 +105,6 @@ public class Switch extends JComponent {
     /**
      * Retorna el texto del componente
      * @return texto del componente
-     * @author Sergio Majé
      */
     public String getText() {
         return text;
@@ -122,7 +112,6 @@ public class Switch extends JComponent {
     /**
      * Modifica el texto del componente
      * @param text nuevo texto
-     * @author Sergio Majé
      */
     public void setText(String text) {
         this.text = text;
@@ -130,7 +119,6 @@ public class Switch extends JComponent {
     }
     /**
      * Construcción del componente Switch
-     * @author Sergio Majé
      */
     @Override
     protected void paintComponent(Graphics g) {

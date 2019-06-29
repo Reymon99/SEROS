@@ -9,12 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import static tools.Paneles.*;
-public class Panel extends JPanel {
+public class Contenedor extends JPanel {
     /**
-     * Panel principal de proyecto
-     * @author Sergio Majé
+     * Contenedor de los paneles del proyecto
      */
-    protected Panel() {
+    protected Contenedor() {
         setLayout(new CardLayout());
         init();
         Eventos.setPanel(this);
@@ -24,7 +23,6 @@ public class Panel extends JPanel {
      * Se agrega el evento para circular entre los paneles
      * @see Eventos#setPanel(JPanel)
      * @see Paneles
-     * @author Sergio Majé
      */
     private void init() {
         add(FACTORIAL.toString(),new Factorial());
@@ -47,7 +45,6 @@ public class Panel extends JPanel {
      * Contenido del panel TDA
      * @see Contenido
      * @see Tda
-     * @author Sergio Majé
      */
     private Contenido tda(){
         Contenido con=new Contenido();
@@ -74,7 +71,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Modularidad
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido modularidad(){
         Contenido con =  new Contenido();
@@ -93,7 +89,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Pilas
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido pilas(){
         Contenido con = new Contenido();
@@ -110,7 +105,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Recursividad
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido recursividad(){
         Contenido con= new Contenido();
@@ -134,7 +128,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Ordenamiento
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido ordenamiento(){
         Contenido con= new Contenido();
@@ -151,7 +144,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Nodos
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido nodos(){
         Contenido con = new Contenido();
@@ -171,7 +163,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Listas
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido listas(){
         Contenido con=new Contenido();
@@ -188,7 +179,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Grafos
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido grafos(){
         Contenido con = new Contenido();
@@ -205,7 +195,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Colas
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido colas(){
         Contenido con = new Contenido();
@@ -222,7 +211,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Busqueda
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido busqueda(){
         Contenido con = new Contenido();
@@ -239,7 +227,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Arreglos
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido arreglos(){
         Contenido con = new Contenido();
@@ -259,7 +246,6 @@ public class Panel extends JPanel {
     /**
      * Contenido del panel Arboles
      * @see Contenido
-     * @author Sergio Majé
      */
     private Contenido arboles(){
         Contenido con = new Contenido();

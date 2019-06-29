@@ -8,7 +8,6 @@ public class Graficador extends Canvas {
     private int x,y;
     /**
      * Grafica un punto en una coordenada dada
-     * @author Sergio Majé
      */
     public Graficador(){
         setPreferredSize(Simulador.canvasSize);
@@ -22,7 +21,6 @@ public class Graficador extends Canvas {
      * Grafica un punto con las coordenadas dadas
      * @param x int coordenada en x
      * @param y int coordenada en y
-     * @author Sergio Majé
      */
     public void graficar(int x,int y){
         this.x=x;
@@ -32,15 +30,13 @@ public class Graficador extends Canvas {
     }
     /**
      * Coordenadas dadas del punto
-     * @return {@link String}
-     * @author Sergio Majé
+     * @return coordenadas formateadas
      */
     public String coordenadas(){
         return "("+this.x+","+this.y+")";
     }
     /**
      * Limpia la grafica de las coordenadas que han sido graficadas
-     * @author Sergio Majé
      */
     public void limpiar(){
         x=y=0;
@@ -48,17 +44,15 @@ public class Graficador extends Canvas {
         repaint();
     }
     /**
-     * Estado de graficacion
-     * @return boolean
-     * @author Sergio Majé
+     * Estado de graficación
+     * @return true: existe grafica | false: no existe grafica
      */
     public boolean isGraficar() {
         return graficar;
     }
     /**
-     * Modifica el estado de graficacion
+     * Modifica el estado de graficación
      * @param graficar boolean
-     * @author Sergio Majé
      */
     public void setGraficar(boolean graficar) {
         this.graficar = graficar;
@@ -66,7 +60,6 @@ public class Graficador extends Canvas {
     /**
      * Divide el ancho de la dimensión del Canvas
      * @return mitad del ancho del Canvas
-     * @author Sergio Majé
      */
     private int halfScreenWidth(){
         return Simulador.canvasSize.width/2;
@@ -74,7 +67,6 @@ public class Graficador extends Canvas {
     /**
      * Divide el alto de la dimensión del Canvas
      * @return mitad del alto del Canvas
-     * @author Sergio Majé
      */
     private int halfScreenHeight(){
         return Simulador.canvasSize.height/2;
@@ -82,7 +74,6 @@ public class Graficador extends Canvas {
     /**
      * Inicio o fin de la linea X
      * @param cuadrante true: + | false: -
-     * @author Sergio Majé
      */
     private int positionX(boolean cuadrante){
         return cuadrante ? halfScreenWidth()+280 : halfScreenWidth()-280;
@@ -90,7 +81,6 @@ public class Graficador extends Canvas {
     /**
      * Inicio o fin de la linea Y
      * @param cuadrante true: + | false: -
-     * @author Sergio Majé
      */
     private int positionY(boolean cuadrante){
         return cuadrante ? halfScreenHeight()-280 : halfScreenHeight()+280;
@@ -98,7 +88,6 @@ public class Graficador extends Canvas {
     /**
      * Dibuja y grafica el punto en las coordenadas dadas
      * @param g {@link Graphics}
-     * @author Sergio Majé
      */
     @Override
     public void paint(Graphics g) {

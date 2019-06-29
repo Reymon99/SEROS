@@ -12,7 +12,6 @@ public class Tree extends JTree {
     /**
      * JTree configurado al proyecto
      * @param node nodo raíz
-     * @author Sergio Majé
      */
     public Tree(DefaultMutableTreeNode node){
         super(new DefaultTreeModel(node));
@@ -31,7 +30,6 @@ public class Tree extends JTree {
     /**
      * JTree configurado al proyecto
      * @param dato dato en el nodo raíz
-     * @author Sergio Majé
      */
     public Tree(Dato dato){
         this(new DefaultMutableTreeNode(dato));
@@ -40,7 +38,6 @@ public class Tree extends JTree {
      * Obtiene un nodo hijo en una determinada posición
      * @param index posición del nodo
      * @return dato del nodo
-     * @author Sergio Majé
      */
     public Dato getDato(int index){
         return index==-1 ?  (Dato) node.getUserObject() : (Dato) ((DefaultMutableTreeNode)node.getChildAt(index)).getUserObject();
@@ -48,7 +45,6 @@ public class Tree extends JTree {
     /**
      * Añade nodos al nodo raíz
      * @param node {@link DefaultMutableTreeNode} a agregar
-     * @author Sergio Majé
      */
     public void addNode(DefaultMutableTreeNode node){
         this.node.add(node);

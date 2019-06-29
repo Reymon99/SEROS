@@ -7,7 +7,6 @@ public class ModernScrollPane extends JScrollPane {
     /**
      * JScrollPane con interfaz personalizada
      * @param view componente a integrar el scroll
-     * @author Sergio Majé
      */
     public ModernScrollPane(Component view){
         this(view,VERTICAL_SCROLLBAR_AS_NEEDED,HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -16,7 +15,6 @@ public class ModernScrollPane extends JScrollPane {
      * JScrollPane con interfaz personalizada
      * @param view componente a integrar el scroll
      * @param area componente a agregar al header
-     * @author Sergio Majé
      */
     public ModernScrollPane(Component view,JPanel area){
         this(view);
@@ -27,7 +25,6 @@ public class ModernScrollPane extends JScrollPane {
      * @param view componente a integrar el scroll
      * @param vsb acción del scroll vertical
      * @param hsb acción del scroll horizontal
-     * @author Sergio Majé
      */
     public ModernScrollPane(Component view,int vsb,int hsb){
         super(vsb,hsb);
@@ -72,7 +69,6 @@ public class ModernScrollPane extends JScrollPane {
     /**
      * Nos da a saber si el scroll trabajado es vertical
      * @return verdadero si el scroll es vertical
-     * @author Sergio Majé
      */
     private boolean isVerticalScrollBarfNecessary() {
         Rectangle viewRect = viewport.getViewRect();
@@ -82,7 +78,6 @@ public class ModernScrollPane extends JScrollPane {
     /**
      * Nos da a saber si el scroll trabajado es horizontal
      * @return verdadero si el scroll es horizontal
-     * @author Sergio Majé
      */
     private boolean isHorizontalScrollBarNecessary() {
         Rectangle viewRect = viewport.getViewRect();
@@ -92,7 +87,6 @@ public class ModernScrollPane extends JScrollPane {
     /**
      * Obtiene el componente añadido al scroll
      * @return componente en el scroll
-     * @author Sergio Majé
      */
     public Component getView(){
         return viewport.getView();
@@ -100,7 +94,6 @@ public class ModernScrollPane extends JScrollPane {
     /**
      * Obtiene el componente de Indice en el scroll
      * @return indice
-     * @author Sergio Majé
      */
     public Component getIndice(){
         return rowHeader.getView();

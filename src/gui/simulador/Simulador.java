@@ -23,7 +23,6 @@ public abstract class Simulador extends JPanel {
     private ButtonSimulador next;
     /**
      * Esquema de los simuladores del proyecto
-     * @author Sergio Majé
      */
     public Simulador(){
         this(new JPanel(new GridBagLayout()));
@@ -34,7 +33,6 @@ public abstract class Simulador extends JPanel {
     /**
      * Esquema de los simuladores del proyecto
      * @param component {@link Component}
-     * @author Sergio Majé
      */
     public Simulador(Component component) {
         this.component = component;
@@ -44,7 +42,6 @@ public abstract class Simulador extends JPanel {
     }
     /**
      * Instanciacion y acomodamiento de los componentes del panel
-     * @author Sergio Majé
      */
     private void init(){
         pause=new Switch("Paso a paso",false);
@@ -76,7 +73,6 @@ public abstract class Simulador extends JPanel {
     /**
      * Notificaciones
      * @return texto {@link JTextArea}
-     * @author Sergio Majé
      */
     public Texto getTexto() {
         return texto;
@@ -84,7 +80,6 @@ public abstract class Simulador extends JPanel {
     /**
      * Variables que se van a agregar
      * @param trees {@link Tree} a agregar
-     * @author Sergio Majé
      */
     public void setDatos(Tree... trees){
         for (int i = 0; i < trees.length; i++) Constrains.addComp(trees[i],datos,0,i,1,1,1,1,i==0 ? 7:2,10,1,5,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
@@ -92,7 +87,6 @@ public abstract class Simulador extends JPanel {
     /**
      * panel de comandos del simulador
      * @return {@link JPanel} de gestión
-     * @author Sergio Majé
      */
     public JPanel getPanel() {
         return panel;
@@ -100,7 +94,6 @@ public abstract class Simulador extends JPanel {
     /**
      * Retornar al panel anterior
      * @return JLabel
-     * @author Sergio Majé
      */
     public Boton getBack() {
         return back;
@@ -108,7 +101,6 @@ public abstract class Simulador extends JPanel {
     /**
      * Añade los codigos que necesita el simulador
      * @param code {@link JScrollPane}
-     * @author Sergio Majé
      */
     public void addCodes(Editor code, String title){
         this.codigos.add(title,code);
@@ -116,7 +108,6 @@ public abstract class Simulador extends JPanel {
     /**
      * Fijar texto en el campo de descripción
      * @param texto {@link String} a fijar
-     * @author Sergio Majé
      */
     public void setTexto(String texto){
         this.texto.setEditable(true);
@@ -126,7 +117,6 @@ public abstract class Simulador extends JPanel {
     /**
      * Retorna el área grafica del simulador
      * @return área grafica del simulador
-     * @author Sergio Majé
      */
     public Component getComponent() {
         return component;
@@ -134,24 +124,20 @@ public abstract class Simulador extends JPanel {
     /**
      * Modifica el área grafica del simulador
      * @param component nueva área grafica del simulador
-     * @author Sergio Majé
      */
     public void setComponent(Component component) {
         this.component = component;
     }
     /**
      * Iteración del simulador cuando no se ejecuta el paso a paso
-     * @author Sergio Majé
      */
     abstract protected void iteracion0();
     /**
      * Primera iteración del simulador con paso a paso
-     * @author Sergio Majé
      */
     abstract protected void iteracion1();
     /**
      * Restaura los componente al origen
-     * @author Sergio Majé
      */
     abstract protected void clean();
     public void setInteraccion(int interaccion) {
@@ -174,5 +160,8 @@ public abstract class Simulador extends JPanel {
     }
     protected ButtonSimulador getNext() {
         return next;
+    }
+    public void incrementIteraccion(){
+        interaccion++;
     }
 }

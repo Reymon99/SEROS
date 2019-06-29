@@ -11,9 +11,8 @@ public class About extends JDialog {
     /**
      * Ventana Acerca de Seros.<br>
      * Logo y descripción del proyecto.<br>
-     * Desarrollo y version.
-     * @param component componente del cual es dependiente, para que al ejecutarse se centre respectivamente hacia este.
-     * @author Sergio Majé
+     * Desarrollo y versión.
+     * @param component {@link Component} del cual es dependiente, para que al ejecutarse se centre respectivamente hacia este.
      */
     public About(Component component){
         setTitle("Acerca de Seros");

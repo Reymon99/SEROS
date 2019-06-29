@@ -19,7 +19,6 @@ public class Factorial extends Simulador {
     /**
      * Simulador para el ejercicio Fibonacci de la tematica recursividad
      * @see Simulador
-     * @author Sergio Majé
      */
     public Factorial() {
         super();
@@ -59,6 +58,7 @@ public class Factorial extends Simulador {
     @Override
     protected void iteracion1() {
         if (Integer.parseInt(valorI.getValue().toString())==0 || Integer.parseInt(valorI.getValue().toString())==1) casoBase();
+        else casoRecursivo();
     }
     @Override
     protected void clean() {
@@ -83,7 +83,13 @@ public class Factorial extends Simulador {
     private void casoBase(){
         Eventos.enable(false, getNext(), valorI, getBack(), getPause(), getSend());
         Eventos.enable(true, getClean());
+        getTexto().setText(FACTORIAL2.toString());
         new hilos.Factorial(this,hilos.Factorial.CASO_BASE).start();
+    }
+    private void casoRecursivo(){
+        Eventos.enable(false, getClean(), valorI,getBack(),getPause(),getSend(),getClean());
+        Eventos.enable(true,getNext());
+        new hilos.Factorial(this,hilos.Factorial.CASO_RECURSIVO,true);
     }
     public Editor getCode() {
         return code;

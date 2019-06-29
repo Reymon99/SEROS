@@ -20,7 +20,6 @@ public class Tda extends Simulador {
      * Simula un punto en el eje cartesiano
      * @see Graficador
      * @see Simulador
-     * @author Sergio Majé
      */
     public Tda() {
         super(new Graficador());
@@ -69,7 +68,7 @@ public class Tda extends Simulador {
         if (getInteraccion()==0) asignacionX();
         else if (getInteraccion()==1) asignacionY();
         else mostrarCoordenadas();
-        setInteraccion(getInteraccion()+1);
+        incrementIteraccion();
     }
     @Override
     protected void clean() {
@@ -89,7 +88,6 @@ public class Tda extends Simulador {
     }
     /**
      * Muestra los datos y códigos que se asignan al eje x
-     * @author Sergio Majé
      */
     private void asignacionX(){
         code.drawLineIn(4);
@@ -99,7 +97,6 @@ public class Tda extends Simulador {
     }
     /**
      * Muestra los datos y códigos que se asignan al eje y
-     * @author Sergio Majé
      */
     private void asignacionY(){
         code.drawLineIn(5);
@@ -109,7 +106,6 @@ public class Tda extends Simulador {
     }
     /**
      * Grafica las coordenadas (x,y) muestra los códigos asignados a estos
-     * @author Sergio Majé
      */
     private void mostrarCoordenadas(){
         Eventos.enable(true,getClean());

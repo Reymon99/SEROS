@@ -9,11 +9,11 @@ public enum Text {
     SIMULADORTDA2("Ingrese las coordenadas (x,y)."),
     SIMULADORTDA3("Instancia el valor de la variable x."),
     SIMULADORTDA4("Instancia el valor de la variable y."),
-    ABOUT("Descripción explicita de cada Estructura de Datos desde lo conceptual, visión y simulación de las mismas con ejemplos cotidianos resueltos con las estructuras de datos.\n\n\nDesarrollado por\nSergio Andrés Majé Franco\n\n\nVersion 1.0"),
+    ABOUT("Descripción explícita de cada Estructura de Datos desde lo conceptual, visión y simulación de las mismas con ejemplos cotidianos resueltos con las estructuras de datos.\n\n\nDesarrollado por\nSergio Andrés Majé Franco\n\n\nVersion 1.0"),
     LINK("https://github.com/Reymon99/SimuladorTDA"),
     MODULARIDAD("La modularidad es la estructura de un TDA, con la cuál nos permite darle un comportamiento específico y deseado al objeto que deseamos trabajar."),
     MODULARIDAD1("La modularidad se enfoca principalmente a la agrupación de métodos que permiten realizar trabajos complejos, mediante la filosofía “divide y vencerás”; también nos permite una mejor comprensión de lo que estamos codificando, de las tareas a realizar y la reutilización de los métodos(módulos) ya utilizados.\n\nCon esto podemos concluir que la modularidad se basa en las acciones que puede realizar un objeto y cuantas veces quiera tomarlas."),
-    RECURSIVIDAD("La recursividad es la simplificación de tareas mediante una función que se llama así misma, buscando un resultado explicito por medio de un resultado implícito, a través de un caso base que aproxima esta respuesta.\n\nLa recursividad se estructura por dos casos, domino y base, yendo desde una respuesta implícita, que nos da una solución compuesta, a una repuesta explicita, siendo ya la solución deseada.\n\nLa recursividad tiene dos tipos de implementación, las cuales son:\n•\tLa Recursividad Directa, determinada por una función que se llama a sí misma.\n•\tLa Recursividad Indirecta, determinada por una función que se llama así misma mediante otra función."),
+    RECURSIVIDAD("La recursividad es la simplificación de tareas mediante una función que se llama así misma, buscando un resultado explícito por medio de un resultado implícito, a través de un caso base que aproxima esta respuesta.\n\nLa recursividad se estructura por dos casos, domino y base, yendo desde una respuesta implícita, que nos da una solución compuesta, a una repuesta explícita, siendo ya la solución deseada.\n\nLa recursividad tiene dos tipos de implementación, las cuales son:\n•\tLa Recursividad Directa, determinada por una función que se llama a sí misma.\n•\tLa Recursividad Indirecta, determinada por una función que se llama así misma mediante otra función."),
     RECURSIVIDAD1("Directa\tf(x) \u279c f(x) \u279c f(x) \u279c x’\nIndirecta\tf(x) \u279c g(x) \u279c f(x) \u279c x’"),
     ARREGLOS("Como sabemos un arreglo o array es una secuencia de datos dados por ítems consecutivos desde el cero hasta la longitud del arreglo."),
     ARREGLOS1("En estructura de datos son utilizadas para dar forma a estructuras estáticas (determinado por un tamaño limite) como veremos mas adelante en las estructuras de datos lineales (pilas, colas y listas) ayudándonos mediante los índices a crear algoritmos eficientes con una determinada estructura de datos."),
@@ -22,7 +22,8 @@ public enum Text {
     NODOS1("Un nodo se encuentra referenciado mediante un hash en memoria principal. A su vez, los nodos están enlazados entre ellos mismos, permitiendo avanzar y operar entre ellos para poder gestionarlos.\n\nUn hash es la serie de 40 dígitos hexadecimales que nos permite identificar una serie de información dispuesta. En la memoria principal se utilizan para gestionar la identificación de los datos gestionados en memoria, logrando así ser administrados por el sistema."),
     NODOS2("En programación las variables son utilizadas para almacenar datos, pero en realidad solo sirven como punteros de acceso, creación y modificación a datos en la memoria principal. Estos punteros funcionan mediante la asignación de identificadores en memoria, dirigidos por variables que permiten una fácil gestión de los datos en el momento de trabajar con ellos, de esta forma un dato puede ser controlado y modificado por varias variables que lo requieran."),
     FACTORIAL("Ingrese número para dar el Factorial de n"),
-    FACTORIAL1("Resultado del Factorial");
+    FACTORIAL1("Resultado del Factorial"),
+    FACTORIAL2("Buscando el caso base del factorial mediante el caso recursivo");
     private String n;
     Text(String n){
         this.n=n;
@@ -30,7 +31,6 @@ public enum Text {
     /**
      * Contiene todos los textos utilizados en títulos, enunciado, contenidos, y notificaciones de proyecto
      * @return String
-     * @author Sergio Majé
      */
     @Override
     public String toString() {

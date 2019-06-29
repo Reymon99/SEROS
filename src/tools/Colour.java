@@ -30,7 +30,7 @@ public enum Colour {
     }
     /**
      * Colores RGB predefinidas para utilizar en el proyecto
-     * @return Color
+     * @return {@link Color}
      * @author Sergio Majé
      */
     public Color getColor() {

@@ -17,7 +17,6 @@ public class Indice extends JPanel {
     /**
      * Indice de lineas de un componente de Texto
      * @param component componente de texto
-     * @author Sergio Majé
      */
     public Indice(JTextComponent component) {
         this(component, 1);
@@ -26,9 +25,8 @@ public class Indice extends JPanel {
      * Indice de lineas de un componente de Texto
      * @param component componente de texto
      * @param minimumDisplayDigits minimo de los digitos que se va a trabajar
-     * @author Sergio Majé
      */
-    public Indice(JTextComponent component, int minimumDisplayDigits) {
+    private Indice(JTextComponent component, int minimumDisplayDigits) {
         this.component = component;
         insets=new Insets(0,15,0,7);
         setFont(component.getFont());
@@ -56,7 +54,6 @@ public class Indice extends JPanel {
     /**
      * Linea a pintar
      * @param i linea
-     * @author Sergio Majé
      */
     public void lineForegroundIn(int i){
         lineForeground=i;
@@ -65,7 +62,6 @@ public class Indice extends JPanel {
     /**
      * Acción del evento de Document
      * Modifica el ancho del panel según el número de digitos del indice
-     * @author Sergio Majé
      */
     private void documentChanged(){
         SwingUtilities.invokeLater(() -> {
@@ -76,15 +72,13 @@ public class Indice extends JPanel {
                     repaint();
                     lastHeight=rectangle.y;
                 }
-            } catch (BadLocationException e) {
-
+            } catch (BadLocationException e) {//None
             }
         });
     }
     /**
      * Retorna el número minimo de digitos en el indice
      * @return número de digitos
-     * @author Sergio Majé
      */
     public int getMinimumDisplayDigits() {
         return minimumDisplayDigits;
@@ -92,7 +86,6 @@ public class Indice extends JPanel {
     /**
      * Modifica el número minimo de digitos
      * @param minimumDisplayDigits nuevo número minimo de digitos
-     * @author Sergio Majé
      */
     public void setMinimumDisplayDigits(int minimumDisplayDigits) {
         this.minimumDisplayDigits = minimumDisplayDigits;
@@ -100,7 +93,6 @@ public class Indice extends JPanel {
     }
     /**
      * Fija el tamaño determinado del Indice
-     * @author Sergio Majé
      */
     private void setPreferredWidth() {
         Element root=component.getDocument().getDefaultRootElement();
@@ -118,7 +110,6 @@ public class Indice extends JPanel {
      * Obtiene el número de la fila del texto
      * @param rowStartOffset posición de la fila
      * @return número de fila
-     * @author Sergio Majé
      */
     private String getTextLineNumber(int rowStartOffset) {
         Element root=component.getDocument().getDefaultRootElement();
@@ -129,7 +120,6 @@ public class Indice extends JPanel {
      * Obtiene posición en X
      * @param stringWidth ancho del texto
      * @return posición en X
-     * @author Sergio Majé
      */
     private int getOffsetX(int stringWidth) {
         return getSize().width - insets.right - stringWidth;
@@ -139,7 +129,6 @@ public class Indice extends JPanel {
      * @param rowStartOffset posición de la fila
      * @param metrics {@link FontMetrics} del componente de Texto
      * @return posición en Y
-     * @author Sergio Majé
      */
     private int getOffsetY(int rowStartOffset, FontMetrics metrics) throws BadLocationException {
         Rectangle r=(Rectangle)component.modelToView2D(rowStartOffset);

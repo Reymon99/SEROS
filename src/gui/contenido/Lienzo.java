@@ -13,7 +13,6 @@ public class Lienzo extends JPanel {
     /**
      * Tapiz del panel
      * @param g {@link Graphics}
-     * @author Sergio Majé
      */
     @Override
     public void paint(Graphics g) {

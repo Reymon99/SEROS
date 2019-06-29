@@ -9,7 +9,6 @@ import java.awt.event.*;
 public class Principal extends Lienzo {
     /**
      * Menu principal de la interfaz grafica del proyecto
-     * @author Sergio Majé
      */
     public Principal(){
         setLayout(new GridBagLayout());

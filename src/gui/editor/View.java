@@ -8,7 +8,6 @@ public class View extends TextPane {
     private int lineaSelected;
     /**
      * Vista del Editor
-     * @author Sergio Majé
      */
     public View(){
         super();
@@ -17,7 +16,6 @@ public class View extends TextPane {
     /**
      * Fija si la linea se dibuja
      * @param line true: Se dibuja false: No se dibuja
-     * @author Sergio Majé
      */
     public void setLine(boolean line) {
         this.line = line;
@@ -26,7 +24,6 @@ public class View extends TextPane {
     /**
      * Selecciona una linea determinada a dibujar
      * @param lineaSelected linea a seleccionar
-     * @author Sergio Majé
      */
     public void drawLineIn(int lineaSelected) {
         this.lineaSelected = lineaSelected;
@@ -36,7 +33,6 @@ public class View extends TextPane {
     /**
      * Dibuja una linea seleccionada
      * @param g2 {@link Graphics2D} pincel
-     * @author Sergio Majé
      */
     private void drawLine(Graphics2D g2) {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

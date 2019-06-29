@@ -16,7 +16,6 @@ public abstract class Eventos {
     /**
      *Establece el panel principal que contiene todos los paneles de proyecto
      * @param panel {@link JPanel}
-     * @author Sergio Majé
      */
     public static void setPanel(JPanel panel){
         Eventos.panel=panel;
@@ -25,27 +24,25 @@ public abstract class Eventos {
      * Mediante el nombre de los paneles definidos mediante un enum de String muestra el panel deseado en la intefaz grafica
      * @see Paneles
      * @param panel {@link String}
-     * @author Sergio Majé
      */
     public static void show(Paneles panel){
         ((CardLayout)Eventos.panel.getLayout()).show(Eventos.panel,panel.toString());
     }
     /**
      * abre el navegador con el link fijado
-     * @param url {@String} url a abrir por el usuario
-     * @author Sergio Majé
+     * @param url {@link String} url a abrir por el usuario
      */
     public static void link(String url){
         try{
             if (Desktop.isDesktopSupported()) Desktop.getDesktop().browse(new URL(url).toURI());
-        } catch (Exception e) {
-            //None
+        } catch (Exception e) {//None
         }
     }
     /**
      * About de Seros,<br>
      * se ejecuta una única vez por ejecución
-     * @param component {@Component} componente en el cual se va a ejecutar el about
+     * @param component {@link Component} en el cual se va a ejecutar el about
+     * @see About
      */
     public static void about(Component component){
         if (About.show) {
@@ -57,7 +54,6 @@ public abstract class Eventos {
      * Modifica el disponibilidad de los componentes dados
      * @param enable disponibilidad a dar a los componentes
      * @param components componentes a modificar disponibilidad
-     * @author Sergio Majé
      */
     public static void enable(boolean enable,Component... components) {
         for (Component component : components) if (component instanceof Switch) ((Switch) component).setModificable(enable);
@@ -67,7 +63,7 @@ public abstract class Eventos {
      * Valor a la posición del scroll dado
      * @param pane scroll a posicionar
      * @param value posición a dar al scroll
-     * @author Sergio Majé
+     * @see ModernScrollPane
      */
     public static void scroll(ModernScrollPane pane, int value){
         pane.getVerticalScrollBar().setValue(value);
@@ -77,7 +73,7 @@ public abstract class Eventos {
      * @param tree árbol a trabajar
      * @param index posición de la variable
      * @param valor valor a dar a la variable en el árbol
-     * @author Sergio Majé
+     * @see Tree
      */
     public static void variable(Tree tree,int index,Object valor){
         tree.getDato(index).setValor(valor.toString());
@@ -90,10 +86,15 @@ public abstract class Eventos {
     public static void sleep(long mili){
         try {
             Thread.sleep(mili);
-        } catch (InterruptedException e) {
-            //None
+        } catch (InterruptedException e) {//None
         }
     }
+    /**
+     * Formato deseado a un número dado
+     * @param number número a dar formato
+     * @param pattern patrón del formato a utilizar
+     * @return un {@link String} con el número formateado
+     */
     public static String formatNumber(Object number,String pattern){
         return new DecimalFormat(pattern).format(number);
     }

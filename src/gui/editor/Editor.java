@@ -6,7 +6,6 @@ import java.io.*;
 public class Editor extends ModernScrollPane{
     /**
      * Editor sintexico de código a utilizar en la interfaz grafica del proyecto
-     * @author Sergio Majé
      */
     private Editor(View view, Indice indice) {
         super(view, indice);
@@ -14,7 +13,6 @@ public class Editor extends ModernScrollPane{
     /**
      * Decodifica el texto del archivo para diferenciar los diferentes colores de la sintaxis
      * @param n {@link String} cadena con texto codificado
-     * @author Sergio Majé
      */
     private void text(String n) {
         for (String e:n.replaceAll("\t","   ").split("_")){
@@ -29,7 +27,6 @@ public class Editor extends ModernScrollPane{
     /**
      * Selecciona una linea determinada
      * @param i linea a seleccionar
-     * @author Sergio Majé
      */
     public void drawLineIn(int i){
         ((View)getView()).drawLineIn(i);
@@ -38,16 +35,14 @@ public class Editor extends ModernScrollPane{
     /**
      * Fija si la linea se dibuja
      * @param line true: Se dibuja false: No se dibuja
-     * @author Sergio Majé
      */
     public void setLine(boolean line){
         ((View)getView()).setLine(line);
         ((Indice)getIndice()).lineForegroundIn(-1);
     }
     /**
-     * Define texto al view sin diferenciacion de sintaxis
+     * Define texto al view sin diferenciación de sintaxis
      * @param text {@link String}
-     * @author Sergio Majé
      */
     public void setText(String text){
         ((View)getView()).setText(text);
@@ -57,16 +52,11 @@ public class Editor extends ModernScrollPane{
      * @param path {@link String} ruta del archivo a mostrar
      * @return editor con contenido integrado
      * @see Archivos#codefiles(String)
-     * @author Sergio Majé
      */
     public static Editor editor(String path){
         View view=new View();
         Editor editor=new Editor(view,new Indice(view));
-        try {
-            editor.text(Archivos.codefiles(path));
-        } catch (IOException e) {
-            editor.setText(e.getMessage());
-        }
+        editor.text(Archivos.codefiles(path));
         return editor;
     }
 }

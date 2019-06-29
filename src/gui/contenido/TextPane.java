@@ -47,7 +47,6 @@ public class TextPane extends JTextPane {
      * Añade texto de un determinado color al editor
      * @param n {@link String} texto que será personalizado
      * @param color {@link Colour} color a personalizar
-     * @author Sergio Majé
      */
     public void append(String n, Color color){
         setEditable(true);
