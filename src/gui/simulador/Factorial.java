@@ -23,7 +23,7 @@ public class Factorial extends Simulador {
     public Factorial() {
         super();
         getTexto().setText(FACTORIAL.toString());
-        addCodes(code=Editor.editor("/recourses/codes/recursividad/factorial.seros"),"Fibonacci");
+        addCodes(code=Editor.editor("/recourses/codes/recursividad/Factorial.seros"),"Fibonacci");
         setDatos(variaI=new Tree(new Dato("int","i","")));
         valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
         ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
@@ -38,6 +38,7 @@ public class Factorial extends Simulador {
                 clean();
             }
         });
+        getNext().addActionListener(e -> casoRecursivo());
         Constrains.addCompX(number, (Container) getComponent(),0,0,1,1,1,40,50,50,50, GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(producto,(Container) getComponent(),0,1,1,1,1,40,30,50,30,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(valorI,getPanel(),1,0,2,1,1,8,80,5,5, GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
@@ -57,8 +58,8 @@ public class Factorial extends Simulador {
     }
     @Override
     protected void iteracion1() {
-        if (Integer.parseInt(valorI.getValue().toString())==0 || Integer.parseInt(valorI.getValue().toString())==1) casoBase();
-        else casoRecursivo();
+        setIteraccion(Integer.parseInt(valorI.getValue().toString()));
+        new hilos.Factorial(this).start();
     }
     @Override
     protected void clean() {
@@ -68,7 +69,7 @@ public class Factorial extends Simulador {
         Eventos.enable(false,getClean(),getNext());
         getPause().setOnOff(false);
         valorI.setValue(0);
-        setInteraccion(0);
+        setIteraccion(0);
         Eventos.scroll(code,0);
         code.setLine(false);
         number.setText("0");
@@ -94,18 +95,18 @@ public class Factorial extends Simulador {
      * Ejecución del paso a paso en el caso de un valor llevado directamente al caso base el factorial
      */
     private void casoBase(){
-        Eventos.enable(false, getNext(), valorI, getBack(), getPause(), getSend());
+        /*Eventos.enable(false, getNext(), valorI, getBack(), getPause(), getSend());
         Eventos.enable(true, getClean());
         getTexto().setText(FACTORIAL2.toString());
-        new hilos.Factorial(this,hilos.Factorial.CASO_BASE).start();
+        new hilos.Factorial(this,hilos.Factorial.CASO_BASE).start();*/
     }
     /**
      * Ejecución del paso a paso en el caso de un valor que requiera iniciar en el caso recursivo
      */
     private void casoRecursivo(){
-        Eventos.enable(false, getClean(), valorI,getBack(),getPause(),getSend(),getClean());
+        /*Eventos.enable(false, getClean(), valorI,getBack(),getPause(),getSend(),getClean());
         Eventos.enable(true,getNext());
-        new hilos.Factorial(this,hilos.Factorial.CASO_RECURSIVO,true);
+        new hilos.Factorial(this,hilos.Factorial.CASO_RECURSIVO,true);*/
     }
     /**
      * Obtiene le código utilizado en el simulador

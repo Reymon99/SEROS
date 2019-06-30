@@ -16,7 +16,7 @@ public abstract class Simulador extends JPanel {
     private JPanel panel;
     private Boton back;
     public static Dimension canvasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.8));
-    private int interaccion;
+    private int iteraccion;
     private Switch pause;
     private ButtonSimulador send;
     private ButtonSimulador clean;
@@ -36,7 +36,7 @@ public abstract class Simulador extends JPanel {
      */
     public Simulador(Component component) {
         this.component = component;
-        interaccion=0;
+        iteraccion =0;
         setLayout(new GridBagLayout());
         init();
     }
@@ -140,8 +140,8 @@ public abstract class Simulador extends JPanel {
      * Restaura los componente al origen
      */
     abstract protected void clean();
-    public void setInteraccion(int interaccion) {
-        this.interaccion = interaccion;
+    public void setIteraccion(int iteraccion) {
+        this.iteraccion = iteraccion;
     }
     /**
      * Obtiene el contenedor de los códigos del simulador
@@ -154,41 +154,47 @@ public abstract class Simulador extends JPanel {
      * Obtiene la cantidad pulsaciones del paso a paso del simulador
      * @return cantidad de pulsaciones
      */
-    public int getInteraccion() {
-        return interaccion;
+    public int getIteraccion() {
+        return iteraccion;
     }
     /**
      * Obtiene le componente de paso a paso del simulador
      * @return elección del paso a paso del simulador
      */
-    protected Switch getPause() {
+    public Switch getPause() {
         return pause;
     }
     /**
      * Boton de envio de datos al simulador
      * @return envio de datos
      */
-    protected ButtonSimulador getSend() {
+    public ButtonSimulador getSend() {
         return send;
     }
     /**
      * Boton de reinicio del simulador
      * @return reinicio del simulador
      */
-    protected ButtonSimulador getClean() {
+    public ButtonSimulador getClean() {
         return clean;
     }
     /**
      * Boton de paso a paso del simulador
      * @return boton del paso a paso
      */
-    protected ButtonSimulador getNext() {
+    public ButtonSimulador getNext() {
         return next;
     }
     /**
      * Incrementa a paso uno las pulsaciones del paso a paso del simulador en la ejecución
      */
     public void incrementIteraccion(){
-        interaccion++;
+        iteraccion++;
+    }
+    /**
+     * Decrementa a paso uno las pulsaciones del paso a paso del simulador en la ejecución
+     */
+    public void decrementoIteraccion(){
+        iteraccion--;
     }
 }

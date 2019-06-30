@@ -23,7 +23,9 @@ public enum Text {
     NODOS2("En programación las variables son utilizadas para almacenar datos, pero en realidad solo sirven como punteros de acceso, creación y modificación a datos en la memoria principal. Estos punteros funcionan mediante la asignación de identificadores en memoria, dirigidos por variables que permiten una fácil gestión de los datos en el momento de trabajar con ellos, de esta forma un dato puede ser controlado y modificado por varias variables que lo requieran."),
     FACTORIAL("Ingrese número para dar el Factorial de n"),
     FACTORIAL1("Resultado del Factorial"),
-    FACTORIAL2("Buscando el caso base del factorial mediante el caso recursivo");
+    FACTORIAL2("Buscando el caso base del factorial mediante el caso recursivo"),
+    FACTORIAL3("Comprobando si el número dado cumple con el caso base del factorial"),
+    FACTORIAL4("Retorna el caso base para empezar a terminar con los casos recursivos");
     private String n;
     Text(String n){
         this.n=n;

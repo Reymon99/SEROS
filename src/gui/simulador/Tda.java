@@ -65,8 +65,8 @@ public class Tda extends Simulador {
     protected void iteracion1() {
         Eventos.enable(true,getNext());
         Eventos.enable(false,getSend(),x,y,getPause(),getClean(),getBack());
-        if (getInteraccion()==0) asignacionX();
-        else if (getInteraccion()==1) asignacionY();
+        if (getIteraccion()==0) asignacionX();
+        else if (getIteraccion()==1) asignacionY();
         else mostrarCoordenadas();
         incrementIteraccion();
     }
@@ -82,7 +82,7 @@ public class Tda extends Simulador {
         y.setValue(0);
         punto.expandNode(0);
         getPause().setOnOff(false);
-        setInteraccion(0);
+        setIteraccion(0);
         Eventos.scroll(code,0);
         code.setLine(false);
     }
