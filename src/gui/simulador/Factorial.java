@@ -2,6 +2,7 @@ package gui.simulador;
 import eventos.Eventos;
 import gui.contenido.Tree;
 import gui.editor.Editor;
+import hilos.Lines;
 import tools.Colour;
 import tools.Constrains;
 import tools.Fuentes;
@@ -16,6 +17,7 @@ public class Factorial extends Simulador {
     private JSpinner valorI;
     private JLabel number;
     private JLabel producto;
+    private boolean decremento;
     /**
      * Simulador para el ejercicio Fibonacci de la tematica recursividad
      * @see Simulador
@@ -38,7 +40,8 @@ public class Factorial extends Simulador {
                 clean();
             }
         });
-        getNext().addActionListener(e -> casoRecursivo());
+        getNext().addActionListener(e -> {
+        });
         Constrains.addCompX(number, (Container) getComponent(),0,0,1,1,1,40,50,50,50, GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(producto,(Container) getComponent(),0,1,1,1,1,40,30,50,30,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(valorI,getPanel(),1,0,2,1,1,8,80,5,5, GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
@@ -58,8 +61,12 @@ public class Factorial extends Simulador {
     }
     @Override
     protected void iteracion1() {
-        setIteraccion(Integer.parseInt(valorI.getValue().toString()));
-        new hilos.Factorial(this).start();
+        Eventos.enable(false,valorI,getClean(),getNext(),getSend(),getPause(),getBack());
+        Eventos.variable(variaI,-1,Integer.parseInt(valorI.getValue().toString())-getIteraccion());
+        if (Integer.parseInt(valorI.getValue().toString()) == Integer.parseInt(valorI.getValue().toString())-getIteraccion()+1) {
+
+        }
+
     }
     @Override
     protected void clean() {
@@ -74,6 +81,7 @@ public class Factorial extends Simulador {
         code.setLine(false);
         number.setText("0");
         producto.setText("n!    =    ");
+        decremento=true;
     }
     /**
      * Genera el factorial de n
@@ -90,57 +98,5 @@ public class Factorial extends Simulador {
      */
     public String producto(int i){
         return (i==0 || i==1) ? "1" : i+" * "+producto(i-1);
-    }
-    /**
-     * Ejecución del paso a paso en el caso de un valor llevado directamente al caso base el factorial
-     */
-    private void casoBase(){
-        /*Eventos.enable(false, getNext(), valorI, getBack(), getPause(), getSend());
-        Eventos.enable(true, getClean());
-        getTexto().setText(FACTORIAL2.toString());
-        new hilos.Factorial(this,hilos.Factorial.CASO_BASE).start();*/
-    }
-    /**
-     * Ejecución del paso a paso en el caso de un valor que requiera iniciar en el caso recursivo
-     */
-    private void casoRecursivo(){
-        /*Eventos.enable(false, getClean(), valorI,getBack(),getPause(),getSend(),getClean());
-        Eventos.enable(true,getNext());
-        new hilos.Factorial(this,hilos.Factorial.CASO_RECURSIVO,true);*/
-    }
-    /**
-     * Obtiene le código utilizado en el simulador
-     * @return código de factorial
-     */
-    public Editor getCode() {
-        return code;
-    }
-    /**
-     * Árbol de variables del factorial
-     * @return variable ingresada
-     */
-    public Tree getVariaI() {
-        return variaI;
-    }
-    /**
-     * Datos posibles a efectuar al factorial
-     * @return datos entre 0 y 10
-     */
-    public JSpinner getValorI() {
-        return valorI;
-    }
-    /**
-     * Obtiene la etiqueta del resultado del factorial
-     * @return resultado del factorial
-     */
-    public JLabel getNumber() {
-        return number;
-    }
-    /**
-     * Obtiene la etiqueta del resultado del producto del factorial
-     * @return producto del factorial
-     */
-    public JLabel getProducto() {
-        return producto;
     }
 }
