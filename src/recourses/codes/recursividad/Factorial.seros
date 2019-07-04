@@ -1,7 +1,7 @@
-public longn_ faca_(w_intn_ i) {w_
-	ifn_ (i==w_0b_ || i==w_1b_) {w_
+public longn_ faca_(w_intn_ n) {w_
+	ifn_ (n==w_0b_ || n==w_1b_) {w_
 		returnn_ 1b_;n_
 	}w_ elsen_ {w_
-		returnn_ i * fac(i -w_ 1b_)w_;n_
+		returnn_ n * fac(n -w_ 1b_)w_;n_
 	}
 }w_

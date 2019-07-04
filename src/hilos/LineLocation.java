@@ -3,6 +3,18 @@ public class LineLocation {
     private int code;
     private int line;
     private String texto;
+    private int scroll;
+    private boolean sleep;
+    /**
+     * Locación de cada código en los editores con su respectivo texto a utilizar
+     * @param code ubicación de código a emplear
+     * @param line línea en el código a seleccionar
+     * @param texto texto respectivo de la línea
+     * @param sleep si es verdadero duerme la ejecución de la línea de lo contrario solo se seleccionará la línea y el proceso seguirá normalmente
+     */
+    public LineLocation(int code, int line, String texto, boolean sleep) {
+        this(code, line, texto, 0, sleep);
+    }
     /**
      * Locación de cada código en los editores con su respectivo texto a utilizar
      * @param code ubicación de código a emplear
@@ -10,9 +22,22 @@ public class LineLocation {
      * @param texto texto respectivo de la línea
      */
     public LineLocation(int code, int line, String texto) {
+        this(code, line, texto, 0, true);
+    }
+    /**
+     * Locación de cada código en los editores con su respectivo texto a utilizar
+     * @param code ubicación de código a emplear
+     * @param line línea en el código a seleccionar
+     * @param texto texto respectivo de la línea
+     * @param scroll posición del scroll del editor
+     * @param sleep si es verdadero duerme la ejecución de la línea de lo contrario solo se seleccionará la línea y el proceso seguirá normalmente
+     */
+    public LineLocation(int code, int line, String texto, int scroll, boolean sleep) {
         this.code = code;
         this.line = line;
         this.texto = texto;
+        this.scroll = scroll;
+        this.sleep = sleep;
     }
     /**
      * Obtiene la ubicación del código a emplear
@@ -55,6 +80,34 @@ public class LineLocation {
      */
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+    /**
+     * Obtiene la posición dada al scroll del editor
+     * @return posición del scroll
+     */
+    public int getScroll() {
+        return scroll;
+    }
+    /**
+     * Da una nueva posición al scroll del editor
+     * @param scroll nueva posición al scroll
+     */
+    public void setScroll(int scroll) {
+        this.scroll = scroll;
+    }
+    /**
+     * Obtiene el estado de sí la línea duerme ó no
+     * @return estado de espera
+     */
+    public boolean isSleep() {
+        return sleep;
+    }
+    /**
+     * Da un nuevo estado de espera a la línea para así dormir o no
+     * @param sleep nuevo estado de espera
+     */
+    public void setSleep(boolean sleep) {
+        this.sleep = sleep;
     }
     @Override
     public String toString() {

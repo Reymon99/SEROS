@@ -57,4 +57,13 @@ public class Texto extends JTextArea {
         setLineWrap(true);
         setWrapStyleWord(true);
     }
+    /**
+     * Limpia y da un nuevo texto al componente
+     * @param t nuevo texto
+     */
+    @Override
+    public void setText(String t) {
+        super.setText("");
+        super.setText(t);
+    }
 }

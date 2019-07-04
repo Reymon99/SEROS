@@ -25,14 +25,17 @@ public enum Text {
     FACTORIAL1("Resultado del Factorial"),
     FACTORIAL2("Buscando el caso base del factorial mediante el caso recursivo"),
     FACTORIAL3("Comprobando si el número dado cumple con el caso base del factorial"),
-    FACTORIAL4("Retorna el caso base para empezar a terminar con los casos recursivos");
+    FACTORIAL4("Caso base encontrado"),
+    FACTORIAL5("Retorna el caso base para así terminar los casos recursivos"),
+    FACTORIAL6("Casos recursivos terminados"),
+    FACTORIAL7("Multiplica n con los demás casos");
     private String n;
     Text(String n){
         this.n=n;
     }
     /**
      * Contiene todos los textos utilizados en títulos, enunciado, contenidos, y notificaciones de proyecto
-     * @return String
+     * @return enunciado deseado
      */
     @Override
     public String toString() {
