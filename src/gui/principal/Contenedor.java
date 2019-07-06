@@ -25,12 +25,13 @@ public class Contenedor extends JPanel {
      * @see Paneles
      */
     private void init() {
-        add(FACTORIAL.toString(),new Factorial());
         add(PRINCIPAL.toString(), new Principal());
         add(TDA.toString(), tda());
         add(SIMULADORTDA.toString(), new Tda());
         add(MODULARIDAD.toString(), modularidad());
         add(RECURSIVIDAD.toString(), recursividad());
+        add(EJERCICIOS_RECURSIVIDAD.toString(), ejerciciosRecursividad());
+        add(FACTORIAL.toString(),new Factorial());
         add(ARREGLOS.toString(), arreglos());
         add(NODOS.toString(), nodos());
         add(ORDENAMIENTO.toString(), ordenamiento());
@@ -119,6 +120,7 @@ public class Contenedor extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.scroll(con.getPane(),0);
+                Eventos.show(EJERCICIOS_RECURSIVIDAD);
             }
         });
         Constrains.addComp(new Texto(Text.RECURSIVIDAD.toString()), con.getContenido(), 0,0,1,1,1,1,10, 25, 1, 12, GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
@@ -258,5 +260,34 @@ public class Contenedor extends JPanel {
             }
         });
         return con;
+    }
+    /**
+     * Ejercicios simulados de recursividad
+     * @return panel de simuladores en recursividad
+     * @see Ejercicios
+     */
+    private Ejercicios ejerciciosRecursividad(){
+        Ejercicios ejercicios=new Ejercicios();
+        ejercicios.getBack().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                Eventos.show(RECURSIVIDAD);
+            }
+        });
+        ejercicios.setBotones(new Boton(Archivos.image("/recourses/image/factorial.png", -1, -1), "Factorial", new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(FACTORIAL);
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ejercicios.getTexto().setText("Simulador recursivo para factorial");
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                ejercicios.getTexto().setText("");
+            }
+        }));
+        return ejercicios;
     }
 }

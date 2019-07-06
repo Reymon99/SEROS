@@ -17,5 +17,6 @@ public enum Paneles {
     ARBOLES,
     GRAFOS,
     SIMULADORTDA,
-    FACTORIAL
+    FACTORIAL,
+    EJERCICIOS_RECURSIVIDAD
 }

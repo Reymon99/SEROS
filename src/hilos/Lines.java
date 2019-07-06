@@ -1,15 +1,8 @@
 package hilos;
 import eventos.Eventos;
-import gui.contenido.ButtonSimulador;
 import gui.contenido.Texto;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import static tools.Text.*;
 public abstract class Lines extends Thread {
     private final int intervalo = 1270;
     private Simulador simulador;
@@ -50,10 +43,7 @@ public abstract class Lines extends Thread {
             simulador.getCodigos().setSelectedIndex(line.getCode());
             Eventos.scroll(((Editor) simulador.getCodigos().getComponentAt(line.getCode())),line.getScroll());
             ((Editor) simulador.getCodigos().getComponentAt(line.getCode())).drawLineIn(line.getLine());
-            if (line.getTexto()!=null) {
-                simulador.getTexto().setText("");
-                simulador.getTexto().setText(line.getTexto());
-            }
+            if (line.getTexto()!=null) simulador.getTexto().setText(line.getTexto());
             if (line.isSleep()) Eventos.sleep(intervalo);
         }
     }

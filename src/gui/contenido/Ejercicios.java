@@ -3,9 +3,8 @@ import tools.Archivos;
 import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 public class Ejercicios extends Lienzo {
-    private ArrayList<Boton> botones;
+    private Boton[] botones;
     private Boton back;
     private Texto texto;
     private JPanel panel;
@@ -13,7 +12,6 @@ public class Ejercicios extends Lienzo {
      * Planilla de los paneles de Ejercicios del Simulador
      */
     public Ejercicios(){
-        botones=new ArrayList<>();
         setLayout(new GridBagLayout());
         init();
     }
@@ -22,7 +20,7 @@ public class Ejercicios extends Lienzo {
       */
     private void init() {
         back=new Boton(Archivos.image("/recourses/image/back.png",48,48));
-        texto=new Texto("Joder",8,55);
+        texto=new Texto("",8,55);
         panel=new JPanel(new FlowLayout(FlowLayout.CENTER,50,20));
         panel.setOpaque(false);
         panel.setPreferredSize(new Dimension(1000,150));
@@ -34,13 +32,13 @@ public class Ejercicios extends Lienzo {
      * Se añaden los items al panel si no está vacia la lista de botones
      */
     private void items(){
-        if (!botones.isEmpty()) for (Boton boton:botones) panel.add(boton);
+        if (botones.length!=0) for (Boton boton:botones) panel.add(boton);
     }
     /**
      * Listado de los Botones de los ejercicios
      * @return botones
      */
-    public ArrayList<Boton> getBotones() {
+    public Boton[] getBotones() {
         return botones;
     }
     /**
@@ -52,9 +50,9 @@ public class Ejercicios extends Lienzo {
      *     <li>mouseExited - información cuando el mouse salga del componente</li>
      *     <li>mouseClicked - acción a realizar cuando hallá un click en el componente</li>
      * </ul>
-     * @param botones {@link ArrayList} listados de botones listo para añadir al panel
+     * @param botones listado de {@link Boton} listo para añadir al panel
      */
-    public void setBotones(ArrayList<Boton> botones) {
+    public void setBotones(Boton... botones) {
         this.botones = botones;
         items();
     }

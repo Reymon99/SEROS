@@ -8,6 +8,8 @@ import hilos.Lines;
 import tools.Colour;
 import tools.Constrains;
 import tools.Fuentes;
+import tools.Paneles;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -44,6 +46,7 @@ public class Factorial extends Simulador {
             @Override
             public void mouseClicked(MouseEvent e) {
                 clean();
+                Eventos.show(Paneles.EJERCICIOS_RECURSIVIDAD);
             }
         });
         getNext().addActionListener(e -> iteracion1());
