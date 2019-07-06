@@ -57,13 +57,13 @@ public class Principal extends Lienzo {
                 Eventos.show(Paneles.BUSQUEDA);
             }
         });
-        JLabel pila=new Boton("Pilas","Pilas Dinamicas y Estaticas", Archivos.image("/recourses/image/Pilas.png", -1, -1), new MouseAdapter() {
+        JLabel pila=new Boton("Pilas","Pilas Dinámicas y Estáticas", Archivos.image("/recourses/image/Pilas.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.PILAS);
             }
         });
-        JLabel cola=new Boton("Colas","Colas Dinamicas y Estaticas", Archivos.image("/recourses/image/Colas.png", -1, -1), new MouseAdapter() {
+        JLabel cola=new Boton("Colas","Colas Dinámicas y Estáticas", Archivos.image("/recourses/image/Colas.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.COLAS);
@@ -75,7 +75,7 @@ public class Principal extends Lienzo {
                 Eventos.show(Paneles.LISTAS_ENLAZADAS);
             }
         });
-        JLabel arboles=new Boton("Árboles","Arboles Binarios y AVL", Archivos.image("/recourses/image/Arreglos y Arboles.png", -1, -1), new MouseAdapter() {
+        JLabel arboles=new Boton("Árboles","Árboles Binarios y AVL", Archivos.image("/recourses/image/Arreglos y Arboles.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.ARBOLES);
@@ -87,7 +87,7 @@ public class Principal extends Lienzo {
                 Eventos.show(Paneles.GRAFOS);
             }
         });
-        JLabel about=new Boton("Acerca de Seros", Archivos.image("/recourses/image/about.png",48,48), new MouseAdapter() {
+        JLabel about=new Boton("Acerca de Seros", Archivos.image("/recourses/image/about.png",-1,-1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.about(Principal.this);
