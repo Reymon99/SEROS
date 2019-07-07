@@ -34,7 +34,7 @@ public class TextPane extends JTextPane {
         setEditable(true);
         StyledDocument document = getStyledDocument();
         Style def= StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
-        Style regular= document.addStyle("",def);
+        document.addStyle("",def);
         StyleConstants.setFontFamily(def,font.getFamily());
         StyleConstants.setFontSize(def,font.getSize());
         setCharacterAttributes(def,false);

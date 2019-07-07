@@ -93,18 +93,18 @@ public class Principal extends Lienzo {
                 Eventos.about(Principal.this);
             }
         });
-        Constrains.addCompY(tda,this,0,0,1,4,0,30,57,30,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(modularidad, this,1,0,1,1,0,30,18,0,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(recursividad,this,1,1,1,1,0,13,18,13,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(arreglos,this,1,2,1,1,0,13,18,13,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(nodos,this,1,3,1,1,0,13,18,30,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(ordenamiento,this,2,0,1,2,0,30,18,13,18, GridBagConstraints.SOUTH, GridBagConstraints.NONE);
-        Constrains.addCompY(busqueda,this,2,2,1,2,0,13,18,30,18,GridBagConstraints.NORTH,GridBagConstraints.NONE);
-        Constrains.addCompY(pila,this,3,0,1,2,0,30,18,13,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(cola,this,3,1,1,2,0,13,18,13,13,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(lista,this,3,2,1,2,0,13,18,30,18,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(arboles,this,4,0,1,2,0,30,18,13,75,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addCompY(grafos,this,4,2,1,2,0,13,18,30,75,GridBagConstraints.NORTH,GridBagConstraints.NONE);
-        Constrains.addComp(about,this,6,3,1,1,0,0,0,0,6,0,GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
+        Constrains.addCompY(tda,this,0,0,1,4,0,new Insets(30,57,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(modularidad, this,1,0,1,1,0,new Insets(30,18,0,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(recursividad,this,1,1,1,1,0,new Insets(13,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(arreglos,this,1,2,1,1,0,new Insets(13,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(nodos,this,1,3,1,1,0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(ordenamiento,this,2,0,1,2,0,new Insets(30,18,13,18), GridBagConstraints.SOUTH, GridBagConstraints.NONE);
+        Constrains.addCompY(busqueda,this,2,2,1,2,0,new Insets(13,18,30,18),GridBagConstraints.NORTH,GridBagConstraints.NONE);
+        Constrains.addCompY(pila,this,3,0,1,2,0,new Insets(30,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(cola,this,3,1,1,2,0,new Insets(13,18,13,13),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(lista,this,3,2,1,2,0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(arboles,this,4,0,1,2,0,new Insets(30,18,13,75),GridBagConstraints.SOUTH,GridBagConstraints.NONE);
+        Constrains.addCompY(grafos,this,4,2,1,2,0,new Insets(13,18,30,75),GridBagConstraints.NORTH,GridBagConstraints.NONE);
+        Constrains.addComp(about,this,6,3,1,1,0,0,new Insets(0,0,6,0),GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
     }
 }

@@ -82,7 +82,7 @@ public class Dato {
      * @return hash
      */
     private String hashHex(){
-        return valor.isEmpty() || valor.equals("null") ? "null" : Integer.toHexString(valor.hashCode());
+        return valor.isEmpty() || "null".equals(valor) ? "null" : Integer.toHexString(valor.hashCode());
     }
     @Override
     public String toString() {

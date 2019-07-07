@@ -1,6 +1,5 @@
 package gui.simulador;
 import eventos.Eventos;
-import gui.contenido.ButtonSimulador;
 import gui.contenido.Tree;
 import gui.editor.Editor;
 import hilos.LineLocation;
@@ -9,7 +8,6 @@ import tools.Colour;
 import tools.Constrains;
 import tools.Fuentes;
 import tools.Paneles;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -50,13 +48,13 @@ public class Factorial extends Simulador {
             }
         });
         getNext().addActionListener(e -> iteracion1());
-        Constrains.addCompX(number, (Container) getComponent(),0,0,1,1,1,40,50,50,50, GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(producto,(Container) getComponent(),0,1,1,1,1,40,30,50,30,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(valorI,getPanel(),1,0,2,1,1,8,80,5,5, GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getSend(),getPanel(),3,0,2,1,1,10,5,5,100,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getPause(),getPanel(),1,1,1,1,1,5,35,10,8,GridBagConstraints.EAST,GridBagConstraints.NONE);
-        Constrains.addCompX(getNext(),getPanel(),2,1,2,1,1,5,8,10,8,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getClean(),getPanel(),4,1,1,1,1,5,5,10,100,GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(number, (Container) getComponent(),0,0,1,1,1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(producto,(Container) getComponent(),0,1,1,1,1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(valorI,getPanel(),1,0,2,1,1,new Insets(8,80,5,5), GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getSend(),getPanel(),3,0,2,1,1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getPause(),getPanel(),1,1,1,1,1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
+        Constrains.addCompX(getNext(),getPanel(),2,1,2,1,1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getClean(),getPanel(),4,1,1,1,1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
     }
     @Override
     protected void iteracion0() {

@@ -110,6 +110,42 @@ public class Switch extends JComponent {
         return text;
     }
     /**
+     * Según el estado del opaque este se pintará
+     * @param g2 pincel
+     */
+    private void opaque1(Graphics2D g2){
+        if (isOpaque()) {//Pinta el fondo del componente
+            g2.setColor(getBackground());
+            g2.fill(new Rectangle2D.Double(0, 0, getWidth()+g2.getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text), getHeight()));
+        }
+    }
+    /**
+     * Según el estado del enable este se pintará
+     * @param g2 pincel
+     */
+    private void enable1(Graphics2D g2){
+        g2.setColor(isEnabled() ? onOff ? backgroundColor : Colour.BLANCODESHABILITADO.getColor() : DISABLED_COMPONENT_COLOR);
+        if(isEnabled()) g2.fill(new RoundRectangle2D.Double(2, 2, 31, 16, 16, 16));//componente habilitado
+        else g2.draw(new RoundRectangle2D.Double(2, 2, 31, 16, 16, 16));//componente deshabilitado
+    }
+    /**
+     * Según el estado del {@link Switch} este se pintará
+     * @param g2 pincel
+     */
+    private void estado(Graphics2D g2){
+        g2.setColor((isEnabled()) ? buttonColor : DISABLED_COMPONENT_COLOR);
+        if (onOff) g2.fillOval(4, 4, 11, 11);//ON a la izquierda
+        else g2.fillOval(19, 4, 11, 11);//OFF a la derecha
+    }
+    /**
+     * Pintará el texto del componente
+     * @param g2 pincel
+     */
+    private void texto(Graphics2D g2){
+        g2.setFont(Fuentes.UBUNTULIGHT14.getFont());
+        g2.drawString(text,36, 15);
+    }
+    /**
      * Modifica el texto del componente
      * @param text nuevo texto
      */
@@ -125,17 +161,9 @@ public class Switch extends JComponent {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        if (isOpaque()) {//Pinta el fondo del componente
-            g2.setColor(getBackground());
-            g2.fill(new Rectangle2D.Double(0, 0, getWidth()+g2.getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text), getHeight()));
-        }
-        g2.setColor(isEnabled() ? onOff ? backgroundColor : Colour.BLANCODESHABILITADO.getColor() : DISABLED_COMPONENT_COLOR);
-        if(isEnabled()) g2.fill(new RoundRectangle2D.Double(2, 2, 31, 16, 16, 16));//componente habilitado
-        else g2.draw(new RoundRectangle2D.Double(2, 2, 31, 16, 16, 16));//componente deshabilitado
-        g2.setColor((isEnabled()) ? buttonColor : DISABLED_COMPONENT_COLOR);
-        if (onOff) g2.fillOval(4, 4, 11, 11);//ON a la izquierda
-        else g2.fillOval(19, 4, 11, 11);//OFF a la derecha
-        g2.setFont(Fuentes.UBUNTULIGHT14.getFont());
-        g2.drawString(text,36, 15);
+        opaque1(g2);
+        enable1(g2);
+        estado(g2);
+        texto(g2);
     }
 }

@@ -24,9 +24,9 @@ public class Ejercicios extends Lienzo {
         panel=new JPanel(new FlowLayout(FlowLayout.CENTER,50,20));
         panel.setOpaque(false);
         panel.setPreferredSize(new Dimension(1000,150));
-        Constrains.addComp(panel,this,0,0,1,1,0.8,1,70,40,15,40,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(texto,this,0,1,1,1,1,1,10,20,25,20,GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addComp(back,this,0,2,1,1,0,0,10,7,10,2, GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
+        Constrains.addComp(panel,this,0,0,1,1,0.8,1,new Insets(70,40,15,40),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(texto,this,0,1,1,1,1,1,new Insets(10,20,25,20),GridBagConstraints.SOUTH,GridBagConstraints.NONE);
+        Constrains.addComp(back,this,0,2,1,1,0,0,new Insets(10,7,10,2), GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
     }
     /**
      * Se añaden los items al panel si no está vacia la lista de botones

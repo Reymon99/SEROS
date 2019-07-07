@@ -11,15 +11,12 @@ public abstract class Constrains {
      * @param height altura entre los espacios del grid
      * @param weightx dispersión al eje X
      * @param weighty dispersión al eje Y
-     * @param top margen superior
-     * @param left margen izquierda
-     * @param bottom margen inferior
-     * @param right margen derecha
+     * @param insets margen del componente
      * @param place ubicación dentro del espacio del grid
      * @param stretch llenado dentro del espacio del grid
      */
-    public static void addComp(Component component,Container container,int x,int y,int width,int height,double weightx,double weighty,int top,int left,int bottom,int right,int place,int stretch){
-        GridBagConstraints grid=grid(x, y, width, height, new Insets(top, left, bottom, right), place, stretch);
+    public static void addComp(Component component,Container container,int x,int y,int width,int height,double weightx,double weighty,Insets insets,int place,int stretch){
+        GridBagConstraints grid=grid(x, y, width, height, insets, place, stretch);
         grid.weightx=weightx;
         grid.weighty=weighty;
         container.add(component,grid);
@@ -33,15 +30,12 @@ public abstract class Constrains {
      * @param width anchor entre los espacios del grid
      * @param height altura entre los espacios del grid
      * @param weightx dispersión al eje X
-     * @param top margen superior
-     * @param left margen izquierda
-     * @param bottom margen inferior
-     * @param right margen derecha
+     * @param insets margen del componente
      * @param place ubicación dentro del espacio del grid
      * @param stretch llenado dentro del espacio del grid
      */
-    public static void addCompX(Component component,Container container,int x,int y,int width,int height,double weightx,int top,int left,int bottom,int right,int place,int stretch){
-        GridBagConstraints grid=grid(x, y, width, height, new Insets(top, left, bottom, right), place, stretch);
+    public static void addCompX(Component component,Container container,int x,int y,int width,int height,double weightx,Insets insets,int place,int stretch){
+        GridBagConstraints grid=grid(x, y, width, height, insets, place, stretch);
         grid.weightx=weightx;
         container.add(component,grid);
     }
@@ -54,15 +48,12 @@ public abstract class Constrains {
      * @param width anchor entre los espacios del grid
      * @param height altura entre los espacios del grid
      * @param weighty dispersión al eje Y
-     * @param top margen superior
-     * @param left margen izquierda
-     * @param bottom margen inferior
-     * @param right margen derecha
+     * @param insets margen del componente
      * @param place ubicación dentro del espacio del grid
      * @param stretch llenado dentro del espacio del grid
      */
-    public static void addCompY(Component component,Container container,int x,int y,int width,int height, double weighty,int top,int left,int bottom,int right,int place,int stretch){
-        GridBagConstraints grid=grid(x, y, width, height, new Insets(top, left, bottom, right), place, stretch);
+    public static void addCompY(Component component,Container container,int x,int y,int width,int height, double weighty,Insets insets,int place,int stretch){
+        GridBagConstraints grid=grid(x, y, width, height, insets, place, stretch);
         grid.weighty=weighty;
         container.add(component,grid);
     }
@@ -76,17 +67,14 @@ public abstract class Constrains {
      * @param height altura entre los espacios del grid
      * @param weightx dispersión al eje X
      * @param weighty dispersión al eje Y
-     * @param top margen superior
-     * @param left margen izquierda
-     * @param bottom margen inferior
-     * @param right margen derecha
+     * @param insets margen del componente
      * @param ipadx tamaño fijo hacia el eje X
      * @param ipady tamaño fijo hacia el eje Y
      * @param place ubicación dentro del espacio del grid
      * @param stretch llenado dentro del espacio del grid
      */
-    public static void addCompI(Component component,Container container,int x,int y,int width,int height,double weightx,double weighty,int top,int left,int bottom,int right,int ipadx,int ipady,int place,int stretch){
-        GridBagConstraints grid=grid(x, y, width, height, new Insets(top, left, bottom, right), place, stretch);
+    public static void addCompI(Component component,Container container,int x,int y,int width,int height,double weightx,double weighty,Insets insets,int ipadx,int ipady,int place,int stretch){
+        GridBagConstraints grid=grid(x, y, width, height, insets, place, stretch);
         grid.weightx=weightx;
         grid.weighty=weighty;
         grid.ipadx=ipadx;
@@ -103,16 +91,13 @@ public abstract class Constrains {
      * @param height altura entre los espacios del grid
      * @param weightx dispersión al eje X
      * @param weighty dispersión al eje Y
-     * @param top margen superior
-     * @param left margen izquierda
-     * @param bottom margen inferior
-     * @param right margen derecha
+     * @param insets margen del componente
      * @param ipadx tamaño fijo hacia el eje X
      * @param place ubicación dentro del espacio del grid
      * @param stretch llenado dentro del espacio del grid
      */
-    public static void addCompIx(Component component,Container container,int x,int y,int width,int height,double weightx,double weighty,int top,int left,int bottom,int right,int ipadx,int place,int stretch){
-        GridBagConstraints grid=grid(x, y, width, height, new Insets(top, left, bottom, right), place, stretch);
+    public static void addCompIx(Component component,Container container,int x,int y,int width,int height,double weightx,double weighty,Insets insets,int ipadx,int place,int stretch){
+        GridBagConstraints grid=grid(x, y, width, height, insets, place, stretch);
         grid.weightx=weightx;
         grid.weighty=weighty;
         grid.ipadx=ipadx;
@@ -128,16 +113,13 @@ public abstract class Constrains {
      * @param height altura entre los espacios del grid
      * @param weightx dispersión al eje X
      * @param weighty dispersión al eje Y
-     * @param top margen superior
-     * @param left margen izquierda
-     * @param bottom margen inferior
-     * @param right margen derecha
+     * @param insets margen del componente
      * @param ipady tamaño fijo hacia el eje Y
      * @param place ubicación dentro del espacio del grid
      * @param stretch llenado dentro del espacio del grid
      */
-    public static void addCompIy(Component component,Container container,int x,int y,int width,int height,double weightx,double weighty,int top,int left,int bottom,int right,int ipady,int place,int stretch){
-        GridBagConstraints grid=grid(x, y, width, height, new Insets(top, left, bottom, right), place, stretch);
+    public static void addCompIy(Component component,Container container,int x,int y,int width,int height,double weightx,double weighty,Insets insets,int ipady,int place,int stretch){
+        GridBagConstraints grid=grid(x, y, width, height, insets, place, stretch);
         grid.weightx=weightx;
         grid.weighty=weighty;
         grid.ipady=ipady;
@@ -152,16 +134,13 @@ public abstract class Constrains {
      * @param width anchor entre los espacios del grid
      * @param height altura entre los espacios del grid
      * @param weightx dispersión al eje X
-     * @param top margen superior
-     * @param left margen izquierda
-     * @param bottom margen inferior
-     * @param right margen derecha
+     * @param insets margen del componente
      * @param ipadx tamaño fijo hacia el eje X
      * @param place ubicación dentro del espacio del grid
      * @param stretch llenado dentro del espacio del grid
      */
-    public static void addCompXIx(Component component,Container container,int x,int y,int width,int height,double weightx,int top,int left,int bottom,int right,int ipadx,int place,int stretch){
-        GridBagConstraints grid=grid(x, y, width, height, new Insets(top, left, bottom, right), place, stretch);
+    public static void addCompXIx(Component component,Container container,int x,int y,int width,int height,double weightx,Insets insets,int ipadx,int place,int stretch){
+        GridBagConstraints grid=grid(x, y, width, height, insets, place, stretch);
         grid.weightx=weightx;
         grid.ipadx=ipadx;
         container.add(component,grid);
@@ -175,16 +154,13 @@ public abstract class Constrains {
      * @param width anchor entre los espacios del grid
      * @param height altura entre los espacios del grid
      * @param weightx dispersión al eje X
-     * @param top margen superior
-     * @param left margen izquierda
-     * @param bottom margen inferior
-     * @param right margen derecha
+     * @param insets margen del componente
      * @param ipady tamaño fijo hacia el eje Y
      * @param place ubicación dentro del espacio del grid
      * @param stretch llenado dentro del espacio del grid
      */
-    public static void addCompXIy(Component component,Container container,int x,int y,int width,int height,double weightx,int top,int left,int bottom,int right,int ipady,int place,int stretch){
-        GridBagConstraints grid=grid(x, y, width, height, new Insets(top, left, bottom, right), place, stretch);
+    public static void addCompXIy(Component component,Container container,int x,int y,int width,int height,double weightx,Insets insets,int ipady,int place,int stretch){
+        GridBagConstraints grid=grid(x, y, width, height, insets, place, stretch);
         grid.weightx=weightx;
         grid.ipady=ipady;
         container.add(component,grid);
@@ -198,16 +174,13 @@ public abstract class Constrains {
      * @param width anchor entre los espacios del grid
      * @param height altura entre los espacios del grid
      * @param weighty dispersión al eje Y
-     * @param top margen superior
-     * @param left margen izquierda
-     * @param bottom margen inferior
-     * @param right margen derecha
+     * @param insets margen del componente
      * @param ipadx tamaño fijo hacia el eje X
      * @param place ubicación dentro del espacio del grid
      * @param stretch llenado dentro del espacio del grid
      */
-    public static void addCompYIx(Component component,Container container,int x,int y,int width,int height,double weighty,int top,int left,int bottom,int right,int ipadx,int place,int stretch){
-        GridBagConstraints grid=grid(x, y, width, height, new Insets(top, left, bottom, right), place, stretch);
+    public static void addCompYIx(Component component,Container container,int x,int y,int width,int height,double weighty,Insets insets,int ipadx,int place,int stretch){
+        GridBagConstraints grid=grid(x, y, width, height, insets, place, stretch);
         grid.weightx=weighty;
         grid.ipadx=ipadx;
         container.add(component,grid);
@@ -221,16 +194,13 @@ public abstract class Constrains {
      * @param width anchor entre los espacios del grid
      * @param height altura entre los espacios del grid
      * @param weighty dispersión al eje Y
-     * @param top margen superior
-     * @param left margen izquierda
-     * @param bottom margen inferior
-     * @param right margen derecha
+     * @param insets margen del componente
      * @param ipady tamaño fijo hacia el eje Y
      * @param place ubicación dentro del espacio del grid
      * @param stretch llenado dentro del espacio del grid
      */
-    public static void addCompYIy(Component component,Container container,int x,int y,int width,int height,double weighty,int top,int left,int bottom,int right,int ipady,int place,int stretch){
-        GridBagConstraints grid=grid(x, y, width, height, new Insets(top, left, bottom, right), place, stretch);
+    public static void addCompYIy(Component component,Container container,int x,int y,int width,int height,double weighty,Insets insets,int ipady,int place,int stretch){
+        GridBagConstraints grid=grid(x, y, width, height, insets, place, stretch);
         grid.weighty=weighty;
         grid.ipady=ipady;
         container.add(component,grid);

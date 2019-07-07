@@ -86,16 +86,44 @@ public class Graficador extends Canvas {
         return cuadrante ? halfScreenHeight()-280 : halfScreenHeight()+280;
     }
     /**
-     * Dibuja y grafica el punto en las coordenadas dadas
-     * @param g {@link Graphics}
+     * Grafica las coordenadas dadas según el estado de graficación
+     * @param g2 pincel
+     * @param point punto de graficación de coordenadas
      */
-    @Override
-    public void paint(Graphics g) {
-        Graphics2D g2=(Graphics2D)g;
-        g2.draw(new Line2D.Double(positionX(false),halfScreenHeight(),positionX(true),halfScreenHeight()));//horizontal
-        g2.draw(new Line2D.Double(halfScreenWidth(),positionY(true),halfScreenWidth(),positionY(false)));//vertical
-        int x=-10,y=10;
-        Point point=new Point();
+    private void graficarCoordenada(Graphics2D g2, Point point){
+        if (graficar){
+            if (this.x>0 && this.y>0) g2.drawString(coordenadas(),point.x+7,point.y);//Cuandrante positivo
+            else if (this.x<0 && this.y>0) g2.drawString(coordenadas(),point.x-22,point.y-7);//Cuadrante negativo - positivo
+            else if (this.x<0 && this.y<0) g2.drawString(coordenadas(),point.x-22,point.y+17);//Cuadrante negativo
+            else if (this.x>0 && this.y<0) g2.drawString(coordenadas(),point.x-17,point.y+17);//Cuadrante positivo - negativo
+            else if (this.x==0 && this.y==0) g2.drawString(coordenadas(),point.x-29,point.y-9);//Punto medio
+            else if (this.x==0) g2.drawString(coordenadas(),point.x-45,point.y-2);
+            else g2.drawString(coordenadas(),point.x-17,point.y+19);//y==0
+            g2.setPaint(Color.GRAY);//lineas
+            g2.setStroke(new BasicStroke(1,BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER,5.0f,new float[]{10},0.0f));
+            g2.draw(new Line2D.Double(halfScreenWidth(),point.y,point.x,point.y));
+            g2.draw(new Line2D.Double(point.x,halfScreenHeight(),point.x,point.y));
+            g2.setFont(Fuentes.DIALOG35.getFont());
+            g2.setPaint(Color.RED);//punto
+            g2.drawString(".",point.x-5,point.y+4);
+        }
+    }
+    /**
+     * Grafica las líneas de eje X y Y
+     * @param g2 pincel
+     */
+    private void eje(Graphics2D g2) {
+        g2.draw(new Line2D.Double(positionX(false), halfScreenHeight(), positionX(true), halfScreenHeight()));//horizontal
+        g2.draw(new Line2D.Double(halfScreenWidth(), positionY(true), halfScreenWidth(), positionY(false)));//vertical
+    }
+    /**
+     * Grafica los valores del axis X y el axis Y
+     * @param g2 pincel
+     * @param point punto a guardar las coordenas
+     */
+    private void valoresAxisXY(Graphics2D g2, Point point){
+        int x=-10;
+        int y=10;
         for (int i = positionY(true)+10,j = positionX(false)+10; i <= positionY(false); i+=27, j+=27) {
             if (this.x==x && graficar) point.x=(this.x==0)?halfScreenWidth():j;//Si x = 0 toma la mitad de la pantalla de lo contrario tomara la coodernada de j
             if (this.y==y && graficar) point.y=(this.y==0)?halfScreenHeight():i;//Si y = 0 toma la mitad de la pantalla de lo contrario tomara la coodernada de i
@@ -114,21 +142,17 @@ public class Graficador extends Canvas {
                 y--;
             }
         }
-        if (graficar){
-            if (this.x>0 && this.y>0) g2.drawString(coordenadas(),point.x+7,point.y);//Cuandrante positivo
-            else if (this.x<0 && this.y>0) g2.drawString(coordenadas(),point.x-22,point.y-7);//Cuadrante negativo - positivo
-            else if (this.x<0 && this.y<0) g2.drawString(coordenadas(),point.x-22,point.y+17);//Cuadrante negativo
-            else if (this.x>0 && this.y<0) g2.drawString(coordenadas(),point.x-17,point.y+17);//Cuadrante positivo - negativo
-            else if (this.x==0 && this.y==0) g2.drawString(coordenadas(),point.x-29,point.y-9);//Punto medio
-            else if (this.x==0) g2.drawString(coordenadas(),point.x-45,point.y-2);
-            else g2.drawString(coordenadas(),point.x-17,point.y+19);//y==0
-            g2.setPaint(Color.GRAY);//lineas
-            g2.setStroke(new BasicStroke(1,BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER,5.0f,new float[]{10},0.0f));
-            g2.draw(new Line2D.Double(halfScreenWidth(),point.y,point.x,point.y));
-            g2.draw(new Line2D.Double(point.x,halfScreenHeight(),point.x,point.y));
-            g2.setFont(Fuentes.DIALOG35.getFont());
-            g2.setPaint(Color.RED);//punto
-            g2.drawString(".",point.x-5,point.y+4);
-        }
+    }
+    /**
+     * Dibuja y grafica el punto en las coordenadas dadas
+     * @param g {@link Graphics}
+     */
+    @Override
+    public void paint(Graphics g) {
+        Graphics2D g2=(Graphics2D)g;
+        Point point=new Point();
+        eje(g2);
+        valoresAxisXY(g2,point);
+        graficarCoordenada(g2,point);
     }
 }

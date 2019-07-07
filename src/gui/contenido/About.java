@@ -50,10 +50,10 @@ public class About extends JDialog {
                 Eventos.link(Text.LINK.toString());
             }
         });
-        Constrains.addComp(new JLabel(Archivos.image("/recourses/image/logo.png",200,-1)),getContentPane(),0,0,1,1,0,0,30,15,3,15,GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addComp(seros,getContentPane(),0,1,1,1,0,0,3,18,5,15,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(seros1,getContentPane(),0,2,1,1,0,0,5,15,5,15,GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(texto,getContentPane(),0,3,1,1,1,0,15,15,3,15,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(label,getContentPane(),0,4,1,1,1,0,0,15,30,15,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new JLabel(Archivos.image("/recourses/image/logo.png",200,-1)),getContentPane(),0,0,1,1,0,0,new Insets(30,15,3,15),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addComp(seros,getContentPane(),0,1,1,1,0,0,new Insets(3,18,5,15),GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(seros1,getContentPane(),0,2,1,1,0,0,new Insets(5,15,5,15),GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(texto,getContentPane(),0,3,1,1,1,0,new Insets(15,15,3,15),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(label,getContentPane(),0,4,1,1,1,0,new Insets(0,15,30,15),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
     }
 }

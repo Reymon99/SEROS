@@ -31,8 +31,6 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
     protected JButton createIncreaseButton(int orientation) {
         return new InvisibleScrollBarButton();
     }
-    @Override
-    protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) { }
     /**
      * Se le da una nueva interfaz al JScrollBar
      */

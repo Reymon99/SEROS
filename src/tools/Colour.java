@@ -1,5 +1,5 @@
 package tools;
-import java.awt.*;
+import java.awt.Color;
 public enum Colour {
     AZUL(new Color(95,176,214)),
     AMARILLO(new Color(245,208,51)),
@@ -25,12 +25,12 @@ public enum Colour {
     REDLINESELECTED(new Color(235,0,0,50)),
     LINEFOREGROUND(new Color(15, 125, 162));
     private Color color;
-    Colour(java.awt.Color color){
+    Colour(Color color){
         this.color=color;
     }
     /**
      * Colores RGB predefinidas para utilizar en el proyecto
-     * @return {@link Color}
+     * @return {@link Color} deseado
      * @author Sergio Majé
      */
     public Color getColor() {

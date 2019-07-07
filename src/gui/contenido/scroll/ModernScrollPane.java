@@ -46,7 +46,8 @@ public class ModernScrollPane extends JScrollPane {
                 availR.y = insets.top;
                 availR.width -= insets.left + insets.right;
                 availR.height -= insets.top + insets.bottom;
-                boolean vsbNeeded = isVerticalScrollBarfNecessary(), hsbNeeded = isHorizontalScrollBarNecessary();
+                boolean vsbNeeded = isVerticalScrollBarfNecessary();
+                boolean hsbNeeded = isHorizontalScrollBarNecessary();
                 Rectangle vsbR = new Rectangle();// vertical scroll bar
                 vsbR.width = SB_SIZE;
                 vsbR.height = availR.height - (hsbNeeded ? vsbR.width : 0);

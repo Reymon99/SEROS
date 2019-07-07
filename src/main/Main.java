@@ -1,3 +1,4 @@
+package main;
 import gui.principal.Desktop;
 public class Main { //3036 lines
     public static void main(String[] args) throws InterruptedException {

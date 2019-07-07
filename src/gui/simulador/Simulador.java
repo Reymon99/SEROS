@@ -62,13 +62,14 @@ public abstract class Simulador extends JPanel {
             else iteracion0();
         });
         next.addActionListener(e -> iteracion1());
-        Constrains.addComp(component,this,0,0,1,4,0,0,0,0,0,0,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
-        Constrains.addComp(back,panel,0,0,1,2,1,1,15,15,15,15,GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addComp(panel,this,0,4,1,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addCompX(desc,this,1,0,1,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompIy((texto=new Texto(4,55)),this,1,1,1,1,1,0,0,0,0,0,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,1,2,1,1,1,0,0,0,0,0,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addComp((codigos=new JTabbedPane(JTabbedPane.TOP)),this,1,3,1,2,1,1,0,0,0,0,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Insets insets=new Insets(0,0,0,0);
+        Constrains.addComp(component,this,0,0,1,4,0,0,insets,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
+        Constrains.addComp(back,panel,0,0,1,2,1,1,new Insets(15,15,15,15),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addComp(panel,this,0,4,1,1,1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addCompX(desc,this,1,0,1,1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompIy((texto=new Texto(4,55)),this,1,1,1,1,1,0,insets,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,1,2,1,1,1,0,insets,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp((codigos=new JTabbedPane(JTabbedPane.TOP)),this,1,3,1,2,1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
     }
     /**
      * Notificaciones
@@ -82,7 +83,7 @@ public abstract class Simulador extends JPanel {
      * @param trees {@link Tree} a agregar
      */
     public void setDatos(Tree... trees){
-        for (int i = 0; i < trees.length; i++) Constrains.addComp(trees[i],datos,0,i,1,1,1,1,i==0 ? 7:2,10,1,5,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        for (int i = 0; i < trees.length; i++) Constrains.addComp(trees[i],datos,0,i,1,1,1,1,new Insets(i==0 ? 7:2,10,1,5),GridBagConstraints.CENTER,GridBagConstraints.BOTH);
     }
     /**
      * panel de comandos del simulador
