@@ -118,30 +118,58 @@ public class Graficador extends Canvas {
         g2.draw(new Line2D.Double(halfScreenWidth(), positionY(true), halfScreenWidth(), positionY(false)));//vertical
     }
     /**
+     * Guarda la posición en pantalla de la coordenada X
+     * @param point Si x = 0 toma la mitad de la pantalla de lo contrario tomará la coodernada de j
+     * @param x valor Axis X
+     * @param j posición en pantalla
+     */
+    private void puntoCoordenadaX(Point point,int x,int j){
+        if (this.x==x && graficar) point.x = this.x==0 ? halfScreenWidth() : j;
+    }
+    /**
+     * Guarda la posición en pantalla de la coordenada Y
+     * @param point Si y = 0 toma la mitad de la pantalla de lo contrario tomará la coodernada de i
+     * @param y valor Axis Y
+     * @param i posición en pantalla
+     */
+    private void puntoCoordenadaY(Point point,int y,int i){
+        if (this.y==y && graficar) point.y = this.y==0 ? halfScreenHeight() : i;
+    }
+    /**
+     * Guarda la posición en pantalla de las coordenadas X y Y
+     * @param point puntos de las posiciones a guardar
+     * @param x valor Axis X
+     * @param y valor Axis Y
+     * @param i posición en pantalla vertical
+     * @param j posición en pantalla horizontal
+     */
+    private void puntoCoordenadas(Point point,int x,int y,int i,int j){
+        puntoCoordenadaX(point, x, j);
+        puntoCoordenadaY(point, y, i);
+    }
+    /**
      * Grafica los valores del axis X y el axis Y
      * @param g2 pincel
      * @param point punto a guardar las coordenas
      */
     private void valoresAxisXY(Graphics2D g2, Point point){
-        int x=-10;
-        int y=10;
-        for (int i = positionY(true)+10,j = positionX(false)+10; i <= positionY(false); i+=27, j+=27) {
-            if (this.x==x && graficar) point.x=(this.x==0)?halfScreenWidth():j;//Si x = 0 toma la mitad de la pantalla de lo contrario tomara la coodernada de j
-            if (this.y==y && graficar) point.y=(this.y==0)?halfScreenHeight():i;//Si y = 0 toma la mitad de la pantalla de lo contrario tomara la coodernada de i
+        int x = -10;
+        int y = 10;
+        int i = positionY(true)+y;
+        int j = positionX(false)+y;
+        while (i <= positionY(false)){
+            puntoCoordenadas(point,x,y,i,j);
             if (i!=290 && j!=halfScreenWidth()){
                 g2.draw(new Line2D.Double(halfScreenWidth()-2,i,halfScreenWidth()+2,i));//y
                 g2.draw(new Line2D.Double(j,halfScreenHeight()-2,j,halfScreenHeight()+2));//x
-                if (x==0 && y==0) {
-                    x = 1;
-                    y = -1;
-                    if (this.x==1) point.x=j;
-                    if (this.y==-1) point.y=i;
-                }
+                if (x==0 && y==0) puntoCoordenadas(point,x=1,y=-1,i,j);
                 g2.drawString(String.valueOf(y),x<0 ? halfScreenWidth()+5 : Math.abs(x)==10 ? halfScreenWidth()-22 : halfScreenWidth()-16,i+4);//y
                 g2.drawString(String.valueOf(x),x>0 ? j-4 : j-8,x>0 ? halfScreenHeight()-6 : halfScreenHeight()+15);//x
                 x++;
                 y--;
             }
+            i+=27;
+            j+=27;
         }
     }
     /**
