@@ -12,7 +12,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import static tools.Text.*;
+import static tools.Text.FACTORIAL;
+import static tools.Text.FACTORIAL1;
+import static tools.Text.FACTORIAL2;
+import static tools.Text.FACTORIAL3;
+import static tools.Text.FACTORIAL4;
+import static tools.Text.FACTORIAL5;
+import static tools.Text.FACTORIAL6;
+import static tools.Text.FACTORIAL7;
 public class Factorial extends Simulador {
     private Editor code;
     private Tree variaI;

@@ -1,6 +1,10 @@
 package gui.principal;
 import eventos.Eventos;
-import gui.contenido.*;
+import gui.contenido.Contenido;
+import gui.contenido.Ejercicios;
+import gui.contenido.TextPane;
+import gui.contenido.Texto;
+import gui.contenido.Boton;
 import gui.simulador.Factorial;
 import gui.simulador.Tda;
 import gui.editor.Editor;

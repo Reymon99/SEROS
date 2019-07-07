@@ -3,7 +3,7 @@ import tools.Colour;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
-import static gui.contenido.scroll.ModernScrollPane.*;
+import static gui.contenido.scroll.ModernScrollPane.THUMB_SIZE;
 public class ModernScrollBarUI extends BasicScrollBarUI {
     private JScrollPane sp;
     /**

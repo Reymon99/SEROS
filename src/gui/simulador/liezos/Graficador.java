@@ -5,7 +5,8 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 public class Graficador extends Canvas {
     private boolean graficar;
-    private int x,y;
+    private int x;
+    private int y;
     /**
      * Grafica un punto en una coordenada dada
      */

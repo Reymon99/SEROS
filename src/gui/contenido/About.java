@@ -1,7 +1,10 @@
 package gui.contenido;
 import eventos.Eventos;
-import tools.*;
+import tools.Archivos;
 import tools.Colour;
+import tools.Fuentes;
+import tools.Text;
+import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -26,7 +29,7 @@ public class About extends JDialog {
         addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                About.show=true;
+                About.show = true;
                 dispose();
             }
         });
