@@ -1,12 +1,12 @@
 package gui.contenido;
 import gui.simulador.Dato;
 import tools.Archivos;
-import static tools.Fuentes.*;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
+import static tools.Fuentes.UBUNTULIGHT14;
 public class Tree extends JTree {
     private DefaultMutableTreeNode node;
     /**

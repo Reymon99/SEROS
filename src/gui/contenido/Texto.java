@@ -1,6 +1,6 @@
 package gui.contenido;
-import static tools.Colour.*;
-import static tools.Fuentes.*;
+import tools.Colour;
+import tools.Fuentes;
 import javax.swing.*;
 import java.awt.*;
 public class Texto extends JTextArea {
@@ -9,10 +9,10 @@ public class Texto extends JTextArea {
      */
     public Texto(){
         setEditable(false);
-        setBackground(NEGROINDICE.getColor());
-        setForeground(BLANCO.getColor());
+        setBackground(Colour.NEGROINDICE.getColor());
+        setForeground(Colour.BLANCO.getColor());
         setMargin(new Insets(3,5,0,7));
-        setFont(UBUNTULIGHT15.getFont());
+        setFont(Fuentes.UBUNTULIGHT15.getFont());
     }
     /**
      * Area de texto con parametros predefinidos enfocados hacia el proyecto
@@ -43,14 +43,14 @@ public class Texto extends JTextArea {
         setEditable(false);
         setLineWrap(true);
         setWrapStyleWord(true);
-        setFont(UBUNTULIGHT15.getFont());
-        setCaretColor(BLANCO.getColor());
-        setForeground(BLANCO.getColor());
-        setBackground(AZULTEXT.getColor());
+        setFont(Fuentes.UBUNTULIGHT15.getFont());
+        setCaretColor(Colour.BLANCO.getColor());
+        setForeground(Colour.BLANCO.getColor());
+        setBackground(Colour.AZULTEXT.getColor());
         setMargin(new Insets(28,24,20,20));
     }
     private void init(){
-        setFont(UBUNTULIGHT20.getFont());
+        setFont(Fuentes.UBUNTULIGHT20.getFont());
         setTabSize(2);
         setEditable(false);
         setOpaque(false);

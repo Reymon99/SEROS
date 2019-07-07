@@ -8,11 +8,14 @@ import gui.contenido.Boton;
 import gui.simulador.Factorial;
 import gui.simulador.Tda;
 import gui.editor.Editor;
-import tools.*;
+import tools.Archivos;
+import tools.Constrains;
+import tools.Fuentes;
+import tools.Paneles;
+import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import static tools.Paneles.*;
 public class Contenedor extends JPanel {
     /**
      * Contenedor de los paneles del proyecto
@@ -26,25 +29,25 @@ public class Contenedor extends JPanel {
      * Se añaden los paneles secundarios al principal<br>
      * Se agrega el evento para circular entre los paneles
      * @see Eventos#setPanel(JPanel)
-     * @see Paneles
+     * @see tools.Paneles
      */
     private void init() {
-        add(PRINCIPAL.toString(), new Principal());
-        add(TDA.toString(), tda());
-        add(SIMULADORTDA.toString(), new Tda());
-        add(MODULARIDAD.toString(), modularidad());
-        add(RECURSIVIDAD.toString(), recursividad());
-        add(EJERCICIOS_RECURSIVIDAD.toString(), ejerciciosRecursividad());
-        add(FACTORIAL.toString(),new Factorial());
-        add(ARREGLOS.toString(), arreglos());
-        add(NODOS.toString(), nodos());
-        add(ORDENAMIENTO.toString(), ordenamiento());
-        add(BUSQUEDA.toString(), busqueda());
-        add(PILAS.toString(), pilas());
-        add(COLAS.toString(), colas());
-        add(LISTAS_ENLAZADAS.toString(), listas());
-        add(ARBOLES.toString(), arboles());
-        add(GRAFOS.toString(), grafos());
+        add(Paneles.PRINCIPAL.toString(), new Principal());
+        add(Paneles.TDA.toString(), tda());
+        add(Paneles.SIMULADORTDA.toString(), new Tda());
+        add(Paneles.MODULARIDAD.toString(), modularidad());
+        add(Paneles.RECURSIVIDAD.toString(), recursividad());
+        add(Paneles.EJERCICIOS_RECURSIVIDAD.toString(), ejerciciosRecursividad());
+        add(Paneles.FACTORIAL.toString(),new Factorial());
+        add(Paneles.ARREGLOS.toString(), arreglos());
+        add(Paneles.NODOS.toString(), nodos());
+        add(Paneles.ORDENAMIENTO.toString(), ordenamiento());
+        add(Paneles.BUSQUEDA.toString(), busqueda());
+        add(Paneles.PILAS.toString(), pilas());
+        add(Paneles.COLAS.toString(), colas());
+        add(Paneles.LISTAS_ENLAZADAS.toString(), listas());
+        add(Paneles.ARBOLES.toString(), arboles());
+        add(Paneles.GRAFOS.toString(), grafos());
     }
     /**
      * Contenido del panel TDA
@@ -58,7 +61,7 @@ public class Contenedor extends JPanel {
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Eventos.show(SIMULADORTDA);
+                Eventos.show(Paneles.SIMULADORTDA);
                 Eventos.scroll(con.getPane(),0);
             }
         });
@@ -124,7 +127,7 @@ public class Contenedor extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.scroll(con.getPane(),0);
-                Eventos.show(EJERCICIOS_RECURSIVIDAD);
+                Eventos.show(Paneles.EJERCICIOS_RECURSIVIDAD);
             }
         });
         Constrains.addComp(new Texto(Text.RECURSIVIDAD.toString()), con.getContenido(), 0,0,1,1,1,1,new Insets(10, 25, 1, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
@@ -275,13 +278,13 @@ public class Contenedor extends JPanel {
         ejercicios.getBack().addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Eventos.show(RECURSIVIDAD);
+                Eventos.show(Paneles.RECURSIVIDAD);
             }
         });
         ejercicios.setBotones(new Boton(Archivos.image("/recourses/image/factorial.png", -1, -1), "Factorial", new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Eventos.show(FACTORIAL);
+                Eventos.show(Paneles.FACTORIAL);
             }
             @Override
             public void mouseEntered(MouseEvent e) {

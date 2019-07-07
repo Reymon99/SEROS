@@ -2,7 +2,6 @@ package gui.editor;
 import gui.contenido.scroll.ModernScrollPane;
 import tools.Archivos;
 import tools.Colour;
-import java.io.*;
 public class Editor extends ModernScrollPane{
     /**
      * Editor sintexico de código a utilizar en la interfaz grafica del proyecto

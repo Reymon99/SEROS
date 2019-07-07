@@ -5,11 +5,11 @@ import gui.editor.Editor;
 import gui.simulador.liezos.Graficador;
 import tools.Constrains;
 import tools.Paneles;
+import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import static tools.Text.*;
 public class Tda extends Simulador {
     private Editor code;
     private Tree punto;
@@ -23,7 +23,7 @@ public class Tda extends Simulador {
      */
     public Tda() {
         super(new Graficador());
-        getTexto().setText(SIMULADORTDA2.toString());
+        getTexto().setText(Text.SIMULADORTDA2.toString());
         addCodes(code=Editor.editor("/recourses/codes/tda/Punto.seros"),"Punto");
         punto=new Tree(new JTree.DynamicUtilTreeNode(new Dato("Punto","punto","",true),new Dato[]{new Dato("int","x",""),new Dato("int","y","")}));
         punto.expandNode(0);
@@ -56,7 +56,7 @@ public class Tda extends Simulador {
         ((Graficador)getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
         Eventos.enable(true,getClean());
         Eventos.enable(false,getNext(),getSend(),x,y,getPause(),getBack());
-        getTexto().setText(SIMULADORTDA1.toString());
+        getTexto().setText(Text.SIMULADORTDA1.toString());
         Eventos.variable(punto,0,x.getValue());
         Eventos.variable(punto,1,y.getValue());
         punto.expandNode(0);
@@ -77,7 +77,7 @@ public class Tda extends Simulador {
         Eventos.variable(punto,1,"");
         Eventos.enable(true,getSend(),x,y,getPause(),getBack());
         Eventos.enable(false,getClean(),getNext());
-        getTexto().setText(SIMULADORTDA2.toString());
+        getTexto().setText(Text.SIMULADORTDA2.toString());
         x.setValue(0);
         y.setValue(0);
         punto.expandNode(0);
@@ -93,7 +93,7 @@ public class Tda extends Simulador {
         code.drawLineIn(4);
         Eventos.variable(punto,0,x.getValue());
         Eventos.scroll(code,0);
-        getTexto().setText(SIMULADORTDA3.toString());
+        getTexto().setText(Text.SIMULADORTDA3.toString());
     }
     /**
      * Muestra los datos y códigos que se asignan al eje y
@@ -102,7 +102,7 @@ public class Tda extends Simulador {
         code.drawLineIn(5);
         Eventos.variable(punto,1,y.getValue());
         Eventos.scroll(code,0);
-        getTexto().setText(SIMULADORTDA4.toString());
+        getTexto().setText(Text.SIMULADORTDA4.toString());
     }
     /**
      * Grafica las coordenadas (x,y) muestra los códigos asignados a estos
@@ -112,7 +112,7 @@ public class Tda extends Simulador {
         Eventos.enable(false,getNext());
         Eventos.scroll(code,code.getVerticalScrollBar().getMaximum());
         code.drawLineIn(21);
-        getTexto().setText(SIMULADORTDA1.toString());
+        getTexto().setText(Text.SIMULADORTDA1.toString());
         ((Graficador)getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
     }
 }

@@ -10,7 +10,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Objects;
 public class About extends JDialog {
-    public static boolean show = true;
+    public static boolean show;
+    static {
+        About.show = true;
+    }
     /**
      * Ventana Acerca de Seros.<br>
      * Logo y descripción del proyecto.<br>
@@ -29,8 +32,7 @@ public class About extends JDialog {
         addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                About.show = true;
-                dispose();
+                exit();
             }
         });
     }
@@ -58,5 +60,12 @@ public class About extends JDialog {
         Constrains.addComp(seros1,getContentPane(),0,2,1,1,0,0,new Insets(5,15,5,15),GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(texto,getContentPane(),0,3,1,1,1,0,new Insets(15,15,3,15),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(label,getContentPane(),0,4,1,1,1,0,new Insets(0,15,30,15),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+    }
+    /**
+     * Acción salir del {@link About} y reiniciar su estado iniciar
+     */
+    private void exit(){
+        About.show = true;
+        dispose();
     }
 }

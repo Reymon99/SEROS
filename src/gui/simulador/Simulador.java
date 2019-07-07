@@ -1,5 +1,9 @@
 package gui.simulador;
-import gui.contenido.*;
+import gui.contenido.Boton;
+import gui.contenido.ButtonSimulador;
+import gui.contenido.Switch;
+import gui.contenido.Texto;
+import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.editor.Editor;
 import tools.Colour;
@@ -141,7 +145,7 @@ public abstract class Simulador extends JPanel {
      * Restaura los componente al origen
      */
     abstract protected void clean();
-    public void setIteraccion(int iteraccion) {
+    protected void setIteraccion(int iteraccion) {
         this.iteraccion = iteraccion;
     }
     /**
@@ -155,47 +159,47 @@ public abstract class Simulador extends JPanel {
      * Obtiene la cantidad pulsaciones del paso a paso del simulador
      * @return cantidad de pulsaciones
      */
-    public int getIteraccion() {
+    protected int getIteraccion() {
         return iteraccion;
     }
     /**
      * Obtiene le componente de paso a paso del simulador
      * @return elección del paso a paso del simulador
      */
-    public Switch getPause() {
+    protected Switch getPause() {
         return pause;
     }
     /**
      * Boton de envio de datos al simulador
      * @return envio de datos
      */
-    public ButtonSimulador getSend() {
+    protected ButtonSimulador getSend() {
         return send;
     }
     /**
      * Boton de reinicio del simulador
      * @return reinicio del simulador
      */
-    public ButtonSimulador getClean() {
+    protected ButtonSimulador getClean() {
         return clean;
     }
     /**
      * Boton de paso a paso del simulador
      * @return boton del paso a paso
      */
-    public ButtonSimulador getNext() {
+    protected ButtonSimulador getNext() {
         return next;
     }
     /**
      * Incrementa a paso uno las pulsaciones del paso a paso del simulador en la ejecución
      */
-    public void incrementIteraccion(){
+    protected void incrementIteraccion(){
         iteraccion++;
     }
     /**
      * Decrementa a paso uno las pulsaciones del paso a paso del simulador en la ejecución
      */
-    public void decrementoIteraccion(){
+    protected void decrementoIteraccion(){
         iteraccion--;
     }
 }
