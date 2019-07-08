@@ -32,13 +32,13 @@ public class Contenedor extends JPanel {
      * @see tools.Paneles
      */
     private void init() {
+        add(Paneles.FACTORIAL.toString(),new Factorial());
         add(Paneles.PRINCIPAL.toString(), new Principal());
         add(Paneles.TDA.toString(), tda());
         add(Paneles.SIMULADORTDA.toString(), new Tda());
         add(Paneles.MODULARIDAD.toString(), modularidad());
         add(Paneles.RECURSIVIDAD.toString(), recursividad());
         add(Paneles.EJERCICIOS_RECURSIVIDAD.toString(), ejerciciosRecursividad());
-        add(Paneles.FACTORIAL.toString(),new Factorial());
         add(Paneles.ARREGLOS.toString(), arreglos());
         add(Paneles.NODOS.toString(), nodos());
         add(Paneles.ORDENAMIENTO.toString(), ordenamiento());
@@ -68,12 +68,12 @@ public class Contenedor extends JPanel {
         JLabel formula=new JLabel(Text.FORMULATDA.toString(),SwingConstants.CENTER);
         formula.setFont(Fuentes.PURISA18.getFont());
         formula.setOpaque(false);
-        Constrains.addComp(new Texto(Text.TDA.toString()), con.getContenido(), 0, 0, 1, 1, 1,1, new Insets(10, 25, 15, 12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(Editor.editor("/recourses/codes/tda/Punto.seros"),con.getContenido(),0,1,1,1,0,0,new Insets(5,5,5,5),GridBagConstraints.CENTER, GridBagConstraints.NONE);
-        Constrains.addComp(new Texto(Text.TDA1.toString()), con.getContenido(),0,2,1,1,1,1,new Insets(10,25,3,12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(new Texto(Text.TDA2.toString()), con.getContenido(),0,3,1,1,1,1,new Insets(3,40,3,12), GridBagConstraints.NORTHEAST,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(new Texto(Text.TDA3.toString()), con.getContenido(),0,4,1,1,1,1,new Insets(5,25,5,12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(formula, con.getContenido(),0,5,1,1,1,1,new Insets(10,25,5,25), GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addComp(new Texto(Text.TDA.toString()), con.getContenido(), new Rectangle(0, 0, 1, 1), 1,1, new Insets(10, 25, 15, 12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(Editor.editor("/recourses/codes/tda/Punto.seros"),con.getContenido(),new Rectangle(0,1,1,1), 0,0,new Insets(5,5,5,5),GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addComp(new Texto(Text.TDA1.toString()), con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(10,25,3,12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.TDA2.toString()), con.getContenido(),new Rectangle(0,3,1,1),1,1,new Insets(3,40,3,12), GridBagConstraints.NORTHEAST,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.TDA3.toString()), con.getContenido(),new Rectangle(0,4,1,1), 1,1,new Insets(5,25,5,12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(formula, con.getContenido(),new Rectangle(0,5,1,1), 1,1,new Insets(10,25,5,25), GridBagConstraints.CENTER,GridBagConstraints.NONE);
         return con;
     }
     /**
@@ -90,8 +90,8 @@ public class Contenedor extends JPanel {
                 Eventos.scroll(con.getPane(),0);
             }
         });
-        Constrains.addComp(new Texto(Text.MODULARIDAD.toString()),con.getContenido(),0,0,1,1,1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(new Texto(Text.MODULARIDAD1.toString()),con.getContenido(),0,1,1,1,1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.MODULARIDAD.toString()),con.getContenido(),new Rectangle(0,0,1,1), 1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.MODULARIDAD1.toString()),con.getContenido(),new Rectangle(0,1,1,1),1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         return con;
     }
     /**
@@ -130,8 +130,8 @@ public class Contenedor extends JPanel {
                 Eventos.show(Paneles.EJERCICIOS_RECURSIVIDAD);
             }
         });
-        Constrains.addComp(new Texto(Text.RECURSIVIDAD.toString()), con.getContenido(), 0,0,1,1,1,1,new Insets(10, 25, 1, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(editor, con.getContenido(),0,1,1,1,0.2,1,new Insets(2,25,180,25), GridBagConstraints.NORTH,GridBagConstraints.NONE);
+        Constrains.addComp(new Texto(Text.RECURSIVIDAD.toString()), con.getContenido(), new Rectangle(0,0,1,1), 1,1,new Insets(10, 25, 1, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(editor, con.getContenido(),new Rectangle(0,1,1,1), 0.2,1,new Insets(2,25,180,25), GridBagConstraints.NORTH,GridBagConstraints.NONE);
         return con;
     }
     /**
@@ -164,9 +164,9 @@ public class Contenedor extends JPanel {
                 Eventos.scroll(con.getPane(),0);
             }
         });
-        Constrains.addComp(new Texto(Text.NODOS.toString()),con.getContenido(),0,0,1,1,1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(new Texto(Text.NODOS1.toString()),con.getContenido(),0,2,1,1,1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(new Texto(Text.NODOS2.toString()),con.getContenido(),0,4,1,1,1,1,new Insets(10, 25, 5, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.NODOS.toString()),con.getContenido(),new Rectangle(0,0,1,1), 1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.NODOS1.toString()),con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.NODOS2.toString()),con.getContenido(),new Rectangle(0,4,1,1), 1,1,new Insets(10, 25, 5, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         return con;
     }
     /**
@@ -247,9 +247,9 @@ public class Contenedor extends JPanel {
                 Eventos.scroll(con.getPane(),0);
             }
         });
-        Constrains.addComp(new Texto(Text.ARREGLOS.toString()),con.getContenido(),0,0,1,1,1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(new Texto(Text.ARREGLOS1.toString()),con.getContenido(),0,2,1,1,1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(new Texto(Text.ARREGLOS2.toString()),con.getContenido(),0,4,1,1,1,1,new Insets(10, 25, 5, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.ARREGLOS.toString()),con.getContenido(),new Rectangle(0,0,1,1),1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.ARREGLOS1.toString()),con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.ARREGLOS2.toString()),con.getContenido(),new Rectangle(0,4,1,1),1,1,new Insets(10, 25, 5, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         return con;
     }
     /**

@@ -55,13 +55,14 @@ public class Factorial extends Simulador {
             }
         });
         getNext().addActionListener(e -> iteracion1());
-        Constrains.addCompX(number, (Container) getComponent(),0,0,1,1,1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(producto,(Container) getComponent(),0,1,1,1,1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(valorI,getPanel(),1,0,2,1,1,new Insets(8,80,5,5), GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getSend(),getPanel(),3,0,2,1,1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getPause(),getPanel(),1,1,1,1,1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
-        Constrains.addCompX(getNext(),getPanel(),2,1,2,1,1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getClean(),getPanel(),4,1,1,1,1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(number, (Container) getComponent(),new Rectangle(0,0,1,1),1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(producto,(Container) getComponent(),new Rectangle(0,1,1,1),1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(valorI,getPanel(),new Rectangle(1,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
+        Constrains.addCompX(getSend(),getPanel(),new Rectangle(2,0,1,1),1,new Insets(10,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getPause(),getPanel(),new Rectangle(3,0,1,1),1,new Insets(10,5,5,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addCompX(getCodigo(),getPanel(),new Rectangle(3,1,1,1),1,new Insets(5,8,10,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addCompX(getNext(),getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,5,10,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getClean(),getPanel(),new Rectangle(1,1,1,1),1,new Insets(5,80,10,5),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
     }
     @Override
     protected void iteracion0() {
@@ -74,6 +75,62 @@ public class Factorial extends Simulador {
     }
     @Override
     protected void iteracion1() {
+        if (getCodigo().isOnOff()) stepToStepCode();
+        else stepToStep();
+    }
+    @Override
+    protected void clean() {
+        getTexto().setText(FACTORIAL.toString());
+        Eventos.variable(variaI,-1,"");
+        Eventos.enable(true,getSend(),valorI,getPause(),getBack());
+        Eventos.enable(false,getClean(),getNext());
+        getPause().setOnOff(false);
+        valorI.setValue(0);
+        setIteraccion(0);
+        Eventos.scroll(code,0);
+        code.setLine(false);
+        number.setText("0");
+        producto.setText("n!    =    ");
+        decremento=true;
+    }
+    /**
+     * Genera el factorial de n
+     * @param i número a dar el factorial
+     * @return factorial de n
+     */
+    private long fac(int i){
+        return (i==0 || i==1) ? 1 : i*fac(i-1);
+    }
+    /**
+     * Genera la multiplicación de un factorial n
+     * @param i número a generar la multiplicación del factorial
+     * @return multiplicación recursiva del factorial n
+     */
+    private String producto(int i){
+        return (i==0 || i==1) ? "1" : i+" * "+producto(i-1);
+    }
+    /**
+     * Genera la multiplicación de un número n hasta el establecido
+     * @param i valor inicial
+     * @param valor valor final
+     * @return multiplicación recursiva de un valor inicial al valor final
+     */
+    private String producto(int i,int valor){
+        return i==valor ? String.valueOf(valor) : i+" * "+producto(i-1,valor);
+    }
+    /**
+     * Genera la multiplicación de un número n hasta el factorial del valor limite
+     * @param i valor inicial
+     * @param fac valor a dar factorial
+     * @return multiplicación recursiva de un valor inicial al factorial del valor final
+     */
+    private String productofac(int i,int fac){
+        return i==fac ? Eventos.formatNumber(fac(fac),patron) : i+" * "+productofac(i-1,fac);
+    }
+    private void stepToStep(){
+        System.out.println("Joder");
+    }
+    private void stepToStepCode(){
         Eventos.enable(false,valorI,getClean(),getNext(),getSend(),getPause(),getBack());
         int valor=Integer.parseInt(valorI.getValue().toString())-getIteraccion();
         System.out.println(valor);
@@ -144,54 +201,5 @@ public class Factorial extends Simulador {
                 lines.start();
             }
         }
-    }
-    @Override
-    protected void clean() {
-        getTexto().setText(FACTORIAL.toString());
-        Eventos.variable(variaI,-1,"");
-        Eventos.enable(true,getSend(),valorI,getPause(),getBack());
-        Eventos.enable(false,getClean(),getNext());
-        getPause().setOnOff(false);
-        valorI.setValue(0);
-        setIteraccion(0);
-        Eventos.scroll(code,0);
-        code.setLine(false);
-        number.setText("0");
-        producto.setText("n!    =    ");
-        decremento=true;
-    }
-    /**
-     * Genera el factorial de n
-     * @param i número a dar el factorial
-     * @return factorial de n
-     */
-    private long fac(int i){
-        return (i==0 || i==1) ? 1 : i*fac(i-1);
-    }
-    /**
-     * Genera la multiplicación de un factorial n
-     * @param i número a generar la multiplicación del factorial
-     * @return multiplicación recursiva del factorial n
-     */
-    private String producto(int i){
-        return (i==0 || i==1) ? "1" : i+" * "+producto(i-1);
-    }
-    /**
-     * Genera la multiplicación de un número n hasta el establecido
-     * @param i valor inicial
-     * @param valor valor final
-     * @return multiplicación recursiva de un valor inicial al valor final
-     */
-    private String producto(int i,int valor){
-        return i==valor ? String.valueOf(valor) : i+" * "+producto(i-1,valor);
-    }
-    /**
-     * Genera la multiplicación de un número n hasta el factorial del valor limite
-     * @param i valor inicial
-     * @param fac valor a dar factorial
-     * @return multiplicación recursiva de un valor inicial al factorial del valor final
-     */
-    private String productofac(int i,int fac){
-        return i==fac ? Eventos.formatNumber(fac(fac),patron) : i+" * "+productofac(i-1,fac);
     }
 }

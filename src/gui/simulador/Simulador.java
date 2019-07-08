@@ -12,6 +12,8 @@ import tools.Archivos;
 import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 public abstract class Simulador extends JPanel {
     private Component component;
     private Texto texto;
@@ -22,6 +24,7 @@ public abstract class Simulador extends JPanel {
     public static Dimension canvasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.8));
     private int iteraccion;
     private Switch pause;
+    private Switch codigo;
     private ButtonSimulador send;
     private ButtonSimulador clean;
     private ButtonSimulador next;
@@ -48,6 +51,7 @@ public abstract class Simulador extends JPanel {
      * Instanciacion y acomodamiento de los componentes del panel
      */
     private void init(){
+        codigo=new Switch("Visualización del Código",false);
         pause=new Switch("Paso a paso",false);
         send=new ButtonSimulador("Enviar",true);
         clean=new ButtonSimulador("Limpiar",false);
@@ -66,14 +70,22 @@ public abstract class Simulador extends JPanel {
             else iteracion0();
         });
         next.addActionListener(e -> iteracion1());
+        codigo.setModificable(false);
+        pause.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                codigo.setModificable(pause.isOnOff());
+                if (!pause.isOnOff() && codigo.isOnOff()) codigo.setOnOff(pause.isOnOff());
+            }
+        });
         Insets insets=new Insets(0,0,0,0);
-        Constrains.addComp(component,this,0,0,1,4,0,0,insets,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
-        Constrains.addComp(back,panel,0,0,1,2,1,1,new Insets(15,15,15,15),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addComp(panel,this,0,4,1,1,1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addCompX(desc,this,1,0,1,1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompIy((texto=new Texto(4,55)),this,1,1,1,1,1,0,insets,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,1,2,1,1,1,0,insets,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addComp((codigos=new JTabbedPane(JTabbedPane.TOP)),this,1,3,1,2,1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp(component,this,new Rectangle(0,0,1,4),0,0,insets,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
+        Constrains.addComp(back,panel,new Rectangle(0,0,1,2),1,1,new Insets(15,15,15,15),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addComp(panel,this,new Rectangle(0,4,1,1),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addCompX(desc,this,new Rectangle(1,0,1,1),1,insets,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompIy((texto=new Texto(4,55)),this,new Rectangle(1,1,1,1),1,0,insets,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,new Rectangle(1,2,1,1),1,0,insets,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp((codigos=new JTabbedPane(JTabbedPane.TOP)),this,new Rectangle(1,3,1,2),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
     }
     /**
      * Notificaciones
@@ -87,7 +99,7 @@ public abstract class Simulador extends JPanel {
      * @param trees {@link Tree} a agregar
      */
     public void setDatos(Tree... trees){
-        for (int i = 0; i < trees.length; i++) Constrains.addComp(trees[i],datos,0,i,1,1,1,1,new Insets(i==0 ? 7:2,10,1,5),GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        for (int i = 0; i < trees.length; i++) Constrains.addComp(trees[i],datos,new Rectangle(0,i,1,1),1,1,new Insets(i==0 ? 7:2,10,1,5),GridBagConstraints.CENTER,GridBagConstraints.BOTH);
     }
     /**
      * panel de comandos del simulador
@@ -163,7 +175,7 @@ public abstract class Simulador extends JPanel {
         return iteraccion;
     }
     /**
-     * Obtiene le componente de paso a paso del simulador
+     * Obtiene el componente de paso a paso del simulador
      * @return elección del paso a paso del simulador
      */
     protected Switch getPause() {
@@ -201,5 +213,12 @@ public abstract class Simulador extends JPanel {
      */
     protected void decrementoIteraccion(){
         iteraccion--;
+    }
+    /**
+     * Obtiene el componente de visualización del código en el paso a paso en el simulador
+     * @return visualización del paso a paso
+     */
+    public Switch getCodigo() {
+        return codigo;
     }
 }

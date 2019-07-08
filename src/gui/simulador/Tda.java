@@ -45,11 +45,11 @@ public class Tda extends Simulador {
                 clean();
             }
         });
-        Constrains.addCompX(box,getPanel(),1,0,2,1,1,new Insets(3,80,5,5), GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getSend(),getPanel(),3,0,2,1,1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getPause(),getPanel(),1,1,1,1,1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
-        Constrains.addCompX(getNext(),getPanel(),2,1,2,1,1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getClean(),getPanel(),4,1,1,1,1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(box,getPanel(),new Rectangle(1,0,2,1),1,new Insets(3,80,5,5), GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getSend(),getPanel(),new Rectangle(3,0,2,1),1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getPause(),getPanel(),new Rectangle(1,1,1,1),1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
+        Constrains.addCompX(getNext(),getPanel(),new Rectangle(2,1,2,1),1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getClean(),getPanel(),new Rectangle(4,1,1,1),1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
     }
     @Override
     protected void iteracion0() {
