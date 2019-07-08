@@ -1,8 +1,13 @@
 package gui.contenido;
+import eventos.Eventos;
 import tools.Archivos;
 import tools.Constrains;
+import tools.Paneles;
+import tools.Text;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 public class Ejercicios extends Lienzo {
     private Boton[] botones;
     private Boton back;
@@ -19,14 +24,19 @@ public class Ejercicios extends Lienzo {
      * Inicialización y acomodamiento de los componentes en el panel
       */
     private void init() {
-        back=new Boton(Archivos.image("/recourses/image/back.png",48,48));
-        texto=new Texto("",8,55);
+        Boton home=new Boton(Text.VENTANAPRINCIPAL.toString(), Archivos.image("/recourses/image/home.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.PRINCIPAL);
+            }
+        });
         panel=new JPanel(new FlowLayout(FlowLayout.CENTER,50,20));
         panel.setOpaque(false);
         panel.setPreferredSize(new Dimension(1000,150));
-        Constrains.addComp(panel,this,new Rectangle(0,0,1,1),0.8,1,new Insets(70,40,15,40),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(texto,this,new Rectangle(0,1,1,1),1,1,new Insets(10,20,25,20),GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addComp(back,this,new Rectangle(0,2,1,1),0,0,new Insets(10,7,10,2), GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
+        Constrains.addComp(panel,this,new Rectangle(0,0,2,1),0.8,1,new Insets(70,40,15,40),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(texto=new Texto("",8,55),this,new Rectangle(0,1,2,1),1,1,new Insets(10,20,25,20),GridBagConstraints.SOUTH,GridBagConstraints.NONE);
+        Constrains.addComp(back=new Boton(Archivos.image("/recourses/image/back.png",-1,-1)),this,new Rectangle(0,2,1,1),0,0,new Insets(10,7,10,5), GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
+        Constrains.addComp(home,this,new Rectangle(1,2,1,1),0,0,new Insets(10,5,25,5),GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
     }
     /**
      * Se añaden los items al panel si no está vacia la lista de botones

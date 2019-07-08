@@ -37,6 +37,7 @@ public class Factorial extends Simulador {
         super();
         decremento=true;
         lines=null;
+        getBack().setToolTipText("Panel de Ejercicios de Recursividad");
         getTexto().setText(FACTORIAL.toString());
         addCodes(code=Editor.editor("/recourses/codes/recursividad/Factorial.seros"),"Fibonacci");
         setDatos(variaI=new Tree(new Dato("int","n","")));
@@ -57,12 +58,12 @@ public class Factorial extends Simulador {
         getNext().addActionListener(e -> iteracion1());
         Constrains.addCompX(number, (Container) getComponent(),new Rectangle(0,0,1,1),1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(producto,(Container) getComponent(),new Rectangle(0,1,1,1),1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(valorI,getPanel(),new Rectangle(1,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
-        Constrains.addCompX(getSend(),getPanel(),new Rectangle(2,0,1,1),1,new Insets(10,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getPause(),getPanel(),new Rectangle(3,0,1,1),1,new Insets(10,5,5,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addCompX(getCodigo(),getPanel(),new Rectangle(3,1,1,1),1,new Insets(5,8,10,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addCompX(getNext(),getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,5,10,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getClean(),getPanel(),new Rectangle(1,1,1,1),1,new Insets(5,80,10,5),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(valorI,getPanel(),new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
+        Constrains.addCompX(getSend(),getPanel(),new Rectangle(3,0,1,1),1,new Insets(10,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getPause(),getPanel(),new Rectangle(4,0,1,1),1,new Insets(10,5,5,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addCompX(getCodigo(),getPanel(),new Rectangle(4,1,1,1),1,new Insets(5,8,10,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addCompX(getNext(),getPanel(),new Rectangle(3,1,1,1),1,new Insets(5,5,10,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getClean(),getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,80,10,5),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
     }
     @Override
     protected void iteracion0() {

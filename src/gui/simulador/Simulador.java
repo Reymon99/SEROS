@@ -1,4 +1,5 @@
 package gui.simulador;
+import eventos.Eventos;
 import gui.contenido.Boton;
 import gui.contenido.ButtonSimulador;
 import gui.contenido.Switch;
@@ -6,10 +7,12 @@ import gui.contenido.Texto;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.editor.Editor;
-import tools.Colour;
-import tools.Fuentes;
 import tools.Archivos;
+import tools.Colour;
 import tools.Constrains;
+import tools.Fuentes;
+import tools.Paneles;
+import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -56,8 +59,14 @@ public abstract class Simulador extends JPanel {
         send=new ButtonSimulador("Enviar",true);
         clean=new ButtonSimulador("Limpiar",false);
         next=new ButtonSimulador("Siguiente",false);
-        back=new Boton(Archivos.image("/recourses/image/back.png",48,48));
+        back=new Boton(Archivos.image("/recourses/image/back.png",-1,-1));
         panel=new JPanel(new GridBagLayout());
+        Boton home=new Boton(Text.VENTANAPRINCIPAL.toString(), Archivos.image("/recourses/image/home.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.PRINCIPAL);
+            }
+        });
         panel.setBackground(Colour.GRISPANEL.getColor());
         JLabel desc=new JLabel("Descripción");
         desc.setFont(Fuentes.UBUNTULIGHT14.getFont());
@@ -80,7 +89,8 @@ public abstract class Simulador extends JPanel {
         });
         Insets insets=new Insets(0,0,0,0);
         Constrains.addComp(component,this,new Rectangle(0,0,1,4),0,0,insets,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
-        Constrains.addComp(back,panel,new Rectangle(0,0,1,2),1,1,new Insets(15,15,15,15),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addComp(back,panel,new Rectangle(0,0,1,2),0,0,new Insets(15,15,15,5),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addComp(home,panel,new Rectangle(1,0,1,2),0,0,new Insets(20,5,20,15),GridBagConstraints.WEST,GridBagConstraints.NONE);
         Constrains.addComp(panel,this,new Rectangle(0,4,1,1),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompX(desc,this,new Rectangle(1,0,1,1),1,insets,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompIy((texto=new Texto(4,55)),this,new Rectangle(1,1,1,1),1,0,insets,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);

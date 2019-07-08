@@ -123,6 +123,7 @@ public class Contenedor extends JPanel {
             editor.append(n,Fuentes.PURISA22.getFont());
             if (!n.equals(recur[recur.length-1])) editor.append("\u279c",Fuentes.SEGOEUISYMBOL22.getFont());
         }
+        con.getNext().setToolTipText("Panel de Ejercicios de Recursividad");
         con.getNext().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -275,6 +276,7 @@ public class Contenedor extends JPanel {
      */
     private Ejercicios ejerciciosRecursividad(){
         Ejercicios ejercicios=new Ejercicios();
+        ejercicios.getBack().setToolTipText("Recursividad");
         ejercicios.getBack().addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

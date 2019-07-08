@@ -23,6 +23,7 @@ public class Tda extends Simulador {
      */
     public Tda() {
         super(new Graficador());
+        getBack().setToolTipText("Tipos de Datos Abstratos");
         getTexto().setText(Text.SIMULADORTDA2.toString());
         addCodes(code=Editor.editor("/recourses/codes/tda/Punto.seros"),"Punto");
         punto=new Tree(new JTree.DynamicUtilTreeNode(new Dato("Punto","punto","",true),new Dato[]{new Dato("int","x",""),new Dato("int","y","")}));
@@ -45,11 +46,11 @@ public class Tda extends Simulador {
                 clean();
             }
         });
-        Constrains.addCompX(box,getPanel(),new Rectangle(1,0,2,1),1,new Insets(3,80,5,5), GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getSend(),getPanel(),new Rectangle(3,0,2,1),1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getPause(),getPanel(),new Rectangle(1,1,1,1),1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
-        Constrains.addCompX(getNext(),getPanel(),new Rectangle(2,1,2,1),1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getClean(),getPanel(),new Rectangle(4,1,1,1),1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(box,getPanel(),new Rectangle(2,0,2,1),1,new Insets(3,80,5,5), GridBagConstraints.EAST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getSend(),getPanel(),new Rectangle(4,0,2,1),1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getPause(),getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
+        Constrains.addCompX(getNext(),getPanel(),new Rectangle(3,1,2,1),1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(getClean(),getPanel(),new Rectangle(5,1,1,1),1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
     }
     @Override
     protected void iteracion0() {
