@@ -69,8 +69,69 @@ public class Factorial extends Simulador {
     }
     @Override
     protected void iteracion1() {
-        if (getCodigo().isOnOff()) stepToStepCode();
-        else stepToStep();
+        Eventos.enable(false,valorI,getClean(),getNext(),getSend(),getPause(),getBack(),getCodigo());
+        int valor=Integer.parseInt(valorI.getValue().toString())-getIteraccion();
+        System.out.println(valor);
+        Eventos.variable(variaI,-1,valor);
+        if (Eventos.contains(valor,0,1)) {
+            LineLocation[] lineLocations = !getCodigo().isOnOff() ? null : new LineLocation[]{new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,3,Text.FACTORIAL4.toString())};
+            if (Eventos.contains(Integer.parseInt(valorI.getValue().toString()),0,1)) {//caso terminal
+                if (getCodigo().isOnOff()) {
+                    new Lines(this,lineLocations) {
+                        @Override
+                        public void actions() {
+                            casoBaseTerminal(valor);
+                        }
+                    };
+                }
+                else casoBaseTerminal(valor);
+            } else {
+                if (getCodigo().isOnOff()) {
+                    if (lines!=null && lines.isAlive()) lines.detener();
+                    lines=new Lines(this,lineLocations){
+                        @Override
+                        public void actions() {
+                            casoBase(valor,false);
+                        }
+                    };
+                    lines.start();
+                }
+                else casoBase(valor,true);
+            }
+        } else if (getIteraccion()==0 && !decremento){
+            if (getCodigo().isOnOff()) {
+                if (lines!=null && lines.isAlive()) lines.detener();
+                lines=new Lines(this,new LineLocation(0,5,Text.FACTORIAL6.toString())){
+                    @Override
+                    public void actions() {
+                        casoTerminal(valor);
+                    }
+                };
+                lines.start();
+            } else casoTerminal(valor);
+        } else if (!decremento){
+            if (getCodigo().isOnOff()) {
+                if (lines!=null && lines.isAlive()) lines.detener();
+                lines=new Lines(this,new LineLocation(0,5,Text.FACTORIAL7.toString(),false)){
+                    @Override
+                    public void actions() {
+                        casoIncrementativo(valor,false);
+                    }
+                };
+                lines.start();
+            } else casoIncrementativo(valor,true);
+        } else {
+            if (getCodigo().isOnOff()) {
+                if (lines!=null && lines.isAlive()) lines.detener();
+                lines=new Lines(this,new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,4,Text.FACTORIAL2.toString()),new LineLocation(0,5,null,false)){
+                    @Override
+                    public void actions() {
+                        casoDecrementativo(valor);
+                    }
+                };
+                lines.start();
+            } else casoDecrementativo(valor);
+        }
     }
     @Override
     protected void clean() {
@@ -122,85 +183,6 @@ public class Factorial extends Simulador {
         return i==fac ? Eventos.formatNumber(fac(fac),patron) : i+" * "+productofac(i-1,fac);
     }
     /**
-     * Simulación paso a paso del simulador
-     */
-    private void stepToStep(){
-        Eventos.enable(false,valorI,getClean(),getNext(),getSend(),getPause(),getBack(),getCodigo());
-        int valor=Integer.parseInt(valorI.getValue().toString())-getIteraccion();
-        Eventos.variable(variaI,-1,valor);
-        if (Eventos.contains(valor,0,1)) {
-            if (Eventos.contains(Integer.parseInt(valorI.getValue().toString()),0,1)) {//caso terminal
-                casoBaseTerminal(valor);
-            } else {
-                casoBase(valor,true);
-            }
-        } else if (getIteraccion()==0 && !decremento) {
-            casoTerminal(valor);
-        } else if (!decremento){
-            casoIncrementativo(valor,true);
-        } else{
-            casoDecrementativo(valor);
-        }
-    }
-    /**
-     * Simulación paso a paso del simulador con código integrado
-     */
-    private void stepToStepCode(){
-        Eventos.enable(false,valorI,getClean(),getNext(),getSend(),getPause(),getBack(),getCodigo());
-        int valor=Integer.parseInt(valorI.getValue().toString())-getIteraccion();
-        System.out.println(valor);
-        Eventos.variable(variaI,-1,valor);
-        if (Eventos.contains(valor,0,1)) {
-            LineLocation[] lineLocations=new LineLocation[]{new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,3,Text.FACTORIAL4.toString())};
-            if (Eventos.contains(Integer.parseInt(valorI.getValue().toString()),0,1)) {//caso terminal
-                new Lines(this,lineLocations) {
-                    @Override
-                    public void actions() {
-                        casoBaseTerminal(valor);
-                    }
-                };
-            } else {//caso incrementativo
-                if (lines!=null && lines.isAlive()) lines.detener();
-                lines=new Lines(this,lineLocations){
-                    @Override
-                    public void actions() {
-                        casoBase(valor,false);
-                    }
-                };
-                lines.start();
-            }
-        } else {
-            if (getIteraccion()==0 && !decremento) {//caso terminal
-                if (lines!=null && lines.isAlive()) lines.detener();
-                lines=new Lines(this,new LineLocation(0,5,Text.FACTORIAL6.toString())){
-                    @Override
-                    public void actions() {
-                        casoTerminal(valor);
-                    }
-                };
-                lines.start();
-            } else if (!decremento) {//caso incrementativo
-                if (lines!=null && lines.isAlive()) lines.detener();
-                lines=new Lines(this,new LineLocation(0,5,Text.FACTORIAL7.toString(),false)){
-                    @Override
-                    public void actions() {
-                        casoIncrementativo(valor,false);
-                    }
-                };
-                lines.start();
-            } else {//caso decrementativo
-                if (lines!=null && lines.isAlive()) lines.detener();
-                lines=new Lines(this,new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,4,Text.FACTORIAL2.toString()),new LineLocation(0,5,null,false)){
-                    @Override
-                    public void actions() {
-                        casoDecrementativo(valor);
-                    }
-                };
-                lines.start();
-            }
-        }
-    }
-    /**
      * Cancatena el factorial n con su producto
      * @param producto producto del factorial n
      * @return factorial con su respectivo producto
@@ -208,12 +190,21 @@ public class Factorial extends Simulador {
     private String mulFac(String producto){
         return valorI.getValue().toString()+"!    =    "+producto;
     }
+    /**
+     * Acción del caso base terminal
+     * @param valor valor n a trabajar
+     */
     private void casoBaseTerminal(int valor){
         getTexto().setText(Text.FACTORIAL1.toString());
         number.setText(String.valueOf(fac(valor)));
         producto.setText(mulFac(producto(valor)));
         Eventos.enable(true, getClean());
     }
+    /**
+     * Acción del caso base para decrementar la iteracción
+     * @param valor valor n a trabajar
+     * @param found texto a mostrar
+     */
     private void casoBase(int valor,boolean found){
         getTexto().setText(found ? Text.FACTORIAL4.toString() : Text.FACTORIAL5.toString());
         number.setText(String.valueOf(fac(valor)));
@@ -222,12 +213,21 @@ public class Factorial extends Simulador {
         decremento=false;
         Eventos.enable(true, getNext());
     }
+    /**
+     * Acción caso terminal
+     * @param valor valor n a trabajar
+     */
     private void casoTerminal(int valor){
         getTexto().setText(Text.FACTORIAL1.toString());
         number.setText(Eventos.formatNumber(fac(valor),patron));
         producto.setText(mulFac(productofac(Integer.parseInt(valorI.getValue().toString()),valor)));
         Eventos.enable(true,getClean());
     }
+    /**
+     * Acción caso a incrementar
+     * @param valor valor n a trabajar
+     * @param mult texto a mostrar
+     */
     private void casoIncrementativo(int valor,boolean mult){
         if (mult) getTexto().setText(Text.FACTORIAL7.toString());
         number.setText(Eventos.formatNumber(fac(valor),patron));
@@ -235,6 +235,10 @@ public class Factorial extends Simulador {
         decrementoIteraccion();
         Eventos.enable(true,getNext());
     }
+    /**
+     * Acción caso a decrementar
+     * @param valor valor n a trabajar
+     */
     private void casoDecrementativo(int valor){
         number.setText("0");
         producto.setText(mulFac(producto(Integer.parseInt(valorI.getValue().toString()),valor)));

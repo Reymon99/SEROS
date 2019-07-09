@@ -75,6 +75,7 @@ public abstract class Simulador extends JPanel {
         desc.setOpaque(true);
         clean.addActionListener(e -> clean());
         send.addActionListener(e -> {
+            System.out.println("e.getActionCommand() = " + e.getActionCommand());
             if (pause.isOnOff()) iteracion1();
             else iteracion0();
         });
