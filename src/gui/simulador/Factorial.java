@@ -8,18 +8,11 @@ import tools.Colour;
 import tools.Constrains;
 import tools.Fuentes;
 import tools.Paneles;
+import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import static tools.Text.FACTORIAL;
-import static tools.Text.FACTORIAL1;
-import static tools.Text.FACTORIAL2;
-import static tools.Text.FACTORIAL3;
-import static tools.Text.FACTORIAL4;
-import static tools.Text.FACTORIAL5;
-import static tools.Text.FACTORIAL6;
-import static tools.Text.FACTORIAL7;
 public class Factorial extends Simulador {
     private Editor code;
     private Tree variaI;
@@ -38,7 +31,7 @@ public class Factorial extends Simulador {
         decremento=true;
         lines=null;
         getBack().setToolTipText("Panel de Ejercicios de Recursividad");
-        getTexto().setText(FACTORIAL.toString());
+        getTexto().setText(Text.FACTORIAL.toString());
         addCodes(code=Editor.editor("/recourses/codes/recursividad/Factorial.seros"),"Fibonacci");
         setDatos(variaI=new Tree(new Dato("int","n","")));
         valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
@@ -67,8 +60,8 @@ public class Factorial extends Simulador {
     }
     @Override
     protected void iteracion0() {
-        Eventos.enable(false,getNext(),getSend(),valorI,getPause(),getBack(),getClean());
-        getTexto().setText(FACTORIAL1.toString());
+        Eventos.enable(false,getNext(),getSend(),valorI,getPause(),getBack(),getClean(),getCodigo());
+        getTexto().setText(Text.FACTORIAL1.toString());
         number.setText(Eventos.formatNumber(fac(Integer.parseInt(valorI.getValue().toString())),patron));
         producto.setText(valorI.getValue().toString()+"!    =    "+producto(Integer.parseInt(valorI.getValue().toString())));
         Eventos.variable(variaI,-1,valorI.getValue());
@@ -81,9 +74,9 @@ public class Factorial extends Simulador {
     }
     @Override
     protected void clean() {
-        getTexto().setText(FACTORIAL.toString());
+        getTexto().setText(Text.FACTORIAL.toString());
         Eventos.variable(variaI,-1,"");
-        Eventos.enable(true,getSend(),valorI,getPause(),getBack());
+        Eventos.enable(true,getSend(),valorI,getPause(),getBack(),getCodigo());
         Eventos.enable(false,getClean(),getNext());
         getPause().setOnOff(false);
         valorI.setValue(0);
@@ -128,23 +121,62 @@ public class Factorial extends Simulador {
     private String productofac(int i,int fac){
         return i==fac ? Eventos.formatNumber(fac(fac),patron) : i+" * "+productofac(i-1,fac);
     }
+    /**
+     * Simulación paso a paso del simulador
+     */
     private void stepToStep(){
-        System.out.println("Joder");
+        Eventos.enable(false,valorI,getClean(),getNext(),getSend(),getPause(),getBack(),getCodigo());
+        int valor=Integer.parseInt(valorI.getValue().toString())-getIteraccion();
+        Eventos.variable(variaI,-1,valor);
+        if (Eventos.contains(valor,0,1)) {
+            if (Eventos.contains(Integer.parseInt(valorI.getValue().toString()),0,1)) {//caso terminal
+                getTexto().setText(Text.FACTORIAL1.toString());
+                number.setText(String.valueOf(fac(valor)));
+                producto.setText(mulFac(producto(valor)));
+                Eventos.enable(true,getClean());
+            } else {
+                getTexto().setText(Text.FACTORIAL4.toString());
+                number.setText(String.valueOf(fac(valor)));
+                producto.setText(mulFac(producto(valor+getIteraccion())));
+                decrementoIteraccion();
+                decremento=false;
+                Eventos.enable(true,getNext());
+            }
+        } else if (getIteraccion()==0 && !decremento) {
+            getTexto().setText(Text.FACTORIAL1.toString());
+            number.setText(Eventos.formatNumber(fac(valor),patron));
+            producto.setText(mulFac(productofac(Integer.parseInt(valorI.getValue().toString()),valor)));
+            Eventos.enable(true,getClean());
+        } else if (!decremento){
+            getTexto().setText(Text.FACTORIAL7.toString());
+            number.setText(Eventos.formatNumber(fac(valor),patron));
+            producto.setText(mulFac(productofac(Integer.parseInt(valorI.getValue().toString()),valor)));
+            decrementoIteraccion();
+            Eventos.enable(true,getNext());
+        } else{
+            number.setText("0");
+            producto.setText(mulFac(producto(Integer.parseInt(valorI.getValue().toString()),valor)));
+            incrementIteraccion();
+            Eventos.enable(true,getNext());
+        }
     }
+    /**
+     * Simulación paso a paso del simulador con código integrado
+     */
     private void stepToStepCode(){
-        Eventos.enable(false,valorI,getClean(),getNext(),getSend(),getPause(),getBack());
+        Eventos.enable(false,valorI,getClean(),getNext(),getSend(),getPause(),getBack(),getCodigo());
         int valor=Integer.parseInt(valorI.getValue().toString())-getIteraccion();
         System.out.println(valor);
         Eventos.variable(variaI,-1,valor);
-        if (valor<=1) {
-            LineLocation[] lineLocations=new LineLocation[]{new LineLocation(0,1,null),new LineLocation(0,2,FACTORIAL3.toString()),new LineLocation(0,3,FACTORIAL4.toString())};
-            if (Integer.parseInt(valorI.getValue().toString())<=1) {//caso terminal
+        if (Eventos.contains(valor,0,1)) {
+            LineLocation[] lineLocations=new LineLocation[]{new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,3,Text.FACTORIAL4.toString())};
+            if (Eventos.contains(Integer.parseInt(valorI.getValue().toString()),0,1)) {//caso terminal
                 new Lines(this,lineLocations) {
                     @Override
                     public void actions() {
-                        getTexto().setText(FACTORIAL1.toString());
+                        getTexto().setText(Text.FACTORIAL1.toString());
                         number.setText(String.valueOf(fac(valor)));
-                        producto.setText(valorI.getValue().toString()+"!    =    "+producto(valor));
+                        producto.setText(mulFac(producto(valor)));
                         Eventos.enable(true, getClean());
                     }
                 };
@@ -153,9 +185,9 @@ public class Factorial extends Simulador {
                 lines=new Lines(this,lineLocations){
                     @Override
                     public void actions() {
-                        getTexto().setText(FACTORIAL5.toString());
+                        getTexto().setText(Text.FACTORIAL5.toString());
                         number.setText(String.valueOf(fac(valor)));
-                        producto.setText(valorI.getValue().toString()+"!    =    "+producto(valor+getIteraccion()));
+                        producto.setText(mulFac(producto(valor+getIteraccion())));
                         decrementoIteraccion();
                         decremento=false;
                         Eventos.enable(true, getNext());
@@ -166,10 +198,10 @@ public class Factorial extends Simulador {
         } else {
             if (getIteraccion()==0 && !decremento) {//caso terminal
                 if (lines!=null && lines.isAlive()) lines.detener();
-                lines=new Lines(this,new LineLocation(0,5,FACTORIAL6.toString())){
+                lines=new Lines(this,new LineLocation(0,5,Text.FACTORIAL6.toString())){
                     @Override
                     public void actions() {
-                        getTexto().setText(FACTORIAL1.toString());
+                        getTexto().setText(Text.FACTORIAL1.toString());
                         number.setText(Eventos.formatNumber(fac(valor),patron));
                         producto.setText(valorI.getValue().toString()+"!    =    "+productofac(Integer.parseInt(valorI.getValue().toString()),valor));
                         Eventos.enable(true,getClean());
@@ -178,11 +210,11 @@ public class Factorial extends Simulador {
                 lines.start();
             } else if (!decremento) {//caso incrementativo
                 if (lines!=null && lines.isAlive()) lines.detener();
-                lines=new Lines(this,new LineLocation(0,5,FACTORIAL7.toString(),false)){
+                lines=new Lines(this,new LineLocation(0,5,Text.FACTORIAL7.toString(),false)){
                     @Override
                     public void actions() {
                         number.setText(Eventos.formatNumber(fac(valor),patron));
-                        producto.setText(valorI.getValue().toString()+"!    =    "+productofac(Integer.parseInt(valorI.getValue().toString()),valor));
+                        producto.setText(mulFac(productofac(Integer.parseInt(valorI.getValue().toString()),valor)));
                         decrementoIteraccion();
                         Eventos.enable(true,getNext());
                     }
@@ -190,11 +222,11 @@ public class Factorial extends Simulador {
                 lines.start();
             } else {//caso decrementativo
                 if (lines!=null && lines.isAlive()) lines.detener();
-                lines=new Lines(this,new LineLocation(0,1,null),new LineLocation(0,2,FACTORIAL3.toString()),new LineLocation(0,4,FACTORIAL2.toString()),new LineLocation(0,5,null,false)){
+                lines=new Lines(this,new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,4,Text.FACTORIAL2.toString()),new LineLocation(0,5,null,false)){
                     @Override
                     public void actions() {
                         number.setText("0");
-                        producto.setText(valorI.getValue().toString()+"!    =    "+producto(Integer.parseInt(valorI.getValue().toString()),valor));
+                        producto.setText(mulFac(producto(Integer.parseInt(valorI.getValue().toString()),valor)));
                         incrementIteraccion();
                         Eventos.enable(true,getNext());
                     }
@@ -202,5 +234,13 @@ public class Factorial extends Simulador {
                 lines.start();
             }
         }
+    }
+    /**
+     * Cancatena el factorial n con su producto
+     * @param producto producto del factorial n
+     * @return factorial con su respectivo producto
+     */
+    private String mulFac(String producto){
+        return valorI.getValue().toString()+"!    =    "+producto;
     }
 }
