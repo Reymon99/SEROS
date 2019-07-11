@@ -24,8 +24,9 @@ public abstract class Simulador extends JPanel {
     private JTabbedPane codigos;
     private JPanel panel;
     private Boton back;
+    private Boton home;
     public static Dimension canvasSize=new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.8));
-    private int iteraccion;
+    private Integer iteraccion;
     private Switch pause;
     private Switch codigo;
     private ButtonSimulador send;
@@ -56,30 +57,26 @@ public abstract class Simulador extends JPanel {
     private void init(){
         codigo=new Switch("Visualización del Código",false);
         pause=new Switch("Paso a paso",false);
-        send=new ButtonSimulador("Enviar",true);
-        clean=new ButtonSimulador("Limpiar",false);
-        next=new ButtonSimulador("Siguiente",false);
+        send=new ButtonSimulador("Enviar",true, e -> {
+            System.out.println("e.getActionCommand() = " + e.getActionCommand());
+            System.out.println("iteraccion = " + iteraccion);
+            if (pause.isOnOff()) iteracion1();
+            else iteracion0();
+        });
+        clean=new ButtonSimulador("Limpiar",false, e -> clean());
+        next=new ButtonSimulador("Siguiente",false, e -> {
+            System.out.println("e.getActionCommand() = " + e.getActionCommand());
+            System.out.println("iteraccion = " + iteraccion);
+            iteracion1();
+        });
         back=new Boton(Archivos.image("/recourses/image/back.png",-1,-1));
         panel=new JPanel(new GridBagLayout());
-        Boton home=new Boton(Text.VENTANAPRINCIPAL.toString(), Archivos.image("/recourses/image/home.png", -1, -1), new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Eventos.show(Paneles.PRINCIPAL);
-            }
-        });
         panel.setBackground(Colour.GRISPANEL.getColor());
         JLabel desc=new JLabel("Descripción");
         desc.setFont(Fuentes.UBUNTULIGHT14.getFont());
         desc.setForeground(Color.WHITE);
         desc.setBackground(Colour.AZULTITLE.getColor());
         desc.setOpaque(true);
-        clean.addActionListener(e -> clean());
-        send.addActionListener(e -> {
-            System.out.println("e.getActionCommand() = " + e.getActionCommand());
-            if (pause.isOnOff()) iteracion1();
-            else iteracion0();
-        });
-        next.addActionListener(e -> iteracion1());
         codigo.setModificable(false);
         pause.addMouseListener(new MouseAdapter() {
             @Override
@@ -91,7 +88,13 @@ public abstract class Simulador extends JPanel {
         Insets insets=new Insets(0,0,0,0);
         Constrains.addComp(component,this,new Rectangle(0,0,1,4),0,0,insets,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
         Constrains.addComp(back,panel,new Rectangle(0,0,1,2),0,0,new Insets(15,15,15,5),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addComp(home,panel,new Rectangle(1,0,1,2),0,0,new Insets(20,5,20,15),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addComp(home=new Boton(Text.VENTANAPRINCIPAL.toString(), Archivos.image("/recourses/image/home.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                clean();
+                Eventos.show(Paneles.PRINCIPAL);
+            }
+        }),panel,new Rectangle(1,0,1,2),0,0,new Insets(20,5,20,15),GridBagConstraints.WEST,GridBagConstraints.NONE);
         Constrains.addComp(panel,this,new Rectangle(0,4,1,1),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompX(desc,this,new Rectangle(1,0,1,1),1,insets,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompIy((texto=new Texto(4,55)),this,new Rectangle(1,1,1,1),1,0,insets,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
@@ -120,8 +123,8 @@ public abstract class Simulador extends JPanel {
         return panel;
     }
     /**
-     * Retornar al panel anterior
-     * @return JLabel
+     * Obtiene el componente retorno al panel anterior
+     * @return Retorna al panel anterior
      */
     public Boton getBack() {
         return back;
@@ -229,7 +232,14 @@ public abstract class Simulador extends JPanel {
      * Obtiene el componente de visualización del código en el paso a paso en el simulador
      * @return visualización del paso a paso
      */
-    public Switch getCodigo() {
+    protected Switch getCodigo() {
         return codigo;
+    }
+    /**
+     * Obtiene el componente de retorno al panel principal
+     * @return Retorna al panel principal de Seros
+     */
+    protected Boton getHome(){
+        return home;
     }
 }

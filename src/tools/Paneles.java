@@ -18,5 +18,6 @@ public enum Paneles {
     GRAFOS,
     SIMULADORTDA,
     FACTORIAL,
+    POTENCIA,
     EJERCICIOS_RECURSIVIDAD
 }

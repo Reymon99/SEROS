@@ -276,27 +276,29 @@ public class Contenedor extends JPanel {
      */
     private Ejercicios ejerciciosRecursividad(){
         Ejercicios ejercicios=new Ejercicios();
-        ejercicios.getBack().setToolTipText("Recursividad");
-        ejercicios.getBack().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                Eventos.show(Paneles.RECURSIVIDAD);
-            }
-        });
-        ejercicios.setBotones(new Boton(Archivos.image("/recourses/image/factorial.png", -1, -1), "Factorial", new MouseAdapter() {
+        ejercicios.back("Recursividad",Paneles.RECURSIVIDAD);
+        MouseAdapter mouse=new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Eventos.show(Paneles.FACTORIAL);
+                switch (((Boton) e.getSource()).getText()) {
+                    case "Factorial" -> Eventos.show(Paneles.FACTORIAL);
+                    case "Potencia" -> Eventos.show(Paneles.POTENCIA);
+                }
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                ejercicios.getTexto().setText("Simulador recursivo para factorial");
+                switch (((Boton) e.getSource()).getText()) {
+                    case "Factorial" -> ejercicios.getTexto().setText("Simulador recursivo para factorial");
+                    case "Potencia" -> ejercicios.getTexto().setText("Simulación recursiva para Potencia");
+                }
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 ejercicios.getTexto().setText("");
             }
-        }));
+        };
+        ejercicios.setBotones(new Boton(Archivos.image("/recourses/image/factorial.png", -1, -1), "Factorial", mouse),
+                new Boton(Archivos.image("/recourses/image/potencia.png", -1, -1), "Potencia", mouse));
         return ejercicios;
     }
 }

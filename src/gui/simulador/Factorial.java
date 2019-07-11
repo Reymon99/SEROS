@@ -60,22 +60,23 @@ public class Factorial extends Simulador {
     }
     @Override
     protected void iteracion0() {
-        Eventos.enable(false,getNext(),getSend(),valorI,getPause(),getBack(),getClean(),getCodigo());
+        Eventos.enable(false,getNext(),getSend(),valorI,getPause(),getBack(),getClean(),getCodigo(),getHome());
         getTexto().setText(Text.FACTORIAL1.toString());
         number.setText(Eventos.formatNumber(fac(Integer.parseInt(valorI.getValue().toString())),patron));
-        producto.setText(valorI.getValue().toString()+"!    =    "+producto(Integer.parseInt(valorI.getValue().toString())));
+        producto.setText(mulFac(producto(Integer.parseInt(valorI.getValue().toString()))));
         Eventos.variable(variaI,-1,valorI.getValue());
         Eventos.enable(true,getClean());
     }
     @Override
     protected void iteracion1() {
-        Eventos.enable(false,valorI,getClean(),getNext(),getSend(),getPause(),getBack(),getCodigo());
+        Eventos.enable(false,valorI,getClean(),getNext(),getSend(),getPause(),getBack(),getCodigo(),getHome());
         int valor=Integer.parseInt(valorI.getValue().toString())-getIteraccion();
-        System.out.println(valor);
+        System.out.println("valor = " + valor);
         Eventos.variable(variaI,-1,valor);
         if (Eventos.contains(valor,0,1)) {
             LineLocation[] lineLocations = !getCodigo().isOnOff() ? null : new LineLocation[]{new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,3,Text.FACTORIAL4.toString())};
             if (Eventos.contains(Integer.parseInt(valorI.getValue().toString()),0,1)) {//caso terminal
+                System.out.println("Caso base terminal");
                 if (getCodigo().isOnOff()) {
                     new Lines(this,lineLocations) {
                         @Override
@@ -86,6 +87,7 @@ public class Factorial extends Simulador {
                 }
                 else casoBaseTerminal(valor);
             } else {
+                System.out.println("Caso base incrementativo");
                 if (getCodigo().isOnOff()) {
                     if (lines!=null && lines.isAlive()) lines.detener();
                     lines=new Lines(this,lineLocations){
@@ -99,6 +101,7 @@ public class Factorial extends Simulador {
                 else casoBase(valor,true);
             }
         } else if (getIteraccion()==0 && !decremento){
+            System.out.println("Caso terminal");
             if (getCodigo().isOnOff()) {
                 if (lines!=null && lines.isAlive()) lines.detener();
                 lines=new Lines(this,new LineLocation(0,5,Text.FACTORIAL6.toString())){
@@ -110,6 +113,7 @@ public class Factorial extends Simulador {
                 lines.start();
             } else casoTerminal(valor);
         } else if (!decremento){
+            System.out.println("Camino final");
             if (getCodigo().isOnOff()) {
                 if (lines!=null && lines.isAlive()) lines.detener();
                 lines=new Lines(this,new LineLocation(0,5,Text.FACTORIAL7.toString(),false)){
@@ -121,6 +125,7 @@ public class Factorial extends Simulador {
                 lines.start();
             } else casoIncrementativo(valor,true);
         } else {
+            System.out.println("Camino inicial");
             if (getCodigo().isOnOff()) {
                 if (lines!=null && lines.isAlive()) lines.detener();
                 lines=new Lines(this,new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,4,Text.FACTORIAL2.toString()),new LineLocation(0,5,null,false)){
@@ -132,12 +137,14 @@ public class Factorial extends Simulador {
                 lines.start();
             } else casoDecrementativo(valor);
         }
+        System.out.println("getIteraccion() = " + getIteraccion());
+        System.out.println();
     }
     @Override
     protected void clean() {
         getTexto().setText(Text.FACTORIAL.toString());
         Eventos.variable(variaI,-1,"");
-        Eventos.enable(true,getSend(),valorI,getPause(),getBack(),getCodigo());
+        Eventos.enable(true,getSend(),valorI,getPause(),getBack(),getCodigo(),getHome());
         Eventos.enable(false,getClean(),getNext());
         getPause().setOnOff(false);
         valorI.setValue(0);

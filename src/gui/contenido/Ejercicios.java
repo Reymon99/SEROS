@@ -80,4 +80,13 @@ public class Ejercicios extends Lienzo {
     public Texto getTexto() {
         return texto;
     }
+    public void back(String toolTipText,Paneles paneles){
+        back.setToolTipText(toolTipText);
+        back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(paneles);
+            }
+        });
+    }
 }
