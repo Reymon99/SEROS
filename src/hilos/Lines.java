@@ -2,10 +2,8 @@ package hilos;
 import eventos.Eventos;
 import gui.contenido.Texto;
 import gui.editor.Editor;
-import gui.simulador.liezos.Simulador;
-
+import gui.simulador.Simulador;
 public abstract class Lines extends Thread {
-    private final int intervalo = 1270;
     private Simulador simulador;
     private LineLocation[] lines;
     /**
@@ -41,11 +39,11 @@ public abstract class Lines extends Thread {
      */
     private void lines(){
         for (LineLocation line:lines){
-            /**simulador.getCodigos().setSelectedIndex(line.getCode());
+            simulador.getCodigos().setSelectedIndex(line.getCode());
             Eventos.scroll(((Editor) simulador.getCodigos().getComponentAt(line.getCode())),line.getScroll());
             ((Editor) simulador.getCodigos().getComponentAt(line.getCode())).drawLineIn(line.getLine());
-            if (line.getTexto()!=null) simulador.getTexto().setText(line.getTexto());
-            if (line.isSleep()) Eventos.sleep(intervalo);**/
+            if (line.getTexto()!=null) simulador.setTexto(line.getTexto());
+            if (line.isSleep()) Eventos.sleep(1270);
         }
     }
     /**

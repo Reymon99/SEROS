@@ -1,0 +1,7 @@
+public longn_ potenciaa_(w_intn_ basew_, intn_ exponente) {w_
+	ifn_ (exponente ==w_ 1b_ || exponente ==w_ 0b_) {w_
+		returnn_ 1b_;n_
+	}w_ elsen_ {w_
+		returnn_ base *w_ potenciaa_(basew_,n_ exponente-w_1b_)w_;n_
+	}w_
+}w_

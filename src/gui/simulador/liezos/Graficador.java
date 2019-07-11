@@ -1,4 +1,5 @@
 package gui.simulador.liezos;
+import gui.simulador.Simulador;
 import tools.Fuentes;
 import java.awt.*;
 import java.awt.geom.Line2D;

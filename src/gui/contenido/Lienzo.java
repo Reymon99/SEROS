@@ -82,6 +82,9 @@ public abstract class Lienzo extends JPanel {
             }
         });
     }
+    /**
+     * Restaura los componente al origen
+     */
     public abstract void clean();
     /**
      * Obtiene el componente retorno al panel anterior
