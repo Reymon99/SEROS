@@ -8,13 +8,16 @@ import tools.Paneles;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class Principal extends Lienzo {
+public final class Principal extends Lienzo {
     /**
      * Menu principal de la interfaz grafica del proyecto
      */
     public Principal(){
-        setLayout(new GridBagLayout());
+        super(new GridBagLayout(),true);
         init();
+    }
+    @Override
+    public void clean() {//None
     }
     private void init()  {
         JLabel tda=new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/recourses/image/TDA.png", -1, -1), new MouseAdapter() {
