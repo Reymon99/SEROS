@@ -1,11 +1,9 @@
 package gui.principal;
 import eventos.Eventos;
-import gui.contenido.Contenido;
-import gui.contenido.Ejercicios;
-import gui.contenido.TextPane;
-import gui.contenido.Texto;
-import gui.contenido.Boton;
+import gui.contenido.*;
 import gui.editor.Editor;
+import gui.simulador.Simulador;
+import gui.simulador.liezos.Graficador;
 import tools.Archivos;
 import tools.Constrains;
 import tools.Fuentes;
@@ -30,8 +28,9 @@ public final class Contenedor extends JPanel {
      * @see tools.Paneles
      */
     private void init() {
-        add(Paneles.PRINCIPAL.toString(), new Principal());
+        add(Paneles.PRINCIPAL.toString(), principal());
         add(Paneles.TDA.toString(), tda());
+        add(Paneles.SIMULADORTDA.toString(), simuladorTda());
         add(Paneles.MODULARIDAD.toString(), modularidad());
         add(Paneles.RECURSIVIDAD.toString(), recursividad());
         add(Paneles.EJERCICIOS_RECURSIVIDAD.toString(), ejerciciosRecursividad());
@@ -46,8 +45,99 @@ public final class Contenedor extends JPanel {
         add(Paneles.GRAFOS.toString(), grafos());
     }
     /**
+     * Menu principal de la interfaz grafica del proyecto
+     * @return panel principal de SEROS
+     */
+    private Lienzo principal(){
+        Lienzo lienzo=new Lienzo(new GridBagLayout(),true) {
+            @Override
+            public void clean() {//None
+            }
+        };
+        Constrains.addCompY(new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/recourses/image/TDA.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.TDA);
+            }
+        }),lienzo,new Rectangle(0,0,1,4),0,new Insets(30,57,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Modularidad","Complejidad Algoritmica", Archivos.image("/recourses/image/Modularidad y Mapas.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.MODULARIDAD);
+            }
+        }), lienzo,new Rectangle(1,0,1,1),0,new Insets(30,18,0,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Recursividad","Metodos Recursivos", Archivos.image("/recourses/image/Recursividad.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.RECURSIVIDAD);
+            }
+        }),lienzo,new Rectangle(1,1,1,1),0,new Insets(13,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Arreglos", "Vectores y Matrices", Archivos.image("/recourses/image/Arreglos y Arboles.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.ARREGLOS);
+            }
+        }),lienzo,new Rectangle(1,2,1,1),0,new Insets(13,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Nodos","Enlazamiento de Datos", Archivos.image("/recourses/image/Nodos.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.NODOS);
+            }
+        }),lienzo,new Rectangle(1,3,1,1),0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Ordenamiento", "Metodos de Ordenamiento Interno", Archivos.image("/recourses/image/Ordenamiento.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.ORDENAMIENTO);
+            }
+        }),lienzo,new Rectangle(2,0,1,2),0,new Insets(30,18,13,18), GridBagConstraints.SOUTH, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Busqueda","Metodos de Busqueda", Archivos.image("/recourses/image/Busqueda.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.BUSQUEDA);
+            }
+        }),lienzo,new Rectangle(2,2,1,2),0,new Insets(13,18,30,18),GridBagConstraints.NORTH,GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Pilas","Pilas Dinámicas y Estáticas", Archivos.image("/recourses/image/Pilas.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.PILAS);
+            }
+        }),lienzo,new Rectangle(3,0,1,2),0,new Insets(30,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Colas","Colas Dinámicas y Estáticas", Archivos.image("/recourses/image/Colas.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.COLAS);
+            }
+        }),lienzo,new Rectangle(3,1,1,2),0,new Insets(13,18,13,13),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Listas","Listas Enlazadas", Archivos.image("/recourses/image/Listas Enlazadas.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.LISTAS_ENLAZADAS);
+            }
+        }),lienzo,new Rectangle(3,2,1,2),0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Árboles","Árboles Binarios y AVL", Archivos.image("/recourses/image/Arreglos y Arboles.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.ARBOLES);
+            }
+        }),lienzo,new Rectangle(4,0,1,2),0,new Insets(30,18,13,75),GridBagConstraints.SOUTH,GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Grafos","Algoritmo del Camino más Corto", Archivos.image("/recourses/image/Grafos.png", -1, -1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.show(Paneles.GRAFOS);
+            }
+        }),lienzo,new Rectangle(4,2,1,2),0,new Insets(13,18,30,75),GridBagConstraints.NORTH,GridBagConstraints.NONE);
+        Constrains.addComp(new Boton("Acerca de Seros", Archivos.image("/recourses/image/about.png",-1,-1), new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Eventos.about(lienzo);
+            }
+        }),lienzo,new Rectangle(6,3,1,1),0,0,new Insets(0,0,6,0),GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
+        return lienzo;
+    }
+    /**
      * Contenido del panel TDA
      * @see Contenido
+     * @see Contenedor#simuladorTda()
      */
     private Contenido tda(){
         Contenido con=new Contenido();
@@ -204,6 +294,7 @@ public final class Contenedor extends JPanel {
                 switch (((Boton) e.getSource()).getText()) {
                     case "Factorial" -> Eventos.show(Paneles.FACTORIAL);
                     case "Potencia" -> Eventos.show(Paneles.POTENCIA);
+                    default -> throw new IllegalStateException("Unexpected value: " + ((Boton) e.getSource()).getText());
                 }
             }
             @Override
@@ -211,6 +302,7 @@ public final class Contenedor extends JPanel {
                 switch (((Boton) e.getSource()).getText()) {
                     case "Factorial" -> ejercicios.getTexto().setText("Simulador recursivo para factorial");
                     case "Potencia" -> ejercicios.getTexto().setText("Simulación recursiva para Potencia");
+                    default -> throw new IllegalStateException("Unexpected value: " + ((Boton) e.getSource()).getText());
                 }
             }
             @Override
@@ -221,5 +313,29 @@ public final class Contenedor extends JPanel {
         ejercicios.setBotones(new Boton(Archivos.image("/recourses/image/factorial.png", -1, -1), "Factorial", mouse),
                 new Boton(Archivos.image("/recourses/image/potencia.png", -1, -1), "Potencia", mouse));
         return ejercicios;
+    }
+    /**
+     * Simulador para la temática TDA<br>
+     * Simula un punto en el eje cartesiano
+     * @return simulador de un punto en el plano cartesiano para TDA
+     * @see Graficador
+     * @see Simulador
+     */
+    private Simulador simuladorTda(){
+        Simulador simulador=new Simulador(new Graficador()) {
+            @Override
+            public void iteracion0() {
+
+            }
+            @Override
+            public void iteracion1() {
+
+            }
+            @Override
+            public void clean() {
+
+            }
+        };
+        return simulador;
     }
 }

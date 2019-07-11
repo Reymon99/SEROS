@@ -116,7 +116,7 @@ public abstract class Lienzo extends JPanel {
         if (lienzo) {
             g.drawImage(Objects.requireNonNull(Archivos.image("/recourses/image/Lienzo.jpg", -1, -1)).getImage(),0,0,getWidth(),getHeight(),this);
             setOpaque(false);
-            super.paint(g);
         }
+        super.paint(g);
     }
 }
