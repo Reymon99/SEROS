@@ -1,4 +1,5 @@
 package gui.contenido;
+import tools.Acciones;
 import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,18 @@ public final class Ejercicios extends Lienzo {
      */
     public Ejercicios(){
         super(new GridBagLayout(),true);
+        setAcciones(new Acciones() {
+            @Override
+            public void iteracion0() {//None
+            }
+            @Override
+            public void iteracion1() {//None
+            }
+            @Override
+            public void clean() {
+                texto.setText("");
+            }
+        });
         init();
     }
     /**
@@ -59,9 +72,5 @@ public final class Ejercicios extends Lienzo {
      */
     public Texto getTexto() {
         return texto;
-    }
-    @Override
-    public void clean() {
-        texto.setText("");
     }
 }

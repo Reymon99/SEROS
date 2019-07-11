@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-public abstract class Simulador extends Lienzo {
+public final class Simulador extends Lienzo {
     private Integer iteracion;
     private Component component;
     private JPanel datos;
@@ -55,11 +55,11 @@ public abstract class Simulador extends Lienzo {
         codigo=new Switch("Visualización del Código",false);
         pause=new Switch("Paso a Paso",false);
         send=new ButtonSimulador("Enviar",true,e -> {
-            if (pause.isOnOff()) iteracion1();
-            else iteracion0();
+            if (pause.isOnOff()) getAcciones().iteracion1();
+            else getAcciones().iteracion0();
         });
-        clean=new ButtonSimulador("Limpiar",false,e -> clean());
-        nextIteracion=new ButtonSimulador("Siguiente",false, e -> iteracion1());
+        clean=new ButtonSimulador("Limpiar",false,e -> getAcciones().clean());
+        nextIteracion=new ButtonSimulador("Siguiente",false, e -> getAcciones().iteracion1());
         panel=new JPanel(new GridBagLayout());
         panel.setBackground(Colour.GRISPANEL.getColor());
         JLabel desc=new JLabel("Descripción");
@@ -85,14 +85,6 @@ public abstract class Simulador extends Lienzo {
         Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,new Rectangle(1,2,1,1),1,0,insets,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addComp((codigos=new JTabbedPane(JTabbedPane.TOP)),this,new Rectangle(1,3,1,2),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
     }
-    /**
-     * Iteración del simulador cuando no se ejecuta el paso a paso
-     */
-    public abstract void iteracion0();
-    /**
-     * Iteración del simulador con paso a paso
-     */
-    public abstract void iteracion1();
     /**
      * Añade los codigos que necesita el simulador
      * @param editor {@link Editor} con el código correspondiente
@@ -149,7 +141,7 @@ public abstract class Simulador extends Lienzo {
      * Obtiene la cantidad pulsaciones del paso a paso del simulador
      * @return cantidad de pulsaciones
      */
-    public int getIteraccion() {
+    public int getIteracion() {
         return iteracion;
     }
     /**

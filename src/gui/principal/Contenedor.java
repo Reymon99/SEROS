@@ -1,9 +1,17 @@
 package gui.principal;
 import eventos.Eventos;
-import gui.contenido.*;
+import gui.contenido.Boton;
+import gui.contenido.Contenido;
+import gui.contenido.Ejercicios;
+import gui.contenido.Lienzo;
+import gui.contenido.Texto;
+import gui.contenido.TextPane;
+import gui.contenido.Tree;
 import gui.editor.Editor;
+import gui.simulador.Dato;
 import gui.simulador.Simulador;
 import gui.simulador.liezos.Graficador;
+import tools.Acciones;
 import tools.Archivos;
 import tools.Constrains;
 import tools.Fuentes;
@@ -49,11 +57,7 @@ public final class Contenedor extends JPanel {
      * @return panel principal de SEROS
      */
     private Lienzo principal(){
-        Lienzo lienzo=new Lienzo(new GridBagLayout(),true) {
-            @Override
-            public void clean() {//None
-            }
-        };
+        Lienzo lienzo=new Lienzo(new GridBagLayout(),true);
         Constrains.addCompY(new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/recourses/image/TDA.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -310,8 +314,7 @@ public final class Contenedor extends JPanel {
                 ejercicios.getTexto().setText("");
             }
         };
-        ejercicios.setBotones(new Boton(Archivos.image("/recourses/image/factorial.png", -1, -1), "Factorial", mouse),
-                new Boton(Archivos.image("/recourses/image/potencia.png", -1, -1), "Potencia", mouse));
+        ejercicios.setBotones(new Boton(Archivos.image("/recourses/image/factorial.png", -1, -1), "Factorial", mouse), new Boton(Archivos.image("/recourses/image/potencia.png", -1, -1), "Potencia", mouse));
         return ejercicios;
     }
     /**
@@ -322,20 +325,93 @@ public final class Contenedor extends JPanel {
      * @see Simulador
      */
     private Simulador simuladorTda(){
-        Simulador simulador=new Simulador(new Graficador()) {
+        JSpinner x=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
+        JSpinner y=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
+        ((JSpinner.NumberEditor)x.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.NumberEditor)y.getEditor()).getTextField().setEditable(false);
+        Tree punto=new Tree(new JTree.DynamicUtilTreeNode(new Dato("Punto","punto","",true), new Dato[]{new Dato("int","x",""),new Dato("int","y","")}));
+        punto.expandNode(0);
+        Simulador simulador=new Simulador(new Graficador());
+        simulador.setAcciones(new Acciones() {
             @Override
             public void iteracion0() {
-
+                ((Graficador)simulador.getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
+                Eventos.enable(true,simulador.getClean());
+                Eventos.enable(false,simulador.getNextIteracion(),simulador.getSend(),x,y,simulador.getPause(),simulador.getBack());
+                simulador.setTexto(Text.SIMULADORTDA1.toString());
+                Eventos.variable(punto,0,x.getValue());
+                Eventos.variable(punto,1,y.getValue());
+                punto.expandNode(0);
             }
             @Override
             public void iteracion1() {
-
+                Eventos.enable(true,simulador.getNextIteracion());
+                Eventos.enable(false,simulador.getSend(),x,y,simulador.getPause(),simulador.getClean(),simulador.getBack());
+                if (simulador.getIteracion()==0) asignacionX();
+                else if (simulador.getIteracion()==1) asignacionY();
+                else mostrarCoordenadas();
+                simulador.incrementIteracion();
             }
             @Override
             public void clean() {
-
+                ((Graficador)simulador.getComponent()).limpiar();
+                Eventos.variable(punto,0,"");
+                Eventos.variable(punto,1,"");
+                Eventos.enable(true,simulador.getSend(),x,y,simulador.getPause(),simulador.getBack());
+                Eventos.enable(false,simulador.getClean(),simulador.getNextIteracion());
+                simulador.setTexto(Text.SIMULADORTDA2.toString());
+                x.setValue(0);
+                y.setValue(0);
+                punto.expandNode(0);
+                simulador.getPause().setOnOff(false);
+                simulador.setIteracion(0);
+                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0),0);
+                ((Editor) simulador.getCodigos().getComponentAt(0)).setLine(false);
             }
-        };
+            /**
+             * Muestra los datos y códigos que se asignan al eje x
+             */
+            private void asignacionX(){
+                ((Editor) simulador.getCodigos().getComponentAt(0)).drawLineIn(4);
+                Eventos.variable(punto,0,x.getValue());
+                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0),0);
+                simulador.setTexto(Text.SIMULADORTDA3.toString());
+            }
+            /**
+             * Muestra los datos y códigos que se asignan al eje y
+             */
+            private void asignacionY(){
+                ((Editor) simulador.getCodigos().getComponentAt(0)).drawLineIn(5);
+                Eventos.variable(punto,1,y.getValue());
+                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0),0);
+                simulador.setTexto(Text.SIMULADORTDA4.toString());
+            }
+            /**
+             * Grafica las coordenadas (x,y) muestra los códigos asignados a estos
+             */
+            private void mostrarCoordenadas(){
+                Eventos.enable(true,simulador.getClean());
+                Eventos.enable(false,simulador.getNextIteracion());
+                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0),((Editor) simulador.getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum());
+                ((Editor) simulador.getCodigos().getComponentAt(0)).drawLineIn(21);
+                simulador.setTexto(Text.SIMULADORTDA1.toString());
+                ((Graficador)simulador.getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
+            }
+        });
+        simulador.addCodes(Editor.editor("/recourses/codes/tda/Punto.seros"),"Punto");
+        simulador.back("Tipos de Datos Abstratos",Paneles.TDA);
+        simulador.getSend().setText("Graficar");
+        simulador.setDatos(punto);
+        Box box=Box.createHorizontalBox();
+        box.add(x);
+        box.add(Box.createHorizontalStrut(1));
+        box.add(y);
+        box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),"(x,y)"));
+        Constrains.addCompX(box,simulador.getPanel(),new Rectangle(2,0,2,1),1,new Insets(3,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
+        Constrains.addCompX(simulador.getSend(),simulador.getPanel(),new Rectangle(4,0,2,1),1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(simulador.getPause(),simulador.getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
+        Constrains.addCompX(simulador.getNextIteracion(),simulador.getPanel(),new Rectangle(3,1,2,1),1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(simulador.getClean(),simulador.getPanel(),new Rectangle(5,1,1,1),1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
         return simulador;
     }
 }

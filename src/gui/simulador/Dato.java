@@ -4,10 +4,10 @@ public class Dato {
     private String variable;
     private String valor;
     private boolean hash;
-    protected Dato(String tipoDato, String variable, String valor) {
+    public Dato(String tipoDato, String variable, String valor) {
         this(tipoDato,variable,valor,false);
     }
-    protected Dato(String tipoDato, String variable, String valor, boolean hash) {
+    public Dato(String tipoDato, String variable, String valor, boolean hash) {
         this.tipoDato = tipoDato;
         this.variable = variable;
         this.valor = valor;

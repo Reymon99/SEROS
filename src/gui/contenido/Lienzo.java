@@ -1,5 +1,6 @@
 package gui.contenido;
 import eventos.Eventos;
+import tools.Acciones;
 import tools.Archivos;
 import tools.Paneles;
 import tools.Text;
@@ -8,8 +9,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Objects;
-public abstract class Lienzo extends JPanel {
+public class Lienzo extends JPanel {
     private boolean lienzo;
+    private Acciones acciones;
     private Boton back;
     private Boton home;
     private Boton next;
@@ -46,7 +48,7 @@ public abstract class Lienzo extends JPanel {
         home=new Boton(Text.VENTANAPRINCIPAL.toString(), Archivos.image("/recourses/image/home.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                clean();
+                acciones.clean();
                 Eventos.show(Paneles.PRINCIPAL);
             }
         });
@@ -62,7 +64,7 @@ public abstract class Lienzo extends JPanel {
         back.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                clean();
+                acciones.clean();
                 Eventos.show(paneles);
             }
         });
@@ -77,15 +79,11 @@ public abstract class Lienzo extends JPanel {
         next.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                clean();
+                acciones.clean();
                 Eventos.show(paneles);
             }
         });
     }
-    /**
-     * Restaura los componente al origen
-     */
-    public abstract void clean();
     /**
      * Obtiene el componente retorno al panel anterior
      * @return Retorna al panel anterior
@@ -97,7 +95,7 @@ public abstract class Lienzo extends JPanel {
      * Obtiene el componente de retorno al panel principal
      * @return Retorna al panel principal de Seros
      */
-    public Boton getHome() {
+    protected Boton getHome() {
         return home;
     }
     /**
@@ -106,6 +104,20 @@ public abstract class Lienzo extends JPanel {
      */
     public Boton getNext() {
         return next;
+    }
+    /**
+     * Obtiene las acciones a realizar en el panel
+     * @return acciones del panel
+     */
+    protected Acciones getAcciones() {
+        return acciones;
+    }
+    /**
+     * Da nuevas acciones al panel
+     * @param acciones nuevas acciones
+     */
+    public void setAcciones(Acciones acciones) {
+        this.acciones = acciones;
     }
     /**
      * Tapiz del panel
