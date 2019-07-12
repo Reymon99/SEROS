@@ -308,8 +308,7 @@ public final class Contenedor extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                String text=((Boton) e.getSource()).getText();
-                switch (text) {
+                switch (((Boton) e.getSource()).getText()) {
                     case "Factorial" -> ejercicios.getTexto().setText("Simulador recursivo para factorial");
                     case "Potencia" -> ejercicios.getTexto().setText("Simulación recursiva para Potencia");
                     default -> throw new IllegalStateException("Unexpected value: " + ((Boton) e.getSource()).getText());
