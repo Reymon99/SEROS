@@ -174,7 +174,7 @@ public final class Simulador extends Lienzo {
      * Obtiene el componente de visualización del código en el paso a paso en el simulador
      * @return visualización del paso a paso
      */
-    protected Switch getCodigo() {
+    public Switch getCodigo() {
         return codigo;
     }
     /**

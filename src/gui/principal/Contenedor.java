@@ -11,6 +11,8 @@ import gui.editor.Editor;
 import gui.simulador.Dato;
 import gui.simulador.Simulador;
 import gui.simulador.liezos.Graficador;
+import hilos.LineLocation;
+import hilos.Lines;
 import tools.Acciones;
 import tools.Archivos;
 import tools.Constrains;
@@ -20,6 +22,7 @@ import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.atomic.AtomicReferenceArray;
 public final class Contenedor extends JPanel {
     /**
      * Contenedor de los paneles del proyecto
@@ -41,6 +44,7 @@ public final class Contenedor extends JPanel {
         add(Paneles.SIMULADORTDA.toString(), simuladorTda());
         add(Paneles.MODULARIDAD.toString(), modularidad());
         add(Paneles.RECURSIVIDAD.toString(), recursividad());
+        add(Paneles.FACTORIAL.toString(), factorial());
         add(Paneles.EJERCICIOS_RECURSIVIDAD.toString(), ejerciciosRecursividad());
         add(Paneles.ARREGLOS.toString(), arreglos());
         add(Paneles.NODOS.toString(), nodos());
@@ -295,7 +299,8 @@ public final class Contenedor extends JPanel {
         MouseAdapter mouse=new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                switch (((Boton) e.getSource()).getText()) {
+                String text=((Boton) e.getSource()).getText();
+                switch (text) {
                     case "Factorial" -> Eventos.show(Paneles.FACTORIAL);
                     case "Potencia" -> Eventos.show(Paneles.POTENCIA);
                     default -> throw new IllegalStateException("Unexpected value: " + ((Boton) e.getSource()).getText());
@@ -303,7 +308,8 @@ public final class Contenedor extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                switch (((Boton) e.getSource()).getText()) {
+                String text=((Boton) e.getSource()).getText();
+                switch (text) {
                     case "Factorial" -> ejercicios.getTexto().setText("Simulador recursivo para factorial");
                     case "Potencia" -> ejercicios.getTexto().setText("Simulación recursiva para Potencia");
                     default -> throw new IllegalStateException("Unexpected value: " + ((Boton) e.getSource()).getText());
@@ -412,6 +418,207 @@ public final class Contenedor extends JPanel {
         Constrains.addCompX(simulador.getPause(),simulador.getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
         Constrains.addCompX(simulador.getNextIteracion(),simulador.getPanel(),new Rectangle(3,1,2,1),1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(simulador.getClean(),simulador.getPanel(),new Rectangle(5,1,1,1),1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+        return simulador;
+    }
+    /**
+     * Simulador para la temática Recursividad<br>
+     * Simulador para el proceso recursivo del factorial
+     * @return simulador factorial
+     */
+    private Simulador factorial(){
+        Simulador simulador=new Simulador();
+        String patron="#,###,###";
+        final AtomicReferenceArray<Boolean> decremento = new AtomicReferenceArray<>(new Boolean[]{true});
+        JSpinner valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
+        ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
+        Tree variaI=new Tree(new Dato("int","n",""));
+        simulador.setDatos(variaI);
+        simulador.addCodes(Editor.editor("/recourses/codes/recursividad/Factorial.seros"),"Factorial");
+        simulador.setTexto(Text.FACTORIAL.toString());
+        simulador.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
+        JLabel producto=new JLabel("n!    =    ",SwingConstants.CENTER);
+        producto.setFont(Fuentes.UBUNTULIGHT40.getFont());
+        JLabel number=new JLabel("0",SwingConstants.CENTER);
+        number.setFont(Fuentes.UBUNTULIGHTB120.getFont());
+        simulador.setAcciones(new Acciones() {
+            @Override
+            public void iteracion0() {
+                Eventos.enable(false,simulador.getNextIteracion(),simulador.getSend(),valorI,simulador.getPause(),simulador.getBack(),simulador.getClean(),simulador.getCodigo(),simulador.getHome());
+                simulador.setTexto(Text.FACTORIAL1.toString());
+                number.setText(Eventos.formatNumber(fac(Integer.parseInt(valorI.getValue().toString())),patron));
+                producto.setText(mulFac(producto(Integer.parseInt(valorI.getValue().toString()))));
+                Eventos.variable(variaI,-1,valorI.getValue());
+                Eventos.enable(true,simulador.getClean());
+            }
+            @Override
+            public void iteracion1() {
+                Eventos.enable(false,valorI,simulador.getClean(),simulador.getNextIteracion(),simulador.getSend(),simulador.getPause(),simulador.getBack(),simulador.getCodigo(),simulador.getHome());
+                int valor=Integer.parseInt(valorI.getValue().toString())-simulador.getIteracion();
+                Eventos.variable(variaI,-1,valor);
+                if (Eventos.contains(valor,0,1)){
+                    if (simulador.getCodigo().isOnOff()){
+                        new Lines(simulador, new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,3,Text.FACTORIAL4.toString())){
+                            @Override
+                            public void actions() {
+                                if (Eventos.contains(Integer.parseInt(valorI.getValue().toString()),0,1)) casoBaseTerminal(valor);
+                                else casoBase(valor,false);
+                            }
+                        }.start();
+                    }else{
+                        if (Eventos.contains(Integer.parseInt(valorI.getValue().toString()),0,1)) casoBaseTerminal(valor);
+                        else casoBase(valor,true);
+                    }
+                }else if (simulador.getIteracion()==0 && !decremento.get(0)){
+                    if (simulador.getCodigo().isOnOff()){
+                        new Lines(simulador, new LineLocation(0,5,Text.FACTORIAL6.toString())){
+                            @Override
+                            public void actions() {
+                                casoTerminal(valor);
+                            }
+                        }.start();
+                    }else casoTerminal(valor);
+                }else if (!decremento.get(0)){
+                    if (simulador.getCodigo().isOnOff()){
+                        new Lines(simulador, new LineLocation(0,5,Text.FACTORIAL7.toString(),false)){
+                            @Override
+                            public void actions() {
+                                casoIncrementativo(valor,false);
+                            }
+                        }.start();
+                    }else casoIncrementativo(valor,true);
+                }else{
+                    if (simulador.getCodigo().isOnOff()){
+                        new Lines(simulador, new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,4,Text.FACTORIAL2.toString()),new LineLocation(0,5,null,false)){
+                            @Override
+                            public void actions() {
+                                casoDecrementativo(valor);
+                            }
+                        }.start();
+                    }else casoDecrementativo(valor);
+                }
+            }
+            @Override
+            public void clean() {
+                simulador.setTexto(Text.FACTORIAL.toString());
+                Eventos.variable(variaI,-1,"");
+                Eventos.enable(true,simulador.getSend(),valorI,simulador.getPause(),simulador.getBack(),simulador.getHome());
+                Eventos.enable(false,simulador.getClean(),simulador.getNextIteracion(),simulador.getCodigo());
+                simulador.getPause().setOnOff(false);
+                simulador.getCodigo().setOnOff(false);
+                valorI.setValue(0);
+                simulador.setIteracion(0);
+                Eventos.scroll((Editor)simulador.getCodigos().getComponentAt(0),0);
+                ((Editor)simulador.getCodigos().getComponentAt(0)).setLine(false);
+                number.setText("0");
+                producto.setText("n!    =    ");
+                decremento.set(0, true);
+            }
+            /**
+             * Genera el factorial de n
+             * @param i número a dar el factorial
+             * @return factorial de n
+             */
+            private long fac(int i){
+                return (i==0 || i==1) ? 1 : i*fac(i-1);
+            }
+            /**
+             * Genera la multiplicación de un factorial n
+             * @param i número a generar la multiplicación del factorial
+             * @return multiplicación recursiva del factorial n
+             */
+            private String producto(int i){
+                return (i==0 || i==1) ? "1" : i+" * "+producto(i-1);
+            }
+            /**
+             * Genera la multiplicación de un número n hasta el establecido
+             * @param i valor inicial
+             * @param valor valor final
+             * @return multiplicación recursiva de un valor inicial al valor final
+             */
+            private String producto(int i,int valor){
+                return i==valor ? String.valueOf(valor) : i+" * "+producto(i-1,valor);
+            }
+            /**
+             * Genera la multiplicación de un número n hasta el factorial del valor limite
+             * @param i valor inicial
+             * @param fac valor a dar factorial
+             * @return multiplicación recursiva de un valor inicial al factorial del valor final
+             */
+            private String productofac(int i,int fac){
+                return i==fac ? Eventos.formatNumber(fac(fac),patron) : i+" * "+productofac(i-1,fac);
+            }
+            /**
+             * Cancatena el factorial n con su producto
+             * @param producto producto del factorial n
+             * @return factorial con su respectivo producto
+             */
+            private String mulFac(String producto){
+                return valorI.getValue().toString()+"!    =    "+producto;
+            }
+            /**
+             * Acción del caso base terminal
+             * @param valor valor n a trabajar
+             */
+            private void casoBaseTerminal(int valor){
+                simulador.setTexto(Text.FACTORIAL1.toString());
+                number.setText(String.valueOf(fac(valor)));
+                producto.setText(mulFac(producto(valor)));
+                Eventos.enable(true, simulador.getClean());
+            }
+            /**
+             * Acción del caso base para decrementar la iteracción
+             * @param valor valor n a trabajar
+             * @param found texto a mostrar
+             */
+            private void casoBase(int valor,boolean found){
+                simulador.setTexto(found ? Text.FACTORIAL4.toString() : Text.FACTORIAL5.toString());
+                number.setText(String.valueOf(fac(valor)));
+                producto.setText(mulFac(producto(valor+simulador.getIteracion())));
+                simulador.decrementIteracion();
+                decremento.set(0, false);
+                Eventos.enable(true, simulador.getNextIteracion());
+            }
+            /**
+             * Acción caso terminal
+             * @param valor valor n a trabajar
+             */
+            private void casoTerminal(int valor){
+                simulador.setTexto(Text.FACTORIAL1.toString());
+                number.setText(Eventos.formatNumber(fac(valor),patron));
+                producto.setText(mulFac(productofac(Integer.parseInt(valorI.getValue().toString()),valor)));
+                Eventos.enable(true,simulador.getClean());
+            }
+            /**
+             * Acción caso a incrementar
+             * @param valor valor n a trabajar
+             * @param mult texto a mostrar
+             */
+            private void casoIncrementativo(int valor,boolean mult){
+                if (mult) simulador.setTexto(Text.FACTORIAL7.toString());
+                number.setText(Eventos.formatNumber(fac(valor),patron));
+                producto.setText(mulFac(productofac(Integer.parseInt(valorI.getValue().toString()),valor)));
+                simulador.decrementIteracion();
+                Eventos.enable(true,simulador.getNextIteracion());
+            }
+            /**
+             * Acción caso a decrementar
+             * @param valor valor n a trabajar
+             */
+            private void casoDecrementativo(int valor){
+                number.setText("0");
+                producto.setText(mulFac(producto(Integer.parseInt(valorI.getValue().toString()),valor)));
+                simulador.incrementIteracion();
+                Eventos.enable(true,simulador.getNextIteracion());
+            }
+        });
+        Constrains.addCompX(number, (Container) simulador.getComponent(),new Rectangle(0,0,1,1),1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(producto,(Container) simulador.getComponent(),new Rectangle(0,1,1,1),1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(valorI,simulador.getPanel(),new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
+        Constrains.addCompX(simulador.getSend(),simulador.getPanel(),new Rectangle(3,0,1,1),1,new Insets(10,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(simulador.getPause(),simulador.getPanel(),new Rectangle(4,0,1,1),1,new Insets(10,5,5,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addCompX(simulador.getCodigo(),simulador.getPanel(),new Rectangle(4,1,1,1),1,new Insets(5,8,10,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addCompX(simulador.getNextIteracion(),simulador.getPanel(),new Rectangle(3,1,1,1),1,new Insets(5,5,10,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(simulador.getClean(),simulador.getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,80,10,5),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
         return simulador;
     }
 }

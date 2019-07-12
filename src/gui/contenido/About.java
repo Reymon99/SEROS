@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Objects;
-public class About extends JDialog {
+public final class About extends JDialog {
     public static boolean show;
     static {
         About.show = true;

@@ -19,20 +19,8 @@ public abstract class Lines extends Thread {
     }
     @Override
     public void run() {
-        try {
-            lines();
-            actions();
-        } catch (Exception e){
-            Thread.currentThread().stop();
-        }
-    }
-    /**
-     * Detiene la ejecución del hilo y los punteros de los atributos se pierden
-     */
-    public void detener(){
-        simulador=null;
-        lines=null;
-        stop();
+        lines();
+        actions();
     }
     /**
      * Selección de líneas en la ejecución del paso a paso

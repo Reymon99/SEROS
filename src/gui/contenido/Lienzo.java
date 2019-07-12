@@ -95,7 +95,7 @@ public class Lienzo extends JPanel {
      * Obtiene el componente de retorno al panel principal
      * @return Retorna al panel principal de Seros
      */
-    protected Boton getHome() {
+    public Boton getHome() {
         return home;
     }
     /**
