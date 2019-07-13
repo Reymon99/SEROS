@@ -17,6 +17,7 @@ import tools.Acciones;
 import tools.Archivos;
 import tools.Constrains;
 import tools.Fuentes;
+import tools.Operaciones;
 import tools.Paneles;
 import tools.Text;
 import javax.swing.*;
@@ -299,8 +300,7 @@ public final class Contenedor extends JPanel {
         MouseAdapter mouse=new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                String text=((Boton) e.getSource()).getText();
-                switch (text) {
+                switch (((Boton) e.getSource()).getText()) {
                     case "Factorial" -> Eventos.show(Paneles.FACTORIAL);
                     case "Potencia" -> Eventos.show(Paneles.POTENCIA);
                     default -> throw new IllegalStateException("Unexpected value: " + ((Boton) e.getSource()).getText());
@@ -426,7 +426,7 @@ public final class Contenedor extends JPanel {
      */
     private Simulador factorial(){
         Simulador simulador=new Simulador();
-        String patron="#,###,###";
+        Operaciones.setFormat("#,###,###");
         final AtomicReferenceArray<Boolean> decremento = new AtomicReferenceArray<>(new Boolean[]{true});
         JSpinner valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
         ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
@@ -435,7 +435,7 @@ public final class Contenedor extends JPanel {
         simulador.addCodes(Editor.editor("/recourses/codes/recursividad/Factorial.seros"),"Factorial");
         simulador.setTexto(Text.FACTORIAL.toString());
         simulador.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
-        JLabel producto=new JLabel("n!    =    ",SwingConstants.CENTER);
+        JLabel producto=new JLabel(Operaciones.operacion("n!",""),SwingConstants.CENTER);
         producto.setFont(Fuentes.UBUNTULIGHT40.getFont());
         JLabel number=new JLabel("0",SwingConstants.CENTER);
         number.setFont(Fuentes.UBUNTULIGHTB120.getFont());
@@ -444,8 +444,8 @@ public final class Contenedor extends JPanel {
             public void iteracion0() {
                 Eventos.enable(false,simulador.getNextIteracion(),simulador.getSend(),valorI,simulador.getPause(),simulador.getBack(),simulador.getClean(),simulador.getCodigo(),simulador.getHome());
                 simulador.setTexto(Text.FACTORIAL1.toString());
-                number.setText(Eventos.formatNumber(fac(Integer.parseInt(valorI.getValue().toString())),patron));
-                producto.setText(mulFac(producto(Integer.parseInt(valorI.getValue().toString()))));
+                number.setText(Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString()))));
+                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))));
                 Eventos.variable(variaI,-1,valorI.getValue());
                 Eventos.enable(true,simulador.getClean());
             }
@@ -513,55 +513,13 @@ public final class Contenedor extends JPanel {
                 decremento.set(0, true);
             }
             /**
-             * Genera el factorial de n
-             * @param i número a dar el factorial
-             * @return factorial de n
-             */
-            private long fac(int i){
-                return (i==0 || i==1) ? 1 : i*fac(i-1);
-            }
-            /**
-             * Genera la multiplicación de un factorial n
-             * @param i número a generar la multiplicación del factorial
-             * @return multiplicación recursiva del factorial n
-             */
-            private String producto(int i){
-                return (i==0 || i==1) ? "1" : i+" * "+producto(i-1);
-            }
-            /**
-             * Genera la multiplicación de un número n hasta el establecido
-             * @param i valor inicial
-             * @param valor valor final
-             * @return multiplicación recursiva de un valor inicial al valor final
-             */
-            private String producto(int i,int valor){
-                return i==valor ? String.valueOf(valor) : i+" * "+producto(i-1,valor);
-            }
-            /**
-             * Genera la multiplicación de un número n hasta el factorial del valor limite
-             * @param i valor inicial
-             * @param fac valor a dar factorial
-             * @return multiplicación recursiva de un valor inicial al factorial del valor final
-             */
-            private String productofac(int i,int fac){
-                return i==fac ? Eventos.formatNumber(fac(fac),patron) : i+" * "+productofac(i-1,fac);
-            }
-            /**
-             * Cancatena el factorial n con su producto
-             * @param producto producto del factorial n
-             * @return factorial con su respectivo producto
-             */
-            private String mulFac(String producto){
-                return valorI.getValue().toString()+"!    =    "+producto;
-            }
-            /**
              * Acción del caso base terminal
              * @param valor valor n a trabajar
              */
             private void casoBaseTerminal(int valor){
                 simulador.setTexto(Text.FACTORIAL1.toString());
-                number.setText(String.valueOf(fac(valor)));
-                producto.setText(mulFac(producto(valor)));
+                number.setText(String.valueOf(Operaciones.factorial(valor)));
+                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(valor)));
                 Eventos.enable(true, simulador.getClean());
             }
             /**
@@ -571,8 +529,8 @@ public final class Contenedor extends JPanel {
              */
             private void casoBase(int valor,boolean found){
                 simulador.setTexto(found ? Text.FACTORIAL4.toString() : Text.FACTORIAL5.toString());
-                number.setText(String.valueOf(fac(valor)));
-                producto.setText(mulFac(producto(valor+simulador.getIteracion())));
+                number.setText(String.valueOf(Operaciones.factorial(valor)));
+                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(valor+simulador.getIteracion())));
                 simulador.decrementIteracion();
                 decremento.set(0, false);
                 Eventos.enable(true, simulador.getNextIteracion());
@@ -583,8 +541,8 @@ public final class Contenedor extends JPanel {
              */
             private void casoTerminal(int valor){
                 simulador.setTexto(Text.FACTORIAL1.toString());
-                number.setText(Eventos.formatNumber(fac(valor),patron));
-                producto.setText(mulFac(productofac(Integer.parseInt(valorI.getValue().toString()),valor)));
+                number.setText(Operaciones.formatNumber(Operaciones.factorial(valor)));
+                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)));
                 Eventos.enable(true,simulador.getClean());
             }
             /**
@@ -594,8 +552,8 @@ public final class Contenedor extends JPanel {
              */
             private void casoIncrementativo(int valor,boolean mult){
                 if (mult) simulador.setTexto(Text.FACTORIAL7.toString());
-                number.setText(Eventos.formatNumber(fac(valor),patron));
-                producto.setText(mulFac(productofac(Integer.parseInt(valorI.getValue().toString()),valor)));
+                number.setText(Operaciones.formatNumber(Operaciones.factorial(valor)));
+                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)));
                 simulador.decrementIteracion();
                 Eventos.enable(true,simulador.getNextIteracion());
             }
@@ -605,7 +563,7 @@ public final class Contenedor extends JPanel {
              */
             private void casoDecrementativo(int valor){
                 number.setText("0");
-                producto.setText(mulFac(producto(Integer.parseInt(valorI.getValue().toString()),valor)));
+                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()),valor)));
                 simulador.incrementIteracion();
                 Eventos.enable(true,simulador.getNextIteracion());
             }

@@ -90,15 +90,6 @@ public abstract class Eventos {
         }
     }
     /**
-     * Formato deseado a un número dado
-     * @param number número a dar formato
-     * @param pattern patrón del formato a utilizar
-     * @return un {@link String} con el número formateado
-     */
-    public static String formatNumber(Object number,String pattern){
-        return new DecimalFormat(pattern).format(number);
-    }
-    /**
      * Comprueba si el valor está presente entre los diferentes valores pasados
      * @param valor valor a comprobar
      * @param objects valores a ser comparados
