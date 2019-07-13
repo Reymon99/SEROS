@@ -83,7 +83,28 @@ public final class Simulador extends Lienzo {
         Constrains.addCompX(desc,this,new Rectangle(1,0,1,1),1,insets,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompIy(texto=new Texto(4,55),this,new Rectangle(1,1,1,1),1,0,insets,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,new Rectangle(1,2,1,1),1,0,insets,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addComp((codigos=new JTabbedPane(JTabbedPane.TOP)),this,new Rectangle(1,3,1,2),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp(codigos=new JTabbedPane(JTabbedPane.TOP),this,new Rectangle(1,3,1,2),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+    }
+    /**
+     * Plantilla por defecto de acomodamiento para el panel de control
+     * @param datos {@link Component} de control de datos ingresados por el usuario
+     */
+    public void acomodamientoPanelControl(Component datos){
+        Constrains.addCompX(datos,panel,new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
+        Constrains.addCompX(send,panel,new Rectangle(3,0,1,1),1,new Insets(10,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(pause,panel,new Rectangle(4,0,1,1),1,new Insets(10,5,5,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addCompX(codigo,panel,new Rectangle(4,1,1,1),1,new Insets(5,8,10,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addCompX(nextIteracion,panel,new Rectangle(3,1,1,1),1,new Insets(5,5,10,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(clean,panel,new Rectangle(2,1,1,1),1,new Insets(5,80,10,5),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+    }
+    /**
+     * Acomodamiento por defecto cuando se utiliza productos
+     * @param number número resultado
+     * @param producto secuencia de producto
+     */
+    public void acomodamientoProducto(JLabel number,JLabel producto){
+        Constrains.addCompX(number, (Container) component,new Rectangle(0,0,1,1),1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(producto,(Container) component,new Rectangle(0,1,1,1),1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
     }
     /**
      * Añade los codigos que necesita el simulador
@@ -107,7 +128,16 @@ public final class Simulador extends Lienzo {
      * @param trees {@link Tree} a agregar
      */
     public void setDatos(Tree... trees){
-        for (int i = 0; i < trees.length; i++) Constrains.addComp(trees[i],datos,new Rectangle(0,i,1,1),1,1,new Insets(i==0 ? 7:2,10,1,5),GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        for (int i = 0; i < trees.length; i++) Constrains.addComp(trees[i],datos,new Rectangle(0,i,1,1),1,1,new Insets(i==0 ? 7:1,10,i==trees.length-1 ? sizeTree(trees.length) : 1,5),GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+    }
+    /**
+     * Da el tamaño del espacio libre en el panel datos
+     * @param length {@link Tree} en el panel
+     * @return espacio libre en el panel
+     */
+    private int sizeTree(int length){
+        int size=200-(10*length);
+        return size > 0 ? size : 8;
     }
     /**
      * Componente de área de Notificaciones

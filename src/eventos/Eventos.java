@@ -2,7 +2,6 @@ package eventos;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
-import java.text.DecimalFormat;
 import gui.contenido.About;
 import gui.contenido.Switch;
 import gui.contenido.Tree;

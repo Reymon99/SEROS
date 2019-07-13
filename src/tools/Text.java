@@ -29,7 +29,8 @@ public enum Text {
     FACTORIAL4("Caso base del Factorial encontrado"),
     FACTORIAL5("Retorna el caso base para así terminar los casos recursivos"),
     FACTORIAL6("Casos recursivos terminados"),
-    FACTORIAL7("Multiplica n con los demás casos");
+    FACTORIAL7("Multiplica n con los demás casos"),
+    POTENCIA("Ingrese la base y el exponente para dar la potencia");
     private String n;
     Text(String n){
         this.n=n;

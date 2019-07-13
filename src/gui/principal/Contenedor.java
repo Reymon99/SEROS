@@ -24,11 +24,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.concurrent.atomic.AtomicReferenceArray;
-public final class Contenedor extends JPanel {
+final class Contenedor extends JPanel {
     /**
      * Contenedor de los paneles del proyecto
      */
-    protected Contenedor() {
+    Contenedor() {
         setLayout(new CardLayout());
         init();
         Eventos.setPanel(this);
@@ -40,6 +40,7 @@ public final class Contenedor extends JPanel {
      * @see tools.Paneles
      */
     private void init() {
+        add(Paneles.POTENCIA.toString(), potencia());
         add(Paneles.PRINCIPAL.toString(), principal());
         add(Paneles.TDA.toString(), tda());
         add(Paneles.SIMULADORTDA.toString(), simuladorTda());
@@ -568,14 +569,53 @@ public final class Contenedor extends JPanel {
                 Eventos.enable(true,simulador.getNextIteracion());
             }
         });
-        Constrains.addCompX(number, (Container) simulador.getComponent(),new Rectangle(0,0,1,1),1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(producto,(Container) simulador.getComponent(),new Rectangle(0,1,1,1),1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(valorI,simulador.getPanel(),new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
-        Constrains.addCompX(simulador.getSend(),simulador.getPanel(),new Rectangle(3,0,1,1),1,new Insets(10,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(simulador.getPause(),simulador.getPanel(),new Rectangle(4,0,1,1),1,new Insets(10,5,5,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addCompX(simulador.getCodigo(),simulador.getPanel(),new Rectangle(4,1,1,1),1,new Insets(5,8,10,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addCompX(simulador.getNextIteracion(),simulador.getPanel(),new Rectangle(3,1,1,1),1,new Insets(5,5,10,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(simulador.getClean(),simulador.getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,80,10,5),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+        simulador.acomodamientoProducto(number, producto);
+        simulador.acomodamientoPanelControl(valorI);
+        return simulador;
+    }
+    /**
+     * Simulador para la temática Recursividad<br>
+     * Simulador para el proceso recursivo del potencia
+     * @return simulador potencia
+     */
+    private Simulador potencia(){
+        Operaciones.setFormat("#,###,###");
+        JSpinner valorBase=new JSpinner(new SpinnerNumberModel(1,1,10,1));
+        JSpinner valorExponente=new JSpinner(new SpinnerNumberModel(0,0,10,1));
+        JLabel producto=new JLabel("<html>"+Operaciones.operacion("a<sup>n</sup>","0")+"</html>",SwingConstants.CENTER);
+        JLabel number=new JLabel("0",SwingConstants.CENTER);
+        Tree base=new Tree(new Dato("int","base",""));
+        Tree exponente=new Tree(new Dato("int","exponente",""));
+        Box box=Box.createHorizontalBox();
+        Simulador simulador=new Simulador();
+        ((JSpinner.NumberEditor)valorBase.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.NumberEditor)valorExponente.getEditor()).getTextField().setEditable(false);
+        producto.setFont(Fuentes.UBUNTULIGHT40.getFont());
+        number.setFont(Fuentes.UBUNTULIGHTB120.getFont());
+        box.add(valorBase);
+        box.add(Box.createHorizontalStrut(1));
+        box.add(valorExponente);
+        box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),"Base, Exponente"));
+        simulador.addCodes(Editor.editor("/recourses/codes/recursividad/Potencia.seros"),"Potencia");
+        simulador.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
+        simulador.setDatos(base,exponente);
+        simulador.setTexto(Text.POTENCIA.toString());
+        simulador.setAcciones(new Acciones() {
+            @Override
+            public void iteracion0() {
+
+            }
+            @Override
+            public void iteracion1() {
+
+            }
+            @Override
+            public void clean() {
+
+            }
+        });
+        simulador.acomodamientoProducto(number, producto);
+        simulador.acomodamientoPanelControl(box);
         return simulador;
     }
 }
