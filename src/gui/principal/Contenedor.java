@@ -47,6 +47,7 @@ final class Contenedor extends JPanel {
         add(Paneles.MODULARIDAD.toString(), modularidad());
         add(Paneles.RECURSIVIDAD.toString(), recursividad());
         add(Paneles.FACTORIAL.toString(), factorial());
+
         add(Paneles.EJERCICIOS_RECURSIVIDAD.toString(), ejerciciosRecursividad());
         add(Paneles.ARREGLOS.toString(), arreglos());
         add(Paneles.NODOS.toString(), nodos());
@@ -360,19 +361,15 @@ final class Contenedor extends JPanel {
             }
             @Override
             public void clean() {
+                simulador.clean();
                 ((Graficador)simulador.getComponent()).limpiar();
                 Eventos.variable(punto,0,"");
                 Eventos.variable(punto,1,"");
-                Eventos.enable(true,simulador.getSend(),x,y,simulador.getPause(),simulador.getBack());
-                Eventos.enable(false,simulador.getClean(),simulador.getNextIteracion());
+                Eventos.enable(true,x,y);
                 simulador.setTexto(Text.SIMULADORTDA2.toString());
                 x.setValue(0);
                 y.setValue(0);
                 punto.expandNode(0);
-                simulador.getPause().setOnOff(false);
-                simulador.setIteracion(0);
-                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0),0);
-                ((Editor) simulador.getCodigos().getComponentAt(0)).setLine(false);
             }
             /**
              * Muestra los datos y códigos que se asignan al eje x
@@ -436,7 +433,7 @@ final class Contenedor extends JPanel {
         simulador.addCodes(Editor.editor("/recourses/codes/recursividad/Factorial.seros"),"Factorial");
         simulador.setTexto(Text.FACTORIAL.toString());
         simulador.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
-        JLabel producto=new JLabel(Operaciones.operacion("n!",""),SwingConstants.CENTER);
+        JLabel producto=new JLabel(Operaciones.operacion("n!","0"),SwingConstants.CENTER);
         producto.setFont(Fuentes.UBUNTULIGHT40.getFont());
         JLabel number=new JLabel("0",SwingConstants.CENTER);
         number.setFont(Fuentes.UBUNTULIGHTB120.getFont());
@@ -499,18 +496,13 @@ final class Contenedor extends JPanel {
             }
             @Override
             public void clean() {
+                simulador.clean();
                 simulador.setTexto(Text.FACTORIAL.toString());
                 Eventos.variable(variaI,-1,"");
-                Eventos.enable(true,simulador.getSend(),valorI,simulador.getPause(),simulador.getBack(),simulador.getHome());
-                Eventos.enable(false,simulador.getClean(),simulador.getNextIteracion(),simulador.getCodigo());
-                simulador.getPause().setOnOff(false);
-                simulador.getCodigo().setOnOff(false);
+                Eventos.enable(true,valorI);
                 valorI.setValue(0);
-                simulador.setIteracion(0);
-                Eventos.scroll((Editor)simulador.getCodigos().getComponentAt(0),0);
-                ((Editor)simulador.getCodigos().getComponentAt(0)).setLine(false);
                 number.setText("0");
-                producto.setText("n!    =    ");
+                producto.setText(Operaciones.operacion("n!","0"));
                 decremento.set(0, true);
             }
             /**
@@ -582,7 +574,7 @@ final class Contenedor extends JPanel {
         Operaciones.setFormat("#,###,###");
         JSpinner valorBase=new JSpinner(new SpinnerNumberModel(1,1,10,1));
         JSpinner valorExponente=new JSpinner(new SpinnerNumberModel(0,0,10,1));
-        JLabel producto=new JLabel("<html>"+Operaciones.operacion("a<sup>n</sup>","0")+"</html>",SwingConstants.CENTER);
+        JLabel producto=new JLabel(Eventos.html(Operaciones.operacion(Operaciones.exponente("b","e"),"0")),SwingConstants.CENTER);
         JLabel number=new JLabel("0",SwingConstants.CENTER);
         Tree base=new Tree(new Dato("int","base",""));
         Tree exponente=new Tree(new Dato("int","exponente",""));
@@ -591,11 +583,11 @@ final class Contenedor extends JPanel {
         ((JSpinner.NumberEditor)valorBase.getEditor()).getTextField().setEditable(false);
         ((JSpinner.NumberEditor)valorExponente.getEditor()).getTextField().setEditable(false);
         producto.setFont(Fuentes.UBUNTULIGHT40.getFont());
-        number.setFont(Fuentes.UBUNTULIGHTB120.getFont());
+        number.setFont(Fuentes.UBUNTULIGHTB118.getFont());
         box.add(valorBase);
         box.add(Box.createHorizontalStrut(1));
         box.add(valorExponente);
-        box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),"Base, Exponente"));
+        box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),"Base  -  Exponente"));
         simulador.addCodes(Editor.editor("/recourses/codes/recursividad/Potencia.seros"),"Potencia");
         simulador.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
         simulador.setDatos(base,exponente);
@@ -603,7 +595,13 @@ final class Contenedor extends JPanel {
         simulador.setAcciones(new Acciones() {
             @Override
             public void iteracion0() {
-
+                Eventos.enable(false,valorBase,valorExponente,simulador.getNextIteracion(),simulador.getSend(),simulador.getPause(),simulador.getBack(),simulador.getClean(),simulador.getCodigo(),simulador.getHome());
+                simulador.setTexto(Text.POTENCIA1.toString());
+                number.setText(Operaciones.formatNumber(Operaciones.potencia(valorBase.getValue(),valorExponente.getValue())));
+                producto.setText(Eventos.html(Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),valorExponente.getValue()),Operaciones.productoPotencia(Integer.parseInt(valorBase.getValue().toString()),Integer.parseInt(valorExponente.getValue().toString())))));
+                Eventos.variable(base,-1,valorBase.getValue());
+                Eventos.variable(exponente,-1,valorExponente.getValue());
+                Eventos.enable(true,simulador.getClean());
             }
             @Override
             public void iteracion1() {
@@ -611,7 +609,15 @@ final class Contenedor extends JPanel {
             }
             @Override
             public void clean() {
-
+                simulador.clean();
+                Eventos.enable(true,valorBase,valorExponente);
+                simulador.setTexto(Text.POTENCIA.toString());
+                number.setText("0");
+                producto.setText(Eventos.html(Operaciones.operacion(Operaciones.exponente("a","n"),"0")));
+                valorBase.setValue(1);
+                valorExponente.setValue(0);
+                Eventos.variable(base,-1,"");
+                Eventos.variable(exponente,-1,"");
             }
         });
         simulador.acomodamientoProducto(number, producto);

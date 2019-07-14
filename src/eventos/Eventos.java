@@ -98,4 +98,12 @@ public abstract class Eventos {
         for (Object object:objects) if (valor.equals(object)) return true;
         return false;
     }
+    /**
+     * Convierte una cadena de texto a HTML
+     * @param n cadena a convertir
+     * @return HTML de la cadena dada
+     */
+    public static String html(String n){
+        return "<html>"+n+"</html>";
+    }
 }

@@ -44,7 +44,7 @@ public abstract class Operaciones {
      * @return multiplicación recursiva del factorial n
      */
     public static String productoFactorial(int i){
-        return (i==0 || i==1) ? "1" : i+" * "+Operaciones.productoFactorial(i-1);
+        return (Eventos.contains(i,1,0)) ? "1" : i+" * "+Operaciones.productoFactorial(i-1);
     }
     /**
      * Genera la multiplicación de un número n hasta el establecido
@@ -63,5 +63,35 @@ public abstract class Operaciones {
      */
     public static String productUpFactorial(int i,int factorial){
         return i==factorial ? Operaciones.formatNumber(Operaciones.factorial(factorial)) : i+" * "+Operaciones.productUpFactorial(i-1,factorial);
+    }
+    /**
+     * No da una cadena exponencial convertida por medio de HTML
+     * @param base base del exponente
+     * @param exponente exponente de la base
+     * @return cadena exponencial
+     * @see Eventos#html(String)
+     */
+    public static String exponente(Object base, Object exponente){
+        return base.toString()+"<sup>"+exponente.toString()+"</sup>";
+    }
+    /**
+     * Resuelve una potencia con los casos dados
+     * @param base base de la potencia
+     * @param exponente exponente de la potencia
+     * @return Resultado de la potencia según los casos dados
+     */
+    public static long potencia(Object base,Object exponente){
+        return (long) Math.pow(Integer.parseInt(base.toString()),Integer.parseInt(exponente.toString()));
+    }
+    /**
+     * Genera la multiplicación de una potencia dada
+     * @param base caso base de la potencia
+     * @param exponente caso exponente de la potencia
+     * @return multiplicación recursiva de la potencia b^e
+     */
+    public static String productoPotencia(int base,int exponente){
+        if (exponente==0) return "1";
+        else if (exponente==1) return String.valueOf(base);
+        else return base+" * "+productoPotencia(base, exponente-1);
     }
 }

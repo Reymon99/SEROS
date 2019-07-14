@@ -1,4 +1,5 @@
 package gui.simulador;
+import eventos.Eventos;
 import gui.contenido.ButtonSimulador;
 import gui.contenido.Lienzo;
 import gui.contenido.Switch;
@@ -84,6 +85,18 @@ public final class Simulador extends Lienzo {
         Constrains.addCompIy(texto=new Texto(4,55),this,new Rectangle(1,1,1,1),1,0,insets,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,new Rectangle(1,2,1,1),1,0,insets,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addComp(codigos=new JTabbedPane(JTabbedPane.TOP),this,new Rectangle(1,3,1,2),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+    }
+    /**
+     * Plantilla por defecto para reiniciar el simulador
+     */
+    public void clean(){
+        Eventos.enable(true,send,pause,getBack(),getHome());
+        Eventos.enable(false,nextIteracion,clean,codigo);
+        pause.setOnOff(false);
+        codigo.setOnOff(false);
+        setIteracion(0);
+        Eventos.scroll((Editor)codigos.getComponentAt(0),0);
+        ((Editor)codigos.getComponentAt(0)).setLine(false);
     }
     /**
      * Plantilla por defecto de acomodamiento para el panel de control

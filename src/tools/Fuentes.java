@@ -10,6 +10,7 @@ public enum Fuentes {
     UBUNTULIGHTB30(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.BOLD,30)),
     UBUNTULIGHT40(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.PLAIN,40)),
     UBUNTULIGHTB120(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.BOLD,120)),
+    UBUNTULIGHTB118(new FuentesModificadas("/recourses/fonts/UbuntuLight.ttf").getFont(Font.BOLD,118)),
     PURISA18(new FuentesModificadas("/recourses/fonts/Purisa-Bold.ttf").getFont(Font.PLAIN,18)),
     PURISA22(new FuentesModificadas("/recourses/fonts/Purisa-Bold.ttf").getFont(Font.PLAIN,22)),
     DIALOG35(new Font(Font.DIALOG,Font.BOLD,35)),
