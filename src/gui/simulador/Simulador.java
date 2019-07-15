@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 public final class Simulador extends Lienzo {
+    private boolean decremento;
     private Integer iteracion;
     private Component component;
     private JPanel datos;
@@ -46,6 +47,7 @@ public final class Simulador extends Lienzo {
     public Simulador(Component component){
         super(new GridBagLayout(),false);
         this.component = component;
+        decremento = true;
         iteracion = 0;
         init();
     }
@@ -191,7 +193,7 @@ public final class Simulador extends Lienzo {
      * Fija un nuevo valor a la iteración de pulsaciones del simulador
      * @param iteracion nuevo valor de iteración
      */
-    public void setIteracion(Integer iteracion) {
+    private void setIteracion(Integer iteracion) {
         this.iteracion = iteracion;
     }
     /**
@@ -240,5 +242,19 @@ public final class Simulador extends Lienzo {
      */
     public ButtonSimulador getNextIteracion() {
         return nextIteracion;
+    }
+    /**
+     * Indica el decremento o incremento de la iteración
+     * @return true: decremento | false: incremento
+     */
+    public boolean isDecremento() {
+        return decremento;
+    }
+    /**
+     * Da un nuevo estado para el control de la iteración
+     * @param decremento nuevo estado
+     */
+    public void setDecremento(boolean decremento) {
+        this.decremento = decremento;
     }
 }

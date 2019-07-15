@@ -1,7 +1,7 @@
 package tools;
 import eventos.Eventos;
 import java.text.DecimalFormat;
-public abstract class Operaciones {
+public abstract class Operaciones {//Operaciones y demostraciones matemáticas
     private static DecimalFormat format;
     static {
         Operaciones.format = new DecimalFormat();
@@ -27,8 +27,8 @@ public abstract class Operaciones {
      * @param resultado Respectivo resultado de la operación
      * @return operación y resultado en una única cadena
      */
-    public static String operacion(String operacion,String resultado){
-        return operacion+"    =    "+resultado;
+    public static String operacion(String operacion,Object resultado){
+        return operacion+"    =    "+resultado.toString();
     }
     /**
      * Genera el factorial de n

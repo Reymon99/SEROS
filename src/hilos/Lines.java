@@ -13,7 +13,7 @@ public abstract class Lines extends Thread {
      * @param simulador simulador correspondiente en el cual el componente {@link Texto} se ubicarán los textos de las líneas correspondientes, y el componente {@link Editor} en el cual se seleccionarán las líneas dispuestas en {@link Lines#lines}.
      * @param lines números de las líneas a seleccionar con sus respectivos texto, desde nulos a su contenido correspondiente.
      */
-    public Lines(Simulador simulador, LineLocation... lines) {
+    protected Lines(Simulador simulador, LineLocation... lines) {
         this.simulador = simulador;
         this.lines = lines;
     }

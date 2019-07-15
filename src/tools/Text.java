@@ -22,16 +22,21 @@ public enum Text {
     NODOS("Un nodo es un TDA que nos permite crear estructuras de datos dinámicas lineales y no lineales. Esto debido a su estructura basada en punteros y un único dato cuya característica es agrupar homogéneamente la información donde su contenido varia en variables (primitivas) a TDA (objetos)."),
     NODOS1("Un nodo se encuentra referenciado mediante un hash en memoria principal. A su vez, los nodos están enlazados entre ellos mismos, permitiendo avanzar y operar entre ellos para poder gestionarlos.\n\nUn hash es la serie de 40 dígitos hexadecimales que nos permite identificar una serie de información dispuesta. En la memoria principal se utilizan para gestionar la identificación de los datos gestionados en memoria, logrando así ser administrados por el sistema."),
     NODOS2("En programación las variables son utilizadas para almacenar datos, pero en realidad solo sirven como punteros de acceso, creación y modificación a datos en la memoria principal. Estos punteros funcionan mediante la asignación de identificadores en memoria, dirigidos por variables que permiten una fácil gestión de los datos en el momento de trabajar con ellos, de esta forma un dato puede ser controlado y modificado por varias variables que lo requieran."),
-    FACTORIAL("Ingrese número para dar el Factorial de n"),
-    FACTORIAL1("Resultado del Factorial"),
-    FACTORIAL2("Buscando el caso base del factorial mediante el caso recursivo"),
-    FACTORIAL3("Comprobando si el número dado cumple con el caso base del factorial"),
-    FACTORIAL4("Caso base del Factorial encontrado"),
-    FACTORIAL5("Retorna el caso base para así terminar los casos recursivos"),
-    FACTORIAL6("Casos recursivos terminados"),
-    FACTORIAL7("Multiplica n con los demás casos"),
-    POTENCIA("Ingrese la base y el exponente para dar la potencia"),
-    POTENCIA1("Resultado de la Potencia");
+    FACTORIAL("Ingrese número para dar el Factorial de n."),
+    FACTORIAL1("Resultado del Factorial."),
+    FACTORIAL2("Buscando el caso base del factorial mediante el caso recursivo."),
+    FACTORIAL3("Comprobando si el número dado cumple con el caso base del factorial."),
+    FACTORIAL4("Caso base del Factorial encontrado."),
+    FACTORIAL5("Retorna el caso base para así terminar los casos recursivos."),
+    FACTORIAL6("Casos recursivos terminados."),
+    FACTORIAL7("Multiplica n con los demás casos."),
+    POTENCIA("Ingrese la base y el exponente para dar la potencia."),
+    POTENCIA1("Resultado de la Potencia."),
+    POTENCIA2("Comprobando si el número dado cumple con el caso base 0."),
+    POTENCIA3("Resultado de la Potencia."),
+    POTENCIA4("Comprobando si el número dado cumple con el caso base 1"),
+    POTENCIA5("Caso base 0 encontrado"),
+    POTENCIA6("Caso base 1 encontrado");
     private String n;
     Text(String n){
         this.n=n;
