@@ -1,10 +1,21 @@
 package hilos;
 public class LineLocation {
     private int code;
-    private int line;
+    private int lineIndice;
+    private int lineEditor;
     private String texto;
     private int scroll;
     private boolean sleep;
+    /**
+     * Locación de cada código en los editores con su respectivo texto a utilizar
+     * @param code ubicación de código a emplear
+     * @param lineIndice línea en el código a seleccionar en el Indice
+     * @param lineEditor línea en el código a seleccionar en el View
+     * @param texto texto respectivo de la línea
+     */
+    public LineLocation(int code, int lineIndice, int lineEditor, String texto){
+        this(code, lineIndice, lineEditor, texto, 0, true);
+    }
     /**
      * Locación de cada código en los editores con su respectivo texto a utilizar
      * @param code ubicación de código a emplear
@@ -13,7 +24,7 @@ public class LineLocation {
      * @param sleep si es verdadero duerme la ejecución de la línea de lo contrario solo se seleccionará la línea y el proceso seguirá normalmente
      */
     public LineLocation(int code, int line, String texto, boolean sleep) {
-        this(code, line, texto, 0, sleep);
+        this(code, line, line, texto, 0, sleep);
     }
     /**
      * Locación de cada código en los editores con su respectivo texto a utilizar
@@ -22,19 +33,21 @@ public class LineLocation {
      * @param texto texto respectivo de la línea
      */
     public LineLocation(int code, int line, String texto) {
-        this(code, line, texto, 0, true);
+        this(code, line, line, texto, 0, true);
     }
     /**
      * Locación de cada código en los editores con su respectivo texto a utilizar
      * @param code ubicación de código a emplear
-     * @param line línea en el código a seleccionar
+     * @param lineIndice línea en el código a seleccionar en el Indice
+     * @param lineEditor línea en el código a seleccionar en el View
      * @param texto texto respectivo de la línea
      * @param scroll posición del scroll del editor
      * @param sleep si es verdadero duerme la ejecución de la línea de lo contrario solo se seleccionará la línea y el proceso seguirá normalmente
      */
-    public LineLocation(int code, int line, String texto, int scroll, boolean sleep) {
+    private LineLocation(int code, int lineIndice, int lineEditor, String texto, int scroll, boolean sleep) {
         this.code = code;
-        this.line = line;
+        this.lineIndice = lineIndice;
+        this.lineEditor = lineEditor;
         this.texto = texto;
         this.scroll = scroll;
         this.sleep = sleep;
@@ -55,17 +68,31 @@ public class LineLocation {
     }
     /**
      * Obtiene la línea a seleccionar en el código empleado
-     * @return línea a seleccionar del código en el editor
+     * @return línea a seleccionar del código en el Indice
      */
-    public int getLine() {
-        return line;
+    public int getLineIndice() {
+        return lineIndice;
     }
     /**
      * Da una nueva línea a seleccionar en el código empleado
-     * @param line nueva línea a seleccionar en el código en el editor
+     * @param lineIndice nueva línea a seleccionar en el código en el editor
      */
-    public void setLine(int line) {
-        this.line = line;
+    public void setLineIndice(int lineIndice) {
+        this.lineIndice = lineIndice;
+    }
+    /**
+     * Obtiene la línea a seleccionar en el código empleado
+     * @return línea a seleccionar del código en el View
+     */
+    public int getLineEditor() {
+        return lineEditor;
+    }
+    /**
+     * Da una nueva línea a seleccionar en el código empleado
+     * @param lineEditor nueva línea a seleccionar en el código en el editor
+     */
+    public void setLineEditor(int lineEditor) {
+        this.lineEditor = lineEditor;
     }
     /**
      * Obtiene el texto empleado de la línea a seleccionar del código en el editor
@@ -115,6 +142,6 @@ public class LineLocation {
     }
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof LineLocation && code==((LineLocation) obj).code && line==((LineLocation) obj).line;
+        return obj instanceof LineLocation && code==((LineLocation) obj).code && lineIndice==((LineLocation) obj).lineIndice && lineEditor==((LineLocation) obj).lineEditor;
     }
 }

@@ -4,7 +4,7 @@ import tools.Archivos;
 import tools.Colour;
 public class Editor extends ModernScrollPane{
     /**
-     * Editor sintexico de código a utilizar en la interfaz grafica del proyecto
+     * Editor sintexico de código a utilizar en la interfaz gráfica del proyecto
      */
     private Editor(View view, Indice indice) {
         super(view, indice);
@@ -28,8 +28,16 @@ public class Editor extends ModernScrollPane{
      * @param i linea a seleccionar
      */
     public void drawLineIn(int i){
-        ((View)getView()).drawLineIn(i);
-        ((Indice)getIndice()).lineForegroundIn(i);
+        drawLineIn(i,i);
+    }
+    /**
+     * Selecciona una linea determinada
+     * @param lineIndice línea a seleccionar en el Indice
+     * @param lineEditor línea a seleccionar en el View
+     */
+    public void drawLineIn(int lineIndice, int lineEditor){
+        ((View)getView()).drawLineIn(lineEditor);
+        ((Indice)getIndice()).lineForegroundIn(lineIndice);
     }
     /**
      * Fija si la linea se dibuja

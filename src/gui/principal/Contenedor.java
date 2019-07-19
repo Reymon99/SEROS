@@ -23,7 +23,7 @@ import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.concurrent.atomic.AtomicReferenceArray;
+
 final class Contenedor extends JPanel {
     /**
      * Contenedor de los paneles del proyecto
@@ -65,79 +65,79 @@ final class Contenedor extends JPanel {
      */
     private Lienzo principal(){
         Lienzo lienzo=new Lienzo(new GridBagLayout(),true);
-        Constrains.addCompY(new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/recourses/image/TDA.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/resources/image/TDA.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.TDA);
             }
         }),lienzo,new Rectangle(0,0,1,4),0,new Insets(30,57,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Modularidad","Complejidad Algoritmica", Archivos.image("/recourses/image/Modularidad y Mapas.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Modularidad","Complejidad Algoritmica", Archivos.image("/resources/image/Modularidad y Mapas.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.MODULARIDAD);
             }
         }), lienzo,new Rectangle(1,0,1,1),0,new Insets(30,18,0,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Recursividad","Metodos Recursivos", Archivos.image("/recourses/image/Recursividad.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Recursividad","Metodos Recursivos", Archivos.image("/resources/image/Recursividad.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.RECURSIVIDAD);
             }
         }),lienzo,new Rectangle(1,1,1,1),0,new Insets(13,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Arreglos", "Vectores y Matrices", Archivos.image("/recourses/image/Arreglos y Arboles.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Arreglos", "Vectores y Matrices", Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.ARREGLOS);
             }
         }),lienzo,new Rectangle(1,2,1,1),0,new Insets(13,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Nodos","Enlazamiento de Datos", Archivos.image("/recourses/image/Nodos.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Nodos","Enlazamiento de Datos", Archivos.image("/resources/image/Nodos.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.NODOS);
             }
         }),lienzo,new Rectangle(1,3,1,1),0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Ordenamiento", "Metodos de Ordenamiento Interno", Archivos.image("/recourses/image/Ordenamiento.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Ordenamiento", "Metodos de Ordenamiento Interno", Archivos.image("/resources/image/Ordenamiento.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.ORDENAMIENTO);
             }
         }),lienzo,new Rectangle(2,0,1,2),0,new Insets(30,18,13,18), GridBagConstraints.SOUTH, GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Busqueda","Metodos de Busqueda", Archivos.image("/recourses/image/Busqueda.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Busqueda","Metodos de Busqueda", Archivos.image("/resources/image/Busqueda.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.BUSQUEDA);
             }
         }),lienzo,new Rectangle(2,2,1,2),0,new Insets(13,18,30,18),GridBagConstraints.NORTH,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Pilas","Pilas Dinámicas y Estáticas", Archivos.image("/recourses/image/Pilas.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Pilas","Pilas Dinámicas y Estáticas", Archivos.image("/resources/image/Pilas.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.PILAS);
             }
         }),lienzo,new Rectangle(3,0,1,2),0,new Insets(30,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Colas","Colas Dinámicas y Estáticas", Archivos.image("/recourses/image/Colas.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Colas","Colas Dinámicas y Estáticas", Archivos.image("/resources/image/Colas.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.COLAS);
             }
         }),lienzo,new Rectangle(3,1,1,2),0,new Insets(13,18,13,13),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Listas","Listas Enlazadas", Archivos.image("/recourses/image/Listas Enlazadas.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Listas","Listas Enlazadas", Archivos.image("/resources/image/Listas Enlazadas.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.LISTAS_ENLAZADAS);
             }
         }),lienzo,new Rectangle(3,2,1,2),0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Árboles","Árboles Binarios y AVL", Archivos.image("/recourses/image/Arreglos y Arboles.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Árboles","Árboles Binarios y AVL", Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.ARBOLES);
             }
         }),lienzo,new Rectangle(4,0,1,2),0,new Insets(30,18,13,75),GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Grafos","Algoritmo del Camino más Corto", Archivos.image("/recourses/image/Grafos.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Grafos","Algoritmo del Camino más Corto", Archivos.image("/resources/image/Grafos.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.GRAFOS);
             }
         }),lienzo,new Rectangle(4,2,1,2),0,new Insets(13,18,30,75),GridBagConstraints.NORTH,GridBagConstraints.NONE);
-        Constrains.addComp(new Boton("Acerca de Seros", Archivos.image("/recourses/image/about.png",-1,-1), new MouseAdapter() {
+        Constrains.addComp(new Boton("Acerca de Seros", Archivos.image("/resources/image/about.png",-1,-1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.about(lienzo);
@@ -158,7 +158,7 @@ final class Contenedor extends JPanel {
         formula.setFont(Fuentes.PURISA18.getFont());
         formula.setOpaque(false);
         Constrains.addComp(new Texto(Text.TDA.toString()), con.getContenido(), new Rectangle(0, 0, 1, 1), 1,1, new Insets(10, 25, 15, 12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(Editor.editor("/recourses/codes/tda/Punto.seros"),con.getContenido(),new Rectangle(0,1,1,1), 0,0,new Insets(5,5,5,5),GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addComp(Editor.editor("/resources/codes/tda/Punto.seros"),con.getContenido(),new Rectangle(0,1,1,1), 0,0,new Insets(5,5,5,5),GridBagConstraints.CENTER, GridBagConstraints.NONE);
         Constrains.addComp(new Texto(Text.TDA1.toString()), con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(10,25,3,12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new Texto(Text.TDA2.toString()), con.getContenido(),new Rectangle(0,3,1,1),1,1,new Insets(3,40,3,12), GridBagConstraints.NORTHEAST,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new Texto(Text.TDA3.toString()), con.getContenido(),new Rectangle(0,4,1,1), 1,1,new Insets(5,25,5,12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
@@ -321,7 +321,7 @@ final class Contenedor extends JPanel {
                 ejercicios.getTexto().setText("");
             }
         };
-        ejercicios.setBotones(new Boton(Archivos.image("/recourses/image/factorial.png", -1, -1), "Factorial", mouse), new Boton(Archivos.image("/recourses/image/potencia.png", -1, -1), "Potencia", mouse));
+        ejercicios.setBotones(new Boton(Archivos.image("/resources/image/factorial.png", -1, -1), "Factorial", mouse), new Boton(Archivos.image("/resources/image/potencia.png", -1, -1), "Potencia", mouse));
         return ejercicios;
     }
     /**
@@ -401,7 +401,7 @@ final class Contenedor extends JPanel {
                 ((Graficador)simulador.getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
             }
         });
-        simulador.addCodes(Editor.editor("/recourses/codes/tda/Punto.seros"),"Punto");
+        simulador.addCodes(Editor.editor("/resources/codes/tda/Punto.seros"),"Punto");
         simulador.back("Tipos de Datos Abstratos",Paneles.TDA);
         simulador.getSend().setText("Graficar");
         simulador.setDatos(punto);
@@ -429,7 +429,7 @@ final class Contenedor extends JPanel {
         ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
         Tree variaI=new Tree(new Dato("int","n",""));
         simulador.setDatos(variaI);
-        simulador.addCodes(Editor.editor("/recourses/codes/recursividad/Factorial.seros"),"Factorial");
+        simulador.addCodes(Editor.editor("/resources/codes/recursividad/Factorial.seros"),"Factorial");
         simulador.setTexto(Text.FACTORIAL.toString());
         simulador.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
         JLabel producto=new JLabel(Operaciones.operacion("n!","0"),SwingConstants.CENTER);
@@ -587,7 +587,7 @@ final class Contenedor extends JPanel {
         box.add(Box.createHorizontalStrut(1));
         box.add(valorExponente);
         box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),"Base  -  Exponente"));
-        simulador.addCodes(Editor.editor("/recourses/codes/recursividad/Potencia.seros"),"Potencia");
+        simulador.addCodes(Editor.editor("/resources/codes/recursividad/Potencia.seros"),"Potencia");
         simulador.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
         simulador.setDatos(base,exponente);
         simulador.setTexto(Text.POTENCIA.toString());
@@ -610,7 +610,7 @@ final class Contenedor extends JPanel {
                 Eventos.variable(base,-1,valorBase.getValue());
                 if (Integer.parseInt(valorExponente.getValue().toString())==0){
                     if (simulador.getCodigo().isOnOff()) {
-                        new Lines(simulador,new LineLocation(0,1,null),new LineLocation(0,2,Text.POTENCIA2.toString()),new LineLocation(0,3,Text.POTENCIA5.toString())){
+                        new Lines(simulador,new LineLocation(0,1,null),new LineLocation(0,2,3,Text.POTENCIA2.toString()),new LineLocation(0,3,4,Text.POTENCIA5.toString())){
                             @Override
                             public void actions() {
                                 casoTerminal0();
@@ -619,7 +619,7 @@ final class Contenedor extends JPanel {
                     } else casoTerminal0();
                 } else if (valor==1){
                     if (simulador.getCodigo().isOnOff()){
-                        new Lines(simulador,new LineLocation(0,1,null),new LineLocation(0,2,Text.POTENCIA2.toString()),new LineLocation(0,4,Text.POTENCIA4.toString()),new LineLocation(0,5,Text.POTENCIA6.toString())){
+                        new Lines(simulador,new LineLocation(0,1,null),new LineLocation(0,2,3,Text.POTENCIA2.toString()),new LineLocation(0,4,5,Text.POTENCIA4.toString()),new LineLocation(0,5,6,Text.POTENCIA6.toString())){
                             @Override
                             public void actions() {
                                 if (Integer.parseInt(valorExponente.getValue().toString())==1) casoTerminal1(valor);
@@ -673,10 +673,10 @@ final class Contenedor extends JPanel {
 
             }
             private void casoTerminal0(){
-                base(Text.POTENCIA3.toString(),String.valueOf(Operaciones.potencia(valorBase.getValue(),0)),Eventos.html(Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),0),Operaciones.potencia(valorBase.getValue(),0))),true);
+                base(Text.POTENCIA3.toString(),Operaciones.potencia(valorBase.getValue(),0),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),0),Operaciones.potencia(valorBase.getValue(),0)),true);
             }
             private void casoTerminal1(int valor) {
-                simulador.setTexto(Text.POTENCIA3.toString());
+                base(Text.POTENCIA3.toString(),Operaciones.potencia(valorBase,1),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),1),Operaciones.potencia(valorBase.getValue(),0)),true);
             }
             private void casoIncrementativo(int valor) {
 
@@ -684,10 +684,10 @@ final class Contenedor extends JPanel {
             private void casoDecrementativo(int valor) {
 
             }
-            private void base(String texto,String numberText,String productoText,boolean clean){
+            private void base(String texto,double numberText,String productoText,boolean clean){
                 if (texto!=null) simulador.setTexto(texto);
-                number.setText(numberText);
-                producto.setText(productoText);
+                number.setText(String.valueOf(numberText));
+                producto.setText(Eventos.html(productoText));
                 Eventos.enable(true,clean ? simulador.getClean() : simulador.getNextIteracion());
             }
         });

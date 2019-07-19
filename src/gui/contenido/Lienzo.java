@@ -44,15 +44,15 @@ public class Lienzo extends JPanel {
      */
     private void init(boolean lienzo){
         this.lienzo=lienzo;
-        back=new Boton(Archivos.image("/recourses/image/back.png",-1,-1));
-        home=new Boton(Text.VENTANAPRINCIPAL.toString(), Archivos.image("/recourses/image/home.png", -1, -1), new MouseAdapter() {
+        back=new Boton(Archivos.image("/resources/image/back.png",-1,-1));
+        home=new Boton(Text.VENTANAPRINCIPAL.toString(), Archivos.image("/resources/image/home.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 acciones.clean();
                 Eventos.show(Paneles.PRINCIPAL);
             }
         });
-        next=new Boton(Archivos.image("/recourses/image/next.png",-1,-1));
+        next=new Boton(Archivos.image("/resources/image/next.png",-1,-1));
     }
     /**
      * Atributos del botón retroceder
@@ -126,7 +126,7 @@ public class Lienzo extends JPanel {
     @Override
     public void paint(Graphics g) {
         if (lienzo) {
-            g.drawImage(Objects.requireNonNull(Archivos.image("/recourses/image/Lienzo.jpg", -1, -1)).getImage(),0,0,getWidth(),getHeight(),this);
+            g.drawImage(Objects.requireNonNull(Archivos.image("/resources/image/Lienzo.jpg", -1, -1)).getImage(),0,0,getWidth(),getHeight(),this);
             setOpaque(false);
         }
         super.paint(g);

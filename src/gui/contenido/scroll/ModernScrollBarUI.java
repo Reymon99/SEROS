@@ -14,18 +14,18 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
         this.sp=sp;
     }
     /**
-     * Se oculta el boton de decremento en el JScrollBar
+     * Se oculta el botón de decremento en el JScrollBar
      * @param orientation orientación del scroll
-     * @return boton de decremento oculto
+     * @return botón de decremento oculto
      */
     @Override
     protected JButton createDecreaseButton(int orientation) {
         return new InvisibleScrollBarButton();
     }
     /**
-     * Se oculta el boton de incremento en el JScrollBar
+     * Se oculta el botón de incremento en el JScrollBar
      * @param orientation orientación del scroll
-     * @return boton de incremento oculto
+     * @return botón de incremento oculto
      */
     @Override
     protected JButton createIncreaseButton(int orientation) {

@@ -20,7 +20,7 @@ public abstract class Eventos {
         Eventos.panel=panel;
     }
     /**
-     * Mediante el nombre de los paneles definidos mediante un enum de String muestra el panel deseado en la intefaz grafica
+     * Mediante el nombre de los paneles definidos mediante un enum de String muestra el panel deseado en la intefaz gráfica
      * @see Paneles
      * @param panel {@link String}
      */
@@ -28,7 +28,7 @@ public abstract class Eventos {
         ((CardLayout)Eventos.panel.getLayout()).show(Eventos.panel,panel.toString());
     }
     /**
-     * abre el navegador con el link fijado
+     * Abre el navegador con el link fijado
      * @param url {@link String} url a abrir por el usuario
      */
     public static void link(String url){

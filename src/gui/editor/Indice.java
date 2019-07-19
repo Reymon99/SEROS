@@ -18,7 +18,7 @@ public class Indice extends JPanel {
      * Indice de lineas de un componente de Texto
      * @param component componente de texto
      */
-    public Indice(JTextComponent component) {
+    Indice(JTextComponent component) {
         this(component, 1);
     }
     /**
@@ -55,7 +55,7 @@ public class Indice extends JPanel {
      * Linea a pintar
      * @param i linea
      */
-    public void lineForegroundIn(int i){
+    void lineForegroundIn(int i){
         lineForeground=i;
         repaint();
     }
@@ -77,17 +77,10 @@ public class Indice extends JPanel {
         });
     }
     /**
-     * Retorna el número minimo de digitos en el indice
-     * @return número de digitos
-     */
-    public int getMinimumDisplayDigits() {
-        return minimumDisplayDigits;
-    }
-    /**
      * Modifica el número minimo de digitos
      * @param minimumDisplayDigits nuevo número minimo de digitos
      */
-    public void setMinimumDisplayDigits(int minimumDisplayDigits) {
+    private void setMinimumDisplayDigits(int minimumDisplayDigits) {
         this.minimumDisplayDigits = minimumDisplayDigits;
         setPreferredWidth();
     }

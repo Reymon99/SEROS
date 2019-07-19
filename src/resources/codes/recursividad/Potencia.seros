@@ -1,9 +1,9 @@
-public longn_ potenciaa_ (w_intn_ basew_, intn_ expow_){w_
+public longn_ potenciaa_ (w_intn_ basew_, intn_ exponentew_){w_
 	ifn_ (exponente == w_0b_) {w_
 		returnn_ 1b_;n_
 	}w_ else ifn_ (exponente ==w_ 1b_) {w_
 		returnn_ basew_;n_
 	}w_ elsen_ {w_
-		returnn_ base * potencia(basew_,n_ expow_-1b_)w_;n_
+		returnn_ base * potencia(basew_,n_ exponentew_-1b_)w_;n_
 	}
 }w_
