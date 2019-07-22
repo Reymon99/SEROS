@@ -1,25 +1,35 @@
 package tools;
 import eventos.Eventos;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 public abstract class Operaciones {//Operaciones y demostraciones matemáticas
-    private static DecimalFormat format;
+    private static HashMap<Operacion,DecimalFormat> format;
     static {
-        Operaciones.format = new DecimalFormat();
+        Operaciones.format = new HashMap<>();
+    }
+    /**
+     * Keys de los formatos a trabajar
+     */
+    public enum Operacion{
+        FACTORIAL,
+        POTENCIA
     }
     /**
      * Se específica el formato a dar a los números
+     * @param key formato a trabajar
      * @param pattern patron a trabajar
      */
-    public static void setFormat(String pattern) {
-        Operaciones.format.applyPattern(pattern);
+    public static void setFormat(Operacion key,String pattern) {
+        Operaciones.format.put(key,new DecimalFormat(pattern));
     }
     /**
      * Formato al número dado
      * @param number número a dar formato
-     * @return Un {@link String} cone le número formateado
+     * @param operacion formato a trabajar
+     * @return Un {@link String} con le número formateado
      */
-    public static String formatNumber(Object number){
-        return Operaciones.format.format(number);
+    public static String formatNumber(Object number, Operacion operacion){
+        return Operaciones.format.get(operacion).format(number);
     }
     /**
      * Concatena la operación realizada con su respectivo resultado
@@ -62,7 +72,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @return multiplicación recursiva de un valor inicial al factorial del valor final
      */
     public static String productUpFactorial(int i,int factorial){
-        return i==factorial ? Operaciones.formatNumber(Operaciones.factorial(factorial)) : i+" * "+Operaciones.productUpFactorial(i-1,factorial);
+        return i==factorial ? Operaciones.formatNumber(Operaciones.factorial(factorial),Operacion.FACTORIAL) : i+" * "+Operaciones.productUpFactorial(i-1,factorial);
     }
     /**
      * No da una cadena exponencial convertida por medio de HTML

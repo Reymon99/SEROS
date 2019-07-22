@@ -23,7 +23,6 @@ import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
 final class Contenedor extends JPanel {
     /**
      * Contenedor de los paneles del proyecto
@@ -40,14 +39,13 @@ final class Contenedor extends JPanel {
      * @see tools.Paneles
      */
     private void init() {
-        add(Paneles.POTENCIA.toString(), potencia());
         add(Paneles.PRINCIPAL.toString(), principal());
         add(Paneles.TDA.toString(), tda());
         add(Paneles.SIMULADORTDA.toString(), simuladorTda());
         add(Paneles.MODULARIDAD.toString(), modularidad());
         add(Paneles.RECURSIVIDAD.toString(), recursividad());
         add(Paneles.FACTORIAL.toString(), factorial());
-
+        add(Paneles.POTENCIA.toString(), potencia());
         add(Paneles.EJERCICIOS_RECURSIVIDAD.toString(), ejerciciosRecursividad());
         add(Paneles.ARREGLOS.toString(), arreglos());
         add(Paneles.NODOS.toString(), nodos());
@@ -65,73 +63,73 @@ final class Contenedor extends JPanel {
      */
     private Lienzo principal(){
         Lienzo lienzo=new Lienzo(new GridBagLayout(),true);
-        Constrains.addCompY(new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/resources/image/TDA.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/resources/image/TDA.png", -1, -1),Eventos.menu(Paneles.TDA,Paneles.SIMULADORTDA), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.TDA);
             }
         }),lienzo,new Rectangle(0,0,1,4),0,new Insets(30,57,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Modularidad","Complejidad Algoritmica", Archivos.image("/resources/image/Modularidad y Mapas.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Modularidad","Complejidad Algoritmica", Archivos.image("/resources/image/Modularidad y Mapas.png", -1, -1), Eventos.menu(Paneles.MODULARIDAD),new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.MODULARIDAD);
             }
         }), lienzo,new Rectangle(1,0,1,1),0,new Insets(30,18,0,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Recursividad","Metodos Recursivos", Archivos.image("/resources/image/Recursividad.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Recursividad","Metodos Recursivos", Archivos.image("/resources/image/Recursividad.png", -1, -1),Eventos.menu(Paneles.RECURSIVIDAD,Paneles.EJERCICIOS_RECURSIVIDAD,Paneles.FACTORIAL,Paneles.POTENCIA), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.RECURSIVIDAD);
             }
         }),lienzo,new Rectangle(1,1,1,1),0,new Insets(13,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Arreglos", "Vectores y Matrices", Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Arreglos", "Vectores y Matrices", Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1),Eventos.menu(Paneles.ARREGLOS), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.ARREGLOS);
             }
         }),lienzo,new Rectangle(1,2,1,1),0,new Insets(13,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Nodos","Enlazamiento de Datos", Archivos.image("/resources/image/Nodos.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Nodos","Enlazamiento de Datos", Archivos.image("/resources/image/Nodos.png", -1, -1), Eventos.menu(Paneles.NODOS),new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.NODOS);
             }
         }),lienzo,new Rectangle(1,3,1,1),0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Ordenamiento", "Metodos de Ordenamiento Interno", Archivos.image("/resources/image/Ordenamiento.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Ordenamiento", "Metodos de Ordenamiento Interno", Archivos.image("/resources/image/Ordenamiento.png", -1, -1),Eventos.menu(Paneles.ORDENAMIENTO), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.ORDENAMIENTO);
             }
         }),lienzo,new Rectangle(2,0,1,2),0,new Insets(30,18,13,18), GridBagConstraints.SOUTH, GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Busqueda","Metodos de Busqueda", Archivos.image("/resources/image/Busqueda.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Busqueda","Metodos de Busqueda", Archivos.image("/resources/image/Busqueda.png", -1, -1),Eventos.menu(Paneles.BUSQUEDA), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.BUSQUEDA);
             }
         }),lienzo,new Rectangle(2,2,1,2),0,new Insets(13,18,30,18),GridBagConstraints.NORTH,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Pilas","Pilas Dinámicas y Estáticas", Archivos.image("/resources/image/Pilas.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Pilas","Pilas Dinámicas y Estáticas", Archivos.image("/resources/image/Pilas.png", -1, -1),Eventos.menu(Paneles.PILAS), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.PILAS);
             }
         }),lienzo,new Rectangle(3,0,1,2),0,new Insets(30,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Colas","Colas Dinámicas y Estáticas", Archivos.image("/resources/image/Colas.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Colas","Colas Dinámicas y Estáticas", Archivos.image("/resources/image/Colas.png", -1, -1),Eventos.menu(Paneles.COLAS), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.COLAS);
             }
         }),lienzo,new Rectangle(3,1,1,2),0,new Insets(13,18,13,13),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Listas","Listas Enlazadas", Archivos.image("/resources/image/Listas Enlazadas.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Listas","Listas Enlazadas", Archivos.image("/resources/image/Listas Enlazadas.png", -1, -1),Eventos.menu(Paneles.LISTAS_ENLAZADAS), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.LISTAS_ENLAZADAS);
             }
         }),lienzo,new Rectangle(3,2,1,2),0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Árboles","Árboles Binarios y AVL", Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Árboles","Árboles Binarios y AVL", Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1),Eventos.menu(Paneles.ARBOLES), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.ARBOLES);
             }
         }),lienzo,new Rectangle(4,0,1,2),0,new Insets(30,18,13,75),GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Grafos","Algoritmo del Camino más Corto", Archivos.image("/resources/image/Grafos.png", -1, -1), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Grafos","Algoritmo del Camino más Corto", Archivos.image("/resources/image/Grafos.png", -1, -1),Eventos.menu(Paneles.GRAFOS), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Eventos.show(Paneles.GRAFOS);
@@ -424,7 +422,7 @@ final class Contenedor extends JPanel {
      */
     private Simulador factorial(){
         Simulador simulador=new Simulador();
-        Operaciones.setFormat("#,###,###");
+        Operaciones.setFormat(Operaciones.Operacion.FACTORIAL,"#,###,###");
         JSpinner valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
         ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
         Tree variaI=new Tree(new Dato("int","n",""));
@@ -441,7 +439,7 @@ final class Contenedor extends JPanel {
             public void iteracion0() {
                 Eventos.enable(false,simulador.getNextIteracion(),simulador.getSend(),valorI,simulador.getPause(),simulador.getBack(),simulador.getClean(),simulador.getCodigo(),simulador.getHome());
                 simulador.setTexto(Text.FACTORIAL1.toString());
-                number.setText(Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString()))));
+                number.setText(Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString())), Operaciones.Operacion.FACTORIAL));
                 producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))));
                 Eventos.variable(variaI,-1,valorI.getValue());
                 Eventos.enable(true,simulador.getClean());
@@ -533,7 +531,7 @@ final class Contenedor extends JPanel {
              */
             private void casoTerminal(int valor){
                 simulador.setTexto(Text.FACTORIAL1.toString());
-                number.setText(Operaciones.formatNumber(Operaciones.factorial(valor)));
+                number.setText(Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL));
                 producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)));
                 Eventos.enable(true,simulador.getClean());
             }
@@ -544,7 +542,7 @@ final class Contenedor extends JPanel {
              */
             private void casoIncrementativo(int valor,boolean mult){
                 if (mult) simulador.setTexto(Text.FACTORIAL7.toString());
-                number.setText(Operaciones.formatNumber(Operaciones.factorial(valor)));
+                number.setText(Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL));
                 producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)));
                 simulador.decrementIteracion();
                 Eventos.enable(true,simulador.getNextIteracion());
@@ -570,7 +568,7 @@ final class Contenedor extends JPanel {
      * @return simulador potencia
      */
     private Simulador potencia(){
-        Operaciones.setFormat("#,###,###");
+        Operaciones.setFormat(Operaciones.Operacion.POTENCIA,"#,###,###.#");
         JSpinner valorBase=new JSpinner(new SpinnerNumberModel(1,1,10,1));
         JSpinner valorExponente=new JSpinner(new SpinnerNumberModel(0,0,10,1));
         JLabel producto=new JLabel(Eventos.html(Operaciones.operacion(Operaciones.exponente("b","e"),"0")),SwingConstants.CENTER);
@@ -596,7 +594,7 @@ final class Contenedor extends JPanel {
             public void iteracion0() {
                 Eventos.enable(false,valorBase,valorExponente,simulador.getNextIteracion(),simulador.getSend(),simulador.getPause(),simulador.getBack(),simulador.getClean(),simulador.getCodigo(),simulador.getHome());
                 simulador.setTexto(Text.POTENCIA1.toString());
-                number.setText(Operaciones.formatNumber(Operaciones.potencia(valorBase.getValue(),valorExponente.getValue())));
+                number.setText(Operaciones.formatNumber(Operaciones.potencia(valorBase.getValue(),valorExponente.getValue()), Operaciones.Operacion.POTENCIA));
                 producto.setText(Eventos.html(Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),valorExponente.getValue()),Operaciones.productoPotencia(Integer.parseInt(valorBase.getValue().toString()),Integer.parseInt(valorExponente.getValue().toString())))));
                 Eventos.variable(base,-1,valorBase.getValue());
                 Eventos.variable(exponente,-1,valorExponente.getValue());
@@ -622,11 +620,11 @@ final class Contenedor extends JPanel {
                         new Lines(simulador,new LineLocation(0,1,null),new LineLocation(0,2,3,Text.POTENCIA2.toString()),new LineLocation(0,4,5,Text.POTENCIA4.toString()),new LineLocation(0,5,6,Text.POTENCIA6.toString())){
                             @Override
                             public void actions() {
-                                if (Integer.parseInt(valorExponente.getValue().toString())==1) casoTerminal1(valor);
+                                if (Integer.parseInt(valorExponente.getValue().toString())==1) casoTerminal1();
                                 else casoIncrementativo(valor);
                             }
                         }.start();
-                    } else if (Integer.parseInt(valorExponente.getValue().toString())==2) casoTerminal1(valor);
+                    } else if (Integer.parseInt(valorExponente.getValue().toString())==2) casoTerminal1();
                     else casoIncrementativo(valor);
                 } else if (simulador.getIteracion()==0 && !simulador.isDecremento()){
                     if (simulador.getCodigo().isOnOff()){
@@ -675,7 +673,7 @@ final class Contenedor extends JPanel {
             private void casoTerminal0(){
                 base(Text.POTENCIA3.toString(),Operaciones.potencia(valorBase.getValue(),0),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),0),Operaciones.potencia(valorBase.getValue(),0)),true);
             }
-            private void casoTerminal1(int valor) {
+            private void casoTerminal1() {
                 base(Text.POTENCIA3.toString(),Operaciones.potencia(valorBase,1),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),1),Operaciones.potencia(valorBase.getValue(),0)),true);
             }
             private void casoIncrementativo(int valor) {

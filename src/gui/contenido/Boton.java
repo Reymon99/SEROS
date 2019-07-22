@@ -10,11 +10,13 @@ public class Boton extends JLabel {
      * @param text {@link String} text de la etiqueta
      * @param tip {@link String} tool tip de la etiqueta
      * @param icon {@link ImageIcon} icono de la etiqueta
+     * @param menu opciones {@link JPopupMenu} del ítem
      * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
      */
-    public Boton(String text, String tip, ImageIcon icon, MouseAdapter adapter){
+    public Boton(String text, String tip, ImageIcon icon, JPopupMenu menu, MouseAdapter adapter){
         this(icon, text, adapter);
         setToolTipText(tip);
+        setComponentPopupMenu(menu);
     }
     /**
      * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>

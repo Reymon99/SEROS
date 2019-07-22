@@ -106,4 +106,20 @@ public abstract class Eventos {
     public static String html(String n){
         return "<html>"+n+"</html>";
     }
+    /**
+     * Opciones {@link JPopupMenu} para los componentes.</br>
+     * Acciona el panel seleccionado
+     * @param paneles paneles a navegar
+     * @return opciones de componente
+     */
+    public static JPopupMenu menu(Paneles... paneles){
+        JPopupMenu menu=new JPopupMenu();
+        menu.setLabel("Joder");
+        for (Paneles panel:paneles) {
+            JMenuItem item=new JMenuItem(panel.toString());
+            item.addActionListener(e -> Eventos.show(panel));
+            menu.add(item);
+        }
+        return menu;
+    }
 }
