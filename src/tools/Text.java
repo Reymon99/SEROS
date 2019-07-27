@@ -28,15 +28,18 @@ public enum Text {
     FACTORIAL3("Comprobando si el número dado cumple con el caso base del factorial."),
     FACTORIAL4("Caso base del Factorial encontrado."),
     FACTORIAL5("Retorna el caso base para así terminar los casos recursivos."),
-    FACTORIAL6("Casos recursivos terminados."),
+    FACTORIAL6("Casos recursivos finalizados."),
     FACTORIAL7("Multiplica n con los demás casos."),
     POTENCIA("Ingrese la base y el exponente para dar la potencia."),
     POTENCIA1("Resultado de la Potencia."),
     POTENCIA2("Comprobando si el número dado cumple con el caso base 0."),
     POTENCIA3("Resultado de la Potencia."),
-    POTENCIA4("Comprobando si el número dado cumple con el caso base 1"),
-    POTENCIA5("Caso base 0 encontrado"),
-    POTENCIA6("Caso base 1 encontrado");
+    POTENCIA4("Comprobando si el número dado cumple con el caso base 1."),
+    POTENCIA5("Caso base 0 encontrado."),
+    POTENCIA6("Caso base 1 encontrado."),
+    POTENCIA7("Multiplica la base con los demás casos."),
+    POTENCIA8("Caso base de la Potencia encontrado."),
+    POTENCIA9("Retorna el caso base para así terminar los casos recursivos.");
     private String n;
     Text(String n){
         this.n=n;
