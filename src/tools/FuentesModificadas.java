@@ -11,8 +11,7 @@ public class FuentesModificadas {
      */
     protected FuentesModificadas(String path){
         try{
-            font=Font.createFont(Font.TRUETYPE_FONT,getClass().getResourceAsStream(path));
-            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font=Font.createFont(Font.TRUETYPE_FONT,getClass().getResourceAsStream(path)));
         } catch (FontFormatException | IOException e) {
             font=new Font(Font.MONOSPACED,Font.PLAIN,10);
         }
