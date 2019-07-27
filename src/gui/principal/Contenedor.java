@@ -390,7 +390,7 @@ final class Contenedor extends JPanel {
                 ((Graficador)simulador.getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
             }
             /**
-             * Acciones en comunes de interactividad
+             * Acciones comunes de interactividad
              * @param text {@link Text} a fijar
              * @param line línea seleccionar
              * @param scroll posición del scroll a fijar
@@ -511,10 +511,7 @@ final class Contenedor extends JPanel {
              * @param valor valor n a trabajar
              */
             private void casoBaseTerminal(int valor){
-                simulador.setTexto(Text.FACTORIAL1.toString());
-                number.setText(String.valueOf(Operaciones.factorial(valor)));
-                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(valor)));
-                Eventos.enable(true, simulador.getClean());
+                base(Text.FACTORIAL1,String.valueOf(Operaciones.factorial(valor)),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(valor)),true);
             }
             /**
              * Acción del caso base para decrementar la iteracción
@@ -522,22 +519,16 @@ final class Contenedor extends JPanel {
              * @param found texto a mostrar
              */
             private void casoBase(int valor,boolean found){
-                simulador.setTexto(found ? Text.FACTORIAL4.toString() : Text.FACTORIAL5.toString());
-                number.setText(String.valueOf(Operaciones.factorial(valor)));
-                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(valor+simulador.getIteracion())));
+                base(found ? Text.FACTORIAL4 : Text.FACTORIAL5,String.valueOf(Operaciones.factorial(valor)),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(valor+simulador.getIteracion())),false);
                 simulador.decrementIteracion();
                 simulador.setDecremento(false);
-                Eventos.enable(true, simulador.getNextIteracion());
             }
             /**
              * Acción caso terminal
              * @param valor valor n a trabajar
              */
             private void casoTerminal(int valor){
-                simulador.setTexto(Text.FACTORIAL1.toString());
-                number.setText(Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL));
-                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)));
-                Eventos.enable(true,simulador.getClean());
+                base(Text.FACTORIAL1,Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),true);
             }
             /**
              * Acción caso a incrementar
@@ -545,21 +536,29 @@ final class Contenedor extends JPanel {
              * @param mult texto a mostrar
              */
             private void casoIncrementativo(int valor,boolean mult){
-                if (mult) simulador.setTexto(Text.FACTORIAL7.toString());
-                number.setText(Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL));
-                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)));
+                base(mult ? Text.FACTORIAL7 : null,Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),false);
                 simulador.decrementIteracion();
-                Eventos.enable(true,simulador.getNextIteracion());
             }
             /**
              * Acción caso a decrementar
              * @param valor valor n a trabajar
              */
             private void casoDecrementativo(int valor){
-                number.setText("0");
-                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()),valor)));
+                base(null,String.valueOf(0),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),false);
                 simulador.incrementIteracion();
-                Eventos.enable(true,simulador.getNextIteracion());
+            }
+            /**
+             * Acciones comunes de interactividad
+             * @param text {@link Text}
+             * @param number1 número resultado a fijar
+             * @param producto1 producto a fijar
+             * @param clean acción de habilitar la opción de limpiar o de interactividad
+             */
+            private void base(Text text,String number1,String producto1,boolean clean){
+                if (text!=null) simulador.setTexto(text.toString());
+                number.setText(number1);
+                producto.setText(producto1);
+                Eventos.enable(true,clean ? simulador.getClean() : simulador.getNextIteracion(),simulador.getBack(),simulador.getHome());
             }
         });
         simulador.acomodamientoProducto(number, producto);
