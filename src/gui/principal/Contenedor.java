@@ -350,8 +350,7 @@ final class Contenedor extends JPanel {
             }
             @Override
             public void iteracion1() {
-                Eventos.enable(true,simulador.getNextIteracion());
-                Eventos.enable(false,simulador.getSend(),x,y,simulador.getPause(),simulador.getClean(),simulador.getBack());
+                Eventos.enable(false,simulador.getSend(),x,y,simulador.getPause(),simulador.getClean(),simulador.getBack(),simulador.getHome(),simulador.getNextIteracion());
                 if (simulador.getIteracion()==0) asignacionX();
                 else if (simulador.getIteracion()==1) asignacionY();
                 else mostrarCoordenadas();
@@ -373,30 +372,35 @@ final class Contenedor extends JPanel {
              * Muestra los datos y códigos que se asignan al eje x
              */
             private void asignacionX(){
-                ((Editor) simulador.getCodigos().getComponentAt(0)).drawLineIn(4);
+                base(Text.SIMULADORTDA3,4,0,false);
                 Eventos.variable(punto,0,x.getValue());
-                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0),0);
-                simulador.setTexto(Text.SIMULADORTDA3.toString());
             }
             /**
              * Muestra los datos y códigos que se asignan al eje y
              */
             private void asignacionY(){
-                ((Editor) simulador.getCodigos().getComponentAt(0)).drawLineIn(5);
+                base(Text.SIMULADORTDA4,5,0,false);
                 Eventos.variable(punto,1,y.getValue());
-                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0),0);
-                simulador.setTexto(Text.SIMULADORTDA4.toString());
             }
             /**
              * Grafica las coordenadas (x,y) muestra los códigos asignados a estos
              */
             private void mostrarCoordenadas(){
-                Eventos.enable(true,simulador.getClean());
-                Eventos.enable(false,simulador.getNextIteracion());
-                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0),((Editor) simulador.getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum());
-                ((Editor) simulador.getCodigos().getComponentAt(0)).drawLineIn(21);
-                simulador.setTexto(Text.SIMULADORTDA1.toString());
+                base(Text.SIMULADORTDA1,21,((Editor) simulador.getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum(),true);
                 ((Graficador)simulador.getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
+            }
+            /**
+             * Acciones en comunes de interactividad
+             * @param text {@link Text} a fijar
+             * @param line línea seleccionar
+             * @param scroll posición del scroll a fijar
+             * @param clean acción de habilitar la opción de limpiar o de interactividad
+             */
+            private void base(Text text,int line,int scroll,boolean clean){
+                simulador.setTexto(text.toString());
+                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0),scroll);
+                ((Editor) simulador.getCodigos().getComponentAt(0)).drawLineIn(line);
+                Eventos.enable(true,clean ? simulador.getClean() : simulador.getNextIteracion(),simulador.getBack(),simulador.getHome());
             }
         });
         simulador.addCodes(Editor.editor("/resources/codes/tda/Punto.seros"),"Punto");
