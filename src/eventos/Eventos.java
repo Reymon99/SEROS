@@ -114,7 +114,6 @@ public abstract class Eventos {
      */
     public static JPopupMenu menu(Paneles... paneles){
         JPopupMenu menu=new JPopupMenu();
-        menu.setLabel("Joder");
         for (Paneles panel:paneles) {
             JMenuItem item=new JMenuItem(panel.toString());
             item.addActionListener(e -> Eventos.show(panel));

@@ -55,7 +55,7 @@ public class Indice extends JPanel {
      * Linea a pintar
      * @param i linea
      */
-    void lineForegroundIn(int i){
+    public void lineForegroundIn(int i){
         lineForeground=i;
         repaint();
     }
