@@ -44,6 +44,16 @@ public class Boton extends JLabel {
      * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
      * para permitirles funcionar como botones
      * @param icon {@link ImageIcon} icono de la etiqueta
+     * @param menu opciones {@link JPopupMenu} del ítem
+     */
+    public Boton(ImageIcon icon, JPopupMenu menu){
+        this(icon);
+        setComponentPopupMenu(menu);
+    }
+    /**
+     * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
+     * para permitirles funcionar como botones
+     * @param icon {@link ImageIcon} icono de la etiqueta
      * @param text {@link String} text de la etiqueta
      * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
      */

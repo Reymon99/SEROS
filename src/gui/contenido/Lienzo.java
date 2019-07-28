@@ -44,7 +44,7 @@ public class Lienzo extends JPanel {
      */
     private void init(boolean lienzo){
         this.lienzo=lienzo;
-        back=new Boton(Archivos.image("/resources/image/back.png",-1,-1));
+        back=new Boton(Archivos.image("/resources/image/back.png",-1,-1),Eventos.menu(Paneles.values()));
         home=new Boton(Text.VENTANAPRINCIPAL.toString(), Archivos.image("/resources/image/home.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -63,7 +63,7 @@ public class Lienzo extends JPanel {
         back.setToolTipText(toolTipText);
         back.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseReleased(MouseEvent e) {
                 acciones.clean();
                 Eventos.show(paneles);
             }
@@ -78,7 +78,7 @@ public class Lienzo extends JPanel {
         next.setToolTipText(toolTipText);
         next.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseReleased(MouseEvent e) {
                 acciones.clean();
                 Eventos.show(paneles);
             }
