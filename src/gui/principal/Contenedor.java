@@ -2,6 +2,7 @@ package gui.principal;
 import eventos.Eventos;
 import gui.contenido.Boton;
 import gui.contenido.Contenido;
+import gui.contenido.Demostracion;
 import gui.contenido.Ejercicios;
 import gui.contenido.Lienzo;
 import gui.contenido.Texto;
@@ -43,6 +44,7 @@ final class Contenedor extends JPanel {
         add(Paneles.TDA.toString(), tda());
         add(Paneles.SIMULADORTDA.toString(), simuladorTda());
         add(Paneles.MODULARIDAD.toString(), modularidad());
+        add(Paneles.DEMOSTRACION_MODULARIDAD.toString(), demoModularidad());
         add(Paneles.RECURSIVIDAD.toString(), recursividad());
         add(Paneles.FACTORIAL.toString(), factorial());
         add(Paneles.POTENCIA.toString(), potencia());
@@ -69,7 +71,7 @@ final class Contenedor extends JPanel {
                 Eventos.show(Paneles.TDA);
             }
         }),lienzo,new Rectangle(0,0,1,4),0,new Insets(30,57,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Modularidad","Complejidad Algoritmica", Archivos.image("/resources/image/Modularidad y Mapas.png", -1, -1), Eventos.menu(Paneles.MODULARIDAD),new MouseAdapter() {
+        Constrains.addCompY(new Boton("Modularidad","Division de tareas", Archivos.image("/resources/image/Modularidad y Mapas.png", -1, -1), Eventos.menu(Paneles.MODULARIDAD,Paneles.DEMOSTRACION_MODULARIDAD),new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.MODULARIDAD);
@@ -170,7 +172,7 @@ final class Contenedor extends JPanel {
     private Contenido modularidad(){
         Contenido con =  new Contenido();
         con.getTitle().setText("Modularidad");
-        con.next("",null);
+        con.next("Demostración Interactiva de Modularidad",Paneles.DEMOSTRACION_MODULARIDAD);
         Constrains.addComp(new Texto(Text.MODULARIDAD.toString()),con.getContenido(),new Rectangle(0,0,1,1), 1,1,new Insets(10, 25, 5, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new JLabel(Archivos.image("/resources/image/saluda.png",-1,290)),con.getContenido(),new Rectangle(0,1,1,1),1,1,new Insets(3,7,7,7),GridBagConstraints.CENTER,GridBagConstraints.NONE);
         Constrains.addComp(new Texto(Text.MODULARIDAD1.toString()),con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
@@ -646,7 +648,7 @@ final class Contenedor extends JPanel {
                     }else casoTerminal(valor);
                 }else if (!simulador.isDecremento()){
                     if (simulador.getCodigo().isOnOff()){
-                        new Lines(simulador,new LineLocation(0,7,8,null,false)){
+                        new Lines(simulador,new LineLocation(0,7,8,Text.POTENCIA8.toString(),false)){
                             @Override
                             public void actions() {
                                 casoIncrementativo(valor);
@@ -704,5 +706,19 @@ final class Contenedor extends JPanel {
         simulador.acomodamientoProducto(number, producto);
         simulador.acomodamientoPanelControl(box);
         return simulador;
+    }
+    private Demostracion demoModularidad(){
+        Demostracion demostracion=new Demostracion("/resources/image/moduDemo1.png");
+        demostracion.setTexto(Text.DEMOSTRACION_MODULARIDAD.toString());
+        JButton demo1=new JButton("Inventar");
+        JButton demo2=new JButton("Programar");
+        JButton demo3=new JButton("Leer");
+        JButton demo4=new JButton("Jugar");
+        demo1.addActionListener(e -> demostracion.setIcon("/resources/image/moduDemo1.png"));
+        demo2.addActionListener(e -> demostracion.setIcon("/resources/image/moduDemo2.png"));
+        demo3.addActionListener(e -> demostracion.setIcon("/resources/image/moduDemo3.png"));
+        demo4.addActionListener(e -> demostracion.setIcon("/resources/image/moduDemo4.png"));
+        demostracion.setBotones(demo1, demo2, demo3, demo4);
+        return demostracion;
     }
 }

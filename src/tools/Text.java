@@ -36,10 +36,10 @@ public enum Text {
     POTENCIA3("Comprobando si el número dado cumple con el caso base 1."),
     POTENCIA4("Caso base 0 encontrado."),
     POTENCIA5("Caso base 1 encontrado."),
-    POTENCIA6("Multiplica la base con los demás casos."),
     POTENCIA7("Retorna el caso base para así terminar los casos recursivos."),
     POTENCIA8("Multiplica la base con los demás casos."),
-    POTENCIA9("Buscando el caso base de la potencia mediante el caso recursivo");
+    POTENCIA9("Buscando el caso base de la potencia mediante el caso recursivo"),
+    DEMOSTRACION_MODULARIDAD("En esta demostración podremos visualizar como una persona siguiendo la filosofía de divide y vencerás, realiza varias tareas logrando obtener una concentración absoluta en esta y una rápida terminación de la misma; esto como un ejemplo llevado a la realidad sobre cómo funciona la Modularidad.");
     private String n;
     Text(String n){
         this.n=n;

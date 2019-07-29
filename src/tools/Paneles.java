@@ -19,7 +19,8 @@ public enum Paneles {
     SIMULADORTDA("Simulador TDA"),
     FACTORIAL("Simulador Factorial"),
     POTENCIA("Simulador Potencia"),
-    EJERCICIOS_RECURSIVIDAD("Ejercicios Recursividad");
+    EJERCICIOS_RECURSIVIDAD("Ejercicios Recursividad"),
+    DEMOSTRACION_MODULARIDAD("Demostración Modularidad");
     private String n;
     Paneles(String n){
         this.n=n;
