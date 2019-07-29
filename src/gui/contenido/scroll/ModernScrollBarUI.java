@@ -5,7 +5,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 import static gui.contenido.scroll.ModernScrollPane.THUMB_SIZE;
 public class ModernScrollBarUI extends BasicScrollBarUI {
-    private JScrollPane sp;
+    private ModernScrollPane sp;
     /**
      * Interfaz personalizada al JScrollBar
      * @param sp {@link JScrollPane} que va se le va a personalizar los JScrollBar´s

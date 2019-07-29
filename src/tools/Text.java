@@ -33,13 +33,13 @@ public enum Text {
     POTENCIA("Ingrese la base y el exponente para dar la potencia."),
     POTENCIA1("Resultado de la Potencia."),
     POTENCIA2("Comprobando si el número dado cumple con el caso base 0."),
-    POTENCIA3("Resultado de la Potencia."),
-    POTENCIA4("Comprobando si el número dado cumple con el caso base 1."),
-    POTENCIA5("Caso base 0 encontrado."),
-    POTENCIA6("Caso base 1 encontrado."),
-    POTENCIA7("Multiplica la base con los demás casos."),
-    POTENCIA8("Caso base de la Potencia encontrado."),
-    POTENCIA9("Retorna el caso base para así terminar los casos recursivos.");
+    POTENCIA3("Comprobando si el número dado cumple con el caso base 1."),
+    POTENCIA4("Caso base 0 encontrado."),
+    POTENCIA5("Caso base 1 encontrado."),
+    POTENCIA6("Multiplica la base con los demás casos."),
+    POTENCIA7("Retorna el caso base para así terminar los casos recursivos."),
+    POTENCIA8("Multiplica la base con los demás casos."),
+    POTENCIA9("Buscando el caso base de la potencia mediante el caso recursivo");
     private String n;
     Text(String n){
         this.n=n;

@@ -577,7 +577,7 @@ final class Contenedor extends JPanel {
      * @return simulador potencia
      */
     private Simulador potencia(){
-        Operaciones.setFormat(Operaciones.Operacion.POTENCIA,"#,###,###.#");
+        Operaciones.setFormat(Operaciones.Operacion.POTENCIA,"##,###,###,###.#");
         JSpinner valorBase=new JSpinner(new SpinnerNumberModel(1,1,10,1));
         JSpinner valorExponente=new JSpinner(new SpinnerNumberModel(0,0,10,1));
         JLabel producto=new JLabel(Eventos.html(Operaciones.operacion(Operaciones.exponente("b","e"),"0")),SwingConstants.CENTER);
@@ -615,27 +615,27 @@ final class Contenedor extends JPanel {
                 int valor=Integer.parseInt(valorExponente.getValue().toString())-simulador.getIteracion();
                 Eventos.variable(exponente,-1,valor);
                 Eventos.variable(base,-1,valorBase.getValue());
-                if (Integer.parseInt(valorExponente.getValue().toString())==0){
-                    if (simulador.getCodigo().isOnOff()) {
-                        new Lines(simulador,new LineLocation(0,1,null),new LineLocation(0,2,3,Text.POTENCIA2.toString()),new LineLocation(0,3,4,Text.POTENCIA5.toString())){
-                            @Override
-                            public void actions() {
-                                casoTerminal0();
-                            }
-                        }.start();
-                    } else casoTerminal0();
-                } else if (valor==1){
+                if (valor==0){
                     if (simulador.getCodigo().isOnOff()){
-                        new Lines(simulador,new LineLocation(0,1,null),new LineLocation(0,2,3,Text.POTENCIA2.toString()),new LineLocation(0,4,5,Text.POTENCIA4.toString()),new LineLocation(0,5,6,Text.POTENCIA6.toString())){
+                        new Lines(simulador,new LineLocation(0,1,null),new LineLocation(0,2,3,Text.POTENCIA2.toString()),new LineLocation(0,3,4,Text.POTENCIA4.toString())){
                             @Override
                             public void actions() {
-                                if (Integer.parseInt(valorExponente.getValue().toString())==1) casoTerminal1();
-                                else casoIncrementativo(valor,true);
+                                casoBase(valor,true);
                             }
                         }.start();
-                    } else if (Integer.parseInt(valorExponente.getValue().toString())==2) casoTerminal1();
-                    else casoIncrementativo(valor,true);
-                } else if (simulador.getIteracion()==0 && !simulador.isDecremento()){
+                    }else casoBase(valor,true);
+                }else if (valor==1){
+                    if (simulador.getCodigo().isOnOff()){
+                        new Lines(simulador,new LineLocation(0,1,null),new LineLocation(0,2,3,Text.POTENCIA2.toString()),new LineLocation(0,4,5,Text.POTENCIA3.toString()),new LineLocation(0,5,6,Text.POTENCIA5.toString())){
+                            @Override
+                            public void actions() {
+                                if (Integer.parseInt(valorExponente.getValue().toString())==1) casoBase(valor,true);
+                                else casoBase(valor,false);
+                            }
+                        }.start();
+                    }else if (Integer.parseInt(valorExponente.getValue().toString())==1) casoBase(valor,true);
+                    else casoBase(valor,false);
+                }else if (simulador.getIteracion()==0 && !simulador.isDecremento()){
                     if (simulador.getCodigo().isOnOff()){
                         new Lines(simulador, new LineLocation(0,7,8,Text.FACTORIAL6.toString())){
                             @Override
@@ -644,24 +644,24 @@ final class Contenedor extends JPanel {
                             }
                         }.start();
                     }else casoTerminal(valor);
-                } else if (!simulador.isDecremento()){
+                }else if (!simulador.isDecremento()){
                     if (simulador.getCodigo().isOnOff()){
-                        new Lines(simulador){
+                        new Lines(simulador,new LineLocation(0,7,8,null,false)){
                             @Override
                             public void actions() {
-                                casoIncrementativo(valor,true);
+                                casoIncrementativo(valor);
                             }
                         }.start();
-                    }else casoIncrementativo(valor,true);
-                } else {
+                    }else casoIncrementativo(valor);
+                }else{
                     if (simulador.getCodigo().isOnOff()){
-                        new Lines(simulador) {
+                        new Lines(simulador,new LineLocation(0,1,null),new LineLocation(0,2,3,Text.POTENCIA2.toString()),new LineLocation(0,4,5,Text.POTENCIA3.toString()),new LineLocation(0,6,7,Text.POTENCIA9.toString()),new LineLocation(0,7,8,null)) {
                             @Override
                             public void actions() {
-                                casoDecrementativo(valor);
+                                casoDecrementativo();
                             }
                         }.start();
-                    } else casoDecrementativo(valor);
+                    }else casoDecrementativo();
                 }
             }
             @Override
@@ -676,29 +676,29 @@ final class Contenedor extends JPanel {
                 Eventos.variable(base,-1,"");
                 Eventos.variable(exponente,-1,"");
             }
+            private void casoBase(int valor,boolean found){
+                base(found ? Text.POTENCIA1 : Text.POTENCIA7,Operaciones.potencia(valorBase.getValue(),valor),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),valorExponente.getValue()),found ? Operaciones.potencia(valorBase.getValue(),valorExponente.getValue()) : Operaciones.productoPotenciaUp(valorBase.getValue(),valorExponente.getValue())),found);
+                if (!found){
+                    simulador.setDecremento(false);
+                    simulador.decrementIteracion();
+                }
+            }
             private void casoTerminal(int valor){
-                base(Text.POTENCIA1.toString(),Operaciones.potencia(valorBase.getValue(),valor),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),valorExponente.getValue()),Operaciones.potencia(valorBase.getValue(),valorExponente.getValue())),true);
+                base(Text.POTENCIA1,Operaciones.potencia(valorBase.getValue(),valorExponente.getValue()),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),valorExponente.getValue()),Operaciones.potencia(valorBase.getValue(),valorExponente.getValue())),true);
             }
-            private void casoTerminal0(){
-                base(Text.POTENCIA3.toString(),Operaciones.potencia(valorBase.getValue(),0),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),0),Operaciones.potencia(valorBase.getValue(),0)),true);
+            private void casoIncrementativo(int valor){
+                base(Text.POTENCIA8,Operaciones.potencia(valorBase.getValue(),valor),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),valorExponente.getValue()),Operaciones.productoPotenciaUpN(valorBase.getValue(),simulador.getIteracion(),valor)),false);
+                simulador.decrementIteracion();
             }
-            private void casoTerminal1() {
-                base(Text.POTENCIA3.toString(),Operaciones.potencia(valorBase,1),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),1),Operaciones.potencia(valorBase.getValue(),0)),true);
+            private void casoDecrementativo(){
+                base(null,0,Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),valorExponente.getValue()),Operaciones.productoPotenciaUp(valorBase.getValue(),simulador.getIteracion()+1)),false);
+                simulador.incrementIteracion();
             }
-            private void casoIncrementativo(int valor, boolean mult) {
-                base(mult ? Text.POTENCIA7.toString() : simulador.getTexto().getText(),Operaciones.potencia(valorBase.getValue(),valor),Operaciones.operacion(Operaciones.exponente(valorBase.getValue(),valor),Operaciones.potencia(valorBase.getValue(),valor)),false);
-            }
-            private void casoDecrementativo(int valor) {
-
-            }
-            private void casoBase(int valor, boolean found){
-                //base(found ? Text.POTENCIA8.toString() : Text.POTENCIA9.toString();
-            }
-            private void base(String texto,double numberText,String productoText,boolean clean){
-                if (texto!=null) simulador.setTexto(texto);
-                number.setText(Operaciones.formatNumber(String.valueOf(numberText), Operaciones.Operacion.POTENCIA));
+            private void base(Text texto,double numberText,String productoText,boolean clean){
+                if (texto!=null) simulador.setTexto(texto.toString());
+                number.setText(Operaciones.formatNumber(numberText, Operaciones.Operacion.POTENCIA));
                 producto.setText(Eventos.html(productoText));
-                Eventos.enable(true,clean ? simulador.getClean() : simulador.getNextIteracion());
+                Eventos.enable(true,clean ? simulador.getClean() : simulador.getNextIteracion(), simulador.getBack(), simulador.getHome());
             }
         });
         simulador.acomodamientoProducto(number, producto);

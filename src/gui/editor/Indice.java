@@ -6,7 +6,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
 public class Indice extends JPanel {
-    private final static int HEIGHT = Integer.MAX_VALUE - 1000000;
+    private final static int HEIGHT;
     private JTextComponent component;
     private int minimumDisplayDigits;
     private int lineForeground;
@@ -14,6 +14,9 @@ public class Indice extends JPanel {
     private int lastHeight;
     private Insets insets;
     private HashMap<String, FontMetrics> fonts;
+    static {
+        HEIGHT = Integer.MAX_VALUE - 1000000;
+    }
     /**
      * Indice de lineas de un componente de Texto
      * @param component componente de texto

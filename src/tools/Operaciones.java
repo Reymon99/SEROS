@@ -1,6 +1,7 @@
 package tools;
 import eventos.Eventos;
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 public abstract class Operaciones {//Operaciones y demostraciones matemáticas
     private static HashMap<Operacion,DecimalFormat> format;
@@ -103,5 +104,13 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
         if (exponente==0) return "1";
         else if (exponente==1) return String.valueOf(base);
         else return base+" * "+productoPotencia(base, exponente-1);
+    }
+    public static String productoPotenciaUp(Object base,Object exponente){
+        String[] ads=new String[Integer.parseInt(exponente.toString())];
+        Arrays.fill(ads,base.toString());
+        return String.join(" * ",ads);
+    }
+    public static String productoPotenciaUpN(Object base,Object exponente,int valor){
+        return productoPotenciaUp(base,exponente) +" * "+ potencia(base, valor);
     }
 }

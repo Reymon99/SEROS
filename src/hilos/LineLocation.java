@@ -19,6 +19,17 @@ public class LineLocation {
     /**
      * Locación de cada código en los editores con su respectivo texto a utilizar
      * @param code ubicación de código a emplear
+     * @param lineIndice línea en el código a seleccionar en el Indice
+     * @param lineEditor línea en el código a seleccionar en el View
+     * @param texto texto respectivo de la línea
+     * @param sleep si es verdadero duerme la ejecución de la línea de lo contrario solo se seleccionará la línea y el proceso seguirá normalmente
+     */
+    public LineLocation(int code, int lineIndice, int lineEditor, String texto, boolean sleep){
+        this(code, lineIndice, lineEditor, texto, 0, sleep);
+    }
+    /**
+     * Locación de cada código en los editores con su respectivo texto a utilizar
+     * @param code ubicación de código a emplear
      * @param line línea en el código a seleccionar
      * @param texto texto respectivo de la línea
      * @param sleep si es verdadero duerme la ejecución de la línea de lo contrario solo se seleccionará la línea y el proceso seguirá normalmente

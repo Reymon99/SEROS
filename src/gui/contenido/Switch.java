@@ -13,7 +13,10 @@ public class Switch extends JComponent {
     private boolean onOff;//Estado del interruptor
     private Color backgroundColor;//Color del fondo del interruptor
     private Color buttonColor;//Color del boton circular del interruptor
-    private final Color DISABLED_COMPONENT_COLOR= Colour.GRAYDISABLED.getColor();//Color del interruptor cuando está deshabilitado
+    private final Color DISABLED_COMPONENT_COLOR;//Color del interruptor cuando está deshabilitado
+    {
+        DISABLED_COMPONENT_COLOR = Colour.GRAYDISABLED.getColor();
+    }
     /**
      * Componente de estados Switch
      * @param text texto del componente

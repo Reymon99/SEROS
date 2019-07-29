@@ -3,9 +3,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 import gui.contenido.About;
+import gui.contenido.Lienzo;
 import gui.contenido.Switch;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
+import tools.Acciones;
 import tools.Paneles;
 public abstract class Eventos {
     /**

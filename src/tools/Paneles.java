@@ -20,7 +20,7 @@ public enum Paneles {
     FACTORIAL("Simulador Factorial"),
     POTENCIA("Simulador Potencia"),
     EJERCICIOS_RECURSIVIDAD("Ejercicios Recursividad");
-    String n;
+    private String n;
     Paneles(String n){
         this.n=n;
     }
