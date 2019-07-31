@@ -109,7 +109,7 @@ public class Lienzo extends JPanel {
      * Obtiene las acciones a realizar en el panel
      * @return acciones del panel
      */
-    protected Acciones getAcciones() {
+    public Acciones getAcciones() {
         return acciones;
     }
     /**

@@ -6,6 +6,7 @@ import gui.contenido.About;
 import gui.contenido.Switch;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
+import gui.principal.Contenedor;
 import tools.Paneles;
 public abstract class Eventos {
     /**
@@ -25,6 +26,7 @@ public abstract class Eventos {
      * @param panel {@link String}
      */
     public static void show(Paneles panel){
+        Contenedor.panelActivo = panel;
         ((CardLayout)Eventos.panel.getLayout()).show(Eventos.panel,panel.toString());
     }
     /**
@@ -114,10 +116,35 @@ public abstract class Eventos {
      */
     public static JPopupMenu menu(Paneles... paneles){
         JPopupMenu menu=new JPopupMenu();
+        boolean simulador=true;
+        boolean demostracion=true;
+        boolean ejercicios=true;
         for (Paneles panel:paneles) {
+            if (panel.toString().contains("Simulador") || panel.toString().contains("Demostración") || panel.toString().contains("Ejercicios")){
+                if (panel.toString().contains("Simulador")) {
+                    if (simulador) menu.addSeparator();
+                    simulador=false;
+                }
+                else if (panel.toString().contains("Ejercicios")) {
+                    if (ejercicios) menu.addSeparator();
+                    ejercicios=false;
+                }
+                else if (panel.toString().contains("Demostración")) {
+                    if (demostracion) menu.addSeparator();
+                    demostracion=false;
+                }
+            }
             JMenuItem item=new JMenuItem(panel.toString());
-            item.addActionListener(e -> Eventos.show(panel));
+            item.addActionListener(e -> {
+                try {
+                    if (!Contenedor.panelActivo.equals(Paneles.PRINCIPAL)) Contenedor.paneles.get(Contenedor.panelActivo).getAcciones().clean();
+                } catch (NullPointerException en){//None
+                } finally {
+                    Eventos.show(panel);
+                }
+            });
             menu.add(item);
+            if (panel.toString().equals(Paneles.PRINCIPAL.toString())) menu.addSeparator();
         }
         return menu;
     }

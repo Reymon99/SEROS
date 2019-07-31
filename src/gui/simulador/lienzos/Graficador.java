@@ -1,4 +1,4 @@
-package gui.simulador.liezos;
+package gui.simulador.lienzos;
 import gui.simulador.Simulador;
 import tools.Fuentes;
 import java.awt.*;

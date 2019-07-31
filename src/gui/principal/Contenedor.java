@@ -11,7 +11,7 @@ import gui.contenido.Tree;
 import gui.editor.Editor;
 import gui.simulador.Dato;
 import gui.simulador.Simulador;
-import gui.simulador.liezos.Graficador;
+import gui.simulador.lienzos.Graficador;
 import hilos.LineLocation;
 import hilos.Lines;
 import tools.Acciones;
@@ -24,7 +24,15 @@ import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-final class Contenedor extends JPanel {
+import java.util.HashMap;
+import java.util.Map;
+public final class Contenedor extends JPanel {
+    public static HashMap<Paneles, Lienzo> paneles;
+    public static Paneles panelActivo;
+    static {
+        paneles = new HashMap<>();
+        panelActivo = Paneles.PRINCIPAL;
+    }
     /**
      * Contenedor de los paneles del proyecto
      */
@@ -32,6 +40,7 @@ final class Contenedor extends JPanel {
         setLayout(new CardLayout());
         init();
         Eventos.setPanel(this);
+        Eventos.show(Contenedor.panelActivo);
     }
     /**
      * Se añaden los paneles secundarios al principal<br>
@@ -40,24 +49,25 @@ final class Contenedor extends JPanel {
      * @see tools.Paneles
      */
     private void init() {
-        add(Paneles.PRINCIPAL.toString(), principal());
-        add(Paneles.TDA.toString(), tda());
-        add(Paneles.SIMULADORTDA.toString(), simuladorTda());
-        add(Paneles.MODULARIDAD.toString(), modularidad());
-        add(Paneles.DEMOSTRACION_MODULARIDAD.toString(), demoModularidad());
-        add(Paneles.RECURSIVIDAD.toString(), recursividad());
-        add(Paneles.FACTORIAL.toString(), factorial());
-        add(Paneles.POTENCIA.toString(), potencia());
-        add(Paneles.EJERCICIOS_RECURSIVIDAD.toString(), ejerciciosRecursividad());
-        add(Paneles.ARREGLOS.toString(), arreglos());
-        add(Paneles.NODOS.toString(), nodos());
-        add(Paneles.ORDENAMIENTO.toString(), ordenamiento());
-        add(Paneles.BUSQUEDA.toString(), busqueda());
-        add(Paneles.PILAS.toString(), pilas());
-        add(Paneles.COLAS.toString(), colas());
-        add(Paneles.LISTAS_ENLAZADAS.toString(), listas());
-        add(Paneles.ARBOLES.toString(), arboles());
-        add(Paneles.GRAFOS.toString(), grafos());
+        paneles.put(Paneles.PRINCIPAL, principal());
+        paneles.put(Paneles.TDA, tda());
+        paneles.put(Paneles.SIMULADORTDA, simuladorTda());
+        paneles.put(Paneles.MODULARIDAD, modularidad());
+        paneles.put(Paneles.DEMOSTRACION_MODULARIDAD, demoModularidad());
+        paneles.put(Paneles.RECURSIVIDAD, recursividad());
+        paneles.put(Paneles.FACTORIAL, factorial());
+        paneles.put(Paneles.POTENCIA, potencia());
+        paneles.put(Paneles.EJERCICIOS_RECURSIVIDAD, ejerciciosRecursividad());
+        paneles.put(Paneles.ARREGLOS, arreglos());
+        paneles.put(Paneles.NODOS, nodos());
+        paneles.put(Paneles.ORDENAMIENTO, ordenamiento());
+        paneles.put(Paneles.BUSQUEDA, busqueda());
+        paneles.put(Paneles.PILAS, pilas());
+        paneles.put(Paneles.COLAS, colas());
+        paneles.put(Paneles.LISTAS_ENLAZADAS, listas());
+        paneles.put(Paneles.ARBOLES, arboles());
+        paneles.put(Paneles.GRAFOS, grafos());
+        for (Map.Entry<Paneles, Lienzo> entry : paneles.entrySet()) add(entry.getKey().toString(), entry.getValue());
     }
     /**
      * Menu principal de la interfaz grafica del proyecto

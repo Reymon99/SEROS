@@ -8,7 +8,6 @@ public class Demostracion extends Lienzo {
     private JLabel image;
     private Texto texto;
     private JPanel botones;
-    private boolean nextPanel;
     public Demostracion(String path){
         super(new GridBagLayout(),true);
         setAcciones(new Acciones() {
