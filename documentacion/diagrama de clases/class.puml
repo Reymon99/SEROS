@@ -1,0 +1,710 @@
+@startuml
+package eventos #DDDDDD {
+    abstract class Eventos {
+        - {static} panel : JPanel
+        + {static} setPanel(panel: JPanel) : void
+        + {static} show(panel : Paneles) : void
+        + {static} link(url : String) :void
+        + {static} about(component : Component) : void
+        + {static} enable(enable : boolean, components : Component[]) : void
+        + {static} scroll(panel : ModernScrollPane, value : int) : void
+        + {static} variable(tree : Tree, index : int, valor : Object) : void
+        + {static} sleep(mili : long) : void
+        + {static} contains(valor : Object, objects : Object[]) : boolean
+        + {static} html(boolean: String) : String
+        + {static} menu(paneles : Paneles[]) : JPopupMenu
+    }
+}
+package main #DDDDDD {
+    class Main {
+        + {static} main(args : String[]) : void
+    }
+}
+package tools #DDDDDD {
+    enum Fuentes {
+        UBUNTULIGHT12
+        UBUNTULIGHT14
+        UBUNTULIGHT15
+        UBUNTULIGHT50
+        UBUNTULIGHT20
+        UBUNTULIGHT30
+        UBUNTULIGHTB30
+        UBUNTULIGHT40
+        UBUNTULIGHTB120
+        UBUNTULIGHTB118
+        PURISA18
+        PURISA22
+        DIALOG35
+        SEGOEUISYMBOL22
+        UBUNTUMONO15
+        - font : Font
+        Fuentes(font : Font)
+        + getFont() : Font
+    }
+    class FuentesModificadas {
+        - font : Font
+        # FuentesModificadas(path : String)
+        # getFont(style : int, size : int) : Font
+    }
+    interface Acciones {
+        iteracion0() : void
+        iteracion1() : void
+        clean() : void
+    }
+    abstract class Archivos {
+        + {static} image(path : String, width : int, height : int) : ImageIcon
+        + {static} codefiles(path : String) : String
+    }
+    enum Colour {
+        AZUL
+         AMARILLO
+         BLANCO
+         MORADO
+         NARANJA
+         VERDE
+         AZULTITLE
+         AZULTEXT
+         GRIS
+         GRISPANEL
+         GRISBUTTON
+         CURIOUSBLUE
+         NEGROEDITOR
+         NEGROINDICE
+         BORDESCROLL
+         SCROLLDRAGGING
+         SCROLLROLLOVER
+         SCROLLPRESSED
+         GRAYDISABLED
+         VERDEACTIVO
+         BLANCODESHABILITADO
+         REDLINESELECTED
+         LINEFOREGROUND
+         - color : Color
+         Colour(color : Color)
+         + getColor() : Color
+    }
+    enum Paneles {
+        PRINCIPAL
+        TDA
+        MODULARIDAD
+        RECURSIVIDAD
+        ARREGLOS
+        NODOS
+        ORDENAMIENTO
+        BUSQUEDA
+        PILAS
+        COLAS
+        LISTAS_ENLAZADAS
+        ARBOLES
+        GRAFOS
+        SIMULADORTDA
+        FACTORIAL
+        POTENCIA
+        EJERCICIOS_RECURSIVIDAD
+        DEMOSTRACION_MODULARIDAD
+        - n: String
+        Paneles(n : String)
+        + toString() : String
+    }
+    enum Operacion {
+        FACTORIAL
+        POTENCIA
+    }
+    abstract class Operaciones {
+        - {static} format : HashMap<Operacion,DecimalFormat>
+        + {static} setFormat(key : Operacion, pattern : String) : void
+        + {static} operacion(operacion : String, resultado : String) : String
+        + {static} factorial(n : int) : long
+        + {static} productoFactorial(i : int) : String
+        + {static} productoFactorial(i : int, valor : int) : String
+        + {static} productUpFactorial(i : int, factorial : int) : String
+        + {static} exponente(base : Object, exponente : Object) : String
+        + {static} potencia(base : Object, exponente : Object) : long
+        + {static} productoPotencia(base : int, exponente : int) : String
+        + {static} productoPotenciaUp(base : Object, exponente : Object) : String
+        + {static} productoPotenciaUpN(base : Object, exponente : Object) : String
+    }
+    abstract class Constrains {
+        + {static} addComp(component : Component,container : Container, rectangle : Rectangle, weightx : double, weighty : double, insets Insets, place : int, stretch : int) : void
+        + {static} addCompX(component : Component,container : Container, rectangle : Rectangle, weightx : double, insets Insets, place : int, stretch : int) : void
+        + {static} addCompY(component : Component,container : Container, rectangle : Rectangle, weighty : double, insets Insets, place : int, stretch : int) : void
+        + {static} addCompI(component : Component,container : Container, rectangle : Rectangle, weightx : double, weighty : double, insets Insets, ipadx : int, ipady : int, place : int, stretch : int) : void
+        + {static} addCompIx(component : Component,container : Container, rectangle : Rectangle, weightx : double, weighty : double, insets Insets, ipadx : int, place : int, stretch : int) : void
+        + {static} addCompIy(component : Component,container : Container, rectangle : Rectangle, weightx : double, weighty : double, insets Insets, ipadx : int, place : int, stretch : int) : void
+        + {static} addCompXIx(component : Component,container : Container, rectangle : Rectangle, weightx : double, insets Insets, ipadx : int, place : int, stretch : int) : void
+        + {static} addCompYIx(component : Component,container : Container, rectangle : Rectangle, weighty : double, insets Insets, ipadx : int, place : int, stretch : int) : void
+        + {static} addCompXIy(component : Component,container : Container, rectangle : Rectangle, weightx : double, insets Insets, ipady : int, place : int, stretch : int) : void
+        + {static} addCompYIy(component : Component,container : Container, rectangle : Rectangle, weighty : double, insets Insets, ipady : int, place : int, stretch : int) : void
+        - {static} grid(r : Rectangle, insets : Insets, place : int, stretch : int) : GridBagConstrains
+    }
+    enum Text {
+        VENTANAPRINCIPAL
+        TDA
+        TDA1
+        TDA2
+        TDA3
+        FORMULATDA
+        SIMULADORTDA1
+        SIMULADORTDA2
+        SIMULADORTDA3
+        SIMULADORTDA4
+        ABOUT
+        LINK
+        MODULARIDAD
+        MODULARIDAD1
+        RECURSIVIDAD
+        RECURSIVIDAD1
+        ARREGLOS
+        ARREGLOS1
+        ARREGLOS2
+        NODOS
+        NODOS1
+        NODOS2
+        FACTORIAL
+        FACTORIAL1
+        FACTORIAL2
+        FACTORIAL3
+        FACTORIAL4
+        FACTORIAL5
+        FACTORIAL6
+        FACTORIAL7
+        POTENCIA
+        POTENCIA1
+        POTENCIA2
+        POTENCIA3
+        POTENCIA4
+        POTENCIA5
+        POTENCIA7
+        POTENCIA8
+        POTENCIA9
+        DEMOSTRACION_MODULARIDAD
+        - n : String
+        Text(n : String)
+        + toString() : String
+    }
+}
+package gui #DDDDDD {
+    package contenido #DDDDDD {
+        package scroll #DDDDDD {
+            class InvisibleScrollBarButton {
+                # InvisibleScrollBarButton()
+            }
+            class ModernScrollBarUI {
+                - sp : ModernScrollPane
+                --
+                # ModernScrollBarUI(sp : ModernScrollPane)
+                --
+                # createDecreaseButton(orientation : int) : JButton
+                # createIncreaseButton(orientation : int) : JButton
+                # paintThumb(g : Graphics, c : Component, thumbBounds : Rectangle) : void
+                # setThumbBounds(x : int, y : int, width : int, height : int) : void
+
+            }
+            class ModernScrollPane {
+                # {static} THUMB_SIZE : int
+                # {static} SB_THUMB_SIZE : int
+                --
+                + ModernScrollPane(view : Component)
+                + ModernScrollPane(view : Component, area : JPanel)
+                + ModernScrollPane(view : Component, vsb : int, hsb : int)
+                --
+                - isVerticalScrollBarfNecessary() : boolean
+                - isHorizontalScrollBarNecessary() : boolean
+                + getView() : Component
+                + getIndice() : Component
+            }
+        }
+        class About {
+            + {static} show : boolean
+            --
+            + About(component : Component)
+            --
+            - init() : void
+            - exit() : void
+        }
+        class Boton {
+            + Boton(text : String, tip : String, icon : ImageIcon, menu : JPopupMenu, adapter : MouseAdapter)
+            + Boton(tip : String, icon : ImageIcon, adapter : MouseAdapter)
+            + Boton(icon : ImageIcon)
+            + Boton(icon : ImageIcon, menu : JPopupMenu)
+            + Boton(icon : ImageIcon, text : String, adapter : MouseAdapter)
+            --
+            - init(adapter : MouseAdapter) : void
+        }
+        class ButtonSimulador {
+            + ButtonSimulador(text : String, enable : boolean, listener : ActionListener)
+        }
+        class Contenido {
+            - contenido : JPanel
+            - title : JLabel
+            - panel: ModernScrollPane
+            --
+            + Contenido()
+            --
+            - init() : void
+            + getContenido() : JPanel
+            + getTitle() : JLabel
+            + getPane() : ModernScrollPane
+        }
+        class Demostracion {
+            - image : JLabel
+            - texto : Texto
+            - botones : JPanel
+            --
+            + Demostracion(path : String)
+            --
+            - init() : void
+            + nextPanel() : void
+            + setBotones(buttons : JButton[]) : void
+            + setTexto(text : String) : void
+            +setIcon(path : String) : void
+        }
+        class Ejercicios {
+            - botones : Boton[]
+            - texto : Texto
+            - panel: JPanel
+            --
+            + Ejercicios()
+            --
+            - init() : void
+            - items() : void
+            + getBotones : Boton[]
+            + setBotones(botones : Boton[]) : void
+            + getTexto() : Texto
+        }
+        class Lienzo {
+            - lienzo : boolean
+            - acciones : Acciones
+            - back : Boton
+            - home : Boton
+            - next : Boton
+            --
+            + Lienzo()
+            + Lienzo(lienzo : boolean)
+            + Lienzo(manager : LayoutManager, lienzo : boolean)
+            --
+            - init() : void
+            + back(toolTipText : String, paneles : Paneles) : void
+            + next(toolTipText : String, paneles : Paneles) : void
+            + getBack() : Boton
+            + getHome() : Boton
+            + getNext() : Boton
+            # getAcciones() : Acciones
+            + setAcciones(acciones : Acciones) : void
+            + paint(g : Graphics) : void
+        }
+        class Switch {
+            - modificable : boolean
+            - text : String
+            - onOff : boolean
+            - backgroundColor : Color
+            - buttonColor : Color
+            - DISABLED_COMPONENT_Color : Color
+            --
+            + Switch(text : String, onOff : boolean)
+            --
+            + isOnOff() : boolean
+            + setOnOff(onOff : boolean) : void
+            + getBackgroundColor() : Color
+            + setBackgroundColor(backgroundColor : Color) : void
+            + getButtonColor() : Color
+            + setButtonColor(buttonColor : Color) : void
+            + isModificable() : boolean
+            + setModificable(modificable : boolean) : void
+            + getText() : String
+            + setText(text : String) : void
+            - opaque1(g2 : Graphics2D) : void
+            - enable1(g2 : Graphics2D) : void
+            - estado(g2 : Graphics2D) : void
+            # paintComponent(g : Graphics) : void
+        }
+        class Texto {
+            + Texto()
+            + Texto(text : String)
+            + Texto(text : String, rows : int, columns : int)
+            + Texto(rows : int, columns : int)
+            - init() : void
+        }
+        class TextPane {
+            + TextPane(opaque : boolean)
+            + TextPane()
+            --
+            + append(n : String, font : Font) : void
+            + append(n: String, color : Color) : void
+        }
+        class Tree {
+            - node : DefaultMutableTreeNode
+            --
+            + Tree(node : DefaultMutableTreeNode)
+            + Tree(dato : Dato)
+            --
+            + getDato(index : int) : Dato
+            + addNode(node : DefaultMutableTreeNode) : void
+            + expandNode(row : int) : void
+        }
+    }
+    package editor #DDDDDD {
+        class Editor {
+            - Editor(view : View, indice : Indice)
+            --
+            - text(n : String) : void
+            + drawLineIn(i : int) : void
+            + drawLineIn(lineaIndice : int, lineaEditor : int) : void
+            + setLine(line : boolean) : void
+            + setText(text : String) : void
+            + {static} editor(path : String) : Editor
+        }
+        class Indice {
+            - {static} HEIGHT : int
+            - component : JTextComponent
+            - minimumDisplayDigits : int
+            - lineForeground : int
+            - lastDigits : int
+            - lastHeight : int
+            - insets : Insets
+            - fonts : HashMap<String, FontMetrics>
+            --
+            Indice(component : JTextComponent)
+            - Indice(component : JTextComponent, minimumDisplayDigits : int)
+            --
+            + lineForegroundIn(i : int) : void
+            - documentChanged()
+            - setMinimumDisplayDigits(minimumDisplayDigits : int) : void
+            - setPreferredWidth() : void
+            - getTextLineNumber(rowStartOffset : int) : String
+            - getOffsetX(stringWidth : int) : int
+            - getOffsetY(rowStartOffset : int, metrics : FontMetrics) : int
+            + paintComponent(g : Graphics) : void
+        }
+        class View {
+            - line: boolean
+            - lineaSelected : int
+            --
+            + View()
+            --
+            + setLine(line : boolean) : void
+            + drawLineIn(lineaSelected : int) : void
+            - drawLine(g2 : Graphics2D) : void
+            # paintComponent(g : Graphics) : void
+        }
+    }
+    package principal #DDDDDD {
+        class Contenedor {
+            + {static} paneles : HashMap<Paneles, Lienzo>
+            + {static} panelActivo : Paneles
+            Contenedor()
+            --
+            - init() : void
+            - principal() : Lienzo
+            - tda() : Contenido
+            - modularidad() : Contenido
+            - recursividad() : Contenido
+            - nodos() : Contenido
+            - arreglos : Contenido
+            - ejerciciosRecursividad() : Ejercicios
+
+        }
+        class Desktop {
+            + Desktop()
+        }
+    }
+    package simulador #DDDDDD {
+        package lienzos #DDDDDD {
+            class Graficador {
+                - graficar : boolean
+                - x : int
+                - y : int
+                --
+                + Graficador()
+                --
+                + graficar(x : int, y : int) : void
+                + coordenadas() : String
+                + limpiar() : void
+                + isGraficar() : boolean
+                + setGraficar(graficar : boolean) : void
+                - halfScreenWidth() : int
+                - halfScreenWidth() : int
+                - positionX(cuadrante : boolean) : int
+                - positionY(cuadrante : boolean) : int
+                - graficarCoordenada(g2 : Graphics2D, point : Point) : void
+                - eje(g2 : Graphics2D) : void
+                - puntoCoordenadaX(point : Point, x : int, j : int) : void
+                - puntoCoordenadaY(point : Point, y : int, i : int) : void
+                - puntoCoordenadas(point : Point, x : int, y : int, i : int, j : int) : void
+                - valoresAxisXY(g2 : Graphics2D, point Point) : void
+                + paint(g: Graphics) : void
+            }
+        }
+        class Dato {
+            - tipoDato : String
+            - variable : String
+            - valor : String
+            - hash : boolean
+            --
+            + Dato(tipoDato : String, variable : String, valor : String)
+            + Dato(tipoDato : String, variable : String, valor : String, hash : boolean)
+            --
+            + getTipoDato() : String
+            + setTipoDato(tipoDato : String) : void
+            + getVariable() : String
+            + setValor(valor: String) : void
+            + getValor() : String
+            + setVariable(variable : String) : void
+            + isHash() : boolean
+            + setHash(hash : boolean) : void
+            - hashGenerator() : String
+            - hashHex() : String
+            + toString() : String
+        }
+        class Simulador {
+            - decremento : boolean
+            - iteracion : Integer
+            - component : Component
+            - datos : JPanel
+            - codigos : JTabbedPane
+            - clean : ButtonSimulador
+            - nextIteracion : ButtonSimulador
+            - send : ButtonSimulador
+            - codigo : Switch
+            - pause : Switch
+            - texto : Texto
+            + {static} canvasSize : Dimension
+            --
+            + Simulador()
+            + Simulador(component : Component)
+            --
+            - init() : void
+            + clean() : void
+            + acomodamientoPanelControl(component : Component) : void
+            + acomodamientoProducto(number : JLabel, producto : JLabel) : void
+            + addCodes(editor : Editor, title : String) : void
+            + setTexto(texto : String) : void
+            + setDatos(trees : Tree[]) : void
+            - sizeTree(length : int) : int
+            + getTexto() : Texto
+            + getPanel() : JPanel
+            + getComponent() : Component
+            + getCodigos() : JTabbedPane
+            + getIteracion() : int
+            - setIteracion(iteracion : Integer) : void
+            + incrementIteracion() : void
+            + decrementIteracion() : void
+            + getPause() : Switch
+            + getCodigo() : Switch
+            + getSend() : ButtonSimulador
+            + getClean() : ButtonSimulador
+            + getNextIteracion() : ButtonSimulador
+            + isDecremento() : boolean
+            + setDecremento(decremento : boolean) : void
+        }
+    }
+}
+package hilos #DDDDDD {
+    class LineLocation {
+        - code : int
+        - lineaIndice : int
+        - lineaEditor : int
+        - texto : String
+        - scroll : int
+        - sleep : boolean
+        --
+        + LineLocation(code : int, lineaIndice : int, lineaEditor : int, texto : String)
+        + LineLocation(code : int, lineaIndice : int, lineaEditor : int, texto : String, sleep : boolean)
+        + LineLocation(code : int, line : int, texto : String, sleep : boolean)
+        + LineLocation(code : int, line : int, texto : String)
+        - LineLocation(code : int, lineaIndice : int, lineaEditor : int, texto : String, scroll : int, sleep : boolean)
+        --
+        + getCode() : int
+        + setCode(code: int) : void
+        + getLineIndice() : int
+        + setLineIndice(lineaIndice : int) : void
+        + getLineEditor() : int
+        + setLineEditor(lineaEditor : int) : void
+        + getTexto() : String
+        + setTexto(texto : String) : void
+        + getScroll() : int
+        + setScroll(scroll : int) : void
+        + isSleep() : boolean
+        + setSleep(sleep : Sleep) : void
+        + toString() : String
+        + equals(obj : Object) : boolean
+    }
+    abstract class Lines {
+        - simulador : Simulador
+        - lines : LineLocation[]
+        --
+        + Lines(simulador : Simulador, lines : LineLocation[])
+        --
+        + run() : void
+        - lines() : void
+        + {abstract} actions() : void
+    }
+}
+
+About <.. Eventos
+
+Boton <-- Ejercicios
+Boton <.. Contenedor
+Boton <.. Lienzo
+
+Colour <.. Switch
+Colour <.. Indice
+Colour <.. View
+Colour <.. ButtonSimulador
+Colour <.. Texto
+Colour <.. TextPane
+Colour <.. About
+Colour <.. Contenedor
+Colour <.. Indice
+Colour <.. Demostracion
+
+Contenedor <.. Desktop
+Contenedor <.. Eventos
+Contenedor o--> Paneles
+Contenedor o--> Lienzo
+
+Contenido o--> ModernScrollPane
+Contenido <.. Contenedor
+
+Constrains <.. Contenedor
+Constrains <.. Demostracion
+Constrains <.. About
+Constrains <.. Simulador
+Constrains <.. Ejercicios
+Constrains <.. Contenido
+
+Ejercicios o--> Boton
+Ejercicios o--> Texto
+
+Editor <.. Contenedor
+Editor <.. Lines
+Editor <.. Simulador
+
+Eventos <.. Contenido
+Eventos <.. Lienzo
+Eventos <.. About
+Eventos <.. Simulador
+Eventos <.. Contenedor
+Eventos <.. Lines
+Eventos <.. Operaciones
+
+FuentesModificadas <.. Fuentes
+
+Paneles <.. Eventos
+Paneles <.. Contenedor
+Paneles <.. Lienzo
+Paneles <.. Contenido
+
+Operacion <.. Operaciones
+Operacion o--> Operaciones
+Operacion <.. Contenedor
+
+Operaciones +-- Operacion
+Operaciones <.. Contenedor
+
+InvisibleScrollBarButton <.. ModernScrollBarUI
+
+ModernScrollBarUI <.. ModernScrollPane
+ModernScrollBarUI o-->  ModernScrollPane
+
+Tree <.. Eventos
+Tree <.. Simulador
+Tree <.. Contenedor
+
+Lienzo o--> Boton
+Lienzo o--> Acciones
+Lienzo <.. Contenido
+Lienzo <.. Demostracion
+Lienzo <.. Simulador
+Lienzo <.. Ejercicios
+Lienzo <.. Contenedor
+Lienzo <|-- Contenido
+Lienzo <|-- Demostracion
+Lienzo <|-- Simulador
+Lienzo <|-- Ejercicios
+
+ModernScrollPane <|-- Editor
+ModernScrollPane <.. ModernScrollBarUI
+ModernScrollPane <.. Eventos
+ModernScrollPane <.. Contenido
+ModernScrollPane <.. Editor
+ModernScrollPane <.. Simulador
+
+Indice <.. Editor
+
+View <.. Editor
+
+TextPane <|-- View
+TextPane <.. View
+TextPane <.. Contenedor
+
+Desktop <.. Main
+
+Texto <.. Demostracion
+Texto <.. Ejercicios
+Texto <.. Simulador
+Texto <.. Contenedor
+Texto <.. About
+
+Acciones <.. Demostracion
+Acciones <.. Lienzo
+Acciones <.. Contenedor
+Acciones <.. Ejercicios
+Acciones <.. Demostracion
+Acciones <.. Contenido
+Acciones <.. Simulador
+
+Demostracion <.. Contenedor
+Demostracion o--> Texto
+
+Archivos <.. Demostracion
+Archivos <.. Desktop
+Archivos <.. About
+Archivos <.. Contenedor
+Archivos <.. Editor
+Archivos <.. Lienzo
+Archivos <.. Tree
+
+Fuentes <.. Contenedor
+Fuentes <.. ButtonSimulador
+Fuentes <.. Texto
+Fuentes <.. TextPane
+Fuentes <.. Boton
+Fuentes <.. Switch
+Fuentes <.. About
+Fuentes <.. Tree
+Fuentes <.. View
+Fuentes <.. Contenido
+Fuentes <- Graficador
+
+ButtonSimulador <.. Simulador
+
+Simulador o--> ButtonSimulador
+Simulador o--> Switch
+Simulador o--> Texto
+Simulador <.. Lines
+Simulador <.. Contenedor
+Simulador <.. Graficador
+
+Dato <.. Tree
+Dato <.. Contenedor
+
+Lines o--> LineLocation
+Lines o--> Simulador
+Lines <.. Contenedor
+
+LineLocation <.. Lines
+LineLocation <.. Contenedor
+
+Switch <.. Contenido
+Switch <.. Lines
+Switch <.. Simulador
+
+Text <.. About
+Text <.. Contenido
+Text <.. Contenedor
+Text <.. Lienzo
+
+Graficador <.. Contenedor
+
+@enduml
