@@ -1,0 +1,104 @@
+@startuml
+:Usuario: as user
+:Sistema: as sys
+
+left to right direction
+skinparam packageStyle rectangle
+
+rectangle {
+    (Visualizar el contenido temático) as case1
+    (Visualización de las temáticas) as case2
+    (Demostración interactiva) as case3
+    (Selección de ejercicios) as case4
+    (Descripción de los ejercicios) as case5
+    (Ingreso al simulador) as case6
+    (Registro de datos) as case7
+    (Simulación no interactiva de datos) as case8
+    (Simulación interactiva de datos con código) as case9
+    (Reinicio del simulador) as case10
+    (Salir del simulador) as case11
+    (Visualización de los datos) as case12
+    (Retorno al panel principal) as case13
+    (Simulación interactiva de datos sin código) as case14
+    (Selección del panel a trabajar) as case15
+    (Navegación entre paneles consecutivos) as case16
+    (Camino de simulación interactiva) as case17
+    (Acerca de) as case18
+    (Navegación entre paneles) as case19
+
+    user -- case1
+    sys -- case17
+
+    case1 <.. case18 : <<extends>>
+    case1 <.. case15 : <<extends>>
+    case1 <.. case2 : <<include>>
+
+    case2 <.. case16 : <<include>>
+    case2 <.. case19 : <<extends>>
+
+    case3 <.. case16 : <<include>>
+    case3 <.. case13 : <<extends>>
+    case3 <.. case19 : <<extends>>
+
+    case4 <.. case6 : <<include>>
+    case4 <.. case5 : <<extends>>
+    case4 <.. case16 : <<extends>>
+    case4 <.. case13 : <<extends>>
+    case4 <.. case19 : <<extends>>
+
+    case6 <.. case7 : <<include>>
+    case6 <.. case11 : <<extends>>
+
+    case7 -- case17
+    case7 <.. case8 : <<extends>>
+    case7 <.. case9 : <<extends>>
+    case7 <.. case14 : <<extends>>
+
+    case8 <.. case7 : <<extends>>
+    case8 <.. case10 : <<extends>>
+    case8 <.. case11 : <<extends>>
+    case8 <.. case12 : <<extends>>
+
+    case9 <.. case7 : <<extends>>
+    case9 <.. case10 : <<extends>>
+    case9 <.. case11 : <<extends>>
+    case9 <.. case12 : <<extends>>
+
+    case10 <.. case6 : <<include>>
+
+    case11 <.. case13 : <<extends>>
+    case11 <.. case16 : <<extends>>
+    case11 <.. case19 : <<extends>>
+    case11 -- case10
+
+    case12 <.. case7 : <<extends>>
+    case12 <.. case10 : <<extends>>
+    case12 <.. case11 : <<extends>>
+
+    case13 <.. case1 : <<include>>
+
+    case14 <.. case7 : <<extends>>
+    case14 <.. case10 : <<extends>>
+    case14 <.. case11 : <<extends>>
+    case14 <.. case12 : <<extends>>
+
+    case15 <.. case2 : <<extends>>
+    case15 <.. case3 : <<extends>>
+    case15 <.. case4 : <<extends>>
+    case15 <.. case6 : <<extends>>
+
+    case16 <.. case1 : <<extends>>
+    case16 <.. case2 : <<extends>>
+    case16 <.. case3 : <<extends>>
+    case16 <.. case4 : <<extends>>
+    case16 <.. case6 : <<extends>>
+
+    case18 <.. case1 : <<include>>
+
+    case19 <.. case1 : <<extends>>
+    case19 <.. case2 : <<extends>>
+    case19 <.. case3 : <<extends>>
+    case19 <.. case4 : <<extends>>
+    case19 <.. case6 : <<extends>>
+}
+@enduml

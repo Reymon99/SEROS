@@ -3,87 +3,833 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="1765.0" y="1503.0">gui.contenido.Tree</node>
-    <node x="1820.0" y="0.0">gui.contenido.scroll.ModernScrollPane</node>
-    <node x="1297.0" y="0.0">gui.principal.Contenedor</node>
-    <node x="0.0" y="1503.0">eventos.Eventos</node>
-    <node x="692.0" y="1841.0">gui.contenido.Texto</node>
-    <node x="1705.0" y="1021.0">hilos.LineLocation</node>
-    <node x="0.0" y="1021.0">tools.Operaciones</node>
-    <node x="394.0" y="510.0">gui.contenido.Demostracion</node>
-    <node x="349.0" y="1021.0">gui.simulador.lienzos.Graficador</node>
-    <node x="1579.0" y="0.0">tools.Paneles</node>
-    <node x="97.5" y="1386.0">tools.Operaciones.Operacion</node>
-    <node x="489.75" y="0.0">gui.contenido.Lienzo</node>
-    <node x="1513.0" y="1841.0">tools.Archivos</node>
-    <node x="577.0" y="345.0">gui.simulador.Simulador</node>
-    <node x="1335.0" y="1841.0">tools.Acciones</node>
-    <node x="895.0" y="1841.0">gui.contenido.About</node>
-    <node x="283.0" y="1503.0">hilos.Imagen</node>
-    <node x="1101.0" y="0.0">tools.Colour</node>
-    <node x="899.0" y="554.5">gui.contenido.Contenido</node>
-    <node x="1142.0" y="1021.0">gui.contenido.Switch</node>
-    <node x="1776.0" y="1841.0">gui.contenido.ButtonSimulador</node>
-    <node x="549.0" y="1503.0">tools.Constrains</node>
-    <node x="1113.0" y="1503.0">gui.simulador.Dato</node>
-    <node x="0.0" y="0.0">tools.Text</node>
-    <node x="974.0" y="1021.0">tools.Fuentes</node>
-    <node x="259.0" y="2048.0">main.Main</node>
-    <node x="1442.0" y="1188.0">gui.editor.View</node>
-    <node x="1865.0" y="279.0">gui.editor.Editor</node>
-    <node x="1095.0" y="1841.0">tools.FuentesModificadas</node>
-    <node x="0.0" y="1841.0">hilos.Lines</node>
-    <node x="1457.5" y="1021.0">gui.contenido.TextPane</node>
-    <node x="241.0" y="532.0">gui.contenido.Ejercicios</node>
-    <node x="0.0" y="2048.0">gui.contenido.scroll.InvisibleScrollBarButton</node>
-    <node x="267.0" y="1841.0">gui.contenido.Boton</node>
-    <node x="451.0" y="2048.0">gui.principal.Desktop</node>
-    <node x="1395.0" y="1503.0">gui.contenido.scroll.ModernScrollBarUI</node>
-    <node x="685.0" y="1021.0">gui.editor.Indice</node>
+    <node x="3909.242424242425" y="2307.0">gui.contenido.Tree</node>
+    <node x="1958.3608477847433" y="2273.5">gui.contenido.scroll.ModernScrollPane</node>
+    <node x="1162.0000000000007" y="5171.0">gui.principal.Contenedor</node>
+    <node x="2314.8797582330985" y="2890.5">eventos.Eventos</node>
+    <node x="1731.618394596735" y="1334.5">gui.contenido.Texto</node>
+    <node x="2508.7656096895053" y="3986.5">hilos.LineLocation</node>
+    <node x="2177.182276356172" y="3987.0">tools.Operaciones</node>
+    <node x="1688.6654725188127" y="4030.0">gui.contenido.Demostracion</node>
+    <node x="591.4025144514101" y="4534.0">gui.simulador.lienzos.Graficador</node>
+    <node x="572.9583333333339" y="2142.0">tools.Paneles</node>
+    <node x="2255.796424899765" y="4711.5">tools.Operaciones.Operacion</node>
+    <node x="720.9918753814297" y="3350.0">gui.contenido.Lienzo</node>
+    <node x="3789.742424242425" y="1368.0">tools.Archivos</node>
+    <node x="2831.7200360108764" y="3865.0">gui.simulador.Simulador</node>
+    <node x="935.3668753814297" y="2990.0">tools.Acciones</node>
+    <node x="1728.8072763561718" y="2329.0">gui.contenido.About</node>
+    <node x="4849.529063788654" y="0.0">hilos.Imagen</node>
+    <node x="3751.956581911728" y="146.0">tools.Colour</node>
+    <node x="1111.2500000000007" y="4074.5">gui.contenido.Contenido</node>
+    <node x="2880.487831911728" y="2196.5">gui.contenido.Switch</node>
+    <node x="3156.487831911728" y="3472.5">gui.contenido.ButtonSimulador</node>
+    <node x="1192.618394596735" y="1269.0">tools.Constrains</node>
+    <node x="4265.992424242424" y="1290.0">gui.simulador.Dato</node>
+    <node x="887.8267279300683" y="916.0">tools.Text</node>
+    <node x="1758.6108477847433" y="234.0">tools.Fuentes</node>
+    <node x="2826.9195676414097" y="5835.0">main.Main</node>
+    <node x="3981.456581911728" y="2944.5">gui.editor.View</node>
+    <node x="3698.242424242425" y="3405.5">gui.editor.Editor</node>
+    <node x="1722.6108477847433" y="0.0">tools.FuentesModificadas</node>
+    <node x="2679.463091566432" y="4666.5">hilos.Lines</node>
+    <node x="4601.029063788654" y="2329.5">gui.contenido.TextPane</node>
+    <node x="402.40911985467574" y="4052.0">gui.contenido.Ejercicios</node>
+    <node x="1901.6108477847433" y="411.0">gui.contenido.scroll.InvisibleScrollBarButton</node>
+    <node x="58.83333333333394" y="2956.5">gui.contenido.Boton</node>
+    <node x="2849.9195676414097" y="5735.0">gui.principal.Desktop</node>
+    <node x="1977.8797582330985" y="1323.0">gui.contenido.scroll.ModernScrollBarUI</node>
+    <node x="3716.456581911728" y="2824.0">gui.editor.Indice</node>
   </nodes>
   <notes />
   <edges>
+    <edge source="gui.contenido.Ejercicios" target="tools.Acciones">
+      <point x="59.11111111111131" y="-92.5" />
+      <point x="528.020230965787" y="3845.0" />
+      <point x="1001.950208714763" y="3845.0" />
+      <point x="1001.950208714763" y="3300.0" />
+      <point x="990.7835420480963" y="3300.0" />
+      <point x="-11.083333333333485" y="47.0" />
+    </edge>
+    <edge source="hilos.Lines" target="gui.simulador.Simulador">
+      <point x="18.5" y="-81.0" />
+      <point x="2808.963091566432" y="4474.0" />
+      <point x="2922.3200360108767" y="4474.0" />
+      <point x="-60.40000000000009" y="279.5" />
+    </edge>
+    <edge source="eventos.Eventos" target="tools.Paneles">
+      <point x="-102.0" y="-146.5" />
+      <point x="2331.8797582330985" y="2724.0" />
+      <point x="752.6250000000009" y="2724.0" />
+      <point x="81.66666666666697" y="246.0" />
+    </edge>
+    <edge source="gui.contenido.Demostracion" target="tools.Constrains">
+      <point x="0.0" y="-114.5" />
+      <point x="1770.1654725188127" y="3745.0" />
+      <point x="1405.1108477847433" y="3745.0" />
+      <point x="1405.1108477847433" y="2002.0" />
+      <point x="1495.368394596735" y="2002.0" />
+      <point x="43.25" y="135.0" />
+    </edge>
+    <edge source="gui.contenido.Lienzo" target="tools.Paneles">
+      <point x="-24.888888888888687" y="-147.5" />
+      <point x="808.102986492541" y="3330.0" />
+      <point x="816.8535642991201" y="3330.0" />
+      <point x="816.8535642991201" y="2744.0" />
+      <point x="687.291666666667" y="2744.0" />
+      <point x="16.33333333333303" y="246.0" />
+    </edge>
+    <edge source="gui.contenido.scroll.ModernScrollPane" target="gui.contenido.scroll.ModernScrollBarUI">
+      <point x="-87.66666666666652" y="-114.5" />
+      <point x="2002.1941811180768" y="2092.0" />
+      <point x="2032.046424899765" y="2092.0" />
+      <point x="-108.33333333333348" y="81.0" />
+    </edge>
+    <edge source="gui.contenido.Contenido" target="eventos.Eventos">
+      <point x="71.36363636363603" y="-70.0" />
+      <point x="1261.1136363636367" y="3845.0" />
+      <point x="1383.1108477847433" y="3845.0" />
+      <point x="1383.1108477847433" y="3320.0" />
+      <point x="2365.8797582330985" y="3320.0" />
+      <point x="-68.0" y="146.5" />
+    </edge>
     <edge source="gui.editor.View" target="gui.contenido.TextPane">
-      <point x="0.0" y="-92.5" />
-      <point x="0.0" y="58.5" />
+      <point x="72.66666666666669" y="-92.5" />
+      <point x="4163.123248578395" y="2804.0" />
+      <point x="4671.154063788654" y="2804.0" />
+      <point x="-23.375" y="58.5" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.contenido.Texto">
+      <point x="75.70833333333348" y="-257.0" />
+      <point x="1356.2083333333342" y="5091.0" />
+      <point x="4209.956581911728" y="5091.0" />
+      <point x="4209.956581911728" y="2704.0" />
+      <point x="3757.242424242425" y="2704.0" />
+      <point x="3757.242424242425" y="1912.0" />
+      <point x="1882.436576414917" y="1912.0" />
+      <point x="71.81818181818198" y="69.5" />
+    </edge>
+    <edge source="gui.contenido.Ejercicios" target="gui.contenido.Texto">
+      <point x="-14.777777777777828" y="-92.5" />
+      <point x="454.1313420768979" y="3785.0" />
+      <point x="460.33333333333394" y="3785.0" />
+      <point x="460.33333333333394" y="2714.0" />
+      <point x="562.4583333333339" y="2714.0" />
+      <point x="562.4583333333339" y="2012.0" />
+      <point x="1738.8002127785533" y="2012.0" />
+      <point x="-71.81818181818176" y="69.5" />
+    </edge>
+    <edge source="gui.contenido.Switch" target="tools.Colour">
+      <point x="63.75" y="-191.5" />
+      <point x="3071.737831911728" y="2092.0" />
+      <point x="3498.987831911728" y="2092.0" />
+      <point x="3498.987831911728" y="876.0" />
+      <point x="3804.806581911728" y="876.0" />
+      <point x="-22.65000000000009" y="290.0" />
+    </edge>
+    <edge source="gui.contenido.Tree" target="tools.Archivos">
+      <point x="-88.0" y="-81.0" />
+      <point x="3953.242424242425" y="2122.0" />
+      <point x="3929.885281385282" y="2122.0" />
+      <point x="31.14285714285711" y="36.0" />
+    </edge>
+    <edge source="gui.principal.Desktop" target="gui.principal.Contenedor">
+      <point x="-25.25" y="-25.0" />
+      <point x="2875.1695676414097" y="5710.0" />
+      <point x="1280.5000000000007" y="5710.0" />
+      <point x="0.0" y="257.0" />
+    </edge>
+    <edge source="gui.contenido.Texto" target="tools.Fuentes">
+      <point x="-39.5" y="-69.5" />
+      <point x="1771.118394596735" y="896.0" />
+      <point x="1808.929029602925" y="896.0" />
+      <point x="-11.181818181818244" y="202.0" />
+    </edge>
+    <edge source="gui.contenido.Ejercicios" target="gui.contenido.Boton">
+      <point x="-59.11111111111086" y="-92.5" />
+      <point x="409.7980087435649" y="3785.0" />
+      <point x="170.69642857142935" y="3785.0" />
+      <point x="170.69642857142935" y="3320.0" />
+      <point x="194.54761904761972" y="3320.0" />
+      <point x="-54.28571428571422" y="80.5" />
+    </edge>
+    <edge source="gui.contenido.scroll.ModernScrollBarUI" target="gui.contenido.scroll.InvisibleScrollBarButton">
+      <point x="-81.25" y="-81.0" />
+      <point x="2059.1297582330985" y="836.0" />
+      <point x="2008.6108477847433" y="836.0" />
+      <point x="0.0" y="25.0" />
     </edge>
     <edge source="tools.Operaciones.Operacion" target="tools.Operaciones">
-      <point x="0.0" y="-36.0" />
-      <point x="0.0" y="157.5" />
+      <point x="-36.33333333333337" y="-36.0" />
+      <point x="2273.963091566432" y="4454.0" />
+      <point x="2291.182276356172" y="4454.0" />
+      <point x="-38.0" y="157.5" />
     </edge>
-    <edge source="gui.simulador.Simulador" target="gui.contenido.Lienzo">
-      <point x="0.0" y="-279.5" />
-      <point x="728.0" y="325.0" />
-      <point x="629.75" y="325.0" />
-      <point x="28.0" y="147.5" />
+    <edge source="gui.principal.Contenedor" target="tools.Acciones">
+      <point x="-16.458333333333485" y="-257.0" />
+      <point x="1264.0416666666672" y="5001.0" />
+      <point x="1012.950208714763" y="5001.0" />
+      <point x="11.083333333333485" y="47.0" />
     </edge>
-    <edge source="gui.contenido.Demostracion" target="gui.contenido.Lienzo">
-      <point x="0.0" y="-114.5" />
-      <point x="475.5" y="325.0" />
-      <point x="573.75" y="325.0" />
-      <point x="-28.0" y="147.5" />
+    <edge source="gui.simulador.Simulador" target="gui.contenido.Tree">
+      <point x="125.83333333333326" y="-279.5" />
+      <point x="3108.55336934421" y="3835.0" />
+      <point x="3554.9353137886546" y="3835.0" />
+      <point x="3554.9353137886546" y="2754.0" />
+      <point x="4008.242424242425" y="2754.0" />
+      <point x="-33.0" y="81.0" />
     </edge>
-    <edge source="gui.contenido.Contenido" target="gui.contenido.Lienzo">
-      <point x="0.0" y="-70.0" />
-      <point x="977.5" y="315.0" />
-      <point x="685.75" y="315.0" />
-      <point x="84.0" y="147.5" />
+    <edge source="gui.editor.Indice" target="tools.Colour">
+      <point x="0.0" y="-213.0" />
+      <point x="3838.456581911728" y="2764.0" />
+      <point x="4183.742424242425" y="2764.0" />
+      <point x="4183.742424242425" y="786.0" />
+      <point x="3850.1065819117275" y="786.0" />
+      <point x="22.649999999999864" y="290.0" />
     </edge>
-    <edge source="gui.contenido.Ejercicios" target="gui.contenido.Lienzo">
-      <point x="0.0" y="-92.5" />
-      <point x="307.5" y="315.0" />
-      <point x="517.75" y="315.0" />
-      <point x="-84.0" y="147.5" />
+    <edge source="gui.contenido.Texto" target="tools.Colour">
+      <point x="39.5" y="-69.5" />
+      <point x="1850.118394596735" y="846.0" />
+      <point x="3759.506581911728" y="846.0" />
+      <point x="-67.95000000000005" y="290.0" />
     </edge>
-    <edge source="gui.editor.Editor" target="gui.contenido.scroll.ModernScrollPane">
-      <point x="0.0" y="-92.0" />
+    <edge source="gui.contenido.About" target="tools.Colour">
+      <point x="44.28571428571422" y="-59.0" />
+      <point x="1850.592990641886" y="2092.0" />
+      <point x="1914.5118295461714" y="2092.0" />
+      <point x="1914.5118295461714" y="856.0" />
+      <point x="3774.606581911728" y="856.0" />
+      <point x="-52.84999999999991" y="290.0" />
+    </edge>
+    <edge source="tools.Fuentes" target="tools.FuentesModificadas">
+      <point x="0.0" y="-202.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.contenido.TextPane">
+      <point x="115.20833333333348" y="-257.0" />
+      <point x="1395.7083333333342" y="5151.0" />
+      <point x="4748.164915245061" y="5151.0" />
+      <point x="4748.164915245061" y="2804.0" />
+      <point x="4764.654063788654" y="2804.0" />
+      <point x="70.125" y="58.5" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.contenido.Boton">
+      <point x="-69.125" y="-257.0" />
+      <point x="1211.3750000000007" y="5081.0" />
+      <point x="159.69642857142935" y="5081.0" />
+      <point x="159.69642857142935" y="3320.0" />
+      <point x="140.2619047619055" y="3320.0" />
+      <point x="-108.57142857142844" y="80.5" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="hilos.LineLocation">
+      <point x="42.791666666666515" y="-257.0" />
+      <point x="1323.2916666666672" y="5041.0" />
+      <point x="2537.088091566432" y="5041.0" />
+      <point x="2537.088091566432" y="4454.0" />
+      <point x="2556.432276356172" y="4454.0" />
+      <point x="-95.33333333333348" y="158.0" />
+    </edge>
+    <edge source="gui.contenido.Switch" target="tools.Fuentes">
+      <point x="-63.75" y="-191.5" />
+      <point x="2944.237831911728" y="2092.0" />
+      <point x="2983.16009794444" y="2092.0" />
+      <point x="2983.16009794444" y="826.0" />
+      <point x="1831.2926659665616" y="826.0" />
+      <point x="11.181818181818244" y="202.0" />
+    </edge>
+    <edge source="hilos.Lines" target="hilos.LineLocation">
+      <point x="-55.5" y="-81.0" />
+      <point x="2734.963091566432" y="4454.0" />
+      <point x="2747.098943022839" y="4454.0" />
+      <point x="95.33333333333348" y="158.0" />
+    </edge>
+    <edge source="eventos.Eventos" target="gui.contenido.scroll.ModernScrollPane">
+      <point x="34.0" y="-146.5" />
+      <point x="2467.8797582330985" y="2684.0" />
+      <point x="2089.8608477847433" y="2684.0" />
       <point x="0.0" y="114.5" />
     </edge>
+    <edge source="eventos.Eventos" target="gui.contenido.Tree">
+      <point x="102.0" y="-146.5" />
+      <point x="2535.8797582330985" y="2744.0" />
+      <point x="3942.242424242425" y="2744.0" />
+      <point x="-99.0" y="81.0" />
+    </edge>
+    <edge source="hilos.Lines" target="gui.editor.Editor">
+      <point x="92.5" y="-81.0" />
+      <point x="2882.963091566432" y="4514.0" />
+      <point x="3808.075757575758" y="4514.0" />
+      <point x="3808.075757575758" y="3845.0" />
+      <point x="3784.742424242425" y="3845.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="main.Main" target="gui.principal.Desktop">
+      <point x="0.0" y="-25.0" />
+      <point x="0.0" y="25.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.contenido.Contenido">
+      <point x="-9.875" y="-257.0" />
+      <point x="1270.6250000000007" y="4991.0" />
+      <point x="1186.458333333334" y="4991.0" />
+      <point x="1186.458333333334" y="4454.0" />
+      <point x="1150.5000000000007" y="4454.0" />
+      <point x="-39.25" y="70.0" />
+    </edge>
+    <edge source="gui.contenido.Contenido" target="gui.contenido.scroll.ModernScrollPane">
+      <point x="28.54545454545496" y="-70.0" />
+      <point x="1218.2954545454556" y="3815.0" />
+      <point x="1350.1108477847433" y="3815.0" />
+      <point x="1350.1108477847433" y="2784.0" />
+      <point x="1977.1465620704575" y="2784.0" />
+      <point x="-112.71428571428578" y="114.5" />
+    </edge>
+    <edge source="gui.contenido.Boton" target="tools.Fuentes">
+      <point x="0.0" y="-80.5" />
+      <point x="248.83333333333394" y="2704.0" />
+      <point x="11.0" y="2704.0" />
+      <point x="11.0" y="866.0" />
+      <point x="1775.3835750574706" y="866.0" />
+      <point x="-44.72727272727275" y="202.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="tools.Archivos">
+      <point x="95.45833333333348" y="-257.0" />
+      <point x="1375.9583333333342" y="5121.0" />
+      <point x="4450.529063788654" y="5121.0" />
+      <point x="4450.529063788654" y="2112.0" />
+      <point x="3961.028138528139" y="2112.0" />
+      <point x="62.28571428571422" y="36.0" />
+    </edge>
+    <edge source="gui.simulador.Simulador" target="gui.contenido.Switch">
+      <point x="-25.166666666666515" y="-279.5" />
+      <point x="2957.5533693442103" y="3745.0" />
+      <point x="2993.5603137886546" y="3745.0" />
+      <point x="2993.5603137886546" y="2724.0" />
+      <point x="3039.862831911728" y="2724.0" />
+      <point x="31.875" y="191.5" />
+    </edge>
+    <edge source="gui.simulador.lienzos.Graficador" target="tools.Fuentes">
+      <point x="-72.75" y="-213.5" />
+      <point x="664.1525144514101" y="2694.0" />
+      <point x="425.92300874356465" y="2694.0" />
+      <point x="425.92300874356465" y="876.0" />
+      <point x="1786.5653932392888" y="876.0" />
+      <point x="-33.545454545454504" y="202.0" />
+    </edge>
+    <edge source="gui.contenido.TextPane" target="tools.Fuentes">
+      <point x="-46.75" y="-58.5" />
+      <point x="4647.779063788654" y="2092.0" />
+      <point x="4593.794942365498" y="2092.0" />
+      <point x="4593.794942365498" y="756.0" />
+      <point x="1876.0199386938343" y="756.0" />
+      <point x="55.90909090909099" y="202.0" />
+    </edge>
+    <edge source="gui.simulador.lienzos.Graficador" target="gui.simulador.Simulador">
+      <point x="72.75" y="-213.5" />
+      <point x="809.6525144514101" y="4464.0" />
+      <point x="2861.9200360108766" y="4464.0" />
+      <point x="-120.79999999999995" y="279.5" />
+    </edge>
+    <edge source="gui.contenido.Lienzo" target="tools.Text">
+      <point x="0.0" y="-147.5" />
+      <point x="832.9918753814297" y="3270.0" />
+      <point x="902.2418753814297" y="3270.0" />
+      <point x="902.2418753814297" y="1982.0" />
+      <point x="961.3267279300683" y="1982.0" />
+      <point x="-24.5" y="488.0" />
+    </edge>
+    <edge source="gui.simulador.Simulador" target="gui.contenido.Lienzo">
+      <point x="-125.83333333333326" y="-279.5" />
+      <point x="2856.8867026775433" y="3705.0" />
+      <point x="934.8100571996117" y="3705.0" />
+      <point x="101.81818181818198" y="147.5" />
+    </edge>
+    <edge source="gui.editor.Editor" target="gui.editor.Indice">
+      <point x="-10.8125" y="-92.0" />
+      <point x="3773.929924242425" y="3330.0" />
+      <point x="3777.456581911728" y="3330.0" />
+      <point x="-61.0" y="213.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.simulador.Simulador">
+      <point x="55.958333333333485" y="-257.0" />
+      <point x="1336.4583333333342" y="5061.0" />
+      <point x="2962.420036010876" y="5061.0" />
+      <point x="2962.420036010876" y="4494.0" />
+      <point x="3043.120036010877" y="4494.0" />
+      <point x="60.40000000000009" y="279.5" />
+    </edge>
+    <edge source="gui.simulador.Simulador" target="eventos.Eventos">
+      <point x="-109.05555555555543" y="-279.5" />
+      <point x="2873.664480455321" y="3695.0" />
+      <point x="2836.987831911728" y="3695.0" />
+      <point x="2836.987831911728" y="3300.0" />
+      <point x="2535.8797582330985" y="3300.0" />
+      <point x="102.0" y="146.5" />
+    </edge>
+    <edge source="gui.contenido.About" target="tools.Archivos">
+      <point x="66.42857142857156" y="-59.0" />
+      <point x="1872.7358477847433" y="2102.0" />
+      <point x="3805.3138528138534" y="2102.0" />
+      <point x="-93.42857142857133" y="36.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.simulador.Dato">
+      <point x="102.04166666666652" y="-257.0" />
+      <point x="1382.5416666666672" y="5131.0" />
+      <point x="4590.529063788654" y="5131.0" />
+      <point x="4590.529063788654" y="2102.0" />
+      <point x="4443.742424242424" y="2102.0" />
+      <point x="59.25" y="114.0" />
+    </edge>
+    <edge source="gui.editor.View" target="tools.Colour">
+      <point x="-72.66666666666674" y="-92.5" />
+      <point x="4017.789915245061" y="2784.0" />
+      <point x="4519.367424242424" y="2784.0" />
+      <point x="4519.367424242424" y="766.0" />
+      <point x="3880.306581911728" y="766.0" />
+      <point x="52.84999999999991" y="290.0" />
+    </edge>
+    <edge source="gui.contenido.Contenido" target="tools.Constrains">
+      <point x="14.272727272727025" y="-70.0" />
+      <point x="1204.0227272727277" y="3805.0" />
+      <point x="1339.1108477847433" y="3805.0" />
+      <point x="1339.1108477847433" y="1992.0" />
+      <point x="1408.868394596735" y="1992.0" />
+      <point x="-43.25" y="135.0" />
+    </edge>
+    <edge source="gui.contenido.Demostracion" target="gui.contenido.Lienzo">
+      <point x="-46.57142857142844" y="-114.5" />
+      <point x="1723.5940439473843" y="3765.0" />
+      <point x="894.0827844723387" y="3765.0" />
+      <point x="61.09090909090901" y="147.5" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.editor.Editor">
+      <point x="69.125" y="-257.0" />
+      <point x="1349.6250000000007" y="5081.0" />
+      <point x="3819.075757575758" y="5081.0" />
+      <point x="3819.075757575758" y="3845.0" />
+      <point x="3842.4090909090914" y="3845.0" />
+      <point x="57.666666666666515" y="92.0" />
+    </edge>
+    <edge source="gui.contenido.Contenido" target="tools.Acciones">
+      <point x="-42.81818181818198" y="-70.0" />
+      <point x="1146.9318181818187" y="3815.0" />
+      <point x="1041.541117805672" y="3815.0" />
+      <point x="1041.541117805672" y="3300.0" />
+      <point x="1035.1168753814297" y="3300.0" />
+      <point x="33.25" y="47.0" />
+    </edge>
+    <edge source="gui.contenido.Contenido" target="tools.Paneles">
+      <point x="-28.545454545454504" y="-70.0" />
+      <point x="1161.2045454545462" y="3805.0" />
+      <point x="1078.8668753814297" y="3805.0" />
+      <point x="1078.8668753814297" y="2734.0" />
+      <point x="719.9583333333339" y="2734.0" />
+      <point x="49.0" y="246.0" />
+    </edge>
+    <edge source="gui.contenido.Demostracion" target="tools.Archivos">
+      <point x="69.85714285714266" y="-114.5" />
+      <point x="1840.0226153759554" y="3845.0" />
+      <point x="2231.8608477847433" y="3845.0" />
+      <point x="2231.8608477847433" y="2122.0" />
+      <point x="3867.599567099568" y="2122.0" />
+      <point x="-31.14285714285711" y="36.0" />
+    </edge>
+    <edge source="hilos.Lines" target="eventos.Eventos">
+      <point x="-18.5" y="-81.0" />
+      <point x="2771.963091566432" y="4454.0" />
+      <point x="2805.2656096895053" y="4454.0" />
+      <point x="2805.2656096895053" y="3310.0" />
+      <point x="2501.8797582330985" y="3310.0" />
+      <point x="68.0" y="146.5" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="eventos.Eventos">
+      <point x="36.208333333333485" y="-257.0" />
+      <point x="1316.7083333333342" y="5031.0" />
+      <point x="2498.2656096895053" y="5031.0" />
+      <point x="2498.2656096895053" y="3320.0" />
+      <point x="2467.8797582330985" y="3320.0" />
+      <point x="34.0" y="146.5" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.contenido.Lienzo">
+      <point x="-62.541666666666515" y="-257.0" />
+      <point x="1217.9583333333342" y="5071.0" />
+      <point x="306.7002087147632" y="5071.0" />
+      <point x="306.7002087147632" y="3795.0" />
+      <point x="731.1736935632478" y="3795.0" />
+      <point x="-101.81818181818198" y="147.5" />
+    </edge>
+    <edge source="eventos.Eventos" target="gui.contenido.About">
+      <point x="-68.0" y="-146.5" />
+      <point x="2365.8797582330985" y="2714.0" />
+      <point x="1754.6406096895053" y="2714.0" />
+      <point x="-51.66666666666674" y="59.0" />
+    </edge>
+    <edge source="gui.editor.Editor" target="tools.Archivos">
+      <point x="-32.4375" y="-92.0" />
+      <point x="3752.304924242425" y="3310.0" />
+      <point x="3629.706581911728" y="3310.0" />
+      <point x="3629.706581911728" y="2734.0" />
+      <point x="3898.742424242425" y="2734.0" />
+      <point x="0.0" y="36.0" />
+    </edge>
+    <edge source="gui.contenido.About" target="eventos.Eventos">
+      <point x="51.666666666666515" y="59.0" />
+      <point x="1857.9739430228383" y="2694.0" />
+      <point x="2433.8797582330985" y="2694.0" />
+      <point x="0.0" y="-146.5" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.contenido.Ejercicios">
+      <point x="-42.791666666666515" y="-257.0" />
+      <point x="1237.7083333333342" y="5041.0" />
+      <point x="502.15911985467574" y="5041.0" />
+      <point x="33.25" y="92.5" />
+    </edge>
+    <edge source="gui.editor.Editor" target="gui.editor.View">
+      <point x="54.0625" y="-92.0" />
+      <point x="3838.804924242425" y="3320.0" />
+      <point x="4035.956581911728" y="3320.0" />
+      <point x="-54.5" y="92.5" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="hilos.Lines">
+      <point x="49.375" y="-257.0" />
+      <point x="1329.8750000000007" y="5051.0" />
+      <point x="2790.463091566432" y="5051.0" />
+      <point x="0.0" y="81.0" />
+    </edge>
+    <edge source="gui.contenido.TextPane" target="tools.Colour">
+      <point x="46.75" y="-58.5" />
+      <point x="4741.279063788654" y="2122.0" />
+      <point x="4693.581581911728" y="2122.0" />
+      <point x="4693.581581911728" y="746.0" />
+      <point x="3895.4065819117277" y="746.0" />
+      <point x="67.95000000000005" y="290.0" />
+    </edge>
+    <edge source="gui.contenido.Contenido" target="gui.contenido.Lienzo">
+      <point x="-71.36363636363649" y="-70.0" />
+      <point x="1118.3863636363642" y="3835.0" />
+      <point x="832.9918753814297" y="3835.0" />
+      <point x="0.0" y="147.5" />
+    </edge>
+    <edge source="gui.simulador.Simulador" target="tools.Colour">
+      <point x="109.05555555555566" y="-279.5" />
+      <point x="3091.775591566432" y="3825.0" />
+      <point x="3537.487831911728" y="3825.0" />
+      <point x="3537.487831911728" y="2724.0" />
+      <point x="3779.242424242425" y="2724.0" />
+      <point x="3779.242424242425" y="896.0" />
+      <point x="3835.006581911728" y="896.0" />
+      <point x="7.5499999999999545" y="290.0" />
+    </edge>
+    <edge source="gui.simulador.Simulador" target="tools.Constrains">
+      <point x="-75.5" y="-279.5" />
+      <point x="2907.2200360108764" y="3675.0" />
+      <point x="2858.987831911728" y="3675.0" />
+      <point x="2858.987831911728" y="1952.0" />
+      <point x="1668.368394596735" y="1952.0" />
+      <point x="216.25" y="135.0" />
+    </edge>
+    <edge source="gui.contenido.Ejercicios" target="tools.Constrains">
+      <point x="-29.555555555555657" y="-92.5" />
+      <point x="439.3535642991201" y="3775.0" />
+      <point x="449.33333333333394" y="3775.0" />
+      <point x="449.33333333333394" y="2704.0" />
+      <point x="551.4583333333339" y="2704.0" />
+      <point x="551.4583333333339" y="2002.0" />
+      <point x="1322.368394596735" y="2002.0" />
+      <point x="-129.75" y="135.0" />
+    </edge>
+    <edge source="eventos.Eventos" target="gui.contenido.Switch">
+      <point x="68.0" y="-146.5" />
+      <point x="2501.8797582330985" y="2734.0" />
+      <point x="2912.362831911728" y="2734.0" />
+      <point x="-95.625" y="191.5" />
+    </edge>
+    <edge source="gui.contenido.ButtonSimulador" target="tools.Fuentes">
+      <point x="-77.5" y="-25.0" />
+      <point x="3233.987831911728" y="3320.0" />
+      <point x="3487.987831911728" y="3320.0" />
+      <point x="3487.987831911728" y="816.0" />
+      <point x="1842.4744841483796" y="816.0" />
+      <point x="22.36363636363626" y="202.0" />
+    </edge>
+    <edge source="eventos.Eventos" target="gui.principal.Contenedor">
+      <point x="0.0" y="146.5" />
+      <point x="2433.8797582330985" y="3330.0" />
+      <point x="2491.682276356172" y="3330.0" />
+      <point x="2491.682276356172" y="5021.0" />
+      <point x="1310.1250000000007" y="5021.0" />
+      <point x="29.625" y="-257.0" />
+    </edge>
+    <edge source="tools.Operaciones" target="tools.Operaciones.Operacion">
+      <point x="38.0" y="157.5" />
+      <point x="2367.182276356172" y="4444.0" />
+      <point x="2310.296424899765" y="4444.0" />
+      <point x="0.0" y="-36.0" />
+    </edge>
+    <edge source="gui.contenido.Lienzo" target="tools.Acciones">
+      <point x="49.77777777777783" y="-147.5" />
+      <point x="882.7696531592076" y="3290.0" />
+      <point x="946.4502087147632" y="3290.0" />
+      <point x="-55.416666666666515" y="47.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="tools.Operaciones.Operacion">
+      <point x="23.041666666666515" y="-257.0" />
+      <point x="1303.5416666666672" y="5011.0" />
+      <point x="2310.296424899765" y="5011.0" />
+      <point x="0.0" y="36.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="tools.Paneles">
+      <point x="-88.875" y="-257.0" />
+      <point x="1191.6250000000007" y="5111.0" />
+      <point x="41.75" y="5111.0" />
+      <point x="41.75" y="2734.0" />
+      <point x="621.9583333333339" y="2734.0" />
+      <point x="-49.0" y="246.0" />
+    </edge>
+    <edge source="gui.contenido.Contenido" target="tools.Text">
+      <point x="-14.272727272727025" y="-70.0" />
+      <point x="1175.4772727272737" y="3795.0" />
+      <point x="1089.8668753814297" y="3795.0" />
+      <point x="1089.8668753814297" y="1982.0" />
+      <point x="1010.3267279300683" y="1982.0" />
+      <point x="24.5" y="488.0" />
+    </edge>
+    <edge source="gui.simulador.Simulador" target="gui.editor.Editor">
+      <point x="142.6111111111111" y="-279.5" />
+      <point x="3125.3311471219877" y="3845.0" />
+      <point x="3727.0757575757584" y="3845.0" />
+      <point x="-57.66666666666663" y="92.0" />
+    </edge>
+    <edge source="tools.Operaciones" target="eventos.Eventos">
+      <point x="0.0" y="-157.5" />
+      <point x="2329.182276356172" y="3330.0" />
+      <point x="2399.8797582330985" y="3330.0" />
+      <point x="-34.0" y="146.5" />
+    </edge>
+    <edge source="gui.contenido.Demostracion" target="tools.Acciones">
+      <point x="-23.28571428571422" y="-114.5" />
+      <point x="1746.8797582330985" y="3755.0" />
+      <point x="1394.1108477847433" y="3755.0" />
+      <point x="1394.1108477847433" y="3300.0" />
+      <point x="1057.2835420480963" y="3300.0" />
+      <point x="55.416666666666515" y="47.0" />
+    </edge>
+    <edge source="gui.contenido.scroll.ModernScrollBarUI" target="gui.contenido.scroll.ModernScrollPane">
+      <point x="108.33333333333348" y="81.0" />
+      <point x="2248.713091566432" y="2092.0" />
+      <point x="2177.52751445141" y="2092.0" />
+      <point x="87.66666666666652" y="-114.5" />
+    </edge>
+    <edge source="gui.contenido.About" target="tools.Fuentes">
+      <point x="22.142857142857338" y="-59.0" />
+      <point x="1828.450133499029" y="2082.0" />
+      <point x="1900.118394596735" y="2082.0" />
+      <point x="1900.118394596735" y="836.0" />
+      <point x="1820.1108477847433" y="836.0" />
+      <point x="0.0" y="202.0" />
+    </edge>
+    <edge source="gui.contenido.ButtonSimulador" target="tools.Colour">
+      <point x="77.5" y="-25.0" />
+      <point x="3388.987831911728" y="3330.0" />
+      <point x="3498.987831911728" y="3330.0" />
+      <point x="3498.987831911728" y="2714.0" />
+      <point x="3768.242424242425" y="2714.0" />
+      <point x="3768.242424242425" y="886.0" />
+      <point x="3819.9065819117277" y="886.0" />
+      <point x="-7.5499999999999545" y="290.0" />
+    </edge>
+    <edge source="gui.contenido.Lienzo" target="gui.contenido.Boton">
+      <point x="-99.55555555555566" y="-147.5" />
+      <point x="733.4363198258741" y="3330.0" />
+      <point x="303.11904761904816" y="3330.0" />
+      <point x="54.28571428571422" y="80.5" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="tools.Fuentes">
+      <point x="-115.20833333333348" y="-257.0" />
+      <point x="1165.2916666666672" y="5151.0" />
+      <point x="0.0" y="5151.0" />
+      <point x="0.0" y="856.0" />
+      <point x="1764.2017568756523" y="856.0" />
+      <point x="-55.90909090909099" y="202.0" />
+    </edge>
+    <edge source="gui.simulador.Simulador" target="tools.Fuentes">
+      <point x="92.27777777777783" y="-279.5" />
+      <point x="3074.9978137886546" y="3815.0" />
+      <point x="3509.987831911728" y="3815.0" />
+      <point x="3509.987831911728" y="806.0" />
+      <point x="1853.6563023301978" y="806.0" />
+      <point x="33.545454545454504" y="202.0" />
+    </edge>
+    <edge source="gui.contenido.Lienzo" target="eventos.Eventos">
+      <point x="99.55555555555566" y="-147.5" />
+      <point x="932.5474309369854" y="3310.0" />
+      <point x="2331.8797582330985" y="3310.0" />
+      <point x="-102.0" y="146.5" />
+    </edge>
+    <edge source="gui.editor.Editor" target="tools.Colour">
+      <point x="32.4375" y="-92.0" />
+      <point x="3817.179924242425" y="3310.0" />
+      <point x="3970.956581911728" y="3310.0" />
+      <point x="3970.956581911728" y="2774.0" />
+      <point x="4255.492424242425" y="2774.0" />
+      <point x="4255.492424242425" y="776.0" />
+      <point x="3865.206581911728" y="776.0" />
+      <point x="37.75" y="290.0" />
+    </edge>
+    <edge source="gui.contenido.Ejercicios" target="gui.contenido.Lienzo">
+      <point x="29.555555555555657" y="-92.5" />
+      <point x="498.4646754102314" y="3815.0" />
+      <point x="771.9009662905207" y="3815.0" />
+      <point x="-61.09090909090901" y="147.5" />
+    </edge>
+    <edge source="gui.principal.Desktop" target="tools.Archivos">
+      <point x="25.25" y="-25.0" />
+      <point x="2925.6695676414097" y="5710.0" />
+      <point x="4798.529063788654" y="5710.0" />
+      <point x="4798.529063788654" y="2082.0" />
+      <point x="3992.1709956709965" y="2082.0" />
+      <point x="93.42857142857156" y="36.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="tools.Operaciones">
+      <point x="16.458333333333485" y="-257.0" />
+      <point x="1296.9583333333342" y="5001.0" />
+      <point x="2038.8863636363642" y="5001.0" />
+      <point x="2038.8863636363642" y="4454.0" />
+      <point x="2215.182276356172" y="4454.0" />
+      <point x="-114.0" y="157.5" />
+    </edge>
+    <edge source="gui.contenido.Tree" target="tools.Fuentes">
+      <point x="0.0" y="-81.0" />
+      <point x="4041.242424242425" y="796.0" />
+      <point x="1864.838120512016" y="796.0" />
+      <point x="44.72727272727275" y="202.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="tools.Text">
+      <point x="-108.625" y="-257.0" />
+      <point x="1171.8750000000007" y="5141.0" />
+      <point x="22.0" y="5141.0" />
+      <point x="22.0" y="1972.0" />
+      <point x="912.3267279300683" y="1972.0" />
+      <point x="-73.5" y="488.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.simulador.lienzos.Graficador">
+      <point x="-29.625" y="-257.0" />
+      <point x="1250.8750000000007" y="5021.0" />
+      <point x="664.1525144514101" y="5021.0" />
+      <point x="-72.75" y="213.5" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="tools.Constrains">
+      <point x="-102.04166666666697" y="-257.0" />
+      <point x="1178.4583333333337" y="5131.0" />
+      <point x="28.58333333333303" y="5131.0" />
+      <point x="28.58333333333303" y="2714.0" />
+      <point x="436.92300874356465" y="2714.0" />
+      <point x="436.92300874356465" y="1992.0" />
+      <point x="1235.868394596735" y="1992.0" />
+      <point x="-216.25" y="135.0" />
+    </edge>
+    <edge source="gui.contenido.Tree" target="gui.simulador.Dato">
+      <point x="88.0" y="-81.0" />
+      <point x="4129.242424242425" y="2122.0" />
+      <point x="4325.242424242424" y="2122.0" />
+      <point x="-59.25" y="114.0" />
+    </edge>
+    <edge source="gui.contenido.About" target="gui.contenido.Texto">
+      <point x="-22.14285714285711" y="-59.0" />
+      <point x="1784.1644192133149" y="2062.0" />
+      <point x="1810.618394596735" y="2062.0" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="gui.contenido.Lienzo" target="tools.Archivos">
+      <point x="24.888888888888687" y="-147.5" />
+      <point x="857.8807642703184" y="3280.0" />
+      <point x="924.8668753814297" y="3280.0" />
+      <point x="924.8668753814297" y="2774.0" />
+      <point x="1894.3072763561718" y="2774.0" />
+      <point x="1894.3072763561718" y="2112.0" />
+      <point x="3836.4567099567107" y="2112.0" />
+      <point x="-62.28571428571422" y="36.0" />
+    </edge>
+    <edge source="gui.simulador.Simulador" target="gui.contenido.ButtonSimulador">
+      <point x="58.72222222222217" y="-279.5" />
+      <point x="3041.442258233099" y="3795.0" />
+      <point x="3414.821165245061" y="3795.0" />
+      <point x="103.33333333333326" y="25.0" />
+    </edge>
+    <edge source="gui.contenido.About" target="tools.Constrains">
+      <point x="-44.28571428571422" y="-59.0" />
+      <point x="1762.0215620704575" y="1962.0" />
+      <point x="1581.868394596735" y="1962.0" />
+      <point x="129.75" y="135.0" />
+    </edge>
+    <edge source="gui.simulador.Simulador" target="gui.contenido.Texto">
+      <point x="-58.72222222222217" y="-279.5" />
+      <point x="2923.9978137886546" y="3665.0" />
+      <point x="2869.987831911728" y="3665.0" />
+      <point x="2869.987831911728" y="1942.0" />
+      <point x="1839.3456673240075" y="1942.0" />
+      <point x="28.72727272727252" y="69.5" />
+    </edge>
+    <edge source="gui.contenido.Contenido" target="tools.Fuentes">
+      <point x="0.0" y="-70.0" />
+      <point x="1189.7500000000007" y="3785.0" />
+      <point x="1142.8668753814297" y="3785.0" />
+      <point x="1142.8668753814297" y="886.0" />
+      <point x="1797.747211421107" y="886.0" />
+      <point x="-22.36363636363626" y="202.0" />
+    </edge>
+    <edge source="gui.simulador.Simulador" target="gui.contenido.scroll.ModernScrollPane">
+      <point x="-92.27777777777783" y="-279.5" />
+      <point x="2890.442258233099" y="3685.0" />
+      <point x="2847.987831911728" y="3685.0" />
+      <point x="2847.987831911728" y="2674.0" />
+      <point x="2127.4322763561718" y="2674.0" />
+      <point x="37.57142857142844" y="114.5" />
+    </edge>
+    <edge source="gui.contenido.Demostracion" target="gui.contenido.Texto">
+      <point x="46.57142857142844" y="-114.5" />
+      <point x="1816.7369010902412" y="3725.0" />
+      <point x="1594.3608477847433" y="3725.0" />
+      <point x="1594.3608477847433" y="2052.0" />
+      <point x="1796.2547582330988" y="2052.0" />
+      <point x="-14.36363636363626" y="69.5" />
+    </edge>
+    <edge source="gui.contenido.scroll.ModernScrollBarUI" target="tools.Colour">
+      <point x="81.25" y="-81.0" />
+      <point x="2221.6297582330985" y="866.0" />
+      <point x="3789.706581911728" y="866.0" />
+      <point x="-37.75" y="290.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.contenido.Tree">
+      <point x="82.29166666666652" y="-257.0" />
+      <point x="1362.7916666666672" y="5101.0" />
+      <point x="4364.493431277773" y="5101.0" />
+      <point x="4364.493431277773" y="2694.0" />
+      <point x="4074.242424242425" y="2694.0" />
+      <point x="33.0" y="81.0" />
+    </edge>
+    <edge source="gui.principal.Contenedor" target="gui.contenido.Demostracion">
+      <point x="3.291666666666515" y="-257.0" />
+      <point x="1283.7916666666672" y="4981.0" />
+      <point x="1729.4154725188127" y="4981.0" />
+      <point x="-40.75" y="114.5" />
+    </edge>
+    <edge source="gui.contenido.About" target="tools.Text">
+      <point x="-66.42857142857156" y="-59.0" />
+      <point x="1739.8787049276002" y="1972.0" />
+      <point x="1059.3267279300683" y="1972.0" />
+      <point x="73.5" y="488.0" />
+    </edge>
+    <edge source="gui.editor.Editor" target="gui.contenido.scroll.ModernScrollPane">
+      <point x="-54.0625" y="-92.0" />
+      <point x="3730.679924242425" y="3320.0" />
+      <point x="3581.9040637886546" y="3320.0" />
+      <point x="3581.9040637886546" y="2654.0" />
+      <point x="2202.575133499029" y="2654.0" />
+      <point x="112.71428571428578" y="114.5" />
+    </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.9" x="809.6666666666666" y="3303.5555555555557" />
-  <SelectedNodes>
-    <node>gui.contenido.Tree</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic Group" zoom="0.9" x="4004.0" y="285.55555555555554" />
+  <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
