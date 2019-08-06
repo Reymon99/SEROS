@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 public class ModernScrollPane extends JScrollPane {
     protected static final int THUMB_SIZE;
-    protected static final int SB_SIZE;
+    private static final int SB_SIZE;
     static {
         THUMB_SIZE = 8;
         SB_SIZE = 10;
@@ -93,14 +93,14 @@ public class ModernScrollPane extends JScrollPane {
      * Obtiene el componente añadido al scroll
      * @return componente en el scroll
      */
-    public Component getView(){
+    protected Component getView(){
         return viewport.getView();
     }
     /**
      * Obtiene el componente de Indice en el scroll
      * @return indice
      */
-    public Component getIndice(){
+    protected Component getIndice(){
         return rowHeader.getView();
     }
 }

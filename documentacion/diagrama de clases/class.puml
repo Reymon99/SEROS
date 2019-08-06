@@ -1,4 +1,5 @@
 @startuml
+title SEROS Class Diagram
 package eventos #DDDDDD {
     abstract class Eventos {
         - {static} panel : JPanel
@@ -202,7 +203,7 @@ package gui #DDDDDD {
             }
             class ModernScrollPane {
                 # {static} THUMB_SIZE : int
-                # {static} SB_THUMB_SIZE : int
+                - {static} SB_THUMB_SIZE : int
                 --
                 + ModernScrollPane(view : Component)
                 + ModernScrollPane(view : Component, area : JPanel)
@@ -210,8 +211,8 @@ package gui #DDDDDD {
                 --
                 - isVerticalScrollBarfNecessary() : boolean
                 - isHorizontalScrollBarNecessary() : boolean
-                + getView() : Component
-                + getIndice() : Component
+                # getView() : Component
+                # getIndice() : Component
             }
         }
         class About {
@@ -456,8 +457,28 @@ package gui #DDDDDD {
             - hashHex() : String
             + toString() : String
         }
-        class Simulador {
+        abstract class Recursividad {
             - decremento : boolean
+            - number : JLabel
+            - producto : JLabel
+            --
+            + Recursividad()
+            --
+            + isDecremento() : boolean
+            + setDecremento(decremento : boolean) : void
+            + getProducto() : JLabel
+            + setProducto(producto : String) : void
+            + getNumber() : JLabel
+            + setNumber(number : String) : void
+            + setComponentRegistro(title : String, components : JComponent[]) : void
+            - acomodamientoProducto() : void
+            # {abstract} casoTerminal(dato : int) : void
+            # {abstract} casoDecrementativo(dato : int) : void
+            # {abstract} casoIncrementativo(dato : int) : void
+            # {abstract} casoBase(dato : int, found : boolean) : void
+            # acomodamientoPanelControl() : void
+        }
+        abstract class Simulador {
             - iteracion : Integer
             - component : Component
             - datos : JPanel
@@ -474,9 +495,8 @@ package gui #DDDDDD {
             + Simulador(component : Component)
             --
             - init() : void
-            + clean() : void
-            + acomodamientoPanelControl(component : Component) : void
-            + acomodamientoProducto(number : JLabel, producto : JLabel) : void
+            + cleanComponents() : void
+            # {abstract} acomodamientoPanelControl() : void
             + addCodes(editor : Editor, title : String) : void
             + setTexto(texto : String) : void
             + setDatos(trees : Tree[]) : void
@@ -494,8 +514,6 @@ package gui #DDDDDD {
             + getSend() : ButtonSimulador
             + getClean() : ButtonSimulador
             + getNextIteracion() : ButtonSimulador
-            + isDecremento() : boolean
-            + setDecremento(decremento : boolean) : void
         }
     }
 }
@@ -543,9 +561,28 @@ package hilos #DDDDDD {
 
 About <.. Eventos
 
+Acciones <.. Demostracion
+Acciones <.. Lienzo
+Acciones <.. Contenedor
+Acciones <.. Ejercicios
+Acciones <.. Demostracion
+Acciones <.. Contenido
+Acciones <.. Simulador
+Acciones <|.. Recursividad
+
+Archivos <.. Demostracion
+Archivos <.. Desktop
+Archivos <.. About
+Archivos <.. Contenedor
+Archivos <.. Editor
+Archivos <.. Lienzo
+Archivos <.. Tree
+
 Boton <-- Ejercicios
 Boton <.. Contenedor
 Boton <.. Lienzo
+
+ButtonSimulador <.. Simulador
 
 Colour <.. Switch
 Colour <.. Indice
@@ -572,9 +609,18 @@ Constrains <.. About
 Constrains <.. Simulador
 Constrains <.. Ejercicios
 Constrains <.. Contenido
+Constrains <.. Recursividad
 
 Ejercicios o--> Boton
 Ejercicios o--> Texto
+
+Dato <.. Tree
+Dato <.. Contenedor
+
+Demostracion <.. Contenedor
+Demostracion o--> Texto
+
+Desktop <.. Main
 
 Editor <.. Contenedor
 Editor <.. Lines
@@ -588,7 +634,55 @@ Eventos <.. Contenedor
 Eventos <.. Lines
 Eventos <.. Operaciones
 
+Fuentes <.. Contenedor
+Fuentes <.. ButtonSimulador
+Fuentes <.. Texto
+Fuentes <.. TextPane
+Fuentes <.. Boton
+Fuentes <.. Switch
+Fuentes <.. About
+Fuentes <.. Tree
+Fuentes <.. View
+Fuentes <.. Contenido
+Fuentes <- Graficador
+
 FuentesModificadas <.. Fuentes
+
+Graficador <.. Contenedor
+
+Indice <.. Editor
+
+InvisibleScrollBarButton <.. ModernScrollBarUI
+
+Lienzo o--> Boton
+Lienzo o--> Acciones
+Lienzo <.. Contenido
+Lienzo <.. Demostracion
+Lienzo <.. Simulador
+Lienzo <.. Ejercicios
+Lienzo <.. Contenedor
+Lienzo <.. Recursividad
+Lienzo <|-- Contenido
+Lienzo <|-- Demostracion
+Lienzo <|-- Simulador
+Lienzo <|-- Ejercicios
+
+Lines o--> LineLocation
+Lines o--> Simulador
+Lines <.. Contenedor
+
+LineLocation <.. Lines
+LineLocation <.. Contenedor
+
+ModernScrollBarUI <.. ModernScrollPane
+ModernScrollBarUI o-->  ModernScrollPane
+
+ModernScrollPane <|-- Editor
+ModernScrollPane <.. ModernScrollBarUI
+ModernScrollPane <.. Eventos
+ModernScrollPane <.. Contenido
+ModernScrollPane <.. Editor
+ModernScrollPane <.. Simulador
 
 Paneles <.. Eventos
 Paneles <.. Contenedor
@@ -602,35 +696,9 @@ Operacion <.. Contenedor
 Operaciones +-- Operacion
 Operaciones <.. Contenedor
 
-InvisibleScrollBarButton <.. ModernScrollBarUI
-
-ModernScrollBarUI <.. ModernScrollPane
-ModernScrollBarUI o-->  ModernScrollPane
-
 Tree <.. Eventos
 Tree <.. Simulador
 Tree <.. Contenedor
-
-Lienzo o--> Boton
-Lienzo o--> Acciones
-Lienzo <.. Contenido
-Lienzo <.. Demostracion
-Lienzo <.. Simulador
-Lienzo <.. Ejercicios
-Lienzo <.. Contenedor
-Lienzo <|-- Contenido
-Lienzo <|-- Demostracion
-Lienzo <|-- Simulador
-Lienzo <|-- Ejercicios
-
-ModernScrollPane <|-- Editor
-ModernScrollPane <.. ModernScrollBarUI
-ModernScrollPane <.. Eventos
-ModernScrollPane <.. Contenido
-ModernScrollPane <.. Editor
-ModernScrollPane <.. Simulador
-
-Indice <.. Editor
 
 View <.. Editor
 
@@ -638,46 +706,11 @@ TextPane <|-- View
 TextPane <.. View
 TextPane <.. Contenedor
 
-Desktop <.. Main
-
 Texto <.. Demostracion
 Texto <.. Ejercicios
 Texto <.. Simulador
 Texto <.. Contenedor
 Texto <.. About
-
-Acciones <.. Demostracion
-Acciones <.. Lienzo
-Acciones <.. Contenedor
-Acciones <.. Ejercicios
-Acciones <.. Demostracion
-Acciones <.. Contenido
-Acciones <.. Simulador
-
-Demostracion <.. Contenedor
-Demostracion o--> Texto
-
-Archivos <.. Demostracion
-Archivos <.. Desktop
-Archivos <.. About
-Archivos <.. Contenedor
-Archivos <.. Editor
-Archivos <.. Lienzo
-Archivos <.. Tree
-
-Fuentes <.. Contenedor
-Fuentes <.. ButtonSimulador
-Fuentes <.. Texto
-Fuentes <.. TextPane
-Fuentes <.. Boton
-Fuentes <.. Switch
-Fuentes <.. About
-Fuentes <.. Tree
-Fuentes <.. View
-Fuentes <.. Contenido
-Fuentes <- Graficador
-
-ButtonSimulador <.. Simulador
 
 Simulador o--> ButtonSimulador
 Simulador o--> Switch
@@ -685,16 +718,8 @@ Simulador o--> Texto
 Simulador <.. Lines
 Simulador <.. Contenedor
 Simulador <.. Graficador
-
-Dato <.. Tree
-Dato <.. Contenedor
-
-Lines o--> LineLocation
-Lines o--> Simulador
-Lines <.. Contenedor
-
-LineLocation <.. Lines
-LineLocation <.. Contenedor
+Simulador <.. Recursividad
+Simulador <|-- Recursividad
 
 Switch <.. Contenido
 Switch <.. Lines
@@ -704,7 +729,4 @@ Text <.. About
 Text <.. Contenido
 Text <.. Contenedor
 Text <.. Lienzo
-
-Graficador <.. Contenedor
-
 @enduml

@@ -14,8 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-public final class Simulador extends Lienzo {
-    private boolean decremento;
+public abstract class Simulador extends Lienzo {
     private Integer iteracion;
     private Component component;
     private JPanel datos;
@@ -47,12 +46,11 @@ public final class Simulador extends Lienzo {
     public Simulador(Component component){
         super(new GridBagLayout(),false);
         this.component = component;
-        decremento = true;
         iteracion = 0;
         init();
     }
     /**
-     * Instanciacion y acomodamiento de los componentes del panel
+     * Instanciación y acomodamiento de los componentes del panel
      */
     private void init() {
         codigo=new Switch("Visualización del Código",false);
@@ -87,11 +85,12 @@ public final class Simulador extends Lienzo {
         Constrains.addCompIy(texto=new Texto(4,55),this,new Rectangle(1,1,1,1),1,0,insets,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,new Rectangle(1,2,1,1),1,0,insets,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addComp(codigos=new JTabbedPane(JTabbedPane.TOP),this,new Rectangle(1,3,1,2),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        acomodamientoPanelControl();
     }
     /**
      * Plantilla por defecto para reiniciar el simulador
      */
-    public void clean(){
+    public void cleanComponents(){
         Eventos.enable(true,send,pause,getBack(),getHome());
         Eventos.enable(false,nextIteracion,clean,codigo);
         pause.setOnOff(false);
@@ -102,25 +101,8 @@ public final class Simulador extends Lienzo {
     }
     /**
      * Plantilla por defecto de acomodamiento para el panel de control
-     * @param datos {@link Component} de control de datos ingresados por el usuario
      */
-    public void acomodamientoPanelControl(Component datos){
-        Constrains.addCompX(datos,panel,new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
-        Constrains.addCompX(send,panel,new Rectangle(3,0,1,1),1,new Insets(10,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(pause,panel,new Rectangle(4,0,1,1),1,new Insets(10,5,5,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addCompX(codigo,panel,new Rectangle(4,1,1,1),1,new Insets(5,8,10,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addCompX(nextIteracion,panel,new Rectangle(3,1,1,1),1,new Insets(5,5,10,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(clean,panel,new Rectangle(2,1,1,1),1,new Insets(5,80,10,5),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
-    }
-    /**
-     * Acomodamiento por defecto cuando se utiliza productos
-     * @param number número resultado
-     * @param producto secuencia de producto
-     */
-    public void acomodamientoProducto(JLabel number,JLabel producto){
-        Constrains.addCompX(number, (Container) component,new Rectangle(0,0,1,1),1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(producto,(Container) component,new Rectangle(0,1,1,1),1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-    }
+    protected abstract void acomodamientoPanelControl();
     /**
      * Añade los codigos que necesita el simulador
      * @param editor {@link Editor} con el código correspondiente
@@ -242,19 +224,5 @@ public final class Simulador extends Lienzo {
      */
     public ButtonSimulador getNextIteracion() {
         return nextIteracion;
-    }
-    /**
-     * Indica el decremento o incremento de la iteración
-     * @return true: decremento | false: incremento
-     */
-    public boolean isDecremento() {
-        return decremento;
-    }
-    /**
-     * Da un nuevo estado para el control de la iteración
-     * @param decremento nuevo estado
-     */
-    public void setDecremento(boolean decremento) {
-        this.decremento = decremento;
     }
 }
