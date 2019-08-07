@@ -120,20 +120,18 @@ public class Graficador extends Canvas {
     /**
      * Guarda la posición en pantalla de la coordenada X
      * @param point Si x = 0 toma la mitad de la pantalla de lo contrario tomará la coodernada de j
-     * @param x valor Axis X
-     * @param j posición en pantalla
+     * @param j pixel X
      */
-    private void puntoCoordenadaX(Point point,int x,int j){
-        if (this.punto.x==x && graficar) point.x = this.punto.x==0 ? halfScreenWidth() : j;
+    private void puntoCoordenadaX(Point point, int j){
+        if (this.punto.x==this.axis.x && graficar) point.x = this.punto.x==0 ? halfScreenWidth() : j;
     }
     /**
      * Guarda la posición en pantalla de la coordenada Y
      * @param point Si y = 0 toma la mitad de la pantalla de lo contrario tomará la coodernada de i
-     * @param y valor Axis Y
-     * @param i posición en pantalla
+     * @param i pixel X
      */
-    private void puntoCoordenadaY(Point point,int y,int i){
-        if (this.punto.y==y && graficar) point.y = this.punto.y==0 ? halfScreenHeight() : i;
+    private void puntoCoordenadaY(Point point, int i){
+        if (this.punto.y==this.axis.y && graficar) point.y = this.punto.y==0 ? halfScreenHeight() : i;
     }
     /**
      * Guarda la posición en pantalla de las coordenadas X y Y
@@ -142,8 +140,8 @@ public class Graficador extends Canvas {
      * @param j posición en pantalla horizontal
      */
     private void puntoCoordenadas(Point point, int i, int j){
-        puntoCoordenadaX(point, axis.x, j);
-        puntoCoordenadaY(point, axis.y, i);
+        puntoCoordenadaX(point, j);
+        puntoCoordenadaY(point, i);
     }
     /**
      * Grafica los valores del axis X y el axis Y
@@ -155,8 +153,8 @@ public class Graficador extends Canvas {
         int i = positionY(true)+axis.y;
         int j = positionX(false)+axis.y;
         while (i <= positionY(false)){
-            puntoCoordenadas(point, i, j);
-            axisXY(g2, point, i, j);
+            puntoCoordenadas(point, i, j);//Coordenas en pixeles del punto a graficar
+            axisXY(g2, point, i, j);//axis corelativo de X y Y
             i+=27;
             j+=27;
         }
@@ -170,13 +168,31 @@ public class Graficador extends Canvas {
      */
     private void axisXY(Graphics2D g2, Point point, int i, int j){
         if (i!=290 && j!=halfScreenWidth()){
-            g2.draw(new Line2D.Double(halfScreenWidth()-2,i,halfScreenWidth()+2,i));//y
-            g2.draw(new Line2D.Double(j,halfScreenHeight()-2,j,halfScreenHeight()+2));//x
+            axis(g2, i, j);
             axisZero(point, i, j);
-            g2.drawString(String.valueOf(axis.y),axis.x<0 ? halfScreenWidth()+5 : Math.abs(axis.x)==10 ? halfScreenWidth()-22 : halfScreenWidth()-16,i+4);//y
-            g2.drawString(String.valueOf(axis.x),axis.x>0 ? j-4 : j-8, axis.x>0 ? halfScreenHeight()-6 : halfScreenHeight()+15);//x
+            number(g2, i, j);
             axis.move(axis.x+1, axis.y-1);
         }
+    }
+    /**
+     * Dibuja el número correspondiente en el axis X y Y
+     * @param g2 pincel
+     * @param i pixel en Y
+     * @param j pixel en X
+     */
+    private void number(Graphics2D g2, int i, int j){
+        g2.drawString(String.valueOf(axis.y),axis.x<0 ? halfScreenWidth()+5 : Math.abs(axis.x)==10 ? halfScreenWidth()-22 : halfScreenWidth()-16,i+4);//y
+        g2.drawString(String.valueOf(axis.x),axis.x>0 ? j-4 : j-8, axis.x>0 ? halfScreenHeight()-6 : halfScreenHeight()+15);//x
+    }
+    /**
+     * Pinta el axis X - Y en el plano cartesiano
+     * @param g2 pincel
+     * @param i pixel en Y
+     * @param j pixel en X
+     */
+    private void axis(Graphics2D g2, int i, int j){
+        g2.draw(new Line2D.Double(halfScreenWidth()-2,i,halfScreenWidth()+2,i));//y
+        g2.draw(new Line2D.Double(j,halfScreenHeight()-2,j,halfScreenHeight()+2));//x
     }
     /**
      * Cuando X y Y equivalen a cero se pasan al siguiente axis a dibujar
