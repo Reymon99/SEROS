@@ -32,9 +32,11 @@ public abstract class Simulador extends Lienzo {
     }
     /**
      * Esquema de los simuladores del proyecto
+     * @param title título de los componentes de registro de datos
+     * @param components {@link JComponent}s de registro de datos
      */
-    public Simulador(){
-        this(new JPanel(new GridBagLayout()));
+    public Simulador(String title, JComponent... components){
+        this(new JPanel(new GridBagLayout()), title, components);
         component.setPreferredSize(canvasSize);
         component.setSize(canvasSize);
         component.setMinimumSize(canvasSize);
@@ -42,12 +44,15 @@ public abstract class Simulador extends Lienzo {
     /**
      * Esquema de los simuladores del proyecto
      * @param component {@link Component} a mostrar el objeto simulado
+     * @param title título de los componentes de registro de datos
+     * @param components {@link JComponent}s de registro de datos
      */
-    public Simulador(Component component){
+    public Simulador(Component component, String title, JComponent... components){
         super(new GridBagLayout(),false);
         this.component = component;
         iteracion = 0;
         init();
+        acomodamientoPanelControl(title, components);
     }
     /**
      * Instanciación y acomodamiento de los componentes del panel
@@ -85,7 +90,6 @@ public abstract class Simulador extends Lienzo {
         Constrains.addCompIy(texto=new Texto(4,55),this,new Rectangle(1,1,1,1),1,0,insets,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,new Rectangle(1,2,1,1),1,0,insets,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addComp(codigos=new JTabbedPane(JTabbedPane.TOP),this,new Rectangle(1,3,1,2),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        acomodamientoPanelControl();
     }
     /**
      * Plantilla por defecto para reiniciar el simulador
@@ -101,8 +105,24 @@ public abstract class Simulador extends Lienzo {
     }
     /**
      * Plantilla por defecto de acomodamiento para el panel de control
+     * @param title título de los componentes de registro de datos
+     * @param components {@link JComponent}s de registro de datos
      */
-    protected abstract void acomodamientoPanelControl();
+    protected abstract void acomodamientoPanelControl(String title, JComponent... components);
+    /**
+     * Componentes de registro de datos
+     * @param title título del borde
+     * @param components {@link JComponent}s de registro
+     */
+    protected Box componentRegistro(String title, JComponent... components){
+        Box box = Box.createHorizontalBox();
+        for (JComponent component : components) {
+            box.add(component);
+            if (component != components[components.length-1]) box.add(Box.createHorizontalStrut(1));
+        }
+        if (title!=null) box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), title));
+        return box;
+    }
     /**
      * Añade los codigos que necesita el simulador
      * @param editor {@link Editor} con el código correspondiente
@@ -147,7 +167,7 @@ public abstract class Simulador extends Lienzo {
      * Panel de control de comandos del simulador
      * @return panel de control
      */
-    public JPanel getPanel() {
+    protected JPanel getPanel() {
         return panel;
     }
     /**

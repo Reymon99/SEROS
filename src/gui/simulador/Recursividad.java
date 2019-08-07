@@ -1,4 +1,5 @@
 package gui.simulador;
+import hilos.Lines;
 import tools.Acciones;
 import tools.Constrains;
 import tools.Fuentes;
@@ -8,12 +9,16 @@ public abstract class Recursividad extends Simulador implements Acciones {
     private boolean decremento;
     private JLabel number;
     private JLabel producto;
-    private JComponent componentRegistro;
-    {
-        componentRegistro = new JLabel("Overwrite");
-    }
-    public Recursividad(){
-        super();
+    /**
+     * Plantilla para los simuladores de recursividad
+     * @param title título de los componentes de registro de datos
+     * @param components {@link JComponent}s de registro de datos
+     * @see Acciones
+     * @see Simulador
+     * @see Lines
+     */
+    public Recursividad(String title, JComponent... components){
+        super(title, components);
         decremento = true;
         number = new JLabel("0", SwingConstants.CENTER);
         producto = new JLabel("", SwingConstants.CENTER);
@@ -65,22 +70,6 @@ public abstract class Recursividad extends Simulador implements Acciones {
         this.number.setText(number);
     }
     /**
-     * Componentes de registro de datos
-     * @param title título del borde
-     * @param components {@link JComponent}s de registro
-     */
-    public void setComponentRegistro(String title, JComponent... components){
-        Box box = Box.createHorizontalBox();
-        for (JComponent component : components) {
-            box.add(component);
-            if (component != components[components.length-1]) box.add(Box.createHorizontalStrut(1));
-        }
-        box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),title));
-        componentRegistro = box;
-        componentRegistro.updateUI();
-        getPanel().updateUI();
-    }
-    /**
      * Acomodamiento por defecto cuando se utiliza productos
      */
     private void acomodamientoProducto(){
@@ -97,9 +86,10 @@ public abstract class Recursividad extends Simulador implements Acciones {
     protected abstract void casoDecrementativo(int dato);
     protected abstract void casoIncrementativo(int dato);
     protected abstract void casoBase(int dato, boolean found);
+    protected abstract Lines[] lines();
     @Override
-    protected void acomodamientoPanelControl() {
-        Constrains.addCompX(componentRegistro,getPanel(),new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
+    protected void acomodamientoPanelControl(String title, JComponent... components) {
+        Constrains.addCompX(componentRegistro(title, components),getPanel(),new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
         Constrains.addCompX(getSend(),getPanel(),new Rectangle(3,0,1,1),1,new Insets(10,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(getPause(),getPanel(),new Rectangle(4,0,1,1),1,new Insets(10,5,5,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
         Constrains.addCompX(getCodigo(),getPanel(),new Rectangle(4,1,1,1),1,new Insets(5,8,10,100),GridBagConstraints.WEST,GridBagConstraints.NONE);

@@ -462,7 +462,7 @@ package gui #DDDDDD {
             - number : JLabel
             - producto : JLabel
             --
-            + Recursividad()
+            + Recursividad(title : String, components : JComponent[])
             --
             + isDecremento() : boolean
             + setDecremento(decremento : boolean) : void
@@ -470,18 +470,19 @@ package gui #DDDDDD {
             + setProducto(producto : String) : void
             + getNumber() : JLabel
             + setNumber(number : String) : void
-            + setComponentRegistro(title : String, components : JComponent[]) : void
             - acomodamientoProducto() : void
             # {abstract} casoTerminal(dato : int) : void
             # {abstract} casoDecrementativo(dato : int) : void
             # {abstract} casoIncrementativo(dato : int) : void
             # {abstract} casoBase(dato : int, found : boolean) : void
-            # acomodamientoPanelControl() : void
+            # {abstract} lines() : Lines[]
+            # acomodamientoPanelControl(title : String, components : JComponent[]) : void
         }
         abstract class Simulador {
             - iteracion : Integer
             - component : Component
             - datos : JPanel
+            - panel: JPanel
             - codigos : JTabbedPane
             - clean : ButtonSimulador
             - nextIteracion : ButtonSimulador
@@ -491,18 +492,19 @@ package gui #DDDDDD {
             - texto : Texto
             + {static} canvasSize : Dimension
             --
-            + Simulador()
-            + Simulador(component : Component)
+            + Simulador(title : String, components : JComponent[])
+            + Simulador(component : Component, title : String, components : JComponent[])
             --
             - init() : void
             + cleanComponents() : void
-            # {abstract} acomodamientoPanelControl() : void
+            # {abstract} acomodamientoPanelControl(title : String, components : JComponent[]) : void
+            # componentRegistro(title : String, components : JComponent[]) : Box
             + addCodes(editor : Editor, title : String) : void
             + setTexto(texto : String) : void
             + setDatos(trees : Tree[]) : void
             - sizeTree(length : int) : int
             + getTexto() : Texto
-            + getPanel() : JPanel
+            # getPanel() : JPanel
             + getComponent() : Component
             + getCodigos() : JTabbedPane
             + getIteracion() : int
@@ -670,6 +672,7 @@ Lienzo <|-- Ejercicios
 Lines o--> LineLocation
 Lines o--> Simulador
 Lines <.. Contenedor
+Lines <.. Recursividad
 
 LineLocation <.. Lines
 LineLocation <.. Contenedor
@@ -729,4 +732,6 @@ Text <.. About
 Text <.. Contenido
 Text <.. Contenedor
 Text <.. Lienzo
+
+Recursividad <.. Contenedor
 @enduml

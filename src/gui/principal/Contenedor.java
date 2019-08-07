@@ -10,6 +10,7 @@ import gui.contenido.TextPane;
 import gui.contenido.Tree;
 import gui.editor.Editor;
 import gui.simulador.Dato;
+import gui.simulador.Recursividad;
 import gui.simulador.Simulador;
 import gui.simulador.lienzos.Graficador;
 import hilos.LineLocation;
@@ -354,7 +355,16 @@ public final class Contenedor extends JPanel {
         ((JSpinner.NumberEditor)y.getEditor()).getTextField().setEditable(false);
         Tree punto=new Tree(new JTree.DynamicUtilTreeNode(new Dato("Punto","punto","",true), new Dato[]{new Dato("int","x",""),new Dato("int","y","")}));
         punto.expandNode(0);
-        Simulador simulador=new Simulador(new Graficador());
+        Simulador simulador= new Simulador(new Graficador(), "(x,y)", x, y) {
+            @Override
+            protected void acomodamientoPanelControl(String title, JComponent... components) {
+                Constrains.addCompX(componentRegistro(title, components),getPanel(),new Rectangle(2,0,2,1),1,new Insets(3,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
+                Constrains.addCompX(getSend(),getPanel(),new Rectangle(4,0,2,1),1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+                Constrains.addCompX(getPause(),getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
+                Constrains.addCompX(getNextIteracion(),getPanel(),new Rectangle(3,1,2,1),1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+                Constrains.addCompX(getClean(),getPanel(),new Rectangle(5,1,1,1),1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+            }
+        };
         simulador.setAcciones(new Acciones() {
             @Override
             public void iteracion0() {
@@ -376,7 +386,7 @@ public final class Contenedor extends JPanel {
             }
             @Override
             public void clean() {
-                simulador.clean();
+                simulador.cleanComponents();
                 ((Graficador)simulador.getComponent()).limpiar();
                 Eventos.variable(punto,0,"");
                 Eventos.variable(punto,1,"");
@@ -425,16 +435,6 @@ public final class Contenedor extends JPanel {
         simulador.back("Tipos de Datos Abstratos",Paneles.TDA);
         simulador.getSend().setText("Graficar");
         simulador.setDatos(punto);
-        Box box=Box.createHorizontalBox();
-        box.add(x);
-        box.add(Box.createHorizontalStrut(1));
-        box.add(y);
-        box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(),"(x,y)"));
-        Constrains.addCompX(box,simulador.getPanel(),new Rectangle(2,0,2,1),1,new Insets(3,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
-        Constrains.addCompX(simulador.getSend(),simulador.getPanel(),new Rectangle(4,0,2,1),1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(simulador.getPause(),simulador.getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
-        Constrains.addCompX(simulador.getNextIteracion(),simulador.getPanel(),new Rectangle(3,1,2,1),1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(simulador.getClean(),simulador.getPanel(),new Rectangle(5,1,1,1),1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
         return simulador;
     }
     /**
@@ -442,8 +442,45 @@ public final class Contenedor extends JPanel {
      * Simulador para el proceso recursivo del factorial
      * @return simulador factorial
      */
-    private Simulador factorial(){
-        Simulador simulador=new Simulador();
+    private Recursividad factorial(){
+        JSpinner valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
+        ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
+        Recursividad recursividad = new Recursividad(null, valorI) {
+            @Override
+            protected void casoTerminal(int dato) {
+
+            }
+            @Override
+            protected void casoDecrementativo(int dato) {
+
+            }
+            @Override
+            protected void casoIncrementativo(int dato) {
+
+            }
+            @Override
+            protected void casoBase(int dato, boolean found) {
+
+            }
+            @Override
+            protected Lines[] lines() {
+                return new Lines[0];
+            }
+            @Override
+            public void iteracion0() {
+
+            }
+            @Override
+            public void iteracion1() {
+
+            }
+            @Override
+            public void clean() {
+
+            }
+        };
+        return recursividad;
+        /*Simulador simulador=new Simulador();
         Operaciones.setFormat(Operaciones.Operacion.FACTORIAL,"#,###,###");
         JSpinner valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
         ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
@@ -527,7 +564,7 @@ public final class Contenedor extends JPanel {
             /**
              * Acción del caso base terminal
              * @param valor valor n a trabajar
-             */
+
             private void casoBaseTerminal(int valor){
                 base(Text.FACTORIAL1,String.valueOf(Operaciones.factorial(valor)),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(valor)),true);
             }
@@ -535,7 +572,7 @@ public final class Contenedor extends JPanel {
              * Acción del caso base para decrementar la iteracción
              * @param valor valor n a trabajar
              * @param found texto a mostrar
-             */
+
             private void casoBase(int valor,boolean found){
                 base(found ? Text.FACTORIAL4 : Text.FACTORIAL5,String.valueOf(Operaciones.factorial(valor)),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(valor+simulador.getIteracion())),false);
                 simulador.decrementIteracion();
@@ -544,7 +581,7 @@ public final class Contenedor extends JPanel {
             /**
              * Acción caso terminal
              * @param valor valor n a trabajar
-             */
+
             private void casoTerminal(int valor){
                 base(Text.FACTORIAL1,Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),true);
             }
@@ -552,7 +589,7 @@ public final class Contenedor extends JPanel {
              * Acción caso a incrementar
              * @param valor valor n a trabajar
              * @param mult texto a mostrar
-             */
+
             private void casoIncrementativo(int valor,boolean mult){
                 base(mult ? Text.FACTORIAL7 : null,Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),false);
                 simulador.decrementIteracion();
@@ -560,7 +597,7 @@ public final class Contenedor extends JPanel {
             /**
              * Acción caso a decrementar
              * @param valor valor n a trabajar
-             */
+
             private void casoDecrementativo(int valor){
                 base(null,String.valueOf(0),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),false);
                 simulador.incrementIteracion();
@@ -571,7 +608,7 @@ public final class Contenedor extends JPanel {
              * @param number1 número resultado a fijar
              * @param producto1 producto a fijar
              * @param clean acción de habilitar la opción de limpiar o de interactividad
-             */
+
             private void base(Text text,String number1,String producto1,boolean clean){
                 if (text!=null) simulador.setTexto(text.toString());
                 number.setText(number1);
@@ -581,15 +618,54 @@ public final class Contenedor extends JPanel {
         });
         simulador.acomodamientoProducto(number, producto);
         simulador.acomodamientoPanelControl(valorI);
-        return simulador;
+        return simulador;*/
     }
     /**
      * Simulador para la temática Recursividad<br>
      * Simulador para el proceso recursivo del potencia
      * @return simulador potencia
      */
-    private Simulador potencia(){
-        Operaciones.setFormat(Operaciones.Operacion.POTENCIA,"##,###,###,###.#");
+    private Recursividad potencia(){
+        JSpinner valorBase=new JSpinner(new SpinnerNumberModel(1,1,10,1));
+        JSpinner valorExponente=new JSpinner(new SpinnerNumberModel(0,0,10,1));
+        ((JSpinner.NumberEditor)valorBase.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.NumberEditor)valorExponente.getEditor()).getTextField().setEditable(false);
+        Recursividad recursividad = new Recursividad("Base  -  Exponente", valorBase, valorExponente) {
+            @Override
+            protected void casoTerminal(int dato) {
+
+            }
+            @Override
+            protected void casoDecrementativo(int dato) {
+
+            }
+            @Override
+            protected void casoIncrementativo(int dato) {
+
+            }
+            @Override
+            protected void casoBase(int dato, boolean found) {
+
+            }
+            @Override
+            protected Lines[] lines() {
+                return new Lines[0];
+            }
+            @Override
+            public void iteracion0() {
+
+            }
+            @Override
+            public void iteracion1() {
+
+            }
+            @Override
+            public void clean() {
+
+            }
+        };
+        return recursividad;
+        /*Operaciones.setFormat(Operaciones.Operacion.POTENCIA,"##,###,###,###.#");
         JSpinner valorBase=new JSpinner(new SpinnerNumberModel(1,1,10,1));
         JSpinner valorExponente=new JSpinner(new SpinnerNumberModel(0,0,10,1));
         JLabel producto=new JLabel(Eventos.html(Operaciones.operacion(Operaciones.exponente("b","e"),"0")),SwingConstants.CENTER);
@@ -715,7 +791,7 @@ public final class Contenedor extends JPanel {
         });
         simulador.acomodamientoProducto(number, producto);
         simulador.acomodamientoPanelControl(box);
-        return simulador;
+        return simulador;*/
     }
     private Demostracion demoModularidad(){
         Demostracion demostracion=new Demostracion("/resources/image/moduDemo1.png");
