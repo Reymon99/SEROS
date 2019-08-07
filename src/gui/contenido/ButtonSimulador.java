@@ -11,8 +11,8 @@ public class ButtonSimulador extends JButton {
      */
     public ButtonSimulador(String text, boolean enable, ActionListener listener){
         super(text);
-        setFont(Fuentes.UBUNTULIGHT14.getFont());
-        setBackground(Colour.GRISBUTTON.getColor());
+        setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
+        setBackground(Colour.GRIS_BUTTON.getColor());
         setEnabled(enable);
         addActionListener(listener);
     }

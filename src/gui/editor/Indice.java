@@ -33,7 +33,7 @@ public class Indice extends JPanel {
         this.component = component;
         insets=new Insets(0,15,0,7);
         setFont(component.getFont());
-        setBackground(Colour.NEGROINDICE.getColor());
+        setBackground(Colour.NEGRO_INDICE.getColor());
         setForeground(Colour.BLANCO.getColor());
         setBorder(BorderFactory.createEmptyBorder(1,1,1,0));
         lastDigits = 0;
@@ -153,7 +153,7 @@ public class Indice extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Colour.SCROLLROLLOVER.getColor());
+        g.setColor(Colour.SCROLL_ROLLOVER.getColor());
         g.drawLine(getWidth()-1,getY(),getWidth()-1,getHeight());
         FontMetrics metrics=component.getFontMetrics(component.getFont());
         Rectangle clip=g.getClipBounds();
@@ -162,7 +162,7 @@ public class Indice extends JPanel {
         while (rowStartOffset <= endOffset){
             try{
                 String n=getTextLineNumber(rowStartOffset);
-                g.setColor(Integer.parseInt(n.isEmpty() ? "-1" : n)==lineForeground ? Colour.LINEFOREGROUND.getColor() : Colour.BLANCO.getColor());
+                g.setColor(Integer.parseInt(n.isEmpty() ? "-1" : n)==lineForeground ? Colour.LINE_FOREGROUND.getColor() : Colour.BLANCO.getColor());
                 g.drawString(n,getOffsetX(metrics.stringWidth(n)),getOffsetY(rowStartOffset,metrics));
                 rowStartOffset= Utilities.getRowEnd(component,rowStartOffset)+1;
             } catch (BadLocationException e) {

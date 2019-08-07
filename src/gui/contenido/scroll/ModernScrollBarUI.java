@@ -46,13 +46,13 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
         Color color;
         JScrollBar sb = (JScrollBar)c;
         if(!sb.isEnabled()) return;
-        else if(isDragging) color = Colour.SCROLLDRAGGING.getColor();
-        else if(isThumbRollover()) color = Colour.SCROLLROLLOVER.getColor();
-        else color = Colour.SCROLLPRESSED.getColor();
+        else if(isDragging) color = Colour.SCROLL_DRAGGING.getColor();
+        else if(isThumbRollover()) color = Colour.SCROLL_ROLLOVER.getColor();
+        else color = Colour.SCROLL_PRESSED.getColor();
         Graphics2D graphics2D = (Graphics2D) g.create();
         graphics2D.setColor(color);
         graphics2D.fillRoundRect(x, y, width, height,10,10);
-        graphics2D.setColor(Colour.BORDESCROLL.getColor());
+        graphics2D.setColor(Colour.BORDE_SCROLL.getColor());
         graphics2D.drawRoundRect(x,y,width,height,10,10);
         graphics2D.dispose();
     }

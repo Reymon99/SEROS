@@ -37,7 +37,7 @@ public final class Contenido extends Lienzo {
     private void init() {
         title=new JLabel();
         title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setFont(Fuentes.UBUNTULIGHT50.getFont());
+        title.setFont(Fuentes.UBUNTU_LIGHT_50.getFont());
         title.setOpaque(false);
         contenido=new JPanel(new GridBagLayout());
         contenido.setOpaque(false);

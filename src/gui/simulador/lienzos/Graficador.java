@@ -14,7 +14,7 @@ public class Graficador extends Canvas {
         setPreferredSize(Simulador.canvasSize);
         setMaximumSize(Simulador.canvasSize);
         setMinimumSize(Simulador.canvasSize);
-        setFont(Fuentes.UBUNTULIGHT12.getFont());
+        setFont(Fuentes.UBUNTU_LIGHT_12.getFont());
         graficar=false;
         x=y=0;
     }
@@ -104,7 +104,7 @@ public class Graficador extends Canvas {
             g2.setStroke(new BasicStroke(1,BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER,5.0f,new float[]{10},0.0f));
             g2.draw(new Line2D.Double(halfScreenWidth(),point.y,point.x,point.y));
             g2.draw(new Line2D.Double(point.x,halfScreenHeight(),point.x,point.y));
-            g2.setFont(Fuentes.DIALOG35.getFont());
+            g2.setFont(Fuentes.DIALOG_35.getFont());
             g2.setPaint(Color.RED);//punto
             g2.drawString(".",point.x-5,point.y+4);
         }

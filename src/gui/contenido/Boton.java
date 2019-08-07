@@ -64,7 +64,7 @@ public class Boton extends JLabel {
         init(adapter);
     }
     private void init(MouseAdapter adapter){
-        setFont(Fuentes.PURISA18.getFont());
+        setFont(Fuentes.PURISA_18.getFont());
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setOpaque(false);
         addMouseListener(adapter);

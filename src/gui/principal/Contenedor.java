@@ -13,13 +13,11 @@ import gui.simulador.Dato;
 import gui.simulador.Recursividad;
 import gui.simulador.Simulador;
 import gui.simulador.lienzos.Graficador;
-import hilos.LineLocation;
 import hilos.Lines;
 import tools.Acciones;
 import tools.Archivos;
 import tools.Constrains;
 import tools.Fuentes;
-import tools.Operaciones;
 import tools.Paneles;
 import tools.Text;
 import javax.swing.*;
@@ -52,7 +50,7 @@ public final class Contenedor extends JPanel {
     private void init() {
         paneles.put(Paneles.PRINCIPAL, principal());
         paneles.put(Paneles.TDA, tda());
-        paneles.put(Paneles.SIMULADORTDA, simuladorTda());
+        paneles.put(Paneles.SIMULADOR_TDA, simuladorTda());
         paneles.put(Paneles.MODULARIDAD, modularidad());
         paneles.put(Paneles.DEMOSTRACION_MODULARIDAD, demoModularidad());
         paneles.put(Paneles.RECURSIVIDAD, recursividad());
@@ -76,7 +74,7 @@ public final class Contenedor extends JPanel {
      */
     private Lienzo principal(){
         Lienzo lienzo=new Lienzo(new GridBagLayout(),true);
-        Constrains.addCompY(new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/resources/image/TDA.png", -1, -1),Eventos.menu(Paneles.TDA,Paneles.SIMULADORTDA), new MouseAdapter() {
+        Constrains.addCompY(new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/resources/image/TDA.png", -1, -1),Eventos.menu(Paneles.TDA,Paneles.SIMULADOR_TDA), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.TDA);
@@ -164,9 +162,9 @@ public final class Contenedor extends JPanel {
     private Contenido tda(){
         Contenido con=new Contenido();
         con.getTitle().setText("Tipos de Datos Abstratos (tda)");
-        con.next("Simulador TDA",Paneles.SIMULADORTDA);
+        con.next("Simulador TDA",Paneles.SIMULADOR_TDA);
         JLabel formula=new JLabel(Text.FORMULATDA.toString(),SwingConstants.CENTER);
-        formula.setFont(Fuentes.PURISA18.getFont());
+        formula.setFont(Fuentes.PURISA_18.getFont());
         formula.setOpaque(false);
         Constrains.addComp(new Texto(Text.TDA.toString()), con.getContenido(), new Rectangle(0, 0, 1, 1), 1,1, new Insets(10, 25, 15, 12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(Editor.editor("/resources/codes/tda/Punto.seros"),con.getContenido(),new Rectangle(0,1,1,1), 0,0,new Insets(5,5,5,5),GridBagConstraints.CENTER, GridBagConstraints.NONE);
@@ -209,8 +207,8 @@ public final class Contenedor extends JPanel {
         TextPane editor=new TextPane(false);
         String[] recur = Text.RECURSIVIDAD1.toString().split("\u279c");
         for (String n:recur){
-            editor.append(n,Fuentes.PURISA22.getFont());
-            if (!n.equals(recur[recur.length-1])) editor.append("\u279c",Fuentes.SEGOEUISYMBOL22.getFont());
+            editor.append(n,Fuentes.PURISA_22.getFont());
+            if (!n.equals(recur[recur.length-1])) editor.append("\u279c",Fuentes.SEGOE_UI_SYMBOL_22.getFont());
         }
         con.next("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
         Constrains.addComp(new Texto(Text.RECURSIVIDAD.toString()), con.getContenido(), new Rectangle(0,0,1,1), 1,1,new Insets(10, 25, 1, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);

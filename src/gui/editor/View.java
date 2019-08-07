@@ -36,7 +36,7 @@ public class  View extends TextPane {
      */
     private void drawLine(Graphics2D g2) {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setPaint(Colour.REDLINESELECTED.getColor());
+        g2.setPaint(Colour.RED_LINE_SELECTED.getColor());
         g2.fill(new RoundRectangle2D.Double(getInsets().left-3,lineaSelected==1 ? getInsets().top : getInsets().top+g2.getFontMetrics(getFont()).getHeight()*(lineaSelected-1),getWidth()-getInsets().left-3,g2.getFontMetrics(getFont()).getHeight()+1,16,16));
     }
     @Override

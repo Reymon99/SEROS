@@ -13,7 +13,7 @@ public class Switch extends JComponent {
     private boolean onOff;//Estado del interruptor
     private Color backgroundColor;//Color del fondo del interruptor
     private Color buttonColor;//Color del boton circular del interruptor
-    private final Color DISABLED_COMPONENT_COLOR = Colour.GRAYDISABLED.getColor();//Color del interruptor cuando está deshabilitado
+    private final Color DISABLED_COMPONENT_COLOR = Colour.GRAY_DISABLED.getColor();//Color del interruptor cuando está deshabilitado
     /**
      * Componente de estados Switch
      * @param text texto del componente
@@ -24,14 +24,14 @@ public class Switch extends JComponent {
         this.onOff=onOff;
         this.text=text;
         modificable=true;
-        setSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text),20));
-        setPreferredSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text),20));
-        setMinimumSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text),20));
-        setMaximumSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text),20));
+        setSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTU_LIGHT_14.getFont()).stringWidth(text),20));
+        setPreferredSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTU_LIGHT_14.getFont()).stringWidth(text),20));
+        setMinimumSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTU_LIGHT_14.getFont()).stringWidth(text),20));
+        setMaximumSize(new Dimension(35+1+getFontMetrics(Fuentes.UBUNTU_LIGHT_14.getFont()).stringWidth(text),20));
         setVisible(true);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setOpaque(false);
-        backgroundColor=Colour.VERDEACTIVO.getColor();
+        backgroundColor=Colour.VERDE_ACTIVO.getColor();
         buttonColor=Colour.BLANCO.getColor();
         addMouseListener(new MouseAdapter() {
             @Override
@@ -116,7 +116,7 @@ public class Switch extends JComponent {
     private void opaque1(Graphics2D g2){
         if (isOpaque()) {//Pinta el fondo del componente
             g2.setColor(getBackground());
-            g2.fill(new Rectangle2D.Double(0, 0, getWidth()+g2.getFontMetrics(Fuentes.UBUNTULIGHT14.getFont()).stringWidth(text), getHeight()));
+            g2.fill(new Rectangle2D.Double(0, 0, getWidth()+g2.getFontMetrics(Fuentes.UBUNTU_LIGHT_14.getFont()).stringWidth(text), getHeight()));
         }
     }
     /**
@@ -124,7 +124,7 @@ public class Switch extends JComponent {
      * @param g2 pincel
      */
     private void enable1(Graphics2D g2){
-        g2.setColor(isEnabled() ? onOff ? backgroundColor : Colour.BLANCODESHABILITADO.getColor() : DISABLED_COMPONENT_COLOR);
+        g2.setColor(isEnabled() ? onOff ? backgroundColor : Colour.BLANCO_DESHABILITADO.getColor() : DISABLED_COMPONENT_COLOR);
         if(isEnabled()) g2.fill(new RoundRectangle2D.Double(2, 2, 31, 16, 16, 16));//componente habilitado
         else g2.draw(new RoundRectangle2D.Double(2, 2, 31, 16, 16, 16));//componente deshabilitado
     }
@@ -142,7 +142,7 @@ public class Switch extends JComponent {
      * @param g2 pincel
      */
     private void texto(Graphics2D g2){
-        g2.setFont(Fuentes.UBUNTULIGHT14.getFont());
+        g2.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
         g2.drawString(text,36, 15);
     }
     /**

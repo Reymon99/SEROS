@@ -6,7 +6,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
-import static tools.Fuentes.UBUNTULIGHT14;
+import static tools.Fuentes.UBUNTU_LIGHT_14;
 public class Tree extends JTree {
     private DefaultMutableTreeNode node;
     /**
@@ -21,7 +21,7 @@ public class Tree extends JTree {
             @Override
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
                 JLabel label=new JLabel(value.toString(),icon,LEFT);
-                label.setFont(UBUNTULIGHT14.getFont());
+                label.setFont(UBUNTU_LIGHT_14.getFont());
                 return label;
             }
         });

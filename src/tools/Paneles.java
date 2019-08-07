@@ -16,11 +16,11 @@ public enum Paneles {
     LISTAS_ENLAZADAS("Listas Enlazadas"),
     ARBOLES("Arboles"),
     GRAFOS("Grafos"),
-    SIMULADORTDA("Simulador TDA"),
-    FACTORIAL("Simulador Factorial"),
-    POTENCIA("Simulador Potencia"),
+    DEMOSTRACION_MODULARIDAD("Demostración Modularidad"),
     EJERCICIOS_RECURSIVIDAD("Ejercicios Recursividad"),
-    DEMOSTRACION_MODULARIDAD("Demostración Modularidad");
+    SIMULADOR_TDA("Simulador TDA"),
+    FACTORIAL("Simulador Factorial"),
+    POTENCIA("Simulador Potencia");
     private String n;
     Paneles(String n){
         this.n=n;

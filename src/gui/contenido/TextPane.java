@@ -18,9 +18,9 @@ public class TextPane extends JTextPane {
      */
     public TextPane() {
         setContentType("text/plain");
-        setBackground(Colour.NEGROEDITOR.getColor());
+        setBackground(Colour.NEGRO_EDITOR.getColor());
         setForeground(Colour.BLANCO.getColor());
-        setFont(Fuentes.UBUNTUMONO15.getFont());
+        setFont(Fuentes.UBUNTU_MONO_15.getFont());
         setEditable(false);
         setMargin(new Insets(0,10,5,39));
         setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);

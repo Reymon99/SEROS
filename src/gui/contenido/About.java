@@ -38,17 +38,17 @@ public final class About extends JDialog {
     }
     private void init(){
         JLabel seros=new JLabel("Simulador de Estructura de Datos",SwingConstants.CENTER);
-        seros.setFont(Fuentes.UBUNTULIGHT30.getFont());
+        seros.setFont(Fuentes.UBUNTU_LIGHT_30.getFont());
         seros.setHorizontalTextPosition(SwingConstants.CENTER);
         JLabel seros1=new JLabel("Seros",SwingConstants.CENTER);
-        seros1.setFont(Fuentes.UBUNTULIGHTB30.getFont());
+        seros1.setFont(Fuentes.UBUNTU_LIGHT_B_30.getFont());
         seros1.setHorizontalTextPosition(SwingConstants.CENTER);
         Texto texto=new Texto(Text.ABOUT.toString());
-        texto.setFont(Fuentes.UBUNTULIGHT14.getFont());
+        texto.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
         JLabel label = new JLabel(Text.LINK.toString());
-        label.setFont(Fuentes.UBUNTULIGHT14.getFont());
+        label.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
         label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        label.setForeground(Colour.CURIOUSBLUE.getColor());
+        label.setForeground(Colour.CURIOUS_BLUE.getColor());
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

@@ -22,8 +22,8 @@ public abstract class Recursividad extends Simulador implements Acciones {
         decremento = true;
         number = new JLabel("0", SwingConstants.CENTER);
         producto = new JLabel("", SwingConstants.CENTER);
-        number.setFont(Fuentes.UBUNTULIGHTB118.getFont());
-        producto.setFont(Fuentes.UBUNTULIGHT40.getFont());
+        number.setFont(Fuentes.UBUNTU_LIGHT_B_118.getFont());
+        producto.setFont(Fuentes.UBUNTU_LIGHT_40.getFont());
         setAcciones(this);
         acomodamientoProducto();
     }

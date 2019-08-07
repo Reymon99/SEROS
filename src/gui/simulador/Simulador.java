@@ -67,11 +67,11 @@ public abstract class Simulador extends Lienzo {
         clean=new ButtonSimulador("Limpiar",false,e -> getAcciones().clean());
         nextIteracion=new ButtonSimulador("Siguiente",false, e -> getAcciones().iteracion1());
         panel=new JPanel(new GridBagLayout());
-        panel.setBackground(Colour.GRISPANEL.getColor());
+        panel.setBackground(Colour.GRIS_PANEL.getColor());
         JLabel desc=new JLabel("Descripción");
-        desc.setFont(Fuentes.UBUNTULIGHT14.getFont());
+        desc.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
         desc.setForeground(Colour.BLANCO.getColor());
-        desc.setBackground(Colour.AZULTITLE.getColor());
+        desc.setBackground(Colour.AZUL_TITLE.getColor());
         desc.setOpaque(true);
         codigo.setModificable(false);
         pause.addMouseListener(new MouseAdapter() {
