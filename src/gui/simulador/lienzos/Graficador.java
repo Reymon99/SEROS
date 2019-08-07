@@ -5,8 +5,8 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 public class Graficador extends Canvas {
     private boolean graficar;
-    private Point punto;
-    private Point axis;
+    private int x;
+    private int y;
     /**
      * Grafica un punto en una coordenada dada
      */
@@ -16,8 +16,7 @@ public class Graficador extends Canvas {
         setMinimumSize(Simulador.canvasSize);
         setFont(Fuentes.UBUNTU_LIGHT_12.getFont());
         graficar=false;
-        punto=new Point();
-        axis=new Point();
+        x=y=0;
     }
     /**
      * Grafica un punto con las coordenadas dadas
@@ -25,7 +24,8 @@ public class Graficador extends Canvas {
      * @param y int coordenada en y
      */
     public void graficar(int x,int y){
-        punto.move(x, y);
+        this.x=x;
+        this.y=y;
         graficar=true;
         repaint();
     }
@@ -33,14 +33,14 @@ public class Graficador extends Canvas {
      * Coordenadas dadas del punto
      * @return coordenadas formateadas
      */
-    private String coordenadas(){
-        return "("+this.punto.x+","+this.punto.y+")";
+    public String coordenadas(){
+        return "("+this.x+","+this.y+")";
     }
     /**
      * Limpia la grafica de las coordenadas que han sido graficadas
      */
     public void limpiar(){
-        punto.move(0, 0);
+        x=y=0;
         graficar=false;
         repaint();
     }
@@ -93,12 +93,12 @@ public class Graficador extends Canvas {
      */
     private void graficarCoordenada(Graphics2D g2, Point point){
         if (graficar){
-            if (this.punto.x>0 && this.punto.y>0) g2.drawString(coordenadas(),point.x+7,point.y);//Cuandrante positivo
-            else if (this.punto.x<0 && this.punto.y>0) g2.drawString(coordenadas(),point.x-22,point.y-7);//Cuadrante negativo - positivo
-            else if (this.punto.x<0 && this.punto.y<0) g2.drawString(coordenadas(),point.x-22,point.y+17);//Cuadrante negativo
-            else if (this.punto.x>0 && this.punto.y<0) g2.drawString(coordenadas(),point.x-17,point.y+17);//Cuadrante positivo - negativo
-            else if (this.punto.x==0 && this.punto.y==0) g2.drawString(coordenadas(),point.x-29,point.y-9);//Punto medio
-            else if (this.punto.x==0) g2.drawString(coordenadas(),point.x-45,point.y-2);
+            if (this.x>0 && this.y>0) g2.drawString(coordenadas(),point.x+7,point.y);//Cuandrante positivo
+            else if (this.x<0 && this.y>0) g2.drawString(coordenadas(),point.x-22,point.y-7);//Cuadrante negativo - positivo
+            else if (this.x<0 && this.y<0) g2.drawString(coordenadas(),point.x-22,point.y+17);//Cuadrante negativo
+            else if (this.x>0 && this.y<0) g2.drawString(coordenadas(),point.x-17,point.y+17);//Cuadrante positivo - negativo
+            else if (this.x==0 && this.y==0) g2.drawString(coordenadas(),point.x-29,point.y-9);//Punto medio
+            else if (this.x==0) g2.drawString(coordenadas(),point.x-45,point.y-2);
             else g2.drawString(coordenadas(),point.x-17,point.y+19);//y==0
             g2.setPaint(Color.GRAY);//lineas
             g2.setStroke(new BasicStroke(1,BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER,5.0f,new float[]{10},0.0f));
@@ -124,7 +124,7 @@ public class Graficador extends Canvas {
      * @param j posición en pantalla
      */
     private void puntoCoordenadaX(Point point,int x,int j){
-        if (this.punto.x==x && graficar) point.x = this.punto.x==0 ? halfScreenWidth() : j;
+        if (this.x==x && graficar) point.x = this.x==0 ? halfScreenWidth() : j;
     }
     /**
      * Guarda la posición en pantalla de la coordenada Y
@@ -133,17 +133,19 @@ public class Graficador extends Canvas {
      * @param i posición en pantalla
      */
     private void puntoCoordenadaY(Point point,int y,int i){
-        if (this.punto.y==y && graficar) point.y = this.punto.y==0 ? halfScreenHeight() : i;
+        if (this.y==y && graficar) point.y = this.y==0 ? halfScreenHeight() : i;
     }
     /**
      * Guarda la posición en pantalla de las coordenadas X y Y
      * @param point puntos de las posiciones a guardar
+     * @param x valor Axis X
+     * @param y valor Axis Y
      * @param i posición en pantalla vertical
      * @param j posición en pantalla horizontal
      */
-    private void puntoCoordenadas(Point point, int i, int j){
-        puntoCoordenadaX(point, axis.x, j);
-        puntoCoordenadaY(point, axis.y, i);
+    private void puntoCoordenadas(Point point,int x,int y,int i,int j){
+        puntoCoordenadaX(point, x, j);
+        puntoCoordenadaY(point, y, i);
     }
     /**
      * Grafica los valores del axis X y el axis Y
@@ -151,34 +153,23 @@ public class Graficador extends Canvas {
      * @param point punto a guardar las coordenas
      */
     private void valoresAxisXY(Graphics2D g2, Point point){
-        axis.move(-10, 10);
-        int i = positionY(true)+axis.y;
-        int j = positionX(false)+axis.y;
+        int x = -10;
+        int y = 10;
+        int i = positionY(true)+y;
+        int j = positionX(false)+y;
         while (i <= positionY(false)){
-            puntoCoordenadas(point, i, j);
-            axisXY(g2, point, i, j);
+            puntoCoordenadas(point,x,y,i,j);
+            if (i!=290 && j!=halfScreenWidth()){
+                g2.draw(new Line2D.Double(halfScreenWidth()-2,i,halfScreenWidth()+2,i));//y
+                g2.draw(new Line2D.Double(j,halfScreenHeight()-2,j,halfScreenHeight()+2));//x
+                if (x==0 && y==0) puntoCoordenadas(point,x=1,y=-1,i,j);
+                g2.drawString(String.valueOf(y),x<0 ? halfScreenWidth()+5 : Math.abs(x)==10 ? halfScreenWidth()-22 : halfScreenWidth()-16,i+4);//y
+                g2.drawString(String.valueOf(x),x>0 ? j-4 : j-8,x>0 ? halfScreenHeight()-6 : halfScreenHeight()+15);//x
+                x++;
+                y--;
+            }
             i+=27;
             j+=27;
-        }
-    }
-    /**
-     * Grafica la posición X y Y indicada en el axis X - Y del plano cartesiano
-     * @param g2 pincel
-     * @param point punto de coordenadas
-     * @param i pixel en y
-     * @param j pixel en x
-     */
-    private void axisXY(Graphics2D g2, Point point, int i, int j){
-        if (i!=290 && j!=halfScreenWidth()){
-            g2.draw(new Line2D.Double(halfScreenWidth()-2,i,halfScreenWidth()+2,i));//y
-            g2.draw(new Line2D.Double(j,halfScreenHeight()-2,j,halfScreenHeight()+2));//x
-            if (axis.x==0 && axis.y==0) {
-                axis.move(1, -1);
-                puntoCoordenadas(point, i, j);
-            }
-            g2.drawString(String.valueOf(axis.y),axis.x<0 ? halfScreenWidth()+5 : Math.abs(axis.x)==10 ? halfScreenWidth()-22 : halfScreenWidth()-16,i+4);//y
-            g2.drawString(String.valueOf(axis.x),axis.x>0 ? j-4 : j-8, axis.x>0 ? halfScreenHeight()-6 : halfScreenHeight()+15);//x
-            axis.move(axis.x+1, axis.y-1);
         }
     }
     /**
