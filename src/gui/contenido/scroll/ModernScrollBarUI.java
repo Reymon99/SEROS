@@ -61,4 +61,16 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
         super.setThumbBounds(x, y, width, height);
         sp.repaint();
     }
+    private static class InvisibleScrollBarButton extends JButton {
+        /**
+         * Ocultar el botón de incremento y decremento en el ScrollBar
+         */
+        InvisibleScrollBarButton() {
+            setOpaque(false);
+            setFocusable(false);
+            setFocusPainted(false);
+            setBorderPainted(false);
+            setBorder(BorderFactory.createEmptyBorder());
+        }
+    }
 }
