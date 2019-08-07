@@ -165,20 +165,29 @@ public class Graficador extends Canvas {
      * Grafica la posición X y Y indicada en el axis X - Y del plano cartesiano
      * @param g2 pincel
      * @param point punto de coordenadas
-     * @param i pixel en y
-     * @param j pixel en x
+     * @param i pixel en Y
+     * @param j pixel en X
      */
     private void axisXY(Graphics2D g2, Point point, int i, int j){
         if (i!=290 && j!=halfScreenWidth()){
             g2.draw(new Line2D.Double(halfScreenWidth()-2,i,halfScreenWidth()+2,i));//y
             g2.draw(new Line2D.Double(j,halfScreenHeight()-2,j,halfScreenHeight()+2));//x
-            if (axis.x==0 && axis.y==0) {
-                axis.move(1, -1);
-                puntoCoordenadas(point, i, j);
-            }
+            axisZero(point, i, j);
             g2.drawString(String.valueOf(axis.y),axis.x<0 ? halfScreenWidth()+5 : Math.abs(axis.x)==10 ? halfScreenWidth()-22 : halfScreenWidth()-16,i+4);//y
             g2.drawString(String.valueOf(axis.x),axis.x>0 ? j-4 : j-8, axis.x>0 ? halfScreenHeight()-6 : halfScreenHeight()+15);//x
             axis.move(axis.x+1, axis.y-1);
+        }
+    }
+    /**
+     * Cuando X y Y equivalen a cero se pasan al siguiente axis a dibujar
+     * @param point punto de coordenadas
+     * @param i pixel en Y
+     * @param j pixel en X
+     */
+    private void axisZero(Point point, int i, int j){
+        if (axis.x==0 && axis.y==0) {
+            axis.move(1, -1);
+            puntoCoordenadas(point, i, j);
         }
     }
     /**
