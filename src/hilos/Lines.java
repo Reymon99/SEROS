@@ -7,8 +7,8 @@ public abstract class Lines extends Thread {
     private Simulador simulador;
     private LineLocation[] lines;
     /**
-     * Hilo recorredor de lineas en el Editor.<br>
-     * Modifica el texto del componente en determinadas lineas.
+     * Hilo recorredor de líneas en el Editor.<br>
+     * Modifica el texto del componente en determinadas líneas.
      * Habilita el boton deseado a utilizar
      * @param simulador simulador correspondiente en el cual el componente {@link Texto} se ubicarán los textos de las líneas correspondientes, y el componente {@link Editor} en el cual se seleccionarán las líneas dispuestas en {@link Lines#lines}.
      * @param lines números de las líneas a seleccionar con sus respectivos texto, desde nulos a su contenido correspondiente.
@@ -38,5 +38,5 @@ public abstract class Lines extends Thread {
      * Acciones a realizar al final del hilo.<br>
      * Reescribirlo para efectuar los comandos.
      */
-    public abstract void actions();
+    protected abstract void actions();
 }

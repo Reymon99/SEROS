@@ -91,16 +91,6 @@ public abstract class Eventos {
         }
     }
     /**
-     * Comprueba si el valor está presente entre los diferentes valores pasados
-     * @param valor valor a comprobar
-     * @param objects valores a ser comparados
-     * @return true: si se encuentra el valor entre los objectos | false: si no encuentra el valor entre los objectos
-     */
-    public static boolean contains(Object valor,Object... objects){
-        for (Object object:objects) if (valor.equals(object)) return true;
-        return false;
-    }
-    /**
      * Convierte una cadena de texto a HTML
      * @param n cadena a convertir
      * @return HTML de la cadena dada

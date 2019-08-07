@@ -207,7 +207,7 @@ public abstract class Simulador extends Lienzo {
     /**
      * Decrementa a paso uno las pulsaciones del paso a paso del simulador en la ejecución
      */
-    public void decrementIteracion(){
+    protected void decrementIteracion(){
         iteracion--;
     }
     /**
@@ -221,7 +221,7 @@ public abstract class Simulador extends Lienzo {
      * Obtiene el componente de visualización del código en el paso a paso en el simulador
      * @return visualización del paso a paso
      */
-    public Switch getCodigo() {
+    protected Switch getCodigo() {
         return codigo;
     }
     /**
