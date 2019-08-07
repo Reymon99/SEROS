@@ -68,7 +68,7 @@ public final class Contenedor extends JPanel {
         paneles.put(Paneles.LISTAS_ENLAZADAS, listas());
         paneles.put(Paneles.ARBOLES, arboles());
         paneles.put(Paneles.GRAFOS, grafos());
-        for (Map.Entry<Paneles, Lienzo> entry : paneles.entrySet()) add(entry.getKey().toString(), entry.getValue());
+        paneles.forEach((k,v) -> add(k.toString(), v));
     }
     /**
      * Menu principal de la interfaz grafica del proyecto
@@ -441,10 +441,13 @@ public final class Contenedor extends JPanel {
      * Simulador para la temática Recursividad<br>
      * Simulador para el proceso recursivo del factorial
      * @return simulador factorial
+     * @see Recursividad
      */
     private Recursividad factorial(){
+        Operaciones.addFormat(Operaciones.Operacion.FACTORIAL, "#,###,###");
         JSpinner valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
         ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
+        Tree variaI=new Tree(new Dato("int","n",""));
         Recursividad recursividad = new Recursividad(null, valorI) {
             @Override
             protected void casoTerminal(int dato) {
@@ -460,49 +463,81 @@ public final class Contenedor extends JPanel {
             }
             @Override
             protected void casoBase(int dato, boolean found) {
-
+                base(found ? Text.FACTORIAL1 : Text.FACTORIAL5, Operaciones.factorial(getValor()), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))), found);
+                if (!found) decrementIteracion();
             }
             @Override
             protected Lines[] lines() {
-                return new Lines[0];
+                return new Lines[]{new Lines(this,new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,3,Text.FACTORIAL4.toString())) {
+                    @Override
+                    public void actions() {
+                        accionesCasoBase();
+                    }
+                }};
+            }
+            @Override
+            protected boolean isCasoBase() {
+                return getValor()==1 || getValor()==0;
+            }
+            @Override
+            protected void accionesCasoBase() {
+                int n=Integer.parseInt(valorI.getValue().toString());
+                if (n==1 || n==0) casoBase(getValor(),true);
+                else casoBase(getValor(),false);
+            }
+            @Override
+            protected void accionesCasoBaseCode() {
+                lines()[0].start();
             }
             @Override
             public void iteracion0() {
-
+                Eventos.enable(false,getNextIteracion(),getSend(),valorI,getPause(),getBack(),getClean(),getCodigo(),getHome());
+                setTexto(Text.FACTORIAL1.toString());
+                setNumber(Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString())), Operaciones.Operacion.FACTORIAL));
+                setProducto(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))));
+                Eventos.variable(variaI,-1,valorI.getValue());
+                Eventos.enable(true,getClean());
             }
             @Override
             public void iteracion1() {
-
+                Eventos.enable(false,valorI);
+                setValor(Integer.parseInt(valorI.getValue().toString()) - getIteracion());
+                Eventos.variable(variaI,-1,getValor());
+                super.iteracion1();
             }
             @Override
             public void clean() {
-
+                cleanComponents();
+                setTexto(Text.FACTORIAL.toString());
+                Eventos.variable(variaI,-1,"");
+                Eventos.enable(true,valorI);
+                valorI.setValue(0);
+                setNumber("0");
+                setProducto(Operaciones.operacion("n!","0"));
+                setDecremento(true);
+            }
+            /**
+             * Acciones comunes de interactividad
+             * @param text {@link Text}
+             * @param number1 número resultado a fijar
+             * @param producto1 producto a fijar
+             * @param clean acción de habilitar la opción de limpiar o de interactividad
+            */
+            private void base(Text text,Object number1,String producto1,boolean clean){
+                if (text!=null) setTexto(text.toString());
+                setNumber(number1.toString());
+                setProducto(producto1);
+                Eventos.enable(true,clean ? getClean() : getNextIteracion(),getBack(),getHome());
             }
         };
+        recursividad.setDatos(variaI);
+        recursividad.addCodes(Editor.editor("/resources/codes/recursividad/Factorial.seros"),"Factorial");
+        recursividad.setTexto(Text.FACTORIAL.toString());
+        recursividad.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
+        recursividad.setProducto(Operaciones.operacion("n!","0"));
         return recursividad;
-        /*Simulador simulador=new Simulador();
-        Operaciones.setFormat(Operaciones.Operacion.FACTORIAL,"#,###,###");
-        JSpinner valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
-        ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
-        Tree variaI=new Tree(new Dato("int","n",""));
-        simulador.setDatos(variaI);
-        simulador.addCodes(Editor.editor("/resources/codes/recursividad/Factorial.seros"),"Factorial");
-        simulador.setTexto(Text.FACTORIAL.toString());
-        simulador.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
-        JLabel producto=new JLabel(Operaciones.operacion("n!","0"),SwingConstants.CENTER);
-        producto.setFont(Fuentes.UBUNTULIGHT40.getFont());
-        JLabel number=new JLabel("0",SwingConstants.CENTER);
-        number.setFont(Fuentes.UBUNTULIGHTB120.getFont());
+        /*
         simulador.setAcciones(new Acciones() {
-            @Override
-            public void iteracion0() {
-                Eventos.enable(false,simulador.getNextIteracion(),simulador.getSend(),valorI,simulador.getPause(),simulador.getBack(),simulador.getClean(),simulador.getCodigo(),simulador.getHome());
-                simulador.setTexto(Text.FACTORIAL1.toString());
-                number.setText(Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString())), Operaciones.Operacion.FACTORIAL));
-                producto.setText(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))));
-                Eventos.variable(variaI,-1,valorI.getValue());
-                Eventos.enable(true,simulador.getClean());
-            }
             @Override
             public void iteracion1() {
                 Eventos.enable(false,valorI,simulador.getClean(),simulador.getNextIteracion(),simulador.getSend(),simulador.getPause(),simulador.getBack(),simulador.getCodigo(),simulador.getHome());
@@ -550,17 +585,6 @@ public final class Contenedor extends JPanel {
                     }else casoDecrementativo(valor);
                 }
             }
-            @Override
-            public void clean() {
-                simulador.clean();
-                simulador.setTexto(Text.FACTORIAL.toString());
-                Eventos.variable(variaI,-1,"");
-                Eventos.enable(true,valorI);
-                valorI.setValue(0);
-                number.setText("0");
-                producto.setText(Operaciones.operacion("n!","0"));
-                simulador.setDecremento(true);
-            }
             /**
              * Acción del caso base terminal
              * @param valor valor n a trabajar
@@ -578,47 +602,18 @@ public final class Contenedor extends JPanel {
                 simulador.decrementIteracion();
                 simulador.setDecremento(false);
             }
-            /**
-             * Acción caso terminal
-             * @param valor valor n a trabajar
-
             private void casoTerminal(int valor){
                 base(Text.FACTORIAL1,Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),true);
             }
-            /**
-             * Acción caso a incrementar
-             * @param valor valor n a trabajar
-             * @param mult texto a mostrar
-
             private void casoIncrementativo(int valor,boolean mult){
                 base(mult ? Text.FACTORIAL7 : null,Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),false);
                 simulador.decrementIteracion();
             }
-            /**
-             * Acción caso a decrementar
-             * @param valor valor n a trabajar
-
             private void casoDecrementativo(int valor){
                 base(null,String.valueOf(0),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),false);
                 simulador.incrementIteracion();
             }
-            /**
-             * Acciones comunes de interactividad
-             * @param text {@link Text}
-             * @param number1 número resultado a fijar
-             * @param producto1 producto a fijar
-             * @param clean acción de habilitar la opción de limpiar o de interactividad
-
-            private void base(Text text,String number1,String producto1,boolean clean){
-                if (text!=null) simulador.setTexto(text.toString());
-                number.setText(number1);
-                producto.setText(producto1);
-                Eventos.enable(true,clean ? simulador.getClean() : simulador.getNextIteracion(),simulador.getBack(),simulador.getHome());
-            }
-        });
-        simulador.acomodamientoProducto(number, producto);
-        simulador.acomodamientoPanelControl(valorI);
-        return simulador;*/
+        });*/
     }
     /**
      * Simulador para la temática Recursividad<br>
@@ -650,6 +645,18 @@ public final class Contenedor extends JPanel {
             @Override
             protected Lines[] lines() {
                 return new Lines[0];
+            }
+            @Override
+            protected boolean isCasoBase() {
+                return false;
+            }
+            @Override
+            protected void accionesCasoBase() {
+
+            }
+            @Override
+            protected void accionesCasoBaseCode() {
+
             }
             @Override
             public void iteracion0() {

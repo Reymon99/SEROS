@@ -1,4 +1,5 @@
 package gui.simulador;
+import eventos.Eventos;
 import hilos.Lines;
 import tools.Acciones;
 import tools.Constrains;
@@ -6,6 +7,7 @@ import tools.Fuentes;
 import javax.swing.*;
 import java.awt.*;
 public abstract class Recursividad extends Simulador implements Acciones {
+    private int valor;
     private boolean decremento;
     private JLabel number;
     private JLabel producto;
@@ -38,7 +40,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
      * Da un nuevo estado para el control de la iteración
      * @param decremento nuevo estado
      */
-    public void setDecremento(boolean decremento) {
+    protected void setDecremento(boolean decremento) {
         this.decremento = decremento;
     }
     /**
@@ -66,8 +68,22 @@ public abstract class Recursividad extends Simulador implements Acciones {
      * Da un nuevo resultado de la operación que se está realizando
      * @param number nuevo resultado de la operación indicada
      */
-    public void setNumber(String number) {
+    protected void setNumber(String number) {
         this.number.setText(number);
+    }
+    /**
+     * Valor de la ejecución recursiva
+     * @return valor de ejecución
+     */
+    protected int getValor() {
+        return valor;
+    }
+    /**
+     * Da nuevo valor de la ejecución recursiva
+     * @param valor nuevo valor a al ejecución
+     */
+    protected void setValor(int valor) {
+        this.valor = valor;
     }
     /**
      * Acomodamiento por defecto cuando se utiliza productos
@@ -82,11 +98,35 @@ public abstract class Recursividad extends Simulador implements Acciones {
     protected void iteracion(){
         //None
     }
+    /**
+     * Acción caso terminal
+     * @param dato valor n a trabajar
+     */
     protected abstract void casoTerminal(int dato);
+    /**
+     * Acción caso a decrementar
+     * @param dato valor n a trabajar
+    */
     protected abstract void casoDecrementativo(int dato);
+    /**
+     * Acción caso a incrementar
+     * @param dato valor n a trabajar
+     */
     protected abstract void casoIncrementativo(int dato);
+    /**
+     * Acción del caso base
+     * @param dato valor n a trabajar
+     * @param found si fue encontrado se termina con la ejecución de la simulación
+     */
     protected abstract void casoBase(int dato, boolean found);
+    /**
+     * Líneas que se van a simular
+     * @return arreglo de las líneas que se van a simular
+     */
     protected abstract Lines[] lines();
+    protected abstract boolean isCasoBase();
+    protected abstract void accionesCasoBase();
+    protected abstract void accionesCasoBaseCode();
     @Override
     protected void acomodamientoPanelControl(String title, JComponent... components) {
         Constrains.addCompX(componentRegistro(title, components),getPanel(),new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
@@ -95,5 +135,13 @@ public abstract class Recursividad extends Simulador implements Acciones {
         Constrains.addCompX(getCodigo(),getPanel(),new Rectangle(4,1,1,1),1,new Insets(5,8,10,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
         Constrains.addCompX(getNextIteracion(),getPanel(),new Rectangle(3,1,1,1),1,new Insets(5,5,10,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(getClean(),getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,80,10,5),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+    }
+    @Override
+    public void iteracion1() {
+        Eventos.enable(false, getClean(),getNextIteracion(),getSend(),getPause(),getBack(),getCodigo(),getHome());
+        if (isCasoBase()){
+            if (getCodigo().isOnOff()) accionesCasoBaseCode();
+            else accionesCasoBase();
+        }
     }
 }

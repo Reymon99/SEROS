@@ -20,7 +20,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @param key formato a trabajar
      * @param pattern patron a trabajar
      */
-    public static void setFormat(Operacion key,String pattern) {
+    public static void addFormat(Operacion key, String pattern) {
         Operaciones.format.put(key,new DecimalFormat(pattern));
     }
     /**
@@ -47,7 +47,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @return factorial de n
      */
     public static long factorial(int n){
-        return (Eventos.contains(n,0,1) ? 1 : n*Operaciones.factorial(n-1));
+        return n==1 || n==0 ? 1 : n*Operaciones.factorial(n-1);
     }
     /**
      * Genera la multiplicación de un factorial n
@@ -55,7 +55,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @return multiplicación recursiva del factorial n
      */
     public static String productoFactorial(int i){
-        return (Eventos.contains(i,1,0)) ? "1" : i+" * "+Operaciones.productoFactorial(i-1);
+        return i==1 || i==0 ? "1" : i+" * "+Operaciones.productoFactorial(i-1);
     }
     /**
      * Genera la multiplicación de un número n hasta el establecido
