@@ -45,20 +45,6 @@ public class Graficador extends Canvas {
         repaint();
     }
     /**
-     * Estado de graficación
-     * @return true: existe grafica | false: no existe grafica
-     */
-    public boolean isGraficar() {
-        return graficar;
-    }
-    /**
-     * Modifica el estado de graficación
-     * @param graficar boolean
-     */
-    public void setGraficar(boolean graficar) {
-        this.graficar = graficar;
-    }
-    /**
      * Divide el ancho de la dimensión del Canvas
      * @return mitad del ancho del Canvas
      */
@@ -181,8 +167,18 @@ public class Graficador extends Canvas {
      * @param j pixel en X
      */
     private void number(Graphics2D g2, int i, int j){
-        g2.drawString(String.valueOf(axis.y),axis.x<0 ? halfScreenWidth()+5 : Math.abs(axis.x)==10 ? halfScreenWidth()-22 : halfScreenWidth()-16,i+4);//y
-        g2.drawString(String.valueOf(axis.x),axis.x>0 ? j-4 : j-8, axis.x>0 ? halfScreenHeight()-6 : halfScreenHeight()+15);//x
+        g2.drawString(String.valueOf(axis.y), posicion(axis.x<0, halfScreenWidth()+5, posicion(Math.abs(axis.x)==10, halfScreenWidth()-22, halfScreenWidth()-16)), i+4);//y
+        g2.drawString(String.valueOf(axis.x), posicion(axis.x>0, j-4, j-8), posicion(axis.x>0, halfScreenHeight()-6, halfScreenHeight()+15));//x
+    }
+    /**
+     * Posición doble a pocesionar
+     * @param expr expresión de posecionamiento a evaluar
+     * @param a valor 'a' a retornar
+     * @param b valor 'b' a retornar
+     * @return si la expresión es verdadera devolverá a 'a' de lo contrario devolverá a 'b'
+     */
+    private int posicion(boolean expr, int a, int b){
+        return expr ? a : b;
     }
     /**
      * Pinta el axis X - Y en el plano cartesiano
