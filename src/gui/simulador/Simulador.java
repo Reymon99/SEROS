@@ -13,7 +13,6 @@ import tools.Constrains;
 import tools.Fuentes;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 public abstract class Simulador extends Lienzo {

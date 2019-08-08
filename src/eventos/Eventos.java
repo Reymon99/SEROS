@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.net.URL;
 import gui.contenido.About;
 import gui.contenido.Save;
