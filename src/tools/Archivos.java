@@ -2,6 +2,7 @@ package tools;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.RenderedImage;
 import java.io.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -35,5 +36,13 @@ public abstract class Archivos {
         } catch (URISyntaxException | IOException e) {//None
         }
         return txt.toString();
+    }
+    public static String createImage(File file, RenderedImage image){
+        try {
+            ImageIO.write(image, "png", file);
+            return "Imagen creada exitosamente";
+        } catch (IOException e) {
+            return "No se pudo crear la Imagen";
+        }
     }
 }

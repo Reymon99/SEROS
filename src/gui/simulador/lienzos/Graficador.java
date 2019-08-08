@@ -4,7 +4,7 @@ import tools.Fuentes;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
-public class Graficador extends JComponent {
+public class Graficador extends JPanel {
     private boolean graficar;
     private Point punto;
     private Point axis;

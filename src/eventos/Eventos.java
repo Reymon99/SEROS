@@ -1,8 +1,13 @@
 package eventos;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
+import java.io.FilenameFilter;
 import java.net.URL;
 import gui.contenido.About;
+import gui.contenido.Save;
 import gui.contenido.Switch;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
@@ -137,5 +142,12 @@ public abstract class Eventos {
             if (panel.toString().equals(Paneles.PRINCIPAL.toString())) menu.addSeparator();
         }
         return menu;
+    }
+    public static File saveFile(){
+        return new Save().getFile();
+    }
+    public static RenderedImage createImageOf(Component component){BufferedImage image=new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_ARGB);
+        component.paint(image.getGraphics());
+        return image;
     }
 }

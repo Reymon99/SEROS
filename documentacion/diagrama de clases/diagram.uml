@@ -3,103 +3,104 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="1448.0" y="0.0">gui.principal.Contenedor</node>
-    <node x="1481.0" y="1688.0">gui.contenido.Tree</node>
-    <node x="1970.0" y="0.0">gui.contenido.scroll.ModernScrollPane</node>
-    <node x="2035.0" y="1206.0">eventos.Eventos</node>
-    <node x="425.0" y="2005.0">gui.contenido.Texto</node>
-    <node x="1704.0" y="1206.0">hilos.LineLocation</node>
-    <node x="0.0" y="1206.0">tools.Operaciones</node>
-    <node x="349.0" y="1206.0">gui.simulador.lienzos.Graficador</node>
-    <node x="628.0" y="499.0">gui.contenido.Demostracion</node>
-    <node x="1730.0" y="0.0">tools.Paneles</node>
-    <node x="97.5" y="1571.0">tools.Operaciones.Operacion</node>
-    <node x="513.5" y="0.0">gui.contenido.Lienzo</node>
-    <node x="1068.0" y="2005.0">tools.Archivos</node>
-    <node x="0.0" y="566.5">tools.Acciones</node>
+    <node x="1828.0" y="0.0">gui.principal.Contenedor</node>
+    <node x="1481.0" y="1999.0">gui.contenido.Tree</node>
+    <node x="0.0" y="1492.0">gui.contenido.scroll.ModernScrollPane</node>
+    <node x="2019.0" y="1492.0">eventos.Eventos</node>
+    <node x="0.0" y="2316.0">gui.contenido.Texto</node>
+    <node x="1688.0" y="1492.0">hilos.LineLocation</node>
+    <node x="308.0" y="1492.0">tools.Operaciones</node>
+    <node x="1503.0" y="0.0">gui.simulador.lienzos.Graficador</node>
+    <node x="525.0" y="521.0">gui.contenido.Demostracion</node>
+    <node x="2110.0" y="0.0">tools.Paneles</node>
+    <node x="405.5" y="1857.0">tools.Operaciones.Operacion</node>
+    <node x="578.5" y="0.0">gui.contenido.Lienzo</node>
+    <node x="643.0" y="2316.0">tools.Archivos</node>
+    <node x="0.0" y="588.5">tools.Acciones</node>
     <node x="153.0" y="345.0">gui.simulador.Simulador</node>
-    <node x="628.0" y="2005.0">gui.contenido.About</node>
-    <node x="1253.0" y="0.0">tools.Colour</node>
-    <node x="0.0" y="1688.0">hilos.Imagen</node>
-    <node x="811.0" y="543.5">gui.contenido.Contenido</node>
-    <node x="1142.0" y="1206.0">gui.contenido.Switch</node>
-    <node x="1331.0" y="2005.0">gui.contenido.ButtonSimulador</node>
-    <node x="266.0" y="1688.0">tools.Constrains</node>
-    <node x="830.0" y="1688.0">gui.simulador.Dato</node>
-    <node x="1013.0" y="0.0">tools.Text</node>
-    <node x="118.85714285714283" y="932.0">gui.simulador.Recursividad</node>
+    <node x="203.0" y="2316.0">gui.contenido.About</node>
+    <node x="1303.0" y="0.0">tools.Colour</node>
+    <node x="0.0" y="1999.0">hilos.Imagen</node>
+    <node x="861.0" y="565.5">gui.contenido.Contenido</node>
+    <node x="946.0" y="1492.0">gui.contenido.Switch</node>
+    <node x="949.0" y="2316.0">gui.contenido.Save</node>
+    <node x="1107.0" y="2316.0">gui.contenido.ButtonSimulador</node>
+    <node x="266.0" y="1999.0">tools.Constrains</node>
+    <node x="1199.0" y="1999.0">gui.simulador.Dato</node>
+    <node x="1063.0" y="0.0">tools.Text</node>
+    <node x="29.78571428571422" y="976.0">gui.simulador.Recursividad</node>
+    <node x="1245.0" y="1492.0">tools.Fuentes</node>
     <node x="885.0" y="2211.0">gui.contenido.scroll.ModernScrollBarUI.InvisibleScrollBarButton</node>
-    <node x="974.0" y="1206.0">tools.Fuentes</node>
-    <node x="1945.0" y="2005.0">main.Main</node>
-    <node x="1441.0" y="1373.0">gui.editor.View</node>
-    <node x="2015.0" y="279.0">gui.editor.Editor</node>
-    <node x="828.0" y="2005.0">tools.FuentesModificadas</node>
-    <node x="1789.0" y="1688.0">hilos.Lines</node>
-    <node x="1456.5" y="1206.0">gui.contenido.TextPane</node>
-    <node x="475.0" y="521.0">gui.contenido.Ejercicios</node>
-    <node x="0.0" y="2005.0">gui.contenido.Boton</node>
-    <node x="2137.0" y="2005.0">gui.principal.Desktop</node>
-    <node x="1112.0" y="1688.0">gui.contenido.scroll.ModernScrollBarUI</node>
-    <node x="685.0" y="1206.0">gui.editor.Indice</node>
+    <node x="1462.0" y="2316.0">main.Main</node>
+    <node x="1425.0" y="1659.0">gui.editor.View</node>
+    <node x="45.0" y="1770.0">gui.editor.Editor</node>
+    <node x="403.0" y="2316.0">tools.FuentesModificadas</node>
+    <node x="1789.0" y="1999.0">hilos.Lines</node>
+    <node x="1440.5" y="1492.0">gui.contenido.TextPane</node>
+    <node x="708.0" y="543.0">gui.contenido.Ejercicios</node>
+    <node x="2056.0" y="1999.0">gui.contenido.Boton</node>
+    <node x="1654.0" y="2316.0">gui.principal.Desktop</node>
+    <node x="830.0" y="1999.0">gui.contenido.scroll.ModernScrollBarUI</node>
+    <node x="657.0" y="1492.0">gui.editor.Indice</node>
   </nodes>
   <notes />
   <edges>
     <edge source="gui.simulador.Recursividad" target="gui.simulador.Simulador">
-      <point x="35.25" y="-114.5" />
-      <point x="224.60714285714283" y="907.0" />
-      <point x="304.0" y="907.0" />
-      <point x="0.0" y="268.5" />
+      <point x="88.0" y="-235.5" />
+      <point x="293.7857142857142" y="951.0" />
+      <point x="329.0" y="951.0" />
+      <point x="0.0" y="290.5" />
     </edge>
     <edge source="gui.contenido.scroll.ModernScrollBarUI.InvisibleScrollBarButton" target="gui.contenido.scroll.ModernScrollBarUI">
       <point x="0.0" y="-25.0" />
       <point x="0.0" y="81.0" />
     </edge>
     <edge source="gui.simulador.Recursividad" target="tools.Acciones">
-      <point x="-35.25" y="-114.5" />
-      <point x="154.10714285714283" y="907.0" />
-      <point x="66.5" y="907.0" />
+      <point x="-88.0" y="-235.5" />
+      <point x="117.78571428571422" y="951.0" />
+      <point x="66.5" y="951.0" />
       <point x="0.0" y="47.0" />
     </edge>
     <edge source="gui.contenido.Contenido" target="gui.contenido.Lienzo">
       <point x="0.0" y="-70.0" />
-      <point x="889.5" y="315.0" />
-      <point x="709.5" y="315.0" />
+      <point x="939.5" y="315.0" />
+      <point x="774.5" y="315.0" />
       <point x="84.0" y="147.5" />
     </edge>
     <edge source="gui.contenido.Ejercicios" target="gui.contenido.Lienzo">
       <point x="0.0" y="-92.5" />
-      <point x="541.5" y="325.0" />
-      <point x="597.5" y="325.0" />
-      <point x="-28.0" y="147.5" />
+      <point x="774.5" y="325.0" />
+      <point x="718.5" y="325.0" />
+      <point x="28.0" y="147.5" />
     </edge>
     <edge source="gui.editor.Editor" target="gui.contenido.scroll.ModernScrollPane">
       <point x="0.0" y="-92.0" />
-      <point x="0.0" y="114.5" />
+      <point x="0.0" y="114.0" />
     </edge>
     <edge source="gui.editor.View" target="gui.contenido.TextPane">
       <point x="0.0" y="-92.5" />
       <point x="0.0" y="58.5" />
     </edge>
     <edge source="gui.simulador.Simulador" target="gui.contenido.Lienzo">
-      <point x="0.0" y="-268.5" />
-      <point x="304.0" y="315.0" />
-      <point x="541.5" y="315.0" />
+      <point x="0.0" y="-290.5" />
+      <point x="329.0" y="315.0" />
+      <point x="606.5" y="315.0" />
       <point x="-84.0" y="147.5" />
     </edge>
     <edge source="gui.contenido.Demostracion" target="gui.contenido.Lienzo">
       <point x="0.0" y="-114.5" />
-      <point x="709.5" y="325.0" />
-      <point x="653.5" y="325.0" />
-      <point x="28.0" y="147.5" />
+      <point x="606.5" y="325.0" />
+      <point x="662.5" y="325.0" />
+      <point x="-28.0" y="147.5" />
     </edge>
     <edge source="tools.Operaciones.Operacion" target="tools.Operaciones">
       <point x="0.0" y="-36.0" />
       <point x="0.0" y="157.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.9" x="331.0" y="749.0" />
+  <settings layout="Hierarchic Group" zoom="0.9" x="518.0" y="2162.777777777778" />
   <SelectedNodes>
-    <node>gui.simulador.Recursividad</node>
+    <node>gui.contenido.Save</node>
   </SelectedNodes>
   <Categories>
     <Category>Fields</Category>

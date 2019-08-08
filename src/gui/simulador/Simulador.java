@@ -7,16 +7,18 @@ import gui.contenido.Texto;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.editor.Editor;
+import tools.Archivos;
 import tools.Colour;
 import tools.Constrains;
 import tools.Fuentes;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 public abstract class Simulador extends Lienzo {
     private Integer iteracion;
-    private Component component;
+    private JComponent component;
     private JPanel datos;
     private JPanel panel;
     private JTabbedPane codigos;
@@ -47,9 +49,10 @@ public abstract class Simulador extends Lienzo {
      * @param title título de los componentes de registro de datos
      * @param components {@link JComponent}s de registro de datos
      */
-    public Simulador(Component component, String title, JComponent... components){
+    public Simulador(JComponent component, String title, JComponent... components){
         super(new GridBagLayout(),false);
         this.component = component;
+        this.component.setComponentPopupMenu(menu());
         iteracion = 0;
         init();
         acomodamientoPanelControl(title, components);
@@ -155,6 +158,13 @@ public abstract class Simulador extends Lienzo {
     private int sizeTree(int length){
         int size=200-(10*length);
         return size > 0 ? size : 8;
+    }
+    private JPopupMenu menu(){
+        JPopupMenu menu=new JPopupMenu();
+        JMenuItem save=new JMenuItem("Exportar Lienzo");
+        save.addActionListener(e -> JOptionPane.showMessageDialog(this,Archivos.createImage(Eventos.saveFile(), Eventos.createImageOf(component))));
+        menu.add(save);
+        return menu;
     }
     /**
      * Componente de área de Notificaciones
