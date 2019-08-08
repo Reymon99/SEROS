@@ -1,9 +1,10 @@
 package gui.simulador.lienzos;
 import gui.simulador.Simulador;
 import tools.Fuentes;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
-public class Graficador extends Canvas {
+public class Graficador extends JComponent {
     private boolean graficar;
     private Point punto;
     private Point axis;
@@ -207,7 +208,7 @@ public class Graficador extends Canvas {
      * @param g {@link Graphics}
      */
     @Override
-    public void paint(Graphics g) {
+    protected void paintComponent(Graphics g) {
         Graphics2D g2=(Graphics2D)g;
         Point point=new Point();
         eje(g2);
