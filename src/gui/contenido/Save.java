@@ -8,7 +8,7 @@ public class Save extends JFileChooser {
      */
     public Save() {
         setFileSelectionMode(FILES_AND_DIRECTORIES);
-        setFileFilter(new FileNameExtensionFilter("JPEG Imagen", "jpeg"));
+        setFileFilter(new FileNameExtensionFilter("JPG Imagen", "jpg"));
         setDialogTitle("Exportando Imagen");
     }
     /**

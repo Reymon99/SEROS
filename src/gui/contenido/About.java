@@ -28,7 +28,7 @@ public final class About extends JDialog {
         init();
         pack();
         setLocationRelativeTo(component);
-        setIconImage(Objects.requireNonNull(Archivos.image("/resources/image/logo.png", -1, 48)).getImage());
+        setIconImage(Objects.requireNonNull(Archivos.image("/resources/image/icon.png", -1, -1)).getImage());
         addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {

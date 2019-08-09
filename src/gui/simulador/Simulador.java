@@ -1,13 +1,8 @@
 package gui.simulador;
 import eventos.Eventos;
-import gui.contenido.ButtonSimulador;
-import gui.contenido.Lienzo;
-import gui.contenido.Switch;
-import gui.contenido.Texto;
-import gui.contenido.Tree;
+import gui.contenido.*;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.editor.Editor;
-import gui.simulador.lienzos.Graficador;
 import tools.Archivos;
 import tools.Colour;
 import tools.Constrains;
@@ -164,7 +159,7 @@ public abstract class Simulador extends Lienzo {
     private JPopupMenu menu(){
         JPopupMenu menu=new JPopupMenu();
         JMenuItem save=new JMenuItem("Exportar Lienzo");
-        save.addActionListener(e -> JOptionPane.showMessageDialog(this,Archivos.exportImage(Eventos.saveFile(), Eventos.createImageOf(lienzo))));
+        save.addActionListener(e -> new Message(Archivos.exportImage(Eventos.saveFile(), Eventos.createImageOf(lienzo)), lienzo).setVisible(true));
         menu.add(save);
         return menu;
     }
