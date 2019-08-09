@@ -7,6 +7,7 @@ import gui.contenido.Texto;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.editor.Editor;
+import gui.simulador.lienzos.Graficador;
 import tools.Archivos;
 import tools.Colour;
 import tools.Constrains;
@@ -17,9 +18,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 public abstract class Simulador extends Lienzo {
     private Integer iteracion;
-    private JComponent component;
+    private JComponent lienzo;
     private JPanel datos;
-    private JPanel panel;
+    private JPanel control;
     private JTabbedPane codigos;
     private ButtonSimulador clean;
     private ButtonSimulador nextIteracion;
@@ -38,20 +39,22 @@ public abstract class Simulador extends Lienzo {
      */
     public Simulador(String title, JComponent... components){
         this(new JPanel(new GridBagLayout()), title, components);
-        component.setPreferredSize(canvasSize);
-        component.setSize(canvasSize);
-        component.setMinimumSize(canvasSize);
     }
     /**
      * Esquema de los simuladores del proyecto
-     * @param component {@link Component} a mostrar el objeto simulado
+     * @param lienzo {@link JComponent} a mostrar el objeto simulado
      * @param title título de los componentes de registro de datos
      * @param components {@link JComponent}s de registro de datos
      */
-    public Simulador(JComponent component, String title, JComponent... components){
+    public Simulador(JComponent lienzo, String title, JComponent... components){
         super(new GridBagLayout(),false);
-        this.component = component;
-        this.component.setComponentPopupMenu(menu());
+        this.lienzo = lienzo;
+        this.lienzo.setPreferredSize(canvasSize);
+        this.lienzo.setSize(canvasSize);
+        this.lienzo.setMinimumSize(canvasSize);
+        this.lienzo.setComponentPopupMenu(menu());
+        this.lienzo.setBorder(BorderFactory.createEtchedBorder(0));
+        this.lienzo.setBackground(Colour.BLANCO_OPACO.getColor());
         iteracion = 0;
         init();
         acomodamientoPanelControl(title, components);
@@ -68,8 +71,8 @@ public abstract class Simulador extends Lienzo {
         });
         clean=new ButtonSimulador("Limpiar",false,e -> getAcciones().clean());
         nextIteracion=new ButtonSimulador("Siguiente",false, e -> getAcciones().iteracion1());
-        panel=new JPanel(new GridBagLayout());
-        panel.setBackground(Colour.GRIS_PANEL.getColor());
+        control =new JPanel(new GridBagLayout());
+        control.setBackground(Colour.GRIS_PANEL.getColor());
         JLabel desc=new JLabel("Descripción");
         desc.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
         desc.setForeground(Colour.BLANCO.getColor());
@@ -84,10 +87,10 @@ public abstract class Simulador extends Lienzo {
             }
         });
         Insets insets=new Insets(0,0,0,0);
-        Constrains.addComp(component,this,new Rectangle(0,0,1,4),0,0,insets,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
-        Constrains.addComp(getBack(),panel,new Rectangle(0,0,1,2),0,0,new Insets(15,15,15,5),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addComp(getHome(),panel,new Rectangle(1,0,1,2),0,0,new Insets(20,5,20,15),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addComp(panel,this,new Rectangle(0,4,1,1),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp(lienzo,this,new Rectangle(0,0,1,4),0,0,insets,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
+        Constrains.addComp(getBack(), control,new Rectangle(0,0,1,2),0,0,new Insets(15,15,15,5),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addComp(getHome(), control,new Rectangle(1,0,1,2),0,0,new Insets(20,5,20,15),GridBagConstraints.WEST,GridBagConstraints.NONE);
+        Constrains.addComp(control,this,new Rectangle(0,4,1,1),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompX(desc,this,new Rectangle(1,0,1,1),1,insets,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
         Constrains.addCompIy(texto=new Texto(4,55),this,new Rectangle(1,1,1,1),1,0,insets,35,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
         Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,new Rectangle(1,2,1,1),1,0,insets,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
@@ -161,7 +164,7 @@ public abstract class Simulador extends Lienzo {
     private JPopupMenu menu(){
         JPopupMenu menu=new JPopupMenu();
         JMenuItem save=new JMenuItem("Exportar Lienzo");
-        save.addActionListener(e -> JOptionPane.showMessageDialog(this,Archivos.createImage(Eventos.saveFile(), Eventos.createImageOf(component))));
+        save.addActionListener(e -> JOptionPane.showMessageDialog(this,Archivos.exportImage(Eventos.saveFile(), Eventos.createImageOf(lienzo))));
         menu.add(save);
         return menu;
     }
@@ -176,15 +179,15 @@ public abstract class Simulador extends Lienzo {
      * Panel de control de comandos del simulador
      * @return panel de control
      */
-    protected JPanel getPanel() {
-        return panel;
+    protected JPanel getControl() {
+        return control;
     }
     /**
      * Obtiene el área gráfica del simulador
      * @return área gráfica del simulador
      */
-    public Component getComponent() {
-        return component;
+    public Component getLienzo() {
+        return lienzo;
     }
     /**
      * Obtiene el contenedor de los códigos del simulador

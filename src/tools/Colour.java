@@ -9,7 +9,7 @@ public enum Colour {
     VERDE(new Color(164,205,146)),
     AZUL_TITLE(new Color(12,35,154)),
     AZUL_TEXT(new Color(0,19,65)),
-    GRIS(new Color(102,95,133)),
+    BLANCO_OPACO(new Color(226, 226, 226)),
     GRIS_PANEL(new Color(142,134,134)),
     GRIS_BUTTON(new Color(182,182,182)),
     CURIOUS_BLUE(new Color(3,127,188)),

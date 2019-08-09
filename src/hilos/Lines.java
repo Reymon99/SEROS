@@ -3,9 +3,12 @@ import eventos.Eventos;
 import gui.contenido.Texto;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 public abstract class Lines extends Thread {
     private Simulador simulador;
-    private LineLocation[] lines;
+    private List<LineLocation> lines;
     /**
      * Hilo recorredor de líneas en el Editor.<br>
      * Modifica el texto del componente en determinadas líneas.
@@ -15,7 +18,7 @@ public abstract class Lines extends Thread {
      */
     protected Lines(Simulador simulador, LineLocation... lines) {
         this.simulador = simulador;
-        this.lines = lines;
+        this.lines = Arrays.asList(lines);
     }
     @Override
     public void run() {
@@ -26,13 +29,13 @@ public abstract class Lines extends Thread {
      * Selección de líneas en la ejecución del paso a paso
      */
     private void lines(){
-        for (LineLocation line:lines){
-            simulador.getCodigos().setSelectedIndex(line.getCode());
-            Eventos.scroll(((Editor) simulador.getCodigos().getComponentAt(line.getCode())),line.getScroll());
-            ((Editor) simulador.getCodigos().getComponentAt(line.getCode())).drawLineIn(line.getLineIndice(),line.getLineEditor());
-            if (line.getTexto()!=null) simulador.setTexto(line.getTexto());
-            if (line.isSleep()) Eventos.sleep(1270);
-        }
+        lines.forEach(e -> {
+            simulador.getCodigos().setSelectedIndex(e.getCode());
+            Eventos.scroll((((Editor) simulador.getCodigos().getComponentAt(e.getCode()))), e.getScroll());
+            ((Editor) simulador.getCodigos().getComponentAt(e.getCode())).drawLineIn(e.getLineIndice(), e.getLineEditor());
+            if (Optional.ofNullable(e.getTexto()).isPresent()) simulador.setTexto(e.getTexto());
+            if (e.isSleep()) Eventos.sleep(1270);
+        });
     }
     /**
      * Acciones a realizar al final del hilo.<br>

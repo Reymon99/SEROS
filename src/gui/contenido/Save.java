@@ -8,7 +8,7 @@ public class Save extends JFileChooser {
      */
     public Save() {
         setFileSelectionMode(FILES_AND_DIRECTORIES);
-        setFileFilter(new FileNameExtensionFilter("PNG Imagen", "png"));
+        setFileFilter(new FileNameExtensionFilter("JPEG Imagen", "jpeg"));
         setDialogTitle("Exportando Imagen");
     }
     /**
@@ -18,6 +18,6 @@ public class Save extends JFileChooser {
     public File getFile(){
         int i = showSaveDialog(null);
         File file=getSelectedFile();
-        return i==APPROVE_OPTION ? file.getName().endsWith(".png") ? file : new File(file.getAbsolutePath()+".png") : new File("");
+        return i==APPROVE_OPTION ? file.getName().endsWith(".jpg") ? file : new File(file.getAbsolutePath()+".jpg") : new File("");
     }
 }

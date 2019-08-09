@@ -1,10 +1,11 @@
 package gui.simulador.lienzos;
 import gui.simulador.Simulador;
 import tools.Fuentes;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
-public class Graficador extends JPanel {
+public class Graficador extends JLabel {
     private boolean graficar;
     private Point punto;
     private Point axis;
@@ -12,9 +13,6 @@ public class Graficador extends JPanel {
      * Grafica un punto en una coordenada dada
      */
     public Graficador(){
-        setPreferredSize(Simulador.canvasSize);
-        setMaximumSize(Simulador.canvasSize);
-        setMinimumSize(Simulador.canvasSize);
         setFont(Fuentes.UBUNTU_LIGHT_12.getFont());
         graficar=false;
         punto=new Point();
@@ -156,7 +154,7 @@ public class Graficador extends JPanel {
     private void axisXY(Graphics2D g2, Point point, int i, int j){
         if (i!=290 && j!=halfScreenWidth()){
             axis(g2, i, j);
-            axisZero(point, i, j);
+            if (axis.x==0 && axis.y==0) axisZero(point, i, j);
             number(g2, i, j);
             axis.move(axis.x+1, axis.y-1);
         }
@@ -198,21 +196,20 @@ public class Graficador extends JPanel {
      * @param j pixel en X
      */
     private void axisZero(Point point, int i, int j){
-        if (axis.x==0 && axis.y==0) {
-            axis.move(1, -1);
-            puntoCoordenadas(point, i, j);
-        }
+        axis.move(1, -1);
+        puntoCoordenadas(point, i, j);
     }
     /**
      * Dibuja y grafica el punto en las coordenadas dadas
      * @param g {@link Graphics}
      */
-    @Override
-    protected void paintComponent(Graphics g) {
+    //@Override
+    public void paintComponent(Graphics g) {
         Graphics2D g2=(Graphics2D)g;
         Point point=new Point();
         eje(g2);
         valoresAxisXY(g2,point);
         graficarCoordenada(g2,point);
+        g2.dispose();
     }
 }

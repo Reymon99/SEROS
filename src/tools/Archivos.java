@@ -37,12 +37,17 @@ public abstract class Archivos {
         }
         return txt.toString();
     }
-    public static String createImage(File file, RenderedImage image){
+    /**
+     * Exporta una determinada imagen tomada de un componente del proyecto a la ruta indicada
+     * @param file ruta a exportar imagen
+     * @param image imagen de un componente del proyecto
+     * @return informa acerca del camino favorable o no de la exportación de la imagen
+     */
+    public static String exportImage(File file, RenderedImage image){
         try {
-            ImageIO.write(image, "png", file);
-            return "Imagen creada exitosamente";
+            return ImageIO.write(image, "jpg", file) ? "Lienzo exportado exitosamente como imagen" : "No se pudo exportar el lienzo como imagen";
         } catch (IOException e) {
-            return "No se pudo crear la Imagen";
+            return "No se pudo exportar el lienzo como imagen";
         }
     }
 }

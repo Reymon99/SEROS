@@ -145,7 +145,8 @@ public abstract class Eventos {
     public static File saveFile(){
         return new Save().getFile();
     }
-    public static RenderedImage createImageOf(Component component){BufferedImage image=new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_ARGB);
+    public static RenderedImage createImageOf(Component component){
+        BufferedImage image=new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_RGB);
         component.paint(image.getGraphics());
         return image;
     }

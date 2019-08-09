@@ -354,20 +354,23 @@ public final class Contenedor extends JPanel {
         ((JSpinner.NumberEditor)y.getEditor()).getTextField().setEditable(false);
         Tree punto=new Tree(new JTree.DynamicUtilTreeNode(new Dato("Punto","punto","",true), new Dato[]{new Dato("int","x",""),new Dato("int","y","")}));
         punto.expandNode(0);
-        Simulador simulador= new Simulador(new Graficador(), "(x,y)", x, y) {
+        Simulador simulador= new Simulador("(x,y)", x, y) {
             @Override
             protected void acomodamientoPanelControl(String title, JComponent... components) {
-                Constrains.addCompX(componentRegistro(title, components),getPanel(),new Rectangle(2,0,2,1),1,new Insets(3,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
-                Constrains.addCompX(getSend(),getPanel(),new Rectangle(4,0,2,1),1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-                Constrains.addCompX(getPause(),getPanel(),new Rectangle(2,1,1,1),1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
-                Constrains.addCompX(getNextIteracion(),getPanel(),new Rectangle(3,1,2,1),1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-                Constrains.addCompX(getClean(),getPanel(),new Rectangle(5,1,1,1),1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+                Constrains.addCompX(componentRegistro(title, components), getControl(),new Rectangle(2,0,2,1),1,new Insets(3,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
+                Constrains.addCompX(getSend(), getControl(),new Rectangle(4,0,2,1),1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+                Constrains.addCompX(getPause(), getControl(),new Rectangle(2,1,1,1),1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
+                Constrains.addCompX(getNextIteracion(), getControl(),new Rectangle(3,1,2,1),1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+                Constrains.addCompX(getClean(), getControl(),new Rectangle(5,1,1,1),1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
             }
         };
+        Graficador graficador=new Graficador();
+        ((JPanel)simulador.getLienzo()).setLayout(new BorderLayout());
+        ((JPanel)simulador.getLienzo()).add(graficador, BorderLayout.CENTER);
         simulador.setAcciones(new Acciones() {
             @Override
             public void iteracion0() {
-                ((Graficador)simulador.getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
+                graficador.graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
                 Eventos.enable(true,simulador.getClean());
                 Eventos.enable(false,simulador.getNextIteracion(),simulador.getSend(),x,y,simulador.getPause(),simulador.getBack());
                 simulador.setTexto(Text.SIMULADORTDA1.toString());
@@ -386,7 +389,7 @@ public final class Contenedor extends JPanel {
             @Override
             public void clean() {
                 simulador.cleanComponents();
-                ((Graficador)simulador.getComponent()).limpiar();
+                graficador.limpiar();
                 Eventos.variable(punto,0,"");
                 Eventos.variable(punto,1,"");
                 Eventos.enable(true,x,y);
@@ -414,7 +417,7 @@ public final class Contenedor extends JPanel {
              */
             private void mostrarCoordenadas(){
                 base(Text.SIMULADORTDA1,21,((Editor) simulador.getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum(),true);
-                ((Graficador)simulador.getComponent()).graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
+                graficador.graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
             }
             /**
              * Acciones comunes de interactividad
