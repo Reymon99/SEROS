@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import gui.contenido.About;
 import gui.contenido.Save;
@@ -146,7 +147,7 @@ public abstract class Eventos {
      * Obtiene la ruta indicada a guardar el archivo que se va a exportar
      * @return ruta indicada de destino
      */
-    public static File saveFile(boolean isImage) throws Exception {
+    public static File saveFile(boolean isImage) throws FileNotFoundException {
         return new Save(isImage).getFile();
     }
     /**

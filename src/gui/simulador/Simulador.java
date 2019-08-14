@@ -16,6 +16,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
+
 public abstract class Simulador extends Lienzo {
     private Integer iteracion;
     private JComponent lienzo;
@@ -167,7 +169,7 @@ public abstract class Simulador extends Lienzo {
         save.addActionListener(e -> {
             try {
                 new Message(Archivos.exportImage(Eventos.saveFile(true), Eventos.createImageOf(lienzo)), lienzo).setVisible(true);
-            } catch (Exception ex) {//None
+            } catch (FileNotFoundException ex) {//None
             }
         });
         menu.add(save);

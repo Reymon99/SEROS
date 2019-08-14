@@ -2,6 +2,7 @@ package gui.contenido;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import java.io.FileNotFoundException;
 public class Save extends JFileChooser {
     private boolean isImage;
     /**
@@ -17,10 +18,10 @@ public class Save extends JFileChooser {
      * Da la ruta indicada por el usuario para guardar la imagen del lienzo del simulador
      * @return ruta convertida en un archivo
      */
-    public File getFile() throws Exception {
+    public File getFile() throws FileNotFoundException {
         int i = showSaveDialog(null);
         File file=getSelectedFile();
         if (i==APPROVE_OPTION) return file.getName().endsWith(isImage ? ".jpg" : ".java") ? file : new File(file.getAbsolutePath()+(isImage ? ".jpg" : ".java"));
-        else throw new Exception();
+        else throw new FileNotFoundException("Ruta no especificada");
     }
 }
