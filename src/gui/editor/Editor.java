@@ -1,13 +1,21 @@
 package gui.editor;
+import eventos.Eventos;
+import gui.contenido.Message;
 import gui.contenido.scroll.ModernScrollPane;
+import gui.simulador.Simulador;
 import tools.Archivos;
 import tools.Colour;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import java.io.FileNotFoundException;
 public class Editor extends ModernScrollPane{
     /**
      * Editor sintexico de código a utilizar en la interfaz gráfica del proyecto
      */
     private Editor(View view, Indice indice) {
         super(view, indice);
+        setComponentPopupMenu(menuCode());
+        ((View) getView()).setComponentPopupMenu(menuCode());
     }
     /**
      * Decodifica el texto del archivo para diferenciar los diferentes colores de la sintaxis
@@ -65,5 +73,24 @@ public class Editor extends ModernScrollPane{
         Editor editor=new Editor(view,new Indice(view));
         editor.text(Archivos.codefiles(path));
         return editor;
+    }
+    /**
+     * Opciones para el Editor</br>
+     * <ul>
+     *     <li>Exportar el texto del editor como Archivo Java</li>
+     * </ul>
+     * @return menú para las opciones del Editor
+     */
+    private JPopupMenu menuCode(){
+        JPopupMenu menu=new JPopupMenu();
+        JMenuItem save=new JMenuItem("Exportar Código");
+        save.addActionListener(e -> {
+            try{
+                new Message(Archivos.exportCode(Eventos.saveFile(false), ""), Simulador.lienzo).setVisible(true);
+            }catch (FileNotFoundException ex){//None
+            }
+        });
+        menu.add(save);
+        return menu;
     }
 }

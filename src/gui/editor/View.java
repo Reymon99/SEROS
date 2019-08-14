@@ -3,7 +3,7 @@ import gui.contenido.TextPane;
 import tools.Colour;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
-public class  View extends TextPane {
+public class View extends TextPane {
     private boolean line;
     private int lineaSelected;
     /**

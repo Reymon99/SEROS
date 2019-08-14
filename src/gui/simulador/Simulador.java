@@ -17,10 +17,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
-
 public abstract class Simulador extends Lienzo {
     private Integer iteracion;
-    private JComponent lienzo;
+    public static JComponent lienzo;
     private JPanel datos;
     private JPanel control;
     private JTabbedPane codigos;
@@ -50,13 +49,13 @@ public abstract class Simulador extends Lienzo {
      */
     public Simulador(JComponent lienzo, String title, JComponent... components){
         super(new GridBagLayout(),false);
-        this.lienzo = lienzo;
-        this.lienzo.setPreferredSize(canvasSize);
-        this.lienzo.setSize(canvasSize);
-        this.lienzo.setMinimumSize(canvasSize);
-        this.lienzo.setComponentPopupMenu(menu());
-        this.lienzo.setBorder(BorderFactory.createEtchedBorder(0));
-        this.lienzo.setBackground(Colour.BLANCO_OPACO.getColor());
+        Simulador.lienzo = lienzo;
+        Simulador.lienzo.setPreferredSize(canvasSize);
+        Simulador.lienzo.setSize(canvasSize);
+        Simulador.lienzo.setMinimumSize(canvasSize);
+        Simulador.lienzo.setComponentPopupMenu(menuLienzo());
+        Simulador.lienzo.setBorder(BorderFactory.createEtchedBorder(0));
+        Simulador.lienzo.setBackground(Colour.BLANCO_OPACO.getColor());
         iteracion = 0;
         init();
         acomodamientoPanelControl(title, components);
@@ -163,7 +162,14 @@ public abstract class Simulador extends Lienzo {
         int size=200-(10*length);
         return size > 0 ? size : 8;
     }
-    private JPopupMenu menu(){
+    /**
+     * Opciones para el lienzo</br>
+     * <ul>
+     *     <li>Exportar el Lienzo como Imagen JPG</li>
+     * </ul>
+     * @return menú para las opciones del Lienzo
+     */
+    private JPopupMenu menuLienzo(){
         JPopupMenu menu=new JPopupMenu();
         JMenuItem save=new JMenuItem("Exportar Lienzo");
         save.addActionListener(e -> {

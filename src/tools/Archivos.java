@@ -50,4 +50,20 @@ public abstract class Archivos {
             return "No se pudo exportar el lienzo como imagen";
         }
     }
+    /**
+     * Exporta un determinado archivo de código Java de un determinado {@link gui.editor.Editor}
+     * @param file ruta a exportar código Java
+     * @param text código a fijar en el archivo Java
+     * @return informa acerca del camino favorable o no de la exportación del archivo Java
+     */
+    public static String exportCode(File file, String text){
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            bw.write(text);
+            bw.close();
+            return "Código exportado exitosamente como archivo Java";
+        } catch (IOException e) {
+            return "No se pudo exportar el código del editor como archivo";
+        }
+    }
 }
