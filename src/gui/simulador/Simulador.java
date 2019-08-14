@@ -164,7 +164,12 @@ public abstract class Simulador extends Lienzo {
     private JPopupMenu menu(){
         JPopupMenu menu=new JPopupMenu();
         JMenuItem save=new JMenuItem("Exportar Lienzo");
-        save.addActionListener(e -> new Message(Archivos.exportImage(Eventos.saveFile(), Eventos.createImageOf(lienzo)), lienzo).setVisible(true));
+        save.addActionListener(e -> {
+            try {
+                new Message(Archivos.exportImage(Eventos.saveFile(true), Eventos.createImageOf(lienzo)), lienzo).setVisible(true);
+            } catch (Exception ex) {//None
+            }
+        });
         menu.add(save);
         return menu;
     }

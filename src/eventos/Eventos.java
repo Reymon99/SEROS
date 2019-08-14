@@ -146,8 +146,8 @@ public abstract class Eventos {
      * Obtiene la ruta indicada a guardar el archivo que se va a exportar
      * @return ruta indicada de destino
      */
-    public static File saveFile(){
-        return new Save().getFile();
+    public static File saveFile(boolean isImage) throws Exception {
+        return new Save(isImage).getFile();
     }
     /**
      * Crea una imagen a partir del componente inidicado
