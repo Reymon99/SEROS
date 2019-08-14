@@ -49,6 +49,10 @@ public class Tree extends JTree {
     public void addNode(DefaultMutableTreeNode node){
         this.node.add(node);
     }
+    /**
+     * Expande un nodo indicado del árbol
+     * @param row fila en el que está el nodo a expandir
+     */
     public void expandNode(int row){
         fireTreeExpanded(getPathForRow(row));
     }

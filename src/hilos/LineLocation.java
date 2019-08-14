@@ -71,25 +71,11 @@ public class LineLocation {
         return code;
     }
     /**
-     * Da una nueva ubicación del código a emplear
-     * @param code nueva ubicación del código
-     */
-    public void setCode(int code) {
-        this.code = code;
-    }
-    /**
      * Obtiene la línea a seleccionar en el código empleado
      * @return línea a seleccionar del código en el Indice
      */
     public int getLineIndice() {
         return lineIndice;
-    }
-    /**
-     * Da una nueva línea a seleccionar en el código empleado
-     * @param lineIndice nueva línea a seleccionar en el código en el editor
-     */
-    public void setLineIndice(int lineIndice) {
-        this.lineIndice = lineIndice;
     }
     /**
      * Obtiene la línea a seleccionar en el código empleado
@@ -99,25 +85,11 @@ public class LineLocation {
         return lineEditor;
     }
     /**
-     * Da una nueva línea a seleccionar en el código empleado
-     * @param lineEditor nueva línea a seleccionar en el código en el editor
-     */
-    public void setLineEditor(int lineEditor) {
-        this.lineEditor = lineEditor;
-    }
-    /**
      * Obtiene el texto empleado de la línea a seleccionar del código en el editor
      * @return texto empleado de la línea
      */
     public String getTexto() {
         return texto;
-    }
-    /**
-     * Da un nuevo texto a emplear en la línea a seleccionar del código en el editor
-     * @param texto nuevo texto a emplear en la línea seleccionada
-     */
-    public void setTexto(String texto) {
-        this.texto = texto;
     }
     /**
      * Obtiene la posición dada al scroll del editor
@@ -127,32 +99,14 @@ public class LineLocation {
         return scroll;
     }
     /**
-     * Da una nueva posición al scroll del editor
-     * @param scroll nueva posición al scroll
-     */
-    public void setScroll(int scroll) {
-        this.scroll = scroll;
-    }
-    /**
      * Obtiene el estado de sí la línea duerme ó no
      * @return estado de espera
      */
     public boolean isSleep() {
         return sleep;
     }
-    /**
-     * Da un nuevo estado de espera a la línea para así dormir o no
-     * @param sleep nuevo estado de espera
-     */
-    public void setSleep(boolean sleep) {
-        this.sleep = sleep;
-    }
     @Override
     public String toString() {
         return texto;
-    }
-    @Override
-    public boolean equals(Object obj) {
-        return obj instanceof LineLocation && code==((LineLocation) obj).code && lineIndice==((LineLocation) obj).lineIndice && lineEditor==((LineLocation) obj).lineEditor;
     }
 }

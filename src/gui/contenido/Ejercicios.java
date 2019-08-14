@@ -28,7 +28,7 @@ public final class Ejercicios extends Lienzo {
     }
     /**
      * Inicialización y acomodamiento de los componentes en el panel
-      */
+     */
     private void init() {
         panel=new JPanel(new FlowLayout(FlowLayout.CENTER,50,20));
         panel.setOpaque(false);

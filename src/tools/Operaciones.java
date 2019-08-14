@@ -105,11 +105,24 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
         else if (exponente==1) return String.valueOf(base);
         else return base+" * "+productoPotencia(base, exponente-1);
     }
+    /**
+     * Genera la multiplicación de una potencia dada
+     * @param base caso base de la potencia
+     * @param exponente caso exponente de la potencia
+     * @return multiplicación recursiva de la potencia b^e
+     */
     public static String productoPotenciaUp(Object base,Object exponente){
         String[] ads=new String[Integer.parseInt(exponente.toString())];
         Arrays.fill(ads,base.toString());
         return String.join(" * ",ads);
     }
+    /**
+     * Genera la multiplicación de la potencia dada hasta la potencia indicada
+     * @param base caso base de la potencia
+     * @param exponente caso exponente de la potencia
+     * @param valor valor para potencia indicada
+     * @return multiplicación recursiva de la potencia b^e hasta la potencia b^v
+     */
     public static String productoPotenciaUpN(Object base,Object exponente,int valor){
         return productoPotenciaUp(base,exponente) +" * "+ potencia(base, valor);
     }

@@ -63,7 +63,7 @@ public final class Contenido extends Lienzo {
         return contenido;
     }
     /**
-     * Titulo del contenido
+     * Título del contenido
      * @return title {@link JLabel}
      */
     public JLabel getTitle() {

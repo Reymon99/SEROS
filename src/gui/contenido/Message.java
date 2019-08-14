@@ -11,6 +11,11 @@ import java.awt.event.KeyEvent;
 import java.util.Objects;
 public class Message extends JDialog {
     private String message;
+    /**
+     * Notifica la información de la acción realizada
+     * @param message información a notificar
+     * @param component {@link Component} padre
+     */
     public Message(String message, Component component){
         this.message = message;
         setUndecorated(true);
@@ -34,6 +39,9 @@ public class Message extends JDialog {
             }
         });
     }
+    /**
+     * Construcción del componente
+     */
     private void init(){
         JLabel label=new JLabel(message, JLabel.CENTER);
         label.setFont(Fuentes.UBUNTU_LIGHT_20.getFont());

@@ -114,10 +114,30 @@ public abstract class Recursividad extends Simulador implements Acciones {
      * @return arreglo de las líneas que se van a simular
      */
     protected abstract Lines[] lines();
+    /**
+     * Define el caso base que se va a utilizar en el simulador
+     * @return caso base
+     */
     protected abstract boolean isCasoBase();
+    /**
+     * acciones a realizar en el caso base del simulador
+     * @param code define si se va a utilizar la simulación paso a paso con código o no
+     */
     protected abstract void accionesCasoBase(boolean code);
+    /**
+     * acciones a realizar en el caso terminal del simulador
+     * @param code define si se va a utilizar la simulación paso a paso con código o no
+     */
     protected abstract void accionesCasoTerminal(boolean code);
+    /**
+     * acciones a realizar en el caso incrementativo del simulador
+     * @param code define si se va a utilizar la simulación paso a paso con código o no
+     */
     protected abstract void accionesCasoIncrementativo(boolean code);
+    /**
+     * acciones a realizar en el caso decrementativo del simulador
+     * @param code define si se va a utilizar la simulación paso a paso con código o no
+     */
     protected abstract void accionesCasoDecrementativo(boolean code);
     @Override
     protected void acomodamientoPanelControl(String title, JComponent... components) {

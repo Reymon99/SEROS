@@ -27,7 +27,7 @@ public class Indice extends JPanel {
     /**
      * Indice de lineas de un componente de Texto
      * @param component componente de texto
-     * @param minimumDisplayDigits minimo de los digitos que se va a trabajar
+     * @param minimumDisplayDigits mínimo de los dígitos que se va a trabajar
      */
     private Indice(JTextComponent component, int minimumDisplayDigits) {
         this.component = component;
@@ -64,7 +64,7 @@ public class Indice extends JPanel {
     }
     /**
      * Acción del evento de Document
-     * Modifica el ancho del panel según el número de digitos del indice
+     * Modifica el ancho del panel según el número de dígitos del indice
      */
     private void documentChanged(){
         SwingUtilities.invokeLater(() -> {
@@ -80,8 +80,8 @@ public class Indice extends JPanel {
         });
     }
     /**
-     * Modifica el número minimo de digitos
-     * @param minimumDisplayDigits nuevo número minimo de digitos
+     * Modifica el número mínimo de dígitos
+     * @param minimumDisplayDigits nuevo número mínimo de dígitos
      */
     private void setMinimumDisplayDigits(int minimumDisplayDigits) {
         this.minimumDisplayDigits = minimumDisplayDigits;

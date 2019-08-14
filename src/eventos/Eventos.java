@@ -142,9 +142,18 @@ public abstract class Eventos {
         }
         return menu;
     }
+    /**
+     * Obtiene la ruta indicada a guardar el archivo que se va a exportar
+     * @return ruta indicada de destino
+     */
     public static File saveFile(){
         return new Save().getFile();
     }
+    /**
+     * Crea una imagen a partir del componente inidicado
+     * @param component componente a convetir en imagen
+     * @return imagen creada a partir del componente dado
+     */
     public static RenderedImage createImageOf(Component component){
         BufferedImage image=new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_RGB);
         component.paint(image.getGraphics());

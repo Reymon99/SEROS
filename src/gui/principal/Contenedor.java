@@ -87,7 +87,7 @@ public final class Contenedor extends JPanel {
                 Eventos.show(Paneles.MODULARIDAD);
             }
         }), lienzo,new Rectangle(1,0,1,1),0,new Insets(30,18,0,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Recursividad","Metodos Recursivos", Archivos.image("/resources/image/Recursividad.png", -1, -1),Eventos.menu(Paneles.RECURSIVIDAD,Paneles.EJERCICIOS_RECURSIVIDAD,Paneles.FACTORIAL,Paneles.POTENCIA), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Recursividad","Métodos Recursivos", Archivos.image("/resources/image/Recursividad.png", -1, -1),Eventos.menu(Paneles.RECURSIVIDAD,Paneles.EJERCICIOS_RECURSIVIDAD,Paneles.FACTORIAL,Paneles.POTENCIA), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.RECURSIVIDAD);
@@ -105,13 +105,13 @@ public final class Contenedor extends JPanel {
                 Eventos.show(Paneles.NODOS);
             }
         }),lienzo,new Rectangle(1,3,1,1),0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Ordenamiento", "Metodos de Ordenamiento Interno", Archivos.image("/resources/image/Ordenamiento.png", -1, -1),Eventos.menu(Paneles.ORDENAMIENTO), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Ordenamiento", "Métodos de Ordenamiento Interno", Archivos.image("/resources/image/Ordenamiento.png", -1, -1),Eventos.menu(Paneles.ORDENAMIENTO), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.ORDENAMIENTO);
             }
         }),lienzo,new Rectangle(2,0,1,2),0,new Insets(30,18,13,18), GridBagConstraints.SOUTH, GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Busqueda","Metodos de Busqueda", Archivos.image("/resources/image/Busqueda.png", -1, -1),Eventos.menu(Paneles.BUSQUEDA), new MouseAdapter() {
+        Constrains.addCompY(new Boton("Busqueda","Métodos de Busqueda", Archivos.image("/resources/image/Busqueda.png", -1, -1),Eventos.menu(Paneles.BUSQUEDA), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.BUSQUEDA);
@@ -180,7 +180,7 @@ public final class Contenedor extends JPanel {
      * @see Contenido
      */
     private Contenido modularidad(){
-        Contenido con =  new Contenido();
+        Contenido con = new Contenido();
         con.getTitle().setText("Modularidad");
         con.next("Demostración Interactiva de Modularidad",Paneles.DEMOSTRACION_MODULARIDAD);
         Constrains.addComp(new Texto(Text.MODULARIDAD.toString()),con.getContenido(),new Rectangle(0,0,1,1), 1,1,new Insets(10, 25, 5, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
@@ -311,6 +311,7 @@ public final class Contenedor extends JPanel {
      * Ejercicios simulados de recursividad
      * @return panel de simuladores en recursividad
      * @see Ejercicios
+     * @see Contenedor#recursividad()
      */
     private Ejercicios ejerciciosRecursividad(){
         Ejercicios ejercicios=new Ejercicios();
@@ -346,6 +347,7 @@ public final class Contenedor extends JPanel {
      * @return simulador de un punto en el plano cartesiano para TDA
      * @see Graficador
      * @see Simulador
+     * @see Contenedor#tda()
      */
     private Simulador simuladorTda(){
         JSpinner x=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
@@ -445,6 +447,7 @@ public final class Contenedor extends JPanel {
      * Simulador para el proceso recursivo del factorial
      * @return simulador factorial
      * @see Recursividad
+     * @see Contenedor#recursividad()
      */
     private Recursividad factorial(){
         Operaciones.addFormat(Operaciones.Operacion.FACTORIAL, "#,###,###");
@@ -574,6 +577,8 @@ public final class Contenedor extends JPanel {
      * Simulador para la temática Recursividad<br>
      * Simulador para el proceso recursivo del potencia
      * @return simulador potencia
+     * @see Recursividad
+     * @see Contenedor#recursividad()
      */
     private Recursividad potencia(){
         JSpinner valorBase=new JSpinner(new SpinnerNumberModel(1,1,10,1));
@@ -763,6 +768,12 @@ public final class Contenedor extends JPanel {
         simulador.acomodamientoPanelControl(box);
         return simulador;*/
     }
+    /**
+     * Demostración utilizada en Modularidad
+     * @return Demostración de Modularidad
+     * @see Demostracion
+     * @see Contenedor#modularidad()
+     */
     private Demostracion demoModularidad(){
         Demostracion demostracion=new Demostracion("/resources/image/moduDemo1.png");
         demostracion.setTexto(Text.DEMOSTRACION_MODULARIDAD.toString());
