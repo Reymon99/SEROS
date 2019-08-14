@@ -33,7 +33,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
      * Indica el decremento o incremento de la iteración
      * @return true: decremento | false: incremento
      */
-    public boolean isDecremento() {
+    private boolean isDecremento() {
         return decremento;
     }
     /**
@@ -93,40 +93,32 @@ public abstract class Recursividad extends Simulador implements Acciones {
         Constrains.addCompX(producto,(Container) getLienzo(),new Rectangle(0,1,1,1),1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
     }
     /**
-     * Camino paso a paso de la simulación para Recursividad
-     */
-    protected void iteracion(){
-        //None
-    }
-    /**
      * Acción caso terminal
-     * @param dato valor n a trabajar
      */
-    protected abstract void casoTerminal(int dato);
+    protected abstract void casoTerminal();
     /**
      * Acción caso a decrementar
-     * @param dato valor n a trabajar
      */
-    protected abstract void casoDecrementativo(int dato);
+    protected abstract void casoDecrementativo();
     /**
      * Acción caso a incrementar
-     * @param dato valor n a trabajar
      */
-    protected abstract void casoIncrementativo(int dato);
+    protected abstract void casoIncrementativo();
     /**
      * Acción del caso base
-     * @param dato valor n a trabajar
      * @param found si fue encontrado se termina con la ejecución de la simulación
      */
-    protected abstract void casoBase(int dato, boolean found);
+    protected abstract void casoBase(boolean found);
     /**
      * Líneas que se van a simular
      * @return arreglo de las líneas que se van a simular
      */
     protected abstract Lines[] lines();
     protected abstract boolean isCasoBase();
-    protected abstract void accionesCasoBase();
-    protected abstract void accionesCasoBaseCode();
+    protected abstract void accionesCasoBase(boolean code);
+    protected abstract void accionesCasoTerminal(boolean code);
+    protected abstract void accionesCasoIncrementativo(boolean code);
+    protected abstract void accionesCasoDecrementativo(boolean code);
     @Override
     protected void acomodamientoPanelControl(String title, JComponent... components) {
         Constrains.addCompX(componentRegistro(title, components), getControl(),new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
@@ -140,8 +132,17 @@ public abstract class Recursividad extends Simulador implements Acciones {
     public void iteracion1() {
         Eventos.enable(false, getClean(),getNextIteracion(),getSend(),getPause(),getBack(),getCodigo(),getHome());
         if (isCasoBase()){
-            if (getCodigo().isOnOff()) accionesCasoBaseCode();
-            else accionesCasoBase();
+            if (getCodigo().isOnOff()) accionesCasoBase(true);
+            else accionesCasoBase(false);
+        } else if (getIteracion()==0 && !isDecremento()){
+            if (getCodigo().isOnOff()) accionesCasoTerminal(true);
+            else accionesCasoTerminal(false);
+        } else if (!isDecremento()){
+            if (getCodigo().isOnOff()) accionesCasoIncrementativo(true);
+            else accionesCasoIncrementativo(false);
+        } else{
+            if (getCodigo().isOnOff()) accionesCasoDecrementativo(true);
+            else accionesCasoDecrementativo(false);
         }
     }
 }

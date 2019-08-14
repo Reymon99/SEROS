@@ -1,7 +1,6 @@
 package gui.simulador.lienzos;
 import gui.simulador.Simulador;
 import tools.Fuentes;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -203,7 +202,7 @@ public class Graficador extends JLabel {
      * Dibuja y grafica el punto en las coordenadas dadas
      * @param g {@link Graphics}
      */
-    //@Override
+    @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2=(Graphics2D)g;
         Point point=new Point();

@@ -371,8 +371,8 @@ public final class Contenedor extends JPanel {
             @Override
             public void iteracion0() {
                 graficador.graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
-                Eventos.enable(true,simulador.getClean());
-                Eventos.enable(false,simulador.getNextIteracion(),simulador.getSend(),x,y,simulador.getPause(),simulador.getBack());
+                Eventos.enable(true,simulador.getClean(),simulador.getBack(),simulador.getHome());
+                Eventos.enable(false,simulador.getSend(),x,y,simulador.getPause(),simulador.getNextIteracion());
                 simulador.setTexto(Text.SIMULADORTDA1.toString());
                 Eventos.variable(punto,0,x.getValue());
                 Eventos.variable(punto,1,y.getValue());
@@ -437,6 +437,7 @@ public final class Contenedor extends JPanel {
         simulador.back("Tipos de Datos Abstratos",Paneles.TDA);
         simulador.getSend().setText("Graficar");
         simulador.setDatos(punto);
+        simulador.setTexto(Text.SIMULADORTDA2.toString());
         return simulador;
     }
     /**
@@ -452,28 +453,48 @@ public final class Contenedor extends JPanel {
         Tree variaI=new Tree(new Dato("int","n",""));
         Recursividad recursividad = new Recursividad(null, valorI) {
             @Override
-            protected void casoTerminal(int dato) {
-
+            protected void casoTerminal() {
+                base(Text.FACTORIAL1, Operaciones.formatNumber(Operaciones.factorial(getValor()), Operaciones.Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), true);
             }
             @Override
-            protected void casoDecrementativo(int dato) {
-
+            protected void casoDecrementativo() {
+                base(null, String.valueOf(0), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), false);
+                incrementIteracion();
             }
             @Override
-            protected void casoIncrementativo(int dato) {
-
+            protected void casoIncrementativo() {
+                base(Text.FACTORIAL7, Operaciones.formatNumber(Operaciones.factorial(getValor()), Operaciones.Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), false);
+                decrementIteracion();
             }
             @Override
-            protected void casoBase(int dato, boolean found) {
+            protected void casoBase(boolean found) {
                 base(found ? Text.FACTORIAL1 : Text.FACTORIAL5, Operaciones.factorial(getValor()), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))), found);
-                if (!found) decrementIteracion();
+                if (!found) {
+                    decrementIteracion();
+                    setDecremento(false);
+                }
             }
             @Override
             protected Lines[] lines() {
-                return new Lines[]{new Lines(this,new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,3,Text.FACTORIAL4.toString())) {
+                return new Lines[]{new Lines(this, new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,3,Text.FACTORIAL4.toString())) {
                     @Override
                     public void actions() {
-                        accionesCasoBase();
+                        accionesCasoBase(false);
+                    }
+                }, new Lines(this, new LineLocation(0, 5, Text.FACTORIAL6.toString())) {
+                    @Override
+                    protected void actions() {
+                        accionesCasoTerminal(false);
+                    }
+                }, new Lines(this, new LineLocation(0, 5, null, false)) {
+                    @Override
+                    protected void actions() {
+                        accionesCasoIncrementativo(false);
+                    }
+                }, new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.FACTORIAL3.toString()), new LineLocation(0, 4, Text.FACTORIAL2.toString()), new LineLocation(0, 5, null, false)) {
+                    @Override
+                    protected void actions() {
+                        accionesCasoDecrementativo(false);
                     }
                 }};
             }
@@ -482,23 +503,33 @@ public final class Contenedor extends JPanel {
                 return getValor()==1 || getValor()==0;
             }
             @Override
-            protected void accionesCasoBase() {
-                int n=Integer.parseInt(valorI.getValue().toString());
-                if (n==1 || n==0) casoBase(getValor(),true);
-                else casoBase(getValor(),false);
+            protected void accionesCasoBase(boolean code) {
+                if (code) lines()[0].start();
+                else {
+                    int n=Integer.parseInt(valorI.getValue().toString());
+                    casoBase(n==1 || n==0);
+                }
             }
             @Override
-            protected void accionesCasoBaseCode() {
-                lines()[0].start();
+            protected void accionesCasoTerminal(boolean code) {
+                if (code) lines()[1].start();
+                else casoTerminal();
+            }
+            @Override
+            protected void accionesCasoIncrementativo(boolean code) {
+                if (code) lines()[2].start();
+                else casoIncrementativo();
+            }
+            @Override
+            protected void accionesCasoDecrementativo(boolean code) {
+                if (code) lines()[3].start();
+                else casoDecrementativo();
             }
             @Override
             public void iteracion0() {
                 Eventos.enable(false,getNextIteracion(),getSend(),valorI,getPause(),getBack(),getClean(),getCodigo(),getHome());
-                setTexto(Text.FACTORIAL1.toString());
-                setNumber(Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString())), Operaciones.Operacion.FACTORIAL));
-                setProducto(Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))));
                 Eventos.variable(variaI,-1,valorI.getValue());
-                Eventos.enable(true,getClean());
+                base(Text.FACTORIAL1, Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString())), Operaciones.Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))), true);
             }
             @Override
             public void iteracion1() {
@@ -512,9 +543,9 @@ public final class Contenedor extends JPanel {
                 cleanComponents();
                 setTexto(Text.FACTORIAL.toString());
                 Eventos.variable(variaI,-1,"");
-                Eventos.enable(true,valorI);
+                Eventos.enable(true, valorI);
                 valorI.setValue(0);
-                setNumber("0");
+                setNumber(String.valueOf(0));
                 setProducto(Operaciones.operacion("n!","0"));
                 setDecremento(true);
             }
@@ -538,75 +569,6 @@ public final class Contenedor extends JPanel {
         recursividad.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
         recursividad.setProducto(Operaciones.operacion("n!","0"));
         return recursividad;
-        /*
-        simulador.setAcciones(new Acciones() {
-            @Override
-            public void iteracion1() {
-                Eventos.enable(false,valorI,simulador.getClean(),simulador.getNextIteracion(),simulador.getSend(),simulador.getPause(),simulador.getBack(),simulador.getCodigo(),simulador.getHome());
-                int valor=Integer.parseInt(valorI.getValue().toString())-simulador.getIteracion();
-                Eventos.variable(variaI,-1,valor);
-                if (Eventos.contains(valor,0,1)){
-                    if (simulador.getCodigo().isOnOff()){
-                        new Lines(simulador, new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,3,Text.FACTORIAL4.toString())){
-                            @Override
-                            public void actions() {
-                                if (Eventos.contains(Integer.parseInt(valorI.getValue().toString()),0,1)) casoBaseTerminal(valor);
-                                else casoBase(valor,false);
-                            }
-                        }.start();
-                    }else{
-                        if (Eventos.contains(Integer.parseInt(valorI.getValue().toString()),0,1)) casoBaseTerminal(valor);
-                        else casoBase(valor,true);
-                    }
-                }else if (simulador.getIteracion()==0 && !simulador.isDecremento()){
-                    if (simulador.getCodigo().isOnOff()){
-                        new Lines(simulador, new LineLocation(0,5,Text.FACTORIAL6.toString())){
-                            @Override
-                            public void actions() {
-                                casoTerminal(valor);
-                            }
-                        }.start();
-                    }else casoTerminal(valor);
-                }else if (!simulador.isDecremento()){
-                    if (simulador.getCodigo().isOnOff()){
-                        new Lines(simulador, new LineLocation(0,5,Text.FACTORIAL7.toString(),false)){
-                            @Override
-                            public void actions() {
-                                casoIncrementativo(valor,false);
-                            }
-                        }.start();
-                    }else casoIncrementativo(valor,true);
-                }else{
-                    if (simulador.getCodigo().isOnOff()){
-                        new Lines(simulador, new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,4,Text.FACTORIAL2.toString()),new LineLocation(0,5,null,false)){
-                            @Override
-                            public void actions() {
-                                casoDecrementativo(valor);
-                            }
-                        }.start();
-                    }else casoDecrementativo(valor);
-                }
-            }
-            private void casoBaseTerminal(int valor){
-                base(Text.FACTORIAL1,String.valueOf(Operaciones.factorial(valor)),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(valor)),true);
-            }
-            private void casoBase(int valor,boolean found){
-                base(found ? Text.FACTORIAL4 : Text.FACTORIAL5,String.valueOf(Operaciones.factorial(valor)),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(valor+simulador.getIteracion())),false);
-                simulador.decrementIteracion();
-                simulador.setDecremento(false);
-            }
-            private void casoTerminal(int valor){
-                base(Text.FACTORIAL1,Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),true);
-            }
-            private void casoIncrementativo(int valor,boolean mult){
-                base(mult ? Text.FACTORIAL7 : null,Operaciones.formatNumber(Operaciones.factorial(valor), Operaciones.Operacion.FACTORIAL),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),false);
-                simulador.decrementIteracion();
-            }
-            private void casoDecrementativo(int valor){
-                base(null,String.valueOf(0),Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()),valor)),false);
-                simulador.incrementIteracion();
-            }
-        });*/
     }
     /**
      * Simulador para la temática Recursividad<br>
@@ -620,19 +582,19 @@ public final class Contenedor extends JPanel {
         ((JSpinner.NumberEditor)valorExponente.getEditor()).getTextField().setEditable(false);
         Recursividad recursividad = new Recursividad("Base  -  Exponente", valorBase, valorExponente) {
             @Override
-            protected void casoTerminal(int dato) {
+            protected void casoTerminal() {
 
             }
             @Override
-            protected void casoDecrementativo(int dato) {
+            protected void casoDecrementativo() {
 
             }
             @Override
-            protected void casoIncrementativo(int dato) {
+            protected void casoIncrementativo() {
 
             }
             @Override
-            protected void casoBase(int dato, boolean found) {
+            protected void casoBase(boolean found) {
 
             }
             @Override
@@ -644,11 +606,19 @@ public final class Contenedor extends JPanel {
                 return false;
             }
             @Override
-            protected void accionesCasoBase() {
+            protected void accionesCasoBase(boolean code) {
 
             }
             @Override
-            protected void accionesCasoBaseCode() {
+            protected void accionesCasoTerminal(boolean code) {
+
+            }
+            @Override
+            protected void accionesCasoIncrementativo(boolean code) {
+
+            }
+            @Override
+            protected void accionesCasoDecrementativo(boolean code) {
 
             }
             @Override

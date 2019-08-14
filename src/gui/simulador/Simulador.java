@@ -1,6 +1,11 @@
 package gui.simulador;
 import eventos.Eventos;
-import gui.contenido.*;
+import gui.contenido.ButtonSimulador;
+import gui.contenido.Lienzo;
+import gui.contenido.Message;
+import gui.contenido.Switch;
+import gui.contenido.Texto;
+import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.editor.Editor;
 import tools.Archivos;
