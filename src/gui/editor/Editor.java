@@ -2,13 +2,13 @@ package gui.editor;
 import eventos.Eventos;
 import gui.contenido.Message;
 import gui.contenido.scroll.ModernScrollPane;
-import gui.simulador.Simulador;
 import tools.Archivos;
 import tools.Colour;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import java.io.FileNotFoundException;
 public class Editor extends ModernScrollPane{
+    private String name;
     /**
      * Editor sintexico de código a utilizar en la interfaz gráfica del proyecto
      */
@@ -63,18 +63,6 @@ public class Editor extends ModernScrollPane{
         ((View)getView()).setText(text);
     }
     /**
-     * Creación de un nuevo Editor
-     * @param path {@link String} ruta del archivo a mostrar
-     * @return editor con contenido integrado
-     * @see Archivos#codefiles(String)
-     */
-    public static Editor editor(String path){
-        View view=new View();
-        Editor editor=new Editor(view,new Indice(view));
-        editor.text(Archivos.codefiles(path));
-        return editor;
-    }
-    /**
      * Opciones para el Editor</br>
      * <ul>
      *     <li>Exportar el texto del editor como Archivo Java</li>
@@ -86,11 +74,39 @@ public class Editor extends ModernScrollPane{
         JMenuItem save=new JMenuItem("Exportar Código");
         save.addActionListener(e -> {
             try{
-                new Message(Archivos.exportCode(Eventos.saveFile(false), ""), Simulador.lienzo).setVisible(true);
+                new Message(Archivos.exportCode(Eventos.saveFile(false, getName()), Eventos.code(((View) getView()).getText(), getName())), null).setVisible(true);
             }catch (FileNotFoundException ex){//None
             }
         });
         menu.add(save);
         return menu;
+    }
+    /**
+     * Da el nombre del código
+     * @return nombre del código
+     */
+    public String getName(){
+        return name;
+    }
+    /**
+     * Fija un nuevo nombre para el código
+     * @param name nombre para el código
+     */
+    public void setName(String name){
+        this.name = name;
+    }
+    /**
+     * Creación de un nuevo Editor
+     * @param path {@link String} ruta del archivo a mostrar
+     * @param name nombre del código a añadir
+     * @return editor con contenido integrado
+     * @see Archivos#codefiles(String)
+     */
+    public static Editor editor(String path, String name){
+        View view=new View();
+        Editor editor=new Editor(view,new Indice(view));
+        editor.text(Archivos.codefiles(path));
+        editor.setName(name);
+        return editor;
     }
 }

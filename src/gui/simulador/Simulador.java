@@ -19,7 +19,7 @@ import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 public abstract class Simulador extends Lienzo {
     private Integer iteracion;
-    public static JComponent lienzo;
+    private JComponent lienzo;
     private JPanel datos;
     private JPanel control;
     private JTabbedPane codigos;
@@ -49,13 +49,13 @@ public abstract class Simulador extends Lienzo {
      */
     public Simulador(JComponent lienzo, String title, JComponent... components){
         super(new GridBagLayout(),false);
-        Simulador.lienzo = lienzo;
-        Simulador.lienzo.setPreferredSize(canvasSize);
-        Simulador.lienzo.setSize(canvasSize);
-        Simulador.lienzo.setMinimumSize(canvasSize);
-        Simulador.lienzo.setComponentPopupMenu(menuLienzo());
-        Simulador.lienzo.setBorder(BorderFactory.createEtchedBorder(0));
-        Simulador.lienzo.setBackground(Colour.BLANCO_OPACO.getColor());
+        this.lienzo = lienzo;
+        this.lienzo.setPreferredSize(canvasSize);
+        this.lienzo.setSize(canvasSize);
+        this.lienzo.setMinimumSize(canvasSize);
+        this.lienzo.setComponentPopupMenu(menuLienzo());
+        this.lienzo.setBorder(BorderFactory.createEtchedBorder(0));
+        this.lienzo.setBackground(Colour.BLANCO_OPACO.getColor());
         iteracion = 0;
         init();
         acomodamientoPanelControl(title, components);
@@ -132,10 +132,9 @@ public abstract class Simulador extends Lienzo {
     /**
      * Añade los codigos que necesita el simulador
      * @param editor {@link Editor} con el código correspondiente
-     * @param title nombre del código a añadir
      */
-    public void addCodes(Editor editor,String title){
-        codigos.add(title, editor);
+    public void addCodes(Editor editor){
+        codigos.add(editor.getName(), editor);
     }
     /**
      * Fijar un texto determinado en el área de notificaciones

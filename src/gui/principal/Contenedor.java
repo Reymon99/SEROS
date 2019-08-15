@@ -168,7 +168,7 @@ public final class Contenedor extends JPanel {
         formula.setFont(Fuentes.PURISA_18.getFont());
         formula.setOpaque(false);
         Constrains.addComp(new Texto(Text.TDA.toString()), con.getContenido(), new Rectangle(0, 0, 1, 1), 1,1, new Insets(10, 25, 15, 12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(Editor.editor("/resources/codes/tda/Punto.seros"),con.getContenido(),new Rectangle(0,1,1,1), 0,0,new Insets(5,5,5,5),GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addComp(Editor.editor("/resources/codes/tda/Punto.seros", "Punto"),con.getContenido(),new Rectangle(0,1,1,1), 0,0,new Insets(5,5,5,5),GridBagConstraints.CENTER, GridBagConstraints.NONE);
         Constrains.addComp(new Texto(Text.TDA1.toString()), con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(10,25,3,12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new Texto(Text.TDA2.toString()), con.getContenido(),new Rectangle(0,3,1,1),1,1,new Insets(3,40,3,12), GridBagConstraints.NORTHEAST,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new Texto(Text.TDA3.toString()), con.getContenido(),new Rectangle(0,4,1,1), 1,1,new Insets(5,25,5,12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
@@ -435,7 +435,7 @@ public final class Contenedor extends JPanel {
                 Eventos.enable(true,clean ? simulador.getClean() : simulador.getNextIteracion(),simulador.getBack(),simulador.getHome());
             }
         });
-        simulador.addCodes(Editor.editor("/resources/codes/tda/Punto.seros"),"Punto");
+        simulador.addCodes(Editor.editor("/resources/codes/tda/Punto.seros", "Punto"));
         simulador.back("Tipos de Datos Abstratos",Paneles.TDA);
         simulador.getSend().setText("Graficar");
         simulador.setDatos(punto);
@@ -567,7 +567,7 @@ public final class Contenedor extends JPanel {
             }
         };
         recursividad.setDatos(variaI);
-        recursividad.addCodes(Editor.editor("/resources/codes/recursividad/Factorial.seros"),"Factorial");
+        recursividad.addCodes(Editor.editor("/resources/codes/recursividad/Factorial.seros", "Factorial"));
         recursividad.setTexto(Text.FACTORIAL.toString());
         recursividad.back("Panel de Ejercicios de Recursividad",Paneles.EJERCICIOS_RECURSIVIDAD);
         recursividad.setProducto(Operaciones.operacion("n!","0"));

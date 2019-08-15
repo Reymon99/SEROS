@@ -6,6 +6,8 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.Optional;
+import java.util.StringTokenizer;
 import gui.contenido.About;
 import gui.contenido.Save;
 import gui.contenido.Switch;
@@ -145,10 +147,20 @@ public abstract class Eventos {
     }
     /**
      * Obtiene la ruta indicada a guardar el archivo que se va a exportar
+     * @param isImage decide si el filtro del {@link JFileChooser} es de imagenes o archivos Java
      * @return ruta indicada de destino
      */
     public static File saveFile(boolean isImage) throws FileNotFoundException {
         return new Save(isImage).getFile();
+    }
+    /**
+     * Obtiene la ruta indicada a guardar el archivo que se va a exportar
+     * @param isImage decide si el filtro del {@link JFileChooser} es de imagenes o archivos Java
+     * @param name nombre del archivo en la ruta del {@link JFileChooser}
+     * @return ruta indicada de destino
+     */
+    public static File saveFile(boolean isImage, String name) throws FileNotFoundException {
+        return new Save(isImage, name).getFile();
     }
     /**
      * Crea una imagen a partir del componente inidicado
@@ -159,5 +171,24 @@ public abstract class Eventos {
         BufferedImage image=new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_RGB);
         component.paint(image.getGraphics());
         return image;
+    }
+    /**
+     * Genera y reformatea el código empleado en los editores de código utilizados en los simuladores
+     * @param n código del editor
+     * @param name nombre correspondiente del código empleado en el editor
+     * @return retorna el código formateado correspondientemente a los paremetros de una clase Java
+     */
+    public static String code(String n, String name){
+        if (Optional.ofNullable(n).isPresent()){
+            if (!n.isEmpty()){
+                n = n.replaceAll(" {3}", "\t");
+                if (n.contains("class")) return n;
+                StringTokenizer tokenizer=new StringTokenizer(n, "\n");
+                StringBuilder clas = new StringBuilder().append("public class ").append(name).append(" {\n");
+                while (tokenizer.hasMoreTokens()) clas.append('\t').append(tokenizer.nextToken()).append('\n');
+                return clas.append('}').toString();
+            }
+        }
+        return "";
     }
 }
