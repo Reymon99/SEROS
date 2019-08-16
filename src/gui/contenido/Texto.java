@@ -28,7 +28,7 @@ public class Texto extends JTextArea {
      * @param rows filas
      * @param columns columnas
      */
-    public Texto(String text,int rows,int columns){
+    public Texto(String text, int rows, int columns){
         super(text,rows,columns);
         init();
         setBorder(BorderFactory.createSoftBevelBorder(1));

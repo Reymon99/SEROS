@@ -38,7 +38,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @param resultado Respectivo resultado de la operación
      * @return operación y resultado en una única cadena
      */
-    public static String operacion(String operacion,Object resultado){
+    public static String operacion(String operacion, Object resultado){
         return operacion+"    =    "+resultado.toString();
     }
     /**
@@ -100,7 +100,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @param exponente caso exponente de la potencia
      * @return multiplicación recursiva de la potencia b^e
      */
-    public static String productoPotencia(int base,int exponente){
+    public static String productoPotencia(int base, int exponente){
         if (exponente==0) return "1";
         else if (exponente==1) return String.valueOf(base);
         else return base+" * "+productoPotencia(base, exponente-1);
@@ -111,7 +111,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @param exponente caso exponente de la potencia
      * @return multiplicación recursiva de la potencia b^e
      */
-    public static String productoPotenciaUp(Object base,Object exponente){
+    public static String productoPotenciaUp(Object base, Object exponente){
         String[] ads=new String[Integer.parseInt(exponente.toString())];
         Arrays.fill(ads,base.toString());
         return String.join(" * ",ads);
@@ -123,7 +123,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @param valor valor para potencia indicada
      * @return multiplicación recursiva de la potencia b^e hasta la potencia b^v
      */
-    public static String productoPotenciaUpN(Object base,Object exponente,int valor){
+    public static String productoPotenciaUpN(Object base, Object exponente, int valor){
         return productoPotenciaUp(base,exponente) +" * "+ potencia(base, valor);
     }
 }

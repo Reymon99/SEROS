@@ -3,6 +3,7 @@ title SEROS Class Diagram
 package eventos #DDDDDD {
     abstract class Eventos {
         - {static} panel : JPanel
+        --
         + {static} setPanel(panel: JPanel) : void
         + {static} show(panel : Paneles) : void
         + {static} link(url : String) :void
@@ -14,6 +15,10 @@ package eventos #DDDDDD {
         + {static} contains(valor : Object, objects : Object[]) : boolean
         + {static} html(boolean: String) : String
         + {static} menu(paneles : Paneles[]) : JPopupMenu
+        + {static} saveFile(isImage : boolean) : File
+        + {static} saveFile(isImage : boolean, name : String) : File
+        + {static} createImageOf(component : Component) : RenderedImage
+        + {static} code(code : String, name : String) : String
     }
 }
 package main #DDDDDD {
@@ -23,28 +28,31 @@ package main #DDDDDD {
 }
 package tools #DDDDDD {
     enum Fuentes {
-        UBUNTULIGHT12
-        UBUNTULIGHT14
-        UBUNTULIGHT15
-        UBUNTULIGHT50
-        UBUNTULIGHT20
-        UBUNTULIGHT30
-        UBUNTULIGHTB30
-        UBUNTULIGHT40
-        UBUNTULIGHTB120
-        UBUNTULIGHTB118
-        PURISA18
-        PURISA22
-        DIALOG35
-        SEGOEUISYMBOL22
-        UBUNTUMONO15
+        UBUNTU_LIGHT_12
+        UBUNTU_LIGHT_14
+        UBUNTU_LIGHT_15
+        UBUNTU_LIGHT_50
+        UBUNTU_LIGHT_20
+        UBUNTU_LIGHT_30
+        UBUNTU_LIGHT_B_30
+        UBUNTU_LIGHT_40
+        UBUNTU_LIGHT_B_118
+        PURISA_18
+        PURISA_22
+        DIALOG_35
+        SEGOE_UI_SYMBOL_22
+        UBUNTU_MONO_15
         - font : Font
+        --
         Fuentes(font : Font)
+        --
         + getFont() : Font
     }
     class FuentesModificadas {
         - font : Font
+        --
         # FuentesModificadas(path : String)
+        --
         # getFont(style : int, size : int) : Font
     }
     interface Acciones {
@@ -55,6 +63,8 @@ package tools #DDDDDD {
     abstract class Archivos {
         + {static} image(path : String, width : int, height : int) : ImageIcon
         + {static} codefiles(path : String) : String
+        + {static} exportImage(file : File, image : RenderedImage) : String
+        + {static} exportCode(file : File, text : String) : String
     }
     enum Colour {
          AZUL
@@ -63,25 +73,27 @@ package tools #DDDDDD {
          MORADO
          NARANJA
          VERDE
-         AZULTITLE
-         AZULTEXT
-         GRIS
-         GRISPANEL
-         GRISBUTTON
-         CURIOUSBLUE
-         NEGROEDITOR
-         NEGROINDICE
-         BORDESCROLL
-         SCROLLDRAGGING
-         SCROLLROLLOVER
-         SCROLLPRESSED
-         GRAYDISABLED
-         VERDEACTIVO
-         BLANCODESHABILITADO
-         REDLINESELECTED
-         LINEFOREGROUND
+         AZUL_TITLE
+         AZUL_TEXT
+         BLANCO_OPACO
+         GRIS_PANEL
+         GRIS_BUTTON
+         CURIOUS_BLUE
+         NEGRO_EDITOR
+         NEGRO_INDICE
+         BORDE_SCROLL
+         SCROLL_DRAGGING
+         SCROLL_ROLLOVER
+         SCROLL_PRESSED
+         GRAY_DISABLED
+         VERDE_ACTIVO
+         BLANCO_DESHABILITADO
+         RED_LINE_SELECTED
+         LINE_FOREGROUND
          - color : Color
+         --
          Colour(color : Color)
+         --
          + getColor() : Color
     }
     enum Paneles {
@@ -98,13 +110,15 @@ package tools #DDDDDD {
         LISTAS_ENLAZADAS
         ARBOLES
         GRAFOS
-        SIMULADORTDA
+        DEMOSTRACION_MODULARIDAD
+        EJERCICIOS_RECURSIVIDAD
+        SIMULADOR_TDA
         FACTORIAL
         POTENCIA
-        EJERCICIOS_RECURSIVIDAD
-        DEMOSTRACION_MODULARIDAD
         - n: String
+        --
         Paneles(n : String)
+        --
         + toString() : String
     }
     enum Operacion {
@@ -113,7 +127,8 @@ package tools #DDDDDD {
     }
     abstract class Operaciones {
         - {static} format : HashMap<Operacion,DecimalFormat>
-        + {static} setFormat(key : Operacion, pattern : String) : void
+        + {static} addFormat(key : Operacion, pattern : String) : void
+        + {static} formatNumber(number : Object, operacion : Operacion) : String
         + {static} operacion(operacion : String, resultado : String) : String
         + {static} factorial(n : int) : long
         + {static} productoFactorial(i : int) : String
@@ -175,12 +190,14 @@ package tools #DDDDDD {
         POTENCIA3
         POTENCIA4
         POTENCIA5
+        POTENCIA6
         POTENCIA7
         POTENCIA8
-        POTENCIA9
         DEMOSTRACION_MODULARIDAD
         - n : String
+        --
         Text(n : String)
+        --
         + toString() : String
     }
 }
@@ -188,7 +205,7 @@ package gui #DDDDDD {
     package contenido #DDDDDD {
         package scroll #DDDDDD {
             class InvisibleScrollBarButton {
-                # InvisibleScrollBarButton()
+                InvisibleScrollBarButton()
             }
             class ModernScrollBarUI {
                 - sp : ModernScrollPane
@@ -238,14 +255,13 @@ package gui #DDDDDD {
         class Contenido {
             - contenido : JPanel
             - title : JLabel
-            - panel: ModernScrollPane
+            - pane : ModernScrollPane
             --
             + Contenido()
             --
             - init() : void
             + getContenido() : JPanel
             + getTitle() : JLabel
-            + getPane() : ModernScrollPane
         }
         class Demostracion {
             - image : JLabel
@@ -293,6 +309,20 @@ package gui #DDDDDD {
             # getAcciones() : Acciones
             + setAcciones(acciones : Acciones) : void
             + paint(g : Graphics) : void
+        }
+        class Message {
+            - message : String
+            --
+            + Message(message : String, component : Component)
+            --
+            - init() : void
+        }
+        class Save {
+            - isImage : boolean
+            --
+            + Save(isImage : boolean)
+            --
+            + getFile() : File
         }
         class Switch {
             - modificable : boolean
@@ -346,6 +376,8 @@ package gui #DDDDDD {
     }
     package editor #DDDDDD {
         class Editor {
+            - name : String
+            --
             - Editor(view : View, indice : Indice)
             --
             - text(n : String) : void
@@ -353,6 +385,9 @@ package gui #DDDDDD {
             + drawLineIn(lineaIndice : int, lineaEditor : int) : void
             + setLine(line : boolean) : void
             + setText(text : String) : void
+            - menuCode() : JPopupMenu
+            + getName() : String
+            + setName(name : String) : void
             + {static} editor(path : String) : Editor
         }
         class Indice {
@@ -399,11 +434,21 @@ package gui #DDDDDD {
             - principal() : Lienzo
             - tda() : Contenido
             - modularidad() : Contenido
+            - pilas() : Contenido
             - recursividad() : Contenido
+            - ordenamiento() : Contenido
             - nodos() : Contenido
-            - arreglos : Contenido
+            - listas() : Contenido
+            - grafos() : Contenido
+            - colas() : Contenido
+            - busqueda() : Contenido
+            - arreglos() : Contenido
+            - arboles() : Contenido
             - ejerciciosRecursividad() : Ejercicios
-
+            - simuladorTda() : Simulador
+            - factorial() : Recursividad
+            - potencia() : Recursividad
+            - demoModularidad() : Demostracion
         }
         class Desktop {
             + Desktop()
@@ -413,18 +458,16 @@ package gui #DDDDDD {
         package lienzos #DDDDDD {
             class Graficador {
                 - graficar : boolean
-                - x : int
-                - y : int
+                - punto : Point
+                - axis : Point
                 --
                 + Graficador()
                 --
                 + graficar(x : int, y : int) : void
                 + coordenadas() : String
                 + limpiar() : void
-                + isGraficar() : boolean
-                + setGraficar(graficar : boolean) : void
                 - halfScreenWidth() : int
-                - halfScreenWidth() : int
+                - halfScreenHeight() : int
                 - positionX(cuadrante : boolean) : int
                 - positionY(cuadrante : boolean) : int
                 - graficarCoordenada(g2 : Graphics2D, point : Point) : void
@@ -433,7 +476,12 @@ package gui #DDDDDD {
                 - puntoCoordenadaY(point : Point, y : int, i : int) : void
                 - puntoCoordenadas(point : Point, x : int, y : int, i : int, j : int) : void
                 - valoresAxisXY(g2 : Graphics2D, point Point) : void
-                + paint(g: Graphics) : void
+                - axisXY(g2 : Graphics2D, point : Point, i : int, j : int) : void
+                - number(g2 : Graphics2D, i : int, j : int) : void
+                - posicion(expr : boolean, a : int, b : int) : int
+                - axis(g2 : Graphics2D, i : int, j : int) : void
+                - axisZero(point : Point, i : int, j : int) : void
+                + paintComponent(g: Graphics) : void
             }
         }
         class Dato {
@@ -458,6 +506,7 @@ package gui #DDDDDD {
             + toString() : String
         }
         abstract class Recursividad {
+            - valor : int
             - decremento : boolean
             - number : JLabel
             - producto : JLabel
@@ -476,13 +525,19 @@ package gui #DDDDDD {
             # {abstract} casoIncrementativo(dato : int) : void
             # {abstract} casoBase(dato : int, found : boolean) : void
             # {abstract} lines() : Lines[]
+            # {abstract} isCasoBase() : boolean
+            # {abstract} accionesCasoBase(code : boolean) : void
+            # {abstract} accionesCasoTerminal(code : boolean) : void
+            # {abstract} accionesCasoIncrementativo(code : boolean) : void
+            # {abstract} accionesCasoDecrementativo(code : boolean) : void
             # acomodamientoPanelControl(title : String, components : JComponent[]) : void
+            + iteracion1() : void
         }
         abstract class Simulador {
             - iteracion : Integer
-            - component : Component
+            - lienzo : JComponent
             - datos : JPanel
-            - panel: JPanel
+            - control: JPanel
             - codigos : JTabbedPane
             - clean : ButtonSimulador
             - nextIteracion : ButtonSimulador
@@ -493,19 +548,20 @@ package gui #DDDDDD {
             + {static} canvasSize : Dimension
             --
             + Simulador(title : String, components : JComponent[])
-            + Simulador(component : Component, title : String, components : JComponent[])
+            + Simulador(lienzo : JComponent, title : String, components : JComponent[])
             --
             - init() : void
             + cleanComponents() : void
             # {abstract} acomodamientoPanelControl(title : String, components : JComponent[]) : void
             # componentRegistro(title : String, components : JComponent[]) : Box
-            + addCodes(editor : Editor, title : String) : void
+            + addCodes(editor : Editor) : void
             + setTexto(texto : String) : void
             + setDatos(trees : Tree[]) : void
             - sizeTree(length : int) : int
+            - menuLienzo() : JPopupMenu
             + getTexto() : Texto
-            # getPanel() : JPanel
-            + getComponent() : Component
+            # getControl() : JPanel
+            + getLienzo() : JComponent
             + getCodigos() : JTabbedPane
             + getIteracion() : int
             - setIteracion(iteracion : Integer) : void
@@ -520,6 +576,20 @@ package gui #DDDDDD {
     }
 }
 package hilos #DDDDDD {
+    class Imagen {
+        - stop : boolean
+        - pause : boolean
+        - sleep : int
+        - images : ImageIcon[]
+        - label : JLabel
+        --
+        + Imagen(label : JLabel, images : ImageIcon[])
+        + Imagen(label : JLabel, sleep : int, images : ImageIcon)
+        + pausar() : void
+        + reiniciar() : void
+        + parar() : void
+        + run() : void
+    }
     class LineLocation {
         - code : int
         - lineaIndice : int
@@ -537,17 +607,11 @@ package hilos #DDDDDD {
         + getCode() : int
         + setCode(code: int) : void
         + getLineIndice() : int
-        + setLineIndice(lineaIndice : int) : void
         + getLineEditor() : int
-        + setLineEditor(lineaEditor : int) : void
         + getTexto() : String
-        + setTexto(texto : String) : void
         + getScroll() : int
-        + setScroll(scroll : int) : void
         + isSleep() : boolean
-        + setSleep(sleep : Sleep) : void
         + toString() : String
-        + equals(obj : Object) : boolean
     }
     abstract class Lines {
         - simulador : Simulador
@@ -567,9 +631,7 @@ Acciones <.. Demostracion
 Acciones <.. Lienzo
 Acciones <.. Contenedor
 Acciones <.. Ejercicios
-Acciones <.. Demostracion
 Acciones <.. Contenido
-Acciones <.. Simulador
 Acciones <|.. Recursividad
 
 Archivos <.. Demostracion
@@ -579,8 +641,9 @@ Archivos <.. Contenedor
 Archivos <.. Editor
 Archivos <.. Lienzo
 Archivos <.. Tree
+Archivos <.. Message
 
-Boton <-- Ejercicios
+Boton <.. Ejercicios
 Boton <.. Contenedor
 Boton <.. Lienzo
 
@@ -593,16 +656,17 @@ Colour <.. ButtonSimulador
 Colour <.. Texto
 Colour <.. TextPane
 Colour <.. About
-Colour <.. Contenedor
-Colour <.. Indice
-Colour <.. Demostracion
+Colour <.. ModernScrollBarUI
+Colour <.. Message
+Colour <.. Simulador
 
 Contenedor <.. Desktop
 Contenedor <.. Eventos
-Contenedor o--> Paneles
-Contenedor o--> Lienzo
+Contenedor "1" o--> "1" Paneles
+Contenedor "1" o--> "*" Paneles
+Contenedor "1" o--> "*" Lienzo
 
-Contenido o--> ModernScrollPane
+Contenido "1" o--> "1" ModernScrollPane
 Contenido <.. Contenedor
 
 Constrains <.. Contenedor
@@ -613,14 +677,15 @@ Constrains <.. Ejercicios
 Constrains <.. Contenido
 Constrains <.. Recursividad
 
-Ejercicios o--> Boton
-Ejercicios o--> Texto
+Ejercicios "1" o--> "*" Boton
+Ejercicios "1" o--> "1" Texto
+Ejercicios <.. Contenedor
 
 Dato <.. Tree
 Dato <.. Contenedor
 
 Demostracion <.. Contenedor
-Demostracion o--> Texto
+Demostracion "1" o--> "1" Texto
 
 Desktop <.. Main
 
@@ -644,9 +709,9 @@ Fuentes <.. Boton
 Fuentes <.. Switch
 Fuentes <.. About
 Fuentes <.. Tree
-Fuentes <.. View
 Fuentes <.. Contenido
 Fuentes <- Graficador
+Fuentes <.. Message
 
 FuentesModificadas <.. Fuentes
 
@@ -656,8 +721,8 @@ Indice <.. Editor
 
 InvisibleScrollBarButton <.. ModernScrollBarUI
 
-Lienzo o--> Boton
-Lienzo o--> Acciones
+Lienzo "1" o--> "1" Boton
+Lienzo "1" o--> "1" Acciones
 Lienzo <.. Contenido
 Lienzo <.. Demostracion
 Lienzo <.. Simulador
@@ -669,16 +734,20 @@ Lienzo <|-- Demostracion
 Lienzo <|-- Simulador
 Lienzo <|-- Ejercicios
 
-Lines o--> LineLocation
-Lines o--> Simulador
+Lines "1" o--> "*" LineLocation
+Lines "1" o--> "1" Simulador
 Lines <.. Contenedor
 Lines <.. Recursividad
 
 LineLocation <.. Lines
 LineLocation <.. Contenedor
 
+Message <.. Editor
+Message <.. Simulador
+
 ModernScrollBarUI <.. ModernScrollPane
-ModernScrollBarUI o-->  ModernScrollPane
+ModernScrollBarUI "1" o--> "1"  ModernScrollPane
+ModernScrollBarUI +-- InvisibleScrollBarButton
 
 ModernScrollPane <|-- Editor
 ModernScrollPane <.. ModernScrollBarUI
@@ -693,11 +762,13 @@ Paneles <.. Lienzo
 Paneles <.. Contenido
 
 Operacion <.. Operaciones
-Operacion o--> Operaciones
 Operacion <.. Contenedor
 
 Operaciones +-- Operacion
 Operaciones <.. Contenedor
+Operaciones "1" o--> "*" Operacion
+
+Save <.. Eventos
 
 Tree <.. Eventos
 Tree <.. Simulador
@@ -715,21 +786,19 @@ Texto <.. Simulador
 Texto <.. Contenedor
 Texto <.. About
 
-Simulador o--> ButtonSimulador
-Simulador o--> Switch
-Simulador o--> Texto
+Simulador "1" o--> "1" ButtonSimulador
+Simulador "1" o--> "1" Switch
+Simulador "1" o--> "1" Texto
 Simulador <.. Lines
 Simulador <.. Contenedor
 Simulador <.. Graficador
 Simulador <.. Recursividad
 Simulador <|-- Recursividad
 
-Switch <.. Contenido
-Switch <.. Lines
 Switch <.. Simulador
+Switch <.. Eventos
 
 Text <.. About
-Text <.. Contenido
 Text <.. Contenedor
 Text <.. Lienzo
 

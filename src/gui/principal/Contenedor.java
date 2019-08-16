@@ -20,6 +20,7 @@ import tools.Archivos;
 import tools.Constrains;
 import tools.Fuentes;
 import tools.Operaciones;
+import tools.Operaciones.Operacion;
 import tools.Paneles;
 import tools.Text;
 import javax.swing.*;
@@ -367,8 +368,8 @@ public final class Contenedor extends JPanel {
             }
         };
         Graficador graficador=new Graficador();
-        ((JPanel)simulador.getLienzo()).setLayout(new BorderLayout());
-        ((JPanel)simulador.getLienzo()).add(graficador, BorderLayout.CENTER);
+        simulador.getLienzo().setLayout(new BorderLayout());
+        simulador.getLienzo().add(graficador, BorderLayout.CENTER);
         simulador.setAcciones(new Acciones() {
             @Override
             public void iteracion0() {
@@ -450,14 +451,14 @@ public final class Contenedor extends JPanel {
      * @see Contenedor#recursividad()
      */
     private Recursividad factorial(){
-        Operaciones.addFormat(Operaciones.Operacion.FACTORIAL, "#,###,###");
+        Operaciones.addFormat(Operacion.FACTORIAL, "#,###,###");
         JSpinner valorI=new JSpinner(new SpinnerNumberModel(0,0,10,1));
         ((JSpinner.NumberEditor)valorI.getEditor()).getTextField().setEditable(false);
         Tree variaI=new Tree(new Dato("int","n",""));
         Recursividad recursividad = new Recursividad(null, valorI) {
             @Override
             protected void casoTerminal() {
-                base(Text.FACTORIAL1, Operaciones.formatNumber(Operaciones.factorial(getValor()), Operaciones.Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), true);
+                base(Text.FACTORIAL1, Operaciones.formatNumber(Operaciones.factorial(getValor()), Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), true);
             }
             @Override
             protected void casoDecrementativo() {
@@ -466,7 +467,7 @@ public final class Contenedor extends JPanel {
             }
             @Override
             protected void casoIncrementativo() {
-                base(Text.FACTORIAL7, Operaciones.formatNumber(Operaciones.factorial(getValor()), Operaciones.Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), false);
+                base(Text.FACTORIAL7, Operaciones.formatNumber(Operaciones.factorial(getValor()), Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), false);
                 decrementIteracion();
             }
             @Override
@@ -532,7 +533,7 @@ public final class Contenedor extends JPanel {
             public void iteracion0() {
                 Eventos.enable(false,getNextIteracion(),getSend(),valorI,getPause(),getBack(),getClean(),getCodigo(),getHome());
                 Eventos.variable(variaI,-1,valorI.getValue());
-                base(Text.FACTORIAL1, Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString())), Operaciones.Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))), true);
+                base(Text.FACTORIAL1, Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString())), Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))), true);
             }
             @Override
             public void iteracion1() {

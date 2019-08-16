@@ -22,7 +22,7 @@ public class Graficador extends JLabel {
      * @param x int coordenada en x
      * @param y int coordenada en y
      */
-    public void graficar(int x,int y){
+    public void graficar(int x, int y){
         punto.move(x, y);
         graficar=true;
         repaint();

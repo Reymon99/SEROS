@@ -11,7 +11,7 @@ public class Imagen extends Thread {
      * @param label componente en el cual se establecen la imagenes
      * @param images imagenes a mostrar
      */
-    public Imagen(JLabel label,ImageIcon... images){
+    public Imagen(JLabel label, ImageIcon... images){
         this(label,400,images);
     }
     /**
@@ -20,7 +20,7 @@ public class Imagen extends Thread {
      * @param sleep tiempo en milisigundos a dormir cada imagen
      * @param images imagenes a mostrar
      */
-    public Imagen(JLabel label,int sleep,ImageIcon... images){
+    public Imagen(JLabel label, int sleep, ImageIcon... images){
         stop=pause=false;
         this.sleep=sleep;
         this.images=images;

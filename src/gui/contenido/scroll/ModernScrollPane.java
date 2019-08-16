@@ -20,7 +20,7 @@ public class ModernScrollPane extends JScrollPane {
      * @param view componente a integrar el scroll
      * @param area componente a agregar al header
      */
-    public ModernScrollPane(Component view,JPanel area){
+    public ModernScrollPane(Component view, JPanel area){
         this(view);
         setRowHeaderView(area);
     }
@@ -30,7 +30,7 @@ public class ModernScrollPane extends JScrollPane {
      * @param vsb acción del scroll vertical
      * @param hsb acción del scroll horizontal
      */
-    public ModernScrollPane(Component view,int vsb,int hsb){
+    public ModernScrollPane(Component view, int vsb, int hsb){
         super(vsb,hsb);
         setBorder(BorderFactory.createEmptyBorder());
         JScrollBar vertical=getVerticalScrollBar();

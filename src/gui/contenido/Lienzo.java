@@ -34,7 +34,7 @@ public class Lienzo extends JPanel {
      * @param manager {@link LayoutManager} a utilizar
      * @param lienzo decide si se pinta el lienzo o no
      */
-    public Lienzo(LayoutManager manager,boolean lienzo){
+    public Lienzo(LayoutManager manager, boolean lienzo){
         super(manager);
         init(lienzo);
     }

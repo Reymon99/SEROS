@@ -198,7 +198,7 @@ public abstract class Simulador extends Lienzo {
      * Obtiene el área gráfica del simulador
      * @return área gráfica del simulador
      */
-    public Component getLienzo() {
+    public JComponent getLienzo() {
         return lienzo;
     }
     /**

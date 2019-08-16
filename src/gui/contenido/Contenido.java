@@ -69,11 +69,4 @@ public final class Contenido extends Lienzo {
     public JLabel getTitle() {
         return title;
     }
-    /**
-     * Retorna el Scroll del Contenido
-     * @return scroll del contenido
-     */
-    public ModernScrollPane getPane() {
-        return pane;
-    }
 }

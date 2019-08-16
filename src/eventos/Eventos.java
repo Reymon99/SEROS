@@ -174,20 +174,18 @@ public abstract class Eventos {
     }
     /**
      * Genera y reformatea el código empleado en los editores de código utilizados en los simuladores
-     * @param n código del editor
+     * @param code código del editor
      * @param name nombre correspondiente del código empleado en el editor
      * @return retorna el código formateado correspondientemente a los paremetros de una clase Java
      */
-    public static String code(String n, String name){
-        if (Optional.ofNullable(n).isPresent()){
-            if (!n.isEmpty()){
-                n = n.replaceAll(" {3}", "\t");
-                if (n.contains("class")) return n;
-                StringTokenizer tokenizer=new StringTokenizer(n, "\n");
-                StringBuilder clas = new StringBuilder().append("public class ").append(name).append(" {\n");
-                while (tokenizer.hasMoreTokens()) clas.append('\t').append(tokenizer.nextToken()).append('\n');
-                return clas.append('}').toString();
-            }
+    public static String code(String code, String name){
+        if (Optional.ofNullable(code).isPresent() && !code.isEmpty()){
+            String n = code.replaceAll(" {3}", "\t");
+            if (code.contains("class")) return n;
+            StringTokenizer tokenizer=new StringTokenizer(code, "\n");
+            StringBuilder clas = new StringBuilder().append("public class ").append(name).append(" {\n");
+            while (tokenizer.hasMoreTokens()) clas.append('\t').append(tokenizer.nextToken()).append('\n');
+            return clas.append('}').toString();
         }
         return "";
     }
