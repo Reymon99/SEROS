@@ -485,7 +485,7 @@ public final class Contenedor extends JPanel {
                     public void actions() {
                         accionesCasoBase(false);
                     }
-                }, new Lines(this, new LineLocation(0, 5, Text.FACTORIAL6.toString())) {
+                }, new Lines(this, new LineLocation(0, 5, Text.FACTORIAL6.toString(), false)) {
                     @Override
                     protected void actions() {
                         accionesCasoTerminal(false);
