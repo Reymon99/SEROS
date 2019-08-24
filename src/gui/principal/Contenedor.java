@@ -373,17 +373,17 @@ public final class Contenedor extends JPanel {
         simulador.setAcciones(new Acciones() {
             @Override
             public void iteracion0() {
-                graficador.graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
-                Eventos.enable(true,simulador.getClean(),simulador.getBack(),simulador.getHome());
-                Eventos.enable(false,simulador.getSend(),x,y,simulador.getPause(),simulador.getNextIteracion());
+                graficador.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
+                Eventos.enable(true, simulador.getClean(), simulador.getBack(), simulador.getHome());
+                Eventos.enable(false, simulador.getSend(), x, y, simulador.getPause(), simulador.getNextIteracion());
                 simulador.setTexto(Text.SIMULADORTDA1.toString());
-                Eventos.variable(punto,0,x.getValue());
-                Eventos.variable(punto,1,y.getValue());
+                Eventos.variable(punto, 0, x.getValue());
+                Eventos.variable(punto, 1, y.getValue());
                 punto.expandNode(0);
             }
             @Override
             public void iteracion1() {
-                Eventos.enable(false,simulador.getSend(),x,y,simulador.getPause(),simulador.getClean(),simulador.getBack(),simulador.getHome(),simulador.getNextIteracion());
+                Eventos.enable(false, simulador.getSend(), x, y, simulador.getPause(), simulador.getClean(), simulador.getBack(), simulador.getHome(), simulador.getNextIteracion());
                 if (simulador.getIteracion()==0) asignacionX();
                 else if (simulador.getIteracion()==1) asignacionY();
                 else mostrarCoordenadas();
@@ -393,9 +393,9 @@ public final class Contenedor extends JPanel {
             public void clean() {
                 simulador.cleanComponents();
                 graficador.limpiar();
-                Eventos.variable(punto,0,"");
-                Eventos.variable(punto,1,"");
-                Eventos.enable(true,x,y);
+                Eventos.variable(punto, 0, "");
+                Eventos.variable(punto, 1, "");
+                Eventos.enable(true, x, y);
                 simulador.setTexto(Text.SIMULADORTDA2.toString());
                 x.setValue(0);
                 y.setValue(0);
@@ -405,22 +405,22 @@ public final class Contenedor extends JPanel {
              * Muestra los datos y códigos que se asignan al eje x
              */
             private void asignacionX(){
-                base(Text.SIMULADORTDA3,4,0,false);
-                Eventos.variable(punto,0,x.getValue());
+                base(Text.SIMULADORTDA3, 5, 0, false);
+                Eventos.variable(punto, 0, x.getValue());
             }
             /**
              * Muestra los datos y códigos que se asignan al eje y
              */
             private void asignacionY(){
-                base(Text.SIMULADORTDA4,5,0,false);
-                Eventos.variable(punto,1,y.getValue());
+                base(Text.SIMULADORTDA4, 6, 0, false);
+                Eventos.variable(punto, 1, y.getValue());
             }
             /**
              * Grafica las coordenadas (x,y) muestra los códigos asignados a estos
              */
             private void mostrarCoordenadas(){
-                base(Text.SIMULADORTDA1,21,((Editor) simulador.getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum(),true);
-                graficador.graficar(Integer.parseInt(x.getValue().toString()),Integer.parseInt(y.getValue().toString()));
+                base(Text.SIMULADORTDA1, 22, ((Editor) simulador.getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum(), true);
+                graficador.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
             }
             /**
              * Acciones comunes de interactividad
@@ -429,11 +429,11 @@ public final class Contenedor extends JPanel {
              * @param scroll posición del scroll a fijar
              * @param clean acción de habilitar la opción de limpiar o de interactividad
              */
-            private void base(Text text,int line,int scroll,boolean clean){
+            private void base(Text text, int line, int scroll, boolean clean){
                 simulador.setTexto(text.toString());
-                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0),scroll);
+                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0), scroll);
                 ((Editor) simulador.getCodigos().getComponentAt(0)).drawLineIn(line);
-                Eventos.enable(true,clean ? simulador.getClean() : simulador.getNextIteracion(),simulador.getBack(),simulador.getHome());
+                Eventos.enable(true, clean ? simulador.getClean() : simulador.getNextIteracion(), simulador.getBack(), simulador.getHome());
             }
         });
         simulador.addCodes(Editor.editor("/resources/codes/tda/Punto.seros", "Punto"));

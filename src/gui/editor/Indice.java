@@ -2,6 +2,7 @@ package gui.editor;
 import tools.Colour;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
@@ -167,14 +168,15 @@ public class Indice extends JPanel {
      * @param metrics medidas del indice
      */
     private void paintNumbers(int rowStartOffset, int endOffset, Graphics g, FontMetrics metrics){
-        while (rowStartOffset <= endOffset){
+        AtomicInteger rowStart = new AtomicInteger(rowStartOffset);
+        while (rowStart.get() <= endOffset){
             try{
-                String n = getTextLineNumber(rowStartOffset);
+                String n = getTextLineNumber(rowStart.get());
                 g.setColor(Integer.parseInt(n.isBlank() ? "-1" : n) == lineForeground ? Colour.LINE_FOREGROUND.getColor() : Colour.BLANCO.getColor());
-                Integer y = getOffsetY(rowStartOffset, metrics);
+                Integer y = getOffsetY(rowStart.get(), metrics);
                 lineNumber.put(n, y);
                 g.drawString(n, getOffsetX(metrics.stringWidth(n)), lineNumber.get(n));
-                rowStartOffset = Utilities.getRowEnd(component, rowStartOffset) + 1;
+                rowStart.set(Utilities.getRowEnd(component, rowStart.get()) + 1);
             } catch (BadLocationException e) {
                 break;
             }
