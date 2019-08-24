@@ -13,6 +13,7 @@ public class Indice extends JPanel {
     private int lastDigits;
     private int lastHeight;
     private Insets insets;
+    private HashMap<String, Integer> lineNumber;
     private HashMap<String, FontMetrics> fonts;
     static {
         HEIGHT = Integer.MAX_VALUE - 1000000;
@@ -31,7 +32,8 @@ public class Indice extends JPanel {
      */
     private Indice(JTextComponent component, int minimumDisplayDigits) {
         this.component = component;
-        insets=new Insets(0,15,0,7);
+        insets = new Insets(0,15,0,7);
+        lineNumber = new HashMap<>();
         setFont(component.getFont());
         setBackground(Colour.NEGRO_INDICE.getColor());
         setForeground(Colour.BLANCO.getColor());
@@ -58,7 +60,7 @@ public class Indice extends JPanel {
      * Linea a pintar
      * @param i linea
      */
-    public void lineForegroundIn(int i){
+    protected void lineForegroundIn(int i){
         lineForeground=i;
         repaint();
     }
@@ -150,24 +152,40 @@ public class Indice extends JPanel {
         }
         return y-descent;
     }
+    /**
+     * Indica la posición de los números en los indices a mostrar
+     * @return posiciones de los indices
+     */
+    protected HashMap<String, Integer> getLineNumber(){
+        return lineNumber;
+    }
+    /**
+     * Dibuja los números de los indices
+     * @param rowStartOffset inicio del indice
+     * @param endOffset fin del indice
+     * @param g pincel
+     * @param metrics medidas del indice
+     */
+    private void paintNumbers(int rowStartOffset, int endOffset, Graphics g, FontMetrics metrics){
+        while (rowStartOffset <= endOffset){
+            try{
+                String n = getTextLineNumber(rowStartOffset);
+                g.setColor(Integer.parseInt(n.isBlank() ? "-1" : n) == lineForeground ? Colour.LINE_FOREGROUND.getColor() : Colour.BLANCO.getColor());
+                Integer y = getOffsetY(rowStartOffset, metrics);
+                lineNumber.put(n, y);
+                g.drawString(n, getOffsetX(metrics.stringWidth(n)), lineNumber.get(n));
+                rowStartOffset = Utilities.getRowEnd(component, rowStartOffset) + 1;
+            } catch (BadLocationException e) {
+                break;
+            }
+        }
+    }
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Colour.SCROLL_ROLLOVER.getColor());
         g.drawLine(getWidth()-1,getY(),getWidth()-1,getHeight());
-        FontMetrics metrics=component.getFontMetrics(component.getFont());
-        Rectangle clip=g.getClipBounds();
-        int rowStartOffset=component.viewToModel2D(new Point(0,clip.y));
-        int endOffset=component.viewToModel2D(new Point(0,clip.y+clip.height));
-        while (rowStartOffset <= endOffset){
-            try{
-                String n=getTextLineNumber(rowStartOffset);
-                g.setColor(Integer.parseInt(n.isEmpty() ? "-1" : n)==lineForeground ? Colour.LINE_FOREGROUND.getColor() : Colour.BLANCO.getColor());
-                g.drawString(n,getOffsetX(metrics.stringWidth(n)),getOffsetY(rowStartOffset,metrics));
-                rowStartOffset= Utilities.getRowEnd(component,rowStartOffset)+1;
-            } catch (BadLocationException e) {
-                break;
-            }
-        }
+        Rectangle clip = g.getClipBounds();
+        paintNumbers(component.viewToModel2D(new Point(0,clip.y)), component.viewToModel2D(new Point(0,clip.y+clip.height)), g, component.getFontMetrics(component.getFont()));
     }
 }

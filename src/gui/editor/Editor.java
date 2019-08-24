@@ -33,19 +33,11 @@ public class Editor extends ModernScrollPane{
     }
     /**
      * Selecciona una linea determinada
-     * @param i linea a seleccionar
+     * @param line linea a seleccionar
      */
-    public void drawLineIn(int i){
-        drawLineIn(i,i);
-    }
-    /**
-     * Selecciona una linea determinada
-     * @param lineIndice línea a seleccionar en el Indice
-     * @param lineEditor línea a seleccionar en el View
-     */
-    public void drawLineIn(int lineIndice, int lineEditor){
-        ((View)getView()).drawLineIn(lineEditor);
-        ((Indice)getIndice()).lineForegroundIn(lineIndice);
+    public void drawLineIn(int line){
+        ((Indice) getIndice()).lineForegroundIn(line);
+        ((View) getView()).drawLineIn(((Indice) getIndice()).getLineNumber().get(String.valueOf(line)));
     }
     /**
      * Fija si la linea se dibuja

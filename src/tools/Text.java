@@ -5,7 +5,7 @@ public enum Text {
     TDA1("Los TDA también constan de dos especificaciones cuyas son:"),
     TDA2("1. La descripción matemática del conjunto de datos, que hace referencia a los atributos de un dato (clase) cuyos podemos evidenciar en la línea número 2 de la clase Punto.\n2. La descripción de las operaciones definidas en ciertos elementos de ese conjunto de datos, que hacen referencia a los métodos y funciones que afectan el comportamiento de los atributos definidos en un dato (clase) como los podemos evidenciar entre las líneas número 7 y 22 de la clase Punto."),
     TDA3("Según lo leído podríamos decir que un TDA puede definirse mediante la siguiente ecuación:"),
-    FORMULATDA("TDA = REPRESENTACIÓN(datos) + OPERACIONES(funciones y métodos)"),
+    FORMULATDA("TDA = REPRESENTACIÓN (datos) + OPERACIONES (funciones y métodos)"),
     SIMULADORTDA1("Muestra las coordenadas del punto dadas."),
     SIMULADORTDA2("Ingrese las coordenadas (x,y)."),
     SIMULADORTDA3("Instancia el valor de la variable x."),
