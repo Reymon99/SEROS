@@ -480,7 +480,7 @@ public final class Contenedor extends JPanel {
             }
             @Override
             protected Lines[] lines() {
-                return new Lines[]{new Lines(this, new LineLocation(0,1,null),new LineLocation(0,2,Text.FACTORIAL3.toString()),new LineLocation(0,3,Text.FACTORIAL4.toString())) {
+                return new Lines[]{new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.FACTORIAL3.toString()), new LineLocation(0, 3, Text.FACTORIAL4.toString())) {
                     @Override
                     public void actions() {
                         accionesCasoBase(false);
