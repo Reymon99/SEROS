@@ -1,4 +1,4 @@
-package gui.simulador;
+package tools;
 public class Dato {
     private String tipoDato;
     private String variable;

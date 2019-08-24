@@ -1,5 +1,5 @@
 package gui.contenido;
-import gui.simulador.Dato;
+import tools.Dato;
 import tools.Archivos;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

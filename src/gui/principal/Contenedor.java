@@ -9,7 +9,7 @@ import gui.contenido.Texto;
 import gui.contenido.TextPane;
 import gui.contenido.Tree;
 import gui.editor.Editor;
-import gui.simulador.Dato;
+import tools.Dato;
 import gui.simulador.Recursividad;
 import gui.simulador.Simulador;
 import gui.simulador.lienzos.Graficador;
