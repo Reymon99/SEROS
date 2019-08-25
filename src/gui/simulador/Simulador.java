@@ -17,6 +17,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
+import java.util.Optional;
 public abstract class Simulador extends Lienzo {
     private Integer iteracion;
     private JComponent lienzo;
@@ -126,7 +127,7 @@ public abstract class Simulador extends Lienzo {
             box.add(component);
             if (component != components[components.length-1]) box.add(Box.createHorizontalStrut(1));
         }
-        if (title!=null) box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), title));
+        if (Optional.ofNullable(title).isPresent()) box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), title));
         return box;
     }
     /**

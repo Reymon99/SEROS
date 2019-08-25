@@ -4,6 +4,8 @@ import hilos.Lines;
 import tools.Acciones;
 import tools.Constrains;
 import tools.Fuentes;
+import tools.Paneles;
+
 import javax.swing.*;
 import java.awt.*;
 public abstract class Recursividad extends Simulador implements Acciones {
@@ -28,6 +30,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
         producto.setFont(Fuentes.UBUNTU_LIGHT_40.getFont());
         setAcciones(this);
         acomodamientoProducto();
+        back("Panel de Ejercicios de Recursividad", Paneles.EJERCICIOS_RECURSIVIDAD);
     }
     /**
      * Indica el decremento o incremento de la iteración
@@ -89,8 +92,8 @@ public abstract class Recursividad extends Simulador implements Acciones {
      * Acomodamiento por defecto cuando se utiliza productos
      */
     private void acomodamientoProducto(){
-        Constrains.addCompX(number, (Container) getLienzo(),new Rectangle(0,0,1,1),1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(producto,(Container) getLienzo(),new Rectangle(0,1,1,1),1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(number, getLienzo(),new Rectangle(0,0,1,1),1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(producto, getLienzo(),new Rectangle(0,1,1,1),1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
     }
     /**
      * Acción caso terminal

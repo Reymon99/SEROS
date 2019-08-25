@@ -47,7 +47,7 @@ public final class Contenido extends Lienzo {
         pane.setOpaque(false);
         pane.getViewport().setOpaque(false);
         pane.setBorder(BorderFactory.createEmptyBorder());
-        pane.getVerticalScrollBar().setUnitIncrement(30);
+        pane.getVerticalScrollBar().setUnitIncrement(50);
         pane.setFocusable(true);
         back(Text.VENTANAPRINCIPAL.toString(), Paneles.PRINCIPAL);
         Constrains.addComp(title,this,new Rectangle(0,0,3,1), 1,1,new Insets(15,15,8,10), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
