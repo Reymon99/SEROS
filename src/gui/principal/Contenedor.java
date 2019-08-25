@@ -462,7 +462,7 @@ public final class Contenedor extends JPanel {
             }
             @Override
             protected void casoDecrementativo() {
-                base(null, String.valueOf(0), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), false);
+                base(Text.FACTORIAL2, String.valueOf(0), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), false);
                 incrementIteracion();
             }
             @Override
@@ -482,7 +482,7 @@ public final class Contenedor extends JPanel {
             protected Lines[] lines() {
                 return new Lines[]{new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.FACTORIAL3.toString()), new LineLocation(0, 3, Text.FACTORIAL4.toString())) {
                     @Override
-                    public void actions() {
+                    protected void actions() {
                         accionesCasoBase(false);
                     }
                 }, new Lines(this, new LineLocation(0, 5, Text.FACTORIAL6.toString(), false)) {

@@ -29,7 +29,7 @@ public class Texto extends JTextArea {
      * @param columns columnas
      */
     public Texto(String text, int rows, int columns){
-        super(text,rows,columns);
+        super(text, rows, columns);
         init();
         setBorder(BorderFactory.createSoftBevelBorder(1));
     }
@@ -47,7 +47,7 @@ public class Texto extends JTextArea {
         setCaretColor(Colour.BLANCO.getColor());
         setForeground(Colour.BLANCO.getColor());
         setBackground(Colour.AZUL_TEXT.getColor());
-        setMargin(new Insets(28,24,20,20));
+        setMargin(new Insets(28,22,10,18));
     }
     private void init(){
         setFont(Fuentes.UBUNTU_LIGHT_20.getFont());
