@@ -12,6 +12,7 @@ import tools.Archivos;
 import tools.Colour;
 import tools.Constrains;
 import tools.Fuentes;
+import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -107,8 +108,8 @@ public abstract class Simulador extends Lienzo {
         pause.setOnOff(false);
         codigo.setOnOff(false);
         setIteracion(0);
-        Eventos.scroll((Editor)codigos.getComponentAt(0),0);
-        ((Editor)codigos.getComponentAt(0)).setLine(false);
+        Eventos.scroll((Editor) codigos.getComponentAt(0),0);
+        ((Editor) codigos.getComponentAt(0)).setLine(false);
     }
     /**
      * Plantilla por defecto de acomodamiento para el panel de control
@@ -145,6 +146,13 @@ public abstract class Simulador extends Lienzo {
         this.texto.setEditable(true);
         this.texto.setText(texto);
         this.texto.setEditable(false);
+    }
+    /**
+     * Fijar un texto determinado en el área de notificaciones
+     * @param texto texto a fijar determinadamente
+     */
+    public void setTexto(Text texto){
+        setTexto(texto.toString());
     }
     /**
      * Variables que se van a agregar

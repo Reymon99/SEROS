@@ -376,7 +376,7 @@ public final class Contenedor extends JPanel {
                 graficador.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
                 Eventos.enable(true, simulador.getClean(), simulador.getBack(), simulador.getHome());
                 Eventos.enable(false, simulador.getSend(), x, y, simulador.getPause(), simulador.getNextIteracion());
-                simulador.setTexto(Text.SIMULADORTDA1.toString());
+                simulador.setTexto(Text.SIMULADORTDA1);
                 Eventos.variable(punto, 0, x.getValue());
                 Eventos.variable(punto, 1, y.getValue());
                 punto.expandNode(0);
@@ -396,7 +396,7 @@ public final class Contenedor extends JPanel {
                 Eventos.variable(punto, 0, "");
                 Eventos.variable(punto, 1, "");
                 Eventos.enable(true, x, y);
-                simulador.setTexto(Text.SIMULADORTDA2.toString());
+                simulador.setTexto(Text.SIMULADORTDA2);
                 x.setValue(0);
                 y.setValue(0);
                 punto.expandNode(0);
@@ -430,7 +430,7 @@ public final class Contenedor extends JPanel {
              * @param clean acción de habilitar la opción de limpiar o de interactividad
              */
             private void base(Text text, int line, int scroll, boolean clean){
-                simulador.setTexto(text.toString());
+                simulador.setTexto(text);
                 Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0), scroll);
                 ((Editor) simulador.getCodigos().getComponentAt(0)).drawLineIn(line);
                 Eventos.enable(true, clean ? simulador.getClean() : simulador.getNextIteracion(), simulador.getBack(), simulador.getHome());
@@ -440,7 +440,7 @@ public final class Contenedor extends JPanel {
         simulador.back("Tipos de Datos Abstratos",Paneles.TDA);
         simulador.getSend().setText("Graficar");
         simulador.setDatos(punto);
-        simulador.setTexto(Text.SIMULADORTDA2.toString());
+        simulador.setTexto(Text.SIMULADORTDA2);
         return simulador;
     }
     /**
@@ -531,21 +531,21 @@ public final class Contenedor extends JPanel {
             }
             @Override
             public void iteracion0() {
-                Eventos.enable(false,getNextIteracion(),getSend(),valorI,getPause(),getBack(),getClean(),getCodigo(),getHome());
-                Eventos.variable(variaI,-1,valorI.getValue());
+                Eventos.enable(false,getNextIteracion(),getSend(), valorI, getPause(), getBack(), getClean(), getCodigo(), getHome());
+                Eventos.variable(variaI,-1, valorI.getValue());
                 base(Text.FACTORIAL1, Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString())), Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))), true);
             }
             @Override
             public void iteracion1() {
-                Eventos.enable(false,valorI);
+                Eventos.enable(false, valorI);
                 setValor(Integer.parseInt(valorI.getValue().toString()) - getIteracion());
-                Eventos.variable(variaI,-1,getValor());
+                Eventos.variable(variaI, -1, getValor());
                 super.iteracion1();
             }
             @Override
             public void clean() {
                 cleanComponents();
-                setTexto(Text.FACTORIAL.toString());
+                setTexto(Text.FACTORIAL);
                 Eventos.variable(variaI,-1,"");
                 Eventos.enable(true, valorI);
                 valorI.setValue(0);
@@ -553,23 +553,16 @@ public final class Contenedor extends JPanel {
                 setProducto(Operaciones.operacion("n!","0"));
                 setDecremento(true);
             }
-            /**
-             * Acciones comunes de interactividad
-             * @param text {@link Text}
-             * @param number1 número resultado a fijar
-             * @param producto1 producto a fijar
-             * @param clean acción de habilitar la opción de limpiar o de interactividad
-             */
-            private void base(Text text,Object number1,String producto1,boolean clean){
-                if (text!=null) setTexto(text.toString());
-                setNumber(number1.toString());
-                setProducto(producto1);
-                Eventos.enable(true,clean ? getClean() : getNextIteracion(),getBack(),getHome());
+            @Override
+            protected void base(Text text, Object numberText, String productoText, boolean clean){
+                super.base(text, numberText, productoText, clean);
+                setNumber(numberText.toString());
+                setProducto(productoText);
             }
         };
         recursividad.setDatos(variaI);
         recursividad.addCodes(Editor.editor("/resources/codes/recursividad/Factorial.seros", "Factorial"));
-        recursividad.setTexto(Text.FACTORIAL.toString());
+        recursividad.setTexto(Text.FACTORIAL);
         recursividad.setProducto(Operaciones.operacion("n!","0"));
         return recursividad;
     }
@@ -631,20 +624,40 @@ public final class Contenedor extends JPanel {
             }
             @Override
             public void iteracion0() {
-
+                Eventos.enable(false, valorBase, valorExponente, getNextIteracion(), getSend(), getPause(), getBack(), getClean(), getCodigo(), getHome());
+                setTexto(Text.POTENCIA1);
+                setNumber(Operaciones.formatNumber(Operaciones.potencia(valorBase.getValue(), valorExponente.getValue()), Operacion.POTENCIA));
+                setProducto(Eventos.html(Operaciones.operacion(Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()), Operaciones.productoPotencia(Integer.parseInt(valorBase.getValue().toString()), Integer.parseInt(valorExponente.getValue().toString())))));
+                Eventos.variable(base, -1, valorBase.getValue());
+                Eventos.variable(exponente, -1, valorExponente.getValue());
+                Eventos.enable(true, getClean(), getBack(), getHome());
             }
             @Override
             public void iteracion1() {
-
+                super.iteracion1();
             }
             @Override
             public void clean() {
-
+                cleanComponents();
+                Eventos.enable(true, valorBase, valorExponente);
+                setTexto(Text.POTENCIA);
+                setNumber("0");
+                setProducto(Eventos.html(Operaciones.operacion(Operaciones.exponente("a", "n"), "0")));
+                valorBase.setValue(1);
+                valorExponente.setValue(0);
+                Eventos.variable(base, -1, "");
+                Eventos.variable(exponente, -1, "");
+            }
+            @Override
+            protected void base(Text text, Object numberText, String productoText, boolean clean) {
+                super.base(text, numberText, productoText, clean);
+                setNumber(Operaciones.formatNumber(numberText, Operacion.POTENCIA));
+                setProducto(Eventos.html(productoText));
             }
         };
         recursividad.setProducto(Eventos.html(Operaciones.operacion(Operaciones.exponente("b", "e"), "0")));
         recursividad.setDatos(base, exponente);
-        recursividad.setTexto(Text.POTENCIA.toString());
+        recursividad.setTexto(Text.POTENCIA);
         recursividad.addCodes(Editor.editor("/resources/codes/recursividad/Potencia.seros", "Potencia"));
         return recursividad;
     }

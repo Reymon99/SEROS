@@ -5,9 +5,11 @@ import tools.Acciones;
 import tools.Constrains;
 import tools.Fuentes;
 import tools.Paneles;
-
+import tools.Text;
 import javax.swing.*;
 import java.awt.*;
+import java.util.Optional;
+
 public abstract class Recursividad extends Simulador implements Acciones {
     private int valor;
     private boolean decremento;
@@ -89,6 +91,17 @@ public abstract class Recursividad extends Simulador implements Acciones {
         this.valor = valor;
     }
     /**
+     * Acciones comunes de interacción
+     * @param text {@link Text} de la descripción de la acción
+     * @param numberText número resultado a fijar
+     * @param productoText producto a fijar
+     * @param clean acción de habilitar la opción de limpiar o de interactividad
+     */
+    protected void base(Text text, Object numberText, String productoText, boolean clean){
+        if (Optional.ofNullable(text).isPresent()) setTexto(text);
+        Eventos.enable(true, clean ? getClean() : getNextIteracion(), getBack(), getHome());
+    }
+    /**
      * Acomodamiento por defecto cuando se utiliza productos
      */
     private void acomodamientoProducto(){
@@ -153,7 +166,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
     }
     @Override
     public void iteracion1() {
-        Eventos.enable(false, getClean(),getNextIteracion(),getSend(),getPause(),getBack(),getCodigo(),getHome());
+        Eventos.enable(false, getClean(), getNextIteracion(), getSend(), getPause(), getBack(), getCodigo(), getHome());
         if (isCasoBase()){
             if (getCodigo().isOnOff()) accionesCasoBase(true);
             else accionesCasoBase(false);
