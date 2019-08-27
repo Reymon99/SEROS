@@ -9,7 +9,6 @@ import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Optional;
-
 public abstract class Recursividad extends Simulador implements Acciones {
     private int valor;
     private boolean decremento;
@@ -167,16 +166,16 @@ public abstract class Recursividad extends Simulador implements Acciones {
     @Override
     public void iteracion1() {
         Eventos.enable(false, getClean(), getNextIteracion(), getSend(), getPause(), getBack(), getCodigo(), getHome());
-        if (isCasoBase()){
+        if (isCasoBase()) {
             if (getCodigo().isOnOff()) accionesCasoBase(true);
             else accionesCasoBase(false);
-        } else if (getIteracion()==0 && !isDecremento()){
+        } else if (getIteracion()==0 && !isDecremento()) {
             if (getCodigo().isOnOff()) accionesCasoTerminal(true);
             else accionesCasoTerminal(false);
-        } else if (!isDecremento()){
+        } else if (!isDecremento()) {
             if (getCodigo().isOnOff()) accionesCasoIncrementativo(true);
             else accionesCasoIncrementativo(false);
-        } else{
+        } else {
             if (getCodigo().isOnOff()) accionesCasoDecrementativo(true);
             else accionesCasoDecrementativo(false);
         }

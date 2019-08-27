@@ -45,7 +45,7 @@ public class Lienzo extends JPanel {
     private void init(boolean lienzo){
         this.lienzo=lienzo;
         back=new Boton(Archivos.image("/resources/image/back.png",-1,-1),Eventos.menu(Paneles.values()));
-        home=new Boton(Text.VENTANAPRINCIPAL.toString(), Archivos.image("/resources/image/home.png", -1, -1), new MouseAdapter() {
+        home=new Boton(Text.VENTANA_PRINCIPAL.toString(), Archivos.image("/resources/image/home.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 acciones.clean();

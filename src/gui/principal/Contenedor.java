@@ -27,6 +27,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
+import java.util.Optional;
+
 public final class Contenedor extends JPanel {
     public static HashMap<Paneles, Lienzo> paneles;
     public static Paneles panelActivo;
@@ -165,14 +167,14 @@ public final class Contenedor extends JPanel {
         Contenido con=new Contenido();
         con.getTitle().setText("Tipos de Datos Abstratos (tda)");
         con.next("Simulador TDA",Paneles.SIMULADOR_TDA);
-        JLabel formula=new JLabel(Text.FORMULATDA.toString(),SwingConstants.CENTER);
+        JLabel formula=new JLabel(Text.FORMULA_TDA.toString(),SwingConstants.CENTER);
         formula.setFont(Fuentes.PURISA_18.getFont());
         formula.setOpaque(false);
         Constrains.addComp(new Texto(Text.TDA.toString()), con.getContenido(), new Rectangle(0, 0, 1, 1), 1,1, new Insets(10, 25, 15, 12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(Editor.editor("/resources/codes/tda/Punto.seros", "Punto"),con.getContenido(),new Rectangle(0,1,1,1), 0,0,new Insets(5,5,5,5),GridBagConstraints.CENTER, GridBagConstraints.NONE);
-        Constrains.addComp(new Texto(Text.TDA1.toString()), con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(10,25,3,12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(new Texto(Text.TDA2.toString()), con.getContenido(),new Rectangle(0,3,1,1),1,1,new Insets(3,40,3,12), GridBagConstraints.NORTHEAST,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(new Texto(Text.TDA3.toString()), con.getContenido(),new Rectangle(0,4,1,1), 1,1,new Insets(5,25,5,12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.TDA_1.toString()), con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(10,25,3,12), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.TDA_2.toString()), con.getContenido(),new Rectangle(0,3,1,1),1,1,new Insets(3,40,3,12), GridBagConstraints.NORTHEAST,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.TDA_3.toString()), con.getContenido(),new Rectangle(0,4,1,1), 1,1,new Insets(5,25,5,12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(formula, con.getContenido(),new Rectangle(0,5,1,1), 1,1,new Insets(10,25,5,25), GridBagConstraints.CENTER,GridBagConstraints.NONE);
         return con;
     }
@@ -186,7 +188,7 @@ public final class Contenedor extends JPanel {
         con.next("Demostración Interactiva de Modularidad",Paneles.DEMOSTRACION_MODULARIDAD);
         Constrains.addComp(new Texto(Text.MODULARIDAD.toString()),con.getContenido(),new Rectangle(0,0,1,1), 1,1,new Insets(10, 25, 5, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new JLabel(Archivos.image("/resources/image/saluda.png",-1,290)),con.getContenido(),new Rectangle(0,1,1,1),1,1,new Insets(3,7,7,7),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addComp(new Texto(Text.MODULARIDAD1.toString()),con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.MODULARIDAD_1.toString()),con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(10, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         return con;
     }
     /**
@@ -207,7 +209,7 @@ public final class Contenedor extends JPanel {
         Contenido con= new Contenido();
         con.getTitle().setText("Recursividad");
         TextPane editor=new TextPane(false);
-        String[] recur = Text.RECURSIVIDAD1.toString().split("\u279c");
+        String[] recur = Text.RECURSIVIDAD_1.toString().split("\u279c");
         for (String n:recur){
             editor.append(n,Fuentes.PURISA_22.getFont());
             if (!n.equals(recur[recur.length-1])) editor.append("\u279c",Fuentes.SEGOE_UI_SYMBOL_22.getFont());
@@ -237,9 +239,9 @@ public final class Contenedor extends JPanel {
         con.next("",null);
         Constrains.addComp(new Texto(Text.NODOS.toString()),con.getContenido(),new Rectangle(0,0,1,1), 1,1,new Insets(10, 25, 1, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new JLabel(Archivos.image("/resources/image/nodo.png",-1,89)),con.getContenido(),new Rectangle(0,1,1,1),1,1,new Insets(1,3,1,3),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addComp(new Texto(Text.NODOS1.toString()),con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(5, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.NODOS_1.toString()),con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(5, 25, 15, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new JLabel(Archivos.image("/resources/image/memoria.png",-1,150)),con.getContenido(), new Rectangle(0,3,1,1),1,1,new Insets(3,3,3,3),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addComp(new Texto(Text.NODOS2.toString()),con.getContenido(),new Rectangle(0,4,1,1), 1,1,new Insets(10, 25, 5, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.NODOS_2.toString()),con.getContenido(),new Rectangle(0,4,1,1), 1,1,new Insets(10, 25, 5, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new JLabel(Archivos.image("/resources/image/mateo.png",-1,450)),con.getContenido(), new Rectangle(0,5,1,1),1,1,new Insets(10,3,10,3),GridBagConstraints.CENTER,GridBagConstraints.NONE);
         return con;
     }
@@ -293,9 +295,9 @@ public final class Contenedor extends JPanel {
         con.next("",null);
         Constrains.addComp(new Texto(Text.ARREGLOS.toString()),con.getContenido(),new Rectangle(0,0,1,1),1,1,new Insets(10, 25, 8, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new JLabel(Archivos.image("/resources/image/arreglo.png",-1,170)),con.getContenido(), new Rectangle(0,1,1,1),1,1,new Insets(5,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addComp(new Texto(Text.ARREGLOS1.toString()),con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(8, 25, 8, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.ARREGLOS_1.toString()),con.getContenido(),new Rectangle(0,2,1,1),1,1,new Insets(8, 25, 8, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         Constrains.addComp(new JLabel(Archivos.image("/resources/image/arregloDatos.png",-1,130)),con.getContenido(), new Rectangle(0,3,1,1),1,1,new Insets(5,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addComp(new Texto(Text.ARREGLOS2.toString()),con.getContenido(),new Rectangle(0,4,1,1),1,1,new Insets(8, 25, 10, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(new Texto(Text.ARREGLOS_2.toString()),con.getContenido(),new Rectangle(0,4,1,1),1,1,new Insets(8, 25, 10, 12), GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
         return con;
     }
     /**
@@ -376,7 +378,7 @@ public final class Contenedor extends JPanel {
                 graficador.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
                 Eventos.enable(true, simulador.getClean(), simulador.getBack(), simulador.getHome());
                 Eventos.enable(false, simulador.getSend(), x, y, simulador.getPause(), simulador.getNextIteracion());
-                simulador.setTexto(Text.SIMULADORTDA1);
+                simulador.setTexto(Text.SIMULADOR_TDA_1);
                 Eventos.variable(punto, 0, x.getValue());
                 Eventos.variable(punto, 1, y.getValue());
                 punto.expandNode(0);
@@ -396,7 +398,7 @@ public final class Contenedor extends JPanel {
                 Eventos.variable(punto, 0, "");
                 Eventos.variable(punto, 1, "");
                 Eventos.enable(true, x, y);
-                simulador.setTexto(Text.SIMULADORTDA2);
+                simulador.setTexto(Text.SIMULADOR_TDA_2);
                 x.setValue(0);
                 y.setValue(0);
                 punto.expandNode(0);
@@ -405,21 +407,21 @@ public final class Contenedor extends JPanel {
              * Muestra los datos y códigos que se asignan al eje x
              */
             private void asignacionX(){
-                base(Text.SIMULADORTDA3, 5, 0, false);
+                base(Text.SIMULADOR_TDA_3, 5, 0, false);
                 Eventos.variable(punto, 0, x.getValue());
             }
             /**
              * Muestra los datos y códigos que se asignan al eje y
              */
             private void asignacionY(){
-                base(Text.SIMULADORTDA4, 6, 0, false);
+                base(Text.SIMULADOR_TDA_4, 6, 0, false);
                 Eventos.variable(punto, 1, y.getValue());
             }
             /**
              * Grafica las coordenadas (x,y) muestra los códigos asignados a estos
              */
             private void mostrarCoordenadas(){
-                base(Text.SIMULADORTDA1, 22, ((Editor) simulador.getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum(), true);
+                base(Text.SIMULADOR_TDA_1, 22, ((Editor) simulador.getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum(), true);
                 graficador.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
             }
             /**
@@ -440,7 +442,7 @@ public final class Contenedor extends JPanel {
         simulador.back("Tipos de Datos Abstratos",Paneles.TDA);
         simulador.getSend().setText("Graficar");
         simulador.setDatos(punto);
-        simulador.setTexto(Text.SIMULADORTDA2);
+        simulador.setTexto(Text.SIMULADOR_TDA_2);
         return simulador;
     }
     /**
@@ -458,21 +460,21 @@ public final class Contenedor extends JPanel {
         Recursividad recursividad = new Recursividad(null, valorI) {
             @Override
             protected void casoTerminal() {
-                base(Text.FACTORIAL1, Operaciones.formatNumber(Operaciones.factorial(getValor()), Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), true);
+                base(Text.FACTORIAL_1, Operaciones.formatNumber(Operaciones.factorial(getValor()), Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), true);
             }
             @Override
             protected void casoDecrementativo() {
-                base(Text.FACTORIAL2, String.valueOf(0), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), false);
+                base(Text.CASO_RECURSIVO, String.valueOf(0), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), false);
                 incrementIteracion();
             }
             @Override
             protected void casoIncrementativo() {
-                base(Text.FACTORIAL7, Operaciones.formatNumber(Operaciones.factorial(getValor()), Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), false);
+                base(Text.FACTORIAL_2, Operaciones.formatNumber(Operaciones.factorial(getValor()), Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productUpFactorial(Integer.parseInt(valorI.getValue().toString()), getValor())), false);
                 decrementIteracion();
             }
             @Override
             protected void casoBase(boolean found) {
-                base(found ? Text.FACTORIAL1 : Text.FACTORIAL5, Operaciones.factorial(getValor()), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))), found);
+                base(found ? Text.FACTORIAL_1 : Text.CASO_BASE_RETURN_2, Operaciones.factorial(getValor()), Operaciones.operacion(valorI.getValue().toString()+'!', Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))), found);
                 if (!found) {
                     decrementIteracion();
                     setDecremento(false);
@@ -480,12 +482,12 @@ public final class Contenedor extends JPanel {
             }
             @Override
             protected Lines[] lines() {
-                return new Lines[]{new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.FACTORIAL3.toString()), new LineLocation(0, 3, Text.FACTORIAL4.toString())) {
+                return new Lines[] {new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.CASO_BASE.toString()), new LineLocation(0, 3, Text.CASO_BASE_FOUND.toString())) {
                     @Override
                     protected void actions() {
                         accionesCasoBase(false);
                     }
-                }, new Lines(this, new LineLocation(0, 5, Text.FACTORIAL6.toString(), false)) {
+                }, new Lines(this, new LineLocation(0, 5, Text.CASO_RECURSIVO_FINISHED.toString())) {
                     @Override
                     protected void actions() {
                         accionesCasoTerminal(false);
@@ -495,7 +497,7 @@ public final class Contenedor extends JPanel {
                     protected void actions() {
                         accionesCasoIncrementativo(false);
                     }
-                }, new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.FACTORIAL3.toString()), new LineLocation(0, 4, Text.FACTORIAL2.toString()), new LineLocation(0, 5, null, false)) {
+                }, new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.CASO_BASE.toString()), new LineLocation(0, 4, Text.CASO_RECURSIVO.toString()), new LineLocation(0, 5, null, false)) {
                     @Override
                     protected void actions() {
                         accionesCasoDecrementativo(false);
@@ -533,7 +535,7 @@ public final class Contenedor extends JPanel {
             public void iteracion0() {
                 Eventos.enable(false,getNextIteracion(),getSend(), valorI, getPause(), getBack(), getClean(), getCodigo(), getHome());
                 Eventos.variable(variaI,-1, valorI.getValue());
-                base(Text.FACTORIAL1, Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString())), Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))), true);
+                base(Text.FACTORIAL_1, Operaciones.formatNumber(Operaciones.factorial(Integer.parseInt(valorI.getValue().toString())), Operacion.FACTORIAL), Operaciones.operacion(valorI.getValue().toString()+'!',Operaciones.productoFactorial(Integer.parseInt(valorI.getValue().toString()))), true);
             }
             @Override
             public void iteracion1() {
@@ -575,7 +577,7 @@ public final class Contenedor extends JPanel {
      */
     private Recursividad potencia(){
         Operaciones.addFormat(Operacion.POTENCIA, "##,###,###,###.#");
-        JSpinner valorBase = new JSpinner(new SpinnerNumberModel(1, 1, 10, 1));
+        JSpinner valorBase = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
         JSpinner valorExponente = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
         ((JSpinner.NumberEditor) valorBase.getEditor()).getTextField().setEditable(false);
         ((JSpinner.NumberEditor) valorExponente.getEditor()).getTextField().setEditable(false);
@@ -604,7 +606,7 @@ public final class Contenedor extends JPanel {
             }
             @Override
             protected boolean isCasoBase() {
-                return false;
+                return getValor()==1 || getValor()==0;
             }
             @Override
             protected void accionesCasoBase(boolean code) {
@@ -625,15 +627,17 @@ public final class Contenedor extends JPanel {
             @Override
             public void iteracion0() {
                 Eventos.enable(false, valorBase, valorExponente, getNextIteracion(), getSend(), getPause(), getBack(), getClean(), getCodigo(), getHome());
-                setTexto(Text.POTENCIA1);
-                setNumber(Operaciones.formatNumber(Operaciones.potencia(valorBase.getValue(), valorExponente.getValue()), Operacion.POTENCIA));
-                setProducto(Eventos.html(Operaciones.operacion(Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()), Operaciones.productoPotencia(Integer.parseInt(valorBase.getValue().toString()), Integer.parseInt(valorExponente.getValue().toString())))));
                 Eventos.variable(base, -1, valorBase.getValue());
                 Eventos.variable(exponente, -1, valorExponente.getValue());
-                Eventos.enable(true, getClean(), getBack(), getHome());
+                if (Integer.parseInt(valorBase.getValue().toString())==0 && Integer.parseInt(valorExponente.getValue().toString())==0) base(Text.ARITHMETIC, '-', Text.INDETERMINADO.toString(), true);
+                else base(Text.FACTORIAL_1, Operaciones.potencia(valorBase.getValue(), valorExponente.getValue()), Operaciones.operacion(Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()), Operaciones.productoPotencia(Integer.parseInt(valorBase.getValue().toString()), Integer.parseInt(valorExponente.getValue().toString()))), true);
             }
             @Override
             public void iteracion1() {
+                Eventos.enable(false, valorBase, valorExponente);
+                setValor(Integer.parseInt(valorExponente.getValue().toString()) - getIteracion());
+                Eventos.variable(base, -1, valorBase.getValue());
+                Eventos.variable(exponente, -1, getValor());
                 super.iteracion1();
             }
             @Override
@@ -643,7 +647,7 @@ public final class Contenedor extends JPanel {
                 setTexto(Text.POTENCIA);
                 setNumber("0");
                 setProducto(Eventos.html(Operaciones.operacion(Operaciones.exponente("a", "n"), "0")));
-                valorBase.setValue(1);
+                valorBase.setValue(0);
                 valorExponente.setValue(0);
                 Eventos.variable(base, -1, "");
                 Eventos.variable(exponente, -1, "");
@@ -651,7 +655,11 @@ public final class Contenedor extends JPanel {
             @Override
             protected void base(Text text, Object numberText, String productoText, boolean clean) {
                 super.base(text, numberText, productoText, clean);
-                setNumber(Operaciones.formatNumber(numberText, Operacion.POTENCIA));
+                try{
+                    setNumber(Operaciones.formatNumber(numberText, Operacion.POTENCIA));
+                } catch (IllegalArgumentException e) {
+                    setNumber(numberText.toString());
+                }
                 setProducto(Eventos.html(productoText));
             }
         };
