@@ -1,5 +1,5 @@
 public longn_ faca_(w_intn_ n) {w_
-	ifn_ (n==w_0b_ || n==w_1b_) {w_
+	ifn_ (n ==w_ 0b_ || n ==w_ 1b_) {w_
 		returnn_ 1b_;n_
 	}w_ elsen_ {w_
 		returnn_ n * fac(n -w_ 1b_)w_;n_

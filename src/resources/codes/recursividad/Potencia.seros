@@ -1,9 +1,13 @@
-public longn_ potenciaa_ (w_intn_ basew_, intn_ exponentew_){w_
-	ifn_ (exponente == w_0b_) {w_
-		returnn_ 1b_;n_
-	}w_ else ifn_ (exponente ==w_ 1b_) {w_
-		returnn_ basew_;n_
-	}w_ elsen_ {w_
-		returnn_ base * potencia(basew_,n_ exponentew_-1b_)w_;n_
-	}
+public longn_ potenciaa_(w_intn_ basew_, intn_ exponente)w_ throwsn_ ArithmeticException {w_
+    ifn_ (exponente ==w_ 0b_) {w_
+        ifn_ (base ==w_ 0b_) {w_
+            throw newn_ ArithmeticException(w_"Indeterminado"v_)w_;n_
+        }w_ elsen_ {w_
+            returnn_ 1b_;n_
+        }w_
+    }w_ else ifn_ (exponente ==w_ 1b_ || base ==w_ 1b_ || base ==w_ 0b_) {w_
+        returnn_ basew_;n_
+    }w_ elsen_ {w_
+        returnn_ base * potencia(basew_,n_ exponente -w_ 1b_)w_;n_
+    }
 }w_
