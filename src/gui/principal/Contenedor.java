@@ -600,9 +600,17 @@ public final class Contenedor extends JPanel {
             protected void casoBase(boolean found) {
 
             }
+            private void casoArithmetic(){
+                base(Text.ARITHMETIC_1, '-', Text.INDETERMINADO.toString(), true);
+            }
             @Override
             protected Lines[] lines() {
-                return new Lines[0];
+                return new Lines[]{new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.CASO_BASE.toString()), new LineLocation(0, 3, Text.POTENCIA_2.toString()), new LineLocation(0, 4, Text.ARITHMETIC.toString()), new LineLocation(0, -1, null, false)) {
+                    @Override
+                    protected void actions() {
+                        casoArithmetic();
+                    }
+                }};
             }
             @Override
             protected boolean isCasoBase() {
@@ -610,7 +618,11 @@ public final class Contenedor extends JPanel {
             }
             @Override
             protected void accionesCasoBase(boolean code) {
-
+                if (code){
+                    if (getValor() == 0 && Integer.parseInt(valorBase.getValue().toString()) == 0) lines()[0].start();
+                }else {
+                    if (getValor() == 0 && Integer.parseInt(valorBase.getValue().toString()) == 0) casoArithmetic();
+                }
             }
             @Override
             protected void accionesCasoTerminal(boolean code) {
@@ -629,7 +641,7 @@ public final class Contenedor extends JPanel {
                 Eventos.enable(false, valorBase, valorExponente, getNextIteracion(), getSend(), getPause(), getBack(), getClean(), getCodigo(), getHome());
                 Eventos.variable(base, -1, valorBase.getValue());
                 Eventos.variable(exponente, -1, valorExponente.getValue());
-                if (Integer.parseInt(valorBase.getValue().toString())==0 && Integer.parseInt(valorExponente.getValue().toString())==0) base(Text.ARITHMETIC, '-', Text.INDETERMINADO.toString(), true);
+                if (Integer.parseInt(valorBase.getValue().toString())==0 && Integer.parseInt(valorExponente.getValue().toString())==0) casoArithmetic();
                 else base(Text.FACTORIAL_1, Operaciones.potencia(valorBase.getValue(), valorExponente.getValue()), Operaciones.operacion(Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()), Operaciones.productoPotencia(Integer.parseInt(valorBase.getValue().toString()), Integer.parseInt(valorExponente.getValue().toString()))), true);
             }
             @Override
