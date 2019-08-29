@@ -596,7 +596,11 @@ public final class Contenedor extends JPanel {
             }
             @Override
             protected void casoBase(boolean found) {
-
+                base(found ? Text.POTENCIA_1 : Text.CASO_BASE_RETURN_2, Operaciones.potencia(valorBase.getValue(), getValor()), Operaciones.operacion(Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()), found ? Operaciones.potencia(valorBase.getValue(), getValor()) : Operaciones.productoPotenciaUp(valorBase.getValue(), valorExponente.getValue())), true);
+                if (!found){
+                    setDecremento(false);
+                    decrementIteracion();
+                }
             }
             /**
              * Acción del caso base 0 lanzando una excepción aritmética
@@ -604,43 +608,49 @@ public final class Contenedor extends JPanel {
             private void casoArithmetic(){
                 base(Text.ARITHMETIC_1, '-', Text.INDETERMINADO.toString(), true);
             }
-            /**
-             * Acción del caso base 0
-             */
-            private void casoZero(){
-                base(Text.POTENCIA_1, Operaciones.potencia(valorBase.getValue(), getValor()), Operaciones.operacion(Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()), Operaciones.potencia(valorBase.getValue(), getValor())), true);
-            }
             @Override
             protected Lines[] lines() {
                 return new Lines[]{new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.CASO_BASE.toString()), new LineLocation(0, 3, Text.POTENCIA_2.toString()), new LineLocation(0, 4, Text.ARITHMETIC.toString()), new LineLocation(0, -1, null, false)) {
                     @Override
                     protected void actions() {
-                        casoArithmetic();
+                        accionesCasoBase(false);
                     }
-                }, new Lines(this, new LineLocation(0, 1, null),
-                        new LineLocation(0, 2, Text.CASO_BASE.toString()),
-                        new LineLocation(0, 3, Text.POTENCIA_2.toString()),
-                        new LineLocation(0, 5, Text.CASO_BASE_FOUND.toString()),
-                        new LineLocation(0, 6, null, false)) {
+                }, new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.CASO_BASE.toString()), new LineLocation(0, 3, Text.POTENCIA_2.toString()), new LineLocation(0, 5, Text.CASO_BASE_FOUND.toString()), new LineLocation(0, 6, null, false)) {
                     @Override
                     protected void actions() {
-                        casoZero();
+                        accionesCasoBase(false);
+                    }
+                }, new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.CASO_BASE.toString()), new LineLocation(0, 8, null), new LineLocation(0, 9, Text.CASO_BASE_FOUND.toString()), new LineLocation(0, -1, Text.CASO_BASE_RETURN_1.toString())) {
+                    @Override
+                    protected void actions() {
+                        accionesCasoBase(false);
+                    }
+                }, new Lines(this, new LineLocation(0, 1, null), new LineLocation(0, 2, Text.CASO_BASE.toString()), new LineLocation(0, 8, null), new LineLocation(0, 9, Text.CASO_BASE_FOUND.toString())) {
+                    @Override
+                    protected void actions() {
+                        accionesCasoBase(false);
                     }
                 }};
             }
             @Override
             protected boolean isCasoBase() {
-                return getValor()==1 || getValor()==0;
+                int basePot = Integer.parseInt(valorBase.getValue().toString());
+                return getValor()==1 || getValor()==0 || basePot == 1 || basePot == 0;
             }
             @Override
             protected void accionesCasoBase(boolean code) {
-                if (code){
-                    if (getValor() == 0 && Integer.parseInt(valorBase.getValue().toString()) == 0) lines()[0].start();
-                    else if (getValor() == 0) lines()[1].start();
-                }else {
-                    if (getValor() == 0 && Integer.parseInt(valorBase.getValue().toString()) == 0) casoArithmetic();
-                    else if (getValor() == 0) casoZero();
-                }
+                int basePot = Integer.parseInt(valorBase.getValue().toString());
+                if (getValor() == 0){
+                    if (basePot == 0){
+                        if (code) lines()[0].start();
+                        else casoArithmetic();
+                    } else if (code) lines()[1].start();
+                    else casoBase(true);
+                } else if (basePot == 1 || basePot == 0 || Integer.parseInt(valorExponente.getValue().toString()) == 1) {
+                    if (code) lines()[2].start();
+                    else casoBase(true);
+                } else if (code) lines()[3].start();
+                else casoBase(false);
             }
             @Override
             protected void accionesCasoTerminal(boolean code) {
@@ -661,6 +671,7 @@ public final class Contenedor extends JPanel {
                 Eventos.variable(exponente, -1, valorExponente.getValue());
                 if (Integer.parseInt(valorBase.getValue().toString())==0 && Integer.parseInt(valorExponente.getValue().toString())==0) casoArithmetic();
                 else base(Text.FACTORIAL_1, Operaciones.potencia(valorBase.getValue(), valorExponente.getValue()), Operaciones.operacion(Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()), Operaciones.productoPotencia(Integer.parseInt(valorBase.getValue().toString()), Integer.parseInt(valorExponente.getValue().toString()))), true);
+                //Revisar si el caso terminal funciona aquí
             }
             @Override
             public void iteracion1() {
