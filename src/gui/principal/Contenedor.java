@@ -27,8 +27,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
-import java.util.Optional;
-
 public final class Contenedor extends JPanel {
     public static HashMap<Paneles, Lienzo> paneles;
     public static Paneles panelActivo;
@@ -600,8 +598,17 @@ public final class Contenedor extends JPanel {
             protected void casoBase(boolean found) {
 
             }
+            /**
+             * Acción del caso base 0 lanzando una excepción aritmética
+             */
             private void casoArithmetic(){
                 base(Text.ARITHMETIC_1, '-', Text.INDETERMINADO.toString(), true);
+            }
+            /**
+             * Acción del caso base 0
+             */
+            private void casoZero(){
+                base(Text.POTENCIA_1, Operaciones.potencia(valorBase.getValue(), getValor()), Operaciones.operacion(Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()), Operaciones.potencia(valorBase.getValue(), getValor())), true);
             }
             @Override
             protected Lines[] lines() {
@@ -609,6 +616,15 @@ public final class Contenedor extends JPanel {
                     @Override
                     protected void actions() {
                         casoArithmetic();
+                    }
+                }, new Lines(this, new LineLocation(0, 1, null),
+                        new LineLocation(0, 2, Text.CASO_BASE.toString()),
+                        new LineLocation(0, 3, Text.POTENCIA_2.toString()),
+                        new LineLocation(0, 5, Text.CASO_BASE_FOUND.toString()),
+                        new LineLocation(0, 6, null, false)) {
+                    @Override
+                    protected void actions() {
+                        casoZero();
                     }
                 }};
             }
@@ -620,8 +636,10 @@ public final class Contenedor extends JPanel {
             protected void accionesCasoBase(boolean code) {
                 if (code){
                     if (getValor() == 0 && Integer.parseInt(valorBase.getValue().toString()) == 0) lines()[0].start();
+                    else if (getValor() == 0) lines()[1].start();
                 }else {
                     if (getValor() == 0 && Integer.parseInt(valorBase.getValue().toString()) == 0) casoArithmetic();
+                    else if (getValor() == 0) casoZero();
                 }
             }
             @Override
