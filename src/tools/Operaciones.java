@@ -20,8 +20,8 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @param key formato a trabajar
      * @param pattern patron a trabajar
      */
-    public static void addFormat(Operacion key,String pattern) {
-        Operaciones.format.put(key,new DecimalFormat(pattern));
+    public static void addFormat(Operacion key, String pattern) {
+        Operaciones.format.put(key, new DecimalFormat(pattern));
     }
     /**
      * Formato al número dado
@@ -39,7 +39,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @return operación y resultado en una única cadena
      */
     public static String operacion(String operacion, Object resultado){
-        return operacion+"    =    "+resultado.toString();
+        return operacion + "    =    " + resultado.toString();
     }
     /**
      * Genera el factorial de n
@@ -47,7 +47,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @return factorial de n
      */
     public static long factorial(int n){
-        return n==1 || n==0 ? 1 : n*Operaciones.factorial(n-1);
+        return n == 1 || n == 0 ? 1 : n * Operaciones.factorial(n - 1);
     }
     /**
      * Genera la multiplicación de un factorial n
@@ -55,7 +55,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @return multiplicación recursiva del factorial n
      */
     public static String productoFactorial(int i){
-        return i==1 || i==0 ? "1" : i+" * "+Operaciones.productoFactorial(i-1);
+        return i == 1 || i == 0 ? "1" : i + " * " + Operaciones.productoFactorial(i - 1);
     }
     /**
      * Genera la multiplicación de un número n hasta el establecido
@@ -63,8 +63,8 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @param valor valor final
      * @return multiplicación recursiva de un valor inicial al valor final
      */
-    public static String productoFactorial(int i,int valor){
-        return i==valor ? String.valueOf(valor) : i+" * "+Operaciones.productoFactorial(i-1,valor);
+    public static String productoFactorial(int i, int valor){
+        return i == valor ? String.valueOf(valor) : i + " * " + Operaciones.productoFactorial(i - 1, valor);
     }
     /**
      * Genera la multiplicación de un número n hasta el factorial del valor limite
@@ -72,8 +72,8 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @param factorial valor a dar factorial
      * @return multiplicación recursiva de un valor inicial al factorial del valor final
      */
-    public static String productUpFactorial(int i,int factorial){
-        return i==factorial ? Operaciones.formatNumber(Operaciones.factorial(factorial),Operacion.FACTORIAL) : i+" * "+Operaciones.productUpFactorial(i-1,factorial);
+    public static String productUpFactorial(int i, int factorial){
+        return i == factorial ? Operaciones.formatNumber(Operaciones.factorial(factorial), Operacion.FACTORIAL) : i + " * " + Operaciones.productUpFactorial(i - 1, factorial);
     }
     /**
      * No da una cadena exponencial convertida por medio de HTML
@@ -83,7 +83,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @see Eventos#html(String)
      */
     public static String exponente(Object base, Object exponente){
-        return base.toString()+"<sup>"+exponente.toString()+"</sup>";
+        return base.toString() + "<sup>" + exponente.toString() + "</sup>";
     }
     /**
      * Resuelve una potencia con los casos dados
@@ -91,8 +91,8 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @param exponente exponente de la potencia
      * @return Resultado de la potencia según los casos dados
      */
-    public static long potencia(Object base,Object exponente){
-        return (long) Math.pow(Integer.parseInt(base.toString()),Integer.parseInt(exponente.toString()));
+    public static long potencia(Object base, Object exponente){
+        return (long) Math.pow(Integer.parseInt(base.toString()), Integer.parseInt(exponente.toString()));
     }
     /**
      * Genera la multiplicación de una potencia dada
@@ -101,9 +101,9 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @return multiplicación recursiva de la potencia b^e
      */
     public static String productoPotencia(int base, int exponente){
-        if (exponente==0) return "1";
-        else if (exponente==1) return String.valueOf(base);
-        else return base+" * "+productoPotencia(base, exponente-1);
+        if (exponente == 0) return "1";
+        else if (exponente == 1) return String.valueOf(base);
+        else return base + " * " + productoPotencia(base, exponente-1);
     }
     /**
      * Genera la multiplicación de una potencia dada
@@ -112,9 +112,9 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @return multiplicación recursiva de la potencia b^e
      */
     public static String productoPotenciaUp(Object base, Object exponente){
-        String[] ads=new String[Integer.parseInt(exponente.toString())];
-        Arrays.fill(ads,base.toString());
-        return String.join(" * ",ads);
+        String[] ads = new String[Integer.parseInt(exponente.toString())];
+        Arrays.fill(ads, base.toString());
+        return String.join(" * ", ads);
     }
     /**
      * Genera la multiplicación de la potencia dada hasta la potencia indicada
@@ -124,6 +124,6 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @return multiplicación recursiva de la potencia b^e hasta la potencia b^v
      */
     public static String productoPotenciaUpN(Object base, Object exponente, int valor){
-        return productoPotenciaUp(base,exponente) +" * "+ potencia(base, valor);
+        return productoPotenciaUp(base, exponente) + " * " + potencia(base, valor);
     }
 }

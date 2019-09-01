@@ -1,5 +1,6 @@
-package gui.simulador;
+package gui.simulador.simuladores;
 import eventos.Eventos;
+import gui.simulador.Simulador;
 import hilos.Lines;
 import tools.Acciones;
 import tools.Constrains;
@@ -58,7 +59,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
      * Da una nueva demostración de la operación que se está realizando
      * @param producto nueva demostración de la operación indicada
      */
-    public void setProducto(String producto) {
+    protected void setProducto(String producto) {
         this.producto.setText(producto);
     }
     /**
@@ -126,6 +127,12 @@ public abstract class Recursividad extends Simulador implements Acciones {
     protected abstract void casoBase(boolean found);
     /**
      * Líneas que se van a simular
+     * <ul>
+     *     <li>0 - acciones caso Terminal</li>
+     *     <li>1 - acciones caso Incrementativo</li>
+     *     <li>2 - acciones caso Decrementativo</li>
+     *     <li>3 > - acciones caso Base</li>
+     * </ul>
      * @return arreglo de las líneas que se van a simular
      */
     protected abstract Lines[] lines();
@@ -143,17 +150,26 @@ public abstract class Recursividad extends Simulador implements Acciones {
      * acciones a realizar en el caso terminal del simulador
      * @param code define si se va a utilizar la simulación paso a paso con código o no
      */
-    protected abstract void accionesCasoTerminal(boolean code);
+    protected void accionesCasoTerminal(boolean code){
+        if (code) lines()[0].start();
+        else casoTerminal();
+    }
     /**
      * acciones a realizar en el caso incrementativo del simulador
      * @param code define si se va a utilizar la simulación paso a paso con código o no
      */
-    protected abstract void accionesCasoIncrementativo(boolean code);
+    protected void accionesCasoIncrementativo(boolean code){
+        if (code) lines()[1].start();
+        else casoIncrementativo();
+    }
     /**
      * acciones a realizar en el caso decrementativo del simulador
      * @param code define si se va a utilizar la simulación paso a paso con código o no
      */
-    protected abstract void accionesCasoDecrementativo(boolean code);
+    protected void accionesCasoDecrementativo(boolean code){
+        if (code) lines()[2].start();
+        else casoDecrementativo();
+    }
     @Override
     protected void acomodamientoPanelControl(String title, JComponent... components) {
         Constrains.addCompX(componentRegistro(title, components), getControl(),new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);

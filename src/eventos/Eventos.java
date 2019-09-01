@@ -6,7 +6,6 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.StringTokenizer;
 import gui.contenido.About;
