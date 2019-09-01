@@ -7,14 +7,10 @@ import gui.contenido.Ejercicios;
 import gui.contenido.Lienzo;
 import gui.contenido.Texto;
 import gui.contenido.TextPane;
-import gui.contenido.Tree;
 import gui.editor.Editor;
+import gui.simulador.simuladores.Punto;
 import gui.simulador.simuladores.recursividad.Factorial;
 import gui.simulador.simuladores.recursividad.Potencia;
-import tools.Dato;
-import gui.simulador.Simulador;
-import gui.simulador.lienzos.Graficador;
-import tools.Acciones;
 import tools.Archivos;
 import tools.Constrains;
 import tools.Fuentes;
@@ -72,85 +68,85 @@ public final class Contenedor extends JPanel {
      * @return panel principal de SEROS
      */
     private Lienzo principal(){
-        Lienzo lienzo=new Lienzo(new GridBagLayout(),true);
-        Constrains.addCompY(new Boton("TDA","Tipos de Datos Abstratos", Archivos.image("/resources/image/TDA.png", -1, -1),Eventos.menu(Paneles.TDA,Paneles.SIMULADOR_TDA), new MouseAdapter() {
+        Lienzo lienzo = new Lienzo(new GridBagLayout(), true);
+        Constrains.addCompY(new Boton("TDA", "Tipos de Datos Abstratos", Archivos.image("/resources/image/TDA.png", -1, -1), Eventos.menu(Paneles.TDA, Paneles.SIMULADOR_TDA), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.TDA);
             }
-        }),lienzo,new Rectangle(0,0,1,4),0,new Insets(30,57,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Modularidad","Division de tareas", Archivos.image("/resources/image/Modularidad y Mapas.png", -1, -1), Eventos.menu(Paneles.MODULARIDAD,Paneles.DEMOSTRACION_MODULARIDAD),new MouseAdapter() {
+        }), lienzo,new Rectangle(0, 0, 1, 4), 0, new Insets( 30, 57, 30, 18), GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Modularidad", "Division de tareas", Archivos.image("/resources/image/Modularidad y Mapas.png", -1, -1), Eventos.menu(Paneles.MODULARIDAD, Paneles.DEMOSTRACION_MODULARIDAD), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.MODULARIDAD);
             }
-        }), lienzo,new Rectangle(1,0,1,1),0,new Insets(30,18,0,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Recursividad","Métodos Recursivos", Archivos.image("/resources/image/Recursividad.png", -1, -1),Eventos.menu(Paneles.RECURSIVIDAD,Paneles.EJERCICIOS_RECURSIVIDAD,Paneles.FACTORIAL,Paneles.POTENCIA), new MouseAdapter() {
+        }), lienzo, new Rectangle(1, 0, 1, 1), 0, new Insets(30, 18, 0, 18), GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Recursividad", "Métodos Recursivos", Archivos.image("/resources/image/Recursividad.png", -1, -1), Eventos.menu(Paneles.RECURSIVIDAD, Paneles.EJERCICIOS_RECURSIVIDAD, Paneles.FACTORIAL, Paneles.POTENCIA), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.RECURSIVIDAD);
             }
-        }),lienzo,new Rectangle(1,1,1,1),0,new Insets(13,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Arreglos", "Vectores y Matrices", Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1),Eventos.menu(Paneles.ARREGLOS), new MouseAdapter() {
+        }), lienzo, new Rectangle(1, 1, 1, 1), 0, new Insets(13, 18, 13, 18), GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Arreglos", "Vectores y Matrices", Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1), Eventos.menu(Paneles.ARREGLOS), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.ARREGLOS);
             }
-        }),lienzo,new Rectangle(1,2,1,1),0,new Insets(13,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Nodos","Enlazamiento de Datos", Archivos.image("/resources/image/Nodos.png", -1, -1), Eventos.menu(Paneles.NODOS),new MouseAdapter() {
+        }), lienzo, new Rectangle(1, 2, 1, 1), 0, new Insets(13, 18, 13, 18), GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Nodos", "Enlazamiento de Datos", Archivos.image("/resources/image/Nodos.png", -1, -1), Eventos.menu(Paneles.NODOS), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.NODOS);
             }
-        }),lienzo,new Rectangle(1,3,1,1),0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Ordenamiento", "Métodos de Ordenamiento Interno", Archivos.image("/resources/image/Ordenamiento.png", -1, -1),Eventos.menu(Paneles.ORDENAMIENTO), new MouseAdapter() {
+        }), lienzo, new Rectangle(1, 3, 1, 1), 0, new Insets(13, 18, 30, 18), GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Ordenamiento", "Métodos de Ordenamiento Interno", Archivos.image("/resources/image/Ordenamiento.png", -1, -1), Eventos.menu(Paneles.ORDENAMIENTO), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.ORDENAMIENTO);
             }
-        }),lienzo,new Rectangle(2,0,1,2),0,new Insets(30,18,13,18), GridBagConstraints.SOUTH, GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Busqueda","Métodos de Busqueda", Archivos.image("/resources/image/Busqueda.png", -1, -1),Eventos.menu(Paneles.BUSQUEDA), new MouseAdapter() {
+        }), lienzo, new Rectangle(2, 0, 1, 2), 0, new Insets( 30, 18, 13, 18), GridBagConstraints.SOUTH, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Busqueda", "Métodos de Busqueda", Archivos.image("/resources/image/Busqueda.png", -1, -1), Eventos.menu(Paneles.BUSQUEDA), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.BUSQUEDA);
             }
-        }),lienzo,new Rectangle(2,2,1,2),0,new Insets(13,18,30,18),GridBagConstraints.NORTH,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Pilas","Pilas Dinámicas y Estáticas", Archivos.image("/resources/image/Pilas.png", -1, -1),Eventos.menu(Paneles.PILAS), new MouseAdapter() {
+        }), lienzo, new Rectangle(2, 2, 1, 2), 0, new Insets( 13, 18, 30, 18), GridBagConstraints.NORTH, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Pilas", "Pilas Dinámicas y Estáticas", Archivos.image("/resources/image/Pilas.png", -1, -1), Eventos.menu(Paneles.PILAS), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.PILAS);
             }
-        }),lienzo,new Rectangle(3,0,1,2),0,new Insets(30,18,13,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Colas","Colas Dinámicas y Estáticas", Archivos.image("/resources/image/Colas.png", -1, -1),Eventos.menu(Paneles.COLAS), new MouseAdapter() {
+        }), lienzo, new Rectangle(3, 0, 1, 2), 0, new Insets( 30, 18, 13, 18), GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Colas", "Colas Dinámicas y Estáticas", Archivos.image("/resources/image/Colas.png", -1, -1), Eventos.menu(Paneles.COLAS), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.COLAS);
             }
-        }),lienzo,new Rectangle(3,1,1,2),0,new Insets(13,18,13,13),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Listas","Listas Enlazadas", Archivos.image("/resources/image/Listas Enlazadas.png", -1, -1),Eventos.menu(Paneles.LISTAS_ENLAZADAS), new MouseAdapter() {
+        }), lienzo, new Rectangle(3, 1, 1, 2), 0, new Insets(13, 18, 13, 13), GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Listas", "Listas Enlazadas", Archivos.image("/resources/image/Listas Enlazadas.png", -1, -1), Eventos.menu(Paneles.LISTAS_ENLAZADAS), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.LISTAS_ENLAZADAS);
             }
-        }),lienzo,new Rectangle(3,2,1,2),0,new Insets(13,18,30,18),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Árboles","Árboles Binarios y AVL", Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1),Eventos.menu(Paneles.ARBOLES), new MouseAdapter() {
+        }), lienzo, new Rectangle(3, 2, 1, 2), 0, new Insets(13, 18, 30, 18), GridBagConstraints.CENTER, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Árboles", "Árboles Binarios y AVL", Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1), Eventos.menu(Paneles.ARBOLES), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.ARBOLES);
             }
-        }),lienzo,new Rectangle(4,0,1,2),0,new Insets(30,18,13,75),GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addCompY(new Boton("Grafos","Algoritmo del Camino más Corto", Archivos.image("/resources/image/Grafos.png", -1, -1),Eventos.menu(Paneles.GRAFOS), new MouseAdapter() {
+        }),lienzo,new Rectangle(4, 0, 1, 2), 0, new Insets(30, 18, 13, 75), GridBagConstraints.SOUTH, GridBagConstraints.NONE);
+        Constrains.addCompY(new Boton("Grafos", "Algoritmo del Camino más Corto", Archivos.image("/resources/image/Grafos.png", -1, -1), Eventos.menu(Paneles.GRAFOS), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.show(Paneles.GRAFOS);
             }
-        }),lienzo,new Rectangle(4,2,1,2),0,new Insets(13,18,30,75),GridBagConstraints.NORTH,GridBagConstraints.NONE);
-        Constrains.addComp(new Boton("Acerca de Seros", Archivos.image("/resources/image/about.png",-1,-1), new MouseAdapter() {
+        }), lienzo, new Rectangle(4, 2, 1, 2), 0, new Insets(13, 18, 30, 75), GridBagConstraints.NORTH, GridBagConstraints.NONE);
+        Constrains.addComp(new Boton("Acerca de Seros", Archivos.image("/resources/image/about.png", -1, -1), new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 Eventos.about(lienzo);
             }
-        }),lienzo,new Rectangle(6,3,1,1),0,0,new Insets(0,0,6,0),GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
+        }), lienzo, new Rectangle(6, 3, 1, 1), 0, 0, new Insets(0, 0, 6, 0), GridBagConstraints.SOUTHEAST, GridBagConstraints.NONE);
         return lienzo;
     }
     /**
@@ -343,102 +339,15 @@ public final class Contenedor extends JPanel {
      * Simulador para la temática TDA<br>
      * Simula un punto en el eje cartesiano
      * @return simulador de un punto en el plano cartesiano para TDA
-     * @see Graficador
-     * @see Simulador
+     * @see Punto
      * @see Contenedor#tda()
      */
-    private Simulador simuladorTda(){
+    private Punto simuladorTda(){
         JSpinner x=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
         JSpinner y=new JSpinner(new SpinnerNumberModel(0,-10,10,1));
         ((JSpinner.NumberEditor)x.getEditor()).getTextField().setEditable(false);
         ((JSpinner.NumberEditor)y.getEditor()).getTextField().setEditable(false);
-        Tree punto=new Tree(new JTree.DynamicUtilTreeNode(new Dato("Punto","punto","",true), new Dato[]{new Dato("int","x",""),new Dato("int","y","")}));
-        punto.expandNode(0);
-        Simulador simulador= new Simulador("(x,y)", x, y) {
-            @Override
-            protected void acomodamientoPanelControl(String title, JComponent... components) {
-                Constrains.addCompX(componentRegistro(title, components), getControl(),new Rectangle(2,0,2,1),1,new Insets(3,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
-                Constrains.addCompX(getSend(), getControl(),new Rectangle(4,0,2,1),1,new Insets(10,5,5,100),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-                Constrains.addCompX(getPause(), getControl(),new Rectangle(2,1,1,1),1,new Insets(5,35,10,8),GridBagConstraints.EAST,GridBagConstraints.NONE);
-                Constrains.addCompX(getNextIteracion(), getControl(),new Rectangle(3,1,2,1),1,new Insets(5,8,10,8),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-                Constrains.addCompX(getClean(), getControl(),new Rectangle(5,1,1,1),1,new Insets(5,5,10,100),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
-            }
-        };
-        Graficador graficador=new Graficador();
-        simulador.getLienzo().setLayout(new BorderLayout());
-        simulador.getLienzo().add(graficador, BorderLayout.CENTER);
-        simulador.setAcciones(new Acciones() {
-            @Override
-            public void iteracion0() {
-                graficador.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
-                Eventos.enable(true, simulador.getClean(), simulador.getBack(), simulador.getHome());
-                Eventos.enable(false, simulador.getSend(), x, y, simulador.getPause(), simulador.getNextIteracion());
-                simulador.setTexto(Text.SIMULADOR_TDA_1);
-                Eventos.variable(punto, 0, x.getValue());
-                Eventos.variable(punto, 1, y.getValue());
-                punto.expandNode(0);
-            }
-            @Override
-            public void iteracion1() {
-                Eventos.enable(false, simulador.getSend(), x, y, simulador.getPause(), simulador.getClean(), simulador.getBack(), simulador.getHome(), simulador.getNextIteracion());
-                if (simulador.getIteracion()==0) asignacionX();
-                else if (simulador.getIteracion()==1) asignacionY();
-                else mostrarCoordenadas();
-                simulador.incrementIteracion();
-            }
-            @Override
-            public void clean() {
-                simulador.cleanComponents();
-                graficador.limpiar();
-                Eventos.variable(punto, 0, "");
-                Eventos.variable(punto, 1, "");
-                Eventos.enable(true, x, y);
-                simulador.setTexto(Text.SIMULADOR_TDA_2);
-                x.setValue(0);
-                y.setValue(0);
-                punto.expandNode(0);
-            }
-            /**
-             * Muestra los datos y códigos que se asignan al eje x
-             */
-            private void asignacionX(){
-                base(Text.SIMULADOR_TDA_3, 5, 0, false);
-                Eventos.variable(punto, 0, x.getValue());
-            }
-            /**
-             * Muestra los datos y códigos que se asignan al eje y
-             */
-            private void asignacionY(){
-                base(Text.SIMULADOR_TDA_4, 6, 0, false);
-                Eventos.variable(punto, 1, y.getValue());
-            }
-            /**
-             * Grafica las coordenadas (x,y) muestra los códigos asignados a estos
-             */
-            private void mostrarCoordenadas(){
-                base(Text.SIMULADOR_TDA_1, 22, ((Editor) simulador.getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum(), true);
-                graficador.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
-            }
-            /**
-             * Acciones comunes de interactividad
-             * @param text {@link Text} a fijar
-             * @param line línea seleccionar
-             * @param scroll posición del scroll a fijar
-             * @param clean acción de habilitar la opción de limpiar o de interactividad
-             */
-            private void base(Text text, int line, int scroll, boolean clean){
-                simulador.setTexto(text);
-                Eventos.scroll((Editor) simulador.getCodigos().getComponentAt(0), scroll);
-                ((Editor) simulador.getCodigos().getComponentAt(0)).drawLineIn(line);
-                Eventos.enable(true, clean ? simulador.getClean() : simulador.getNextIteracion(), simulador.getBack(), simulador.getHome());
-            }
-        });
-        simulador.addCodes(Editor.editor("/resources/codes/tda/Punto.seros", "Punto"));
-        simulador.back("Tipos de Datos Abstratos",Paneles.TDA);
-        simulador.getSend().setText("Graficar");
-        simulador.setDatos(punto);
-        simulador.setTexto(Text.SIMULADOR_TDA_2);
-        return simulador;
+        return new Punto(x, y);
     }
     /**
      * Simulador para la temática Recursividad<br>
