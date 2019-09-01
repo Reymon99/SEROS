@@ -4,7 +4,6 @@ import java.awt.geom.Point2D;
 public abstract class Constrains {
     /**
      * Añade y distribuye el componente dentro del eje X y Y de la interfaz gráfica
-     *
      * @param component {@link Component} a añadir dentro del {@link Container}
      * @param container {@link Container} al cual se añadirá el {@link Component}
      * @param rectangle posicionamiento del componente
@@ -22,7 +21,6 @@ public abstract class Constrains {
     }
     /**
      * Añade y distribuye el componente dentro del eje X de la interfaz gráfica
-     *
      * @param component {@link Component} a añadir dentro del {@link Container}
      * @param container {@link Container} al cual se añadirá el {@link Component}
      * @param rectangle posicionamiento del componente
@@ -38,7 +36,6 @@ public abstract class Constrains {
     }
     /**
      * Añade y distribuye el componente dentro del eje Y de la interfaz gráfica
-     *
      * @param component {@link Component} a añadir dentro del {@link Container}
      * @param container {@link Container} al cual se añadirá el {@link Component}
      * @param rectangle posicionamiento del componente
@@ -54,7 +51,6 @@ public abstract class Constrains {
     }
     /**
      * Añade y distribuye el componente dentro del eje X y Y de la interfaz gráfica con un tamaño fijo hacia el eje X y Y
-     *
      * @param component {@link Component} a añadir dentro del {@link Container}
      * @param container {@link Container} al cual se añadirá el {@link Component}
      * @param rectangle posicionamiento del componente
@@ -74,7 +70,6 @@ public abstract class Constrains {
     }
     /**
      * Añade y distribuye el componente dentro del eje X y Y de la interfaz gráfica con un tamaño fijo hacia el eje X
-     *
      * @param component {@link Component} a añadir dentro del {@link Container}
      * @param container {@link Container} al cual se añadirá el {@link Component}
      * @param rectangle posicionamiento del componente
@@ -94,7 +89,6 @@ public abstract class Constrains {
     }
     /**
      * Añade y distribuye el componente dentro del eje X y Y de la interfaz gráfica con un tamaño fijo hacia el eje Y
-     *
      * @param component {@link Component} a añadir dentro del {@link Container}
      * @param container {@link Container} al cual se añadirá el {@link Component}
      * @param rectangle posicionamiento del componente
@@ -114,7 +108,6 @@ public abstract class Constrains {
     }
     /**
      * Añade y distribuye el componente dentro del eje X de la interfaz gráfica con un tamaño fijo hacia el eje X
-     *
      * @param component {@link Component} a añadir dentro del {@link Container}
      * @param container {@link Container} al cual se añadirá el {@link Component}
      * @param rectangle posicionamiento del componente
@@ -132,7 +125,6 @@ public abstract class Constrains {
     }
     /**
      * Añade y distribuye el componente dentro del eje X de la interfaz gráfica con un tamaño fijo hacia el eje Y
-     *
      * @param component {@link Component} a añadir dentro del {@link Container}
      * @param container {@link Container} al cual se añadirá el {@link Component}
      * @param rectangle posicionamiento del componente
@@ -150,7 +142,6 @@ public abstract class Constrains {
     }
     /**
      * Añade y distribuye el componente dentro del eje Y de la interfaz gráfica con un tamaño fijo hacia el eje X
-     *
      * @param component {@link Component} a añadir dentro del {@link Container}
      * @param container {@link Container} al cual se añadirá el {@link Component}
      * @param rectangle posicionamiento del componente
@@ -168,7 +159,6 @@ public abstract class Constrains {
     }
     /**
      * Añade y distribuye el componente dentro del eje Y de la interfaz gráfica con un tamaño fijo hacia el eje Y
-     *
      * @param component {@link Component} a añadir dentro del {@link Container}
      * @param container {@link Container} al cual se añadirá el {@link Component}
      * @param rectangle posicionamiento del componente
@@ -186,7 +176,6 @@ public abstract class Constrains {
     }
     /**
      * Distribución por defecto del grid
-     *
      * @param r       posicionamiento del componente
      * @param insets  margen dentro del espacio del grid
      * @param place   ubicación dentro del espacio del grid
