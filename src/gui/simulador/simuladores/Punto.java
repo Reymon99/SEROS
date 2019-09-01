@@ -4,7 +4,11 @@ import gui.contenido.Tree;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
 import gui.simulador.lienzos.Graficador;
-import tools.*;
+import tools.Acciones;
+import tools.Constrains;
+import tools.Dato;
+import tools.Paneles;
+import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 public final class Punto extends Simulador implements Acciones {

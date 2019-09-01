@@ -51,7 +51,7 @@ public final class Contenedor extends JPanel {
         paneles.put(Paneles.RECURSIVIDAD, recursividad());
         paneles.put(Paneles.FACTORIAL, factorial());
         paneles.put(Paneles.POTENCIA, potencia());
-        paneles.put(Paneles.EJERCICIOS_RECURSIVIDAD, ejerciciosRecursividad());
+        paneles.put(Paneles.EJERCICIOS_RECURSIVIDAD, ejerciciosRecursivos());
         paneles.put(Paneles.ARREGLOS, arreglos());
         paneles.put(Paneles.NODOS, nodos());
         paneles.put(Paneles.ORDENAMIENTO, ordenamiento());
@@ -307,32 +307,33 @@ public final class Contenedor extends JPanel {
      * @see Ejercicios
      * @see Contenedor#recursividad()
      */
-    private Ejercicios ejerciciosRecursividad(){
-        Ejercicios ejercicios=new Ejercicios();
-        ejercicios.back("Recursividad",Paneles.RECURSIVIDAD);
-        MouseAdapter mouse=new MouseAdapter() {
+    private Ejercicios ejerciciosRecursivos(){
+        Ejercicios ejercicios = new Ejercicios();
+        ejercicios.back("Recursividad", Paneles.RECURSIVIDAD);
+        MouseAdapter mouse = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                switch (((Boton) e.getSource()).getText()) {
-                    case "Factorial" -> Eventos.show(Paneles.FACTORIAL);
-                    case "Potencia" -> Eventos.show(Paneles.POTENCIA);
-                    default -> throw new IllegalStateException("Unexpected value: " + ((Boton) e.getSource()).getText());
-                }
+                Eventos.show(switch (((Boton) e.getSource()).getText()) {
+                    case "Factorial" -> Paneles.FACTORIAL;
+                    case "Potencia" -> Paneles.POTENCIA;
+                    default -> Contenedor.panelActivo;
+                });
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                switch (((Boton) e.getSource()).getText()) {
-                    case "Factorial" -> ejercicios.getTexto().setText("Simulador recursivo para Factorial");
-                    case "Potencia" -> ejercicios.getTexto().setText("Simulación recursiva para Potencia");
-                    default -> throw new IllegalStateException("Unexpected value: " + ((Boton) e.getSource()).getText());
-                }
+                ejercicios.setTexto(switch (((Boton) e.getSource()).getText()) {
+                    case "Factorial" -> "Simulación recursiva para Factorial";
+                    case "Potencia" -> "Simulación recursiva para Potencia";
+                    default -> "";
+                });
             }
             @Override
             public void mouseExited(MouseEvent e) {
                 ejercicios.getTexto().setText("");
             }
         };
-        ejercicios.setBotones(new Boton(Archivos.image("/resources/image/factorial.png", -1, -1), "Factorial", mouse), new Boton(Archivos.image("/resources/image/potencia.png", -1, -1), "Potencia", mouse));
+        ejercicios.setBotones(new Boton(Archivos.image("/resources/image/factorial.png", -1, -1), "Factorial", mouse),
+                new Boton(Archivos.image("/resources/image/potencia.png", -1, -1), "Potencia", mouse));
         return ejercicios;
     }
     /**

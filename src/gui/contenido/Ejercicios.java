@@ -73,4 +73,11 @@ public final class Ejercicios extends Lienzo {
     public Texto getTexto() {
         return texto;
     }
+    /**
+     * Da un nuevo mensaje al componente
+     * @param texto nuevo mensaje
+     */
+    public void setTexto(String texto){
+        this.texto.setText(texto);
+    }
 }
