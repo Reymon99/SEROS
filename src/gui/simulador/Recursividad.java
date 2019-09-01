@@ -180,4 +180,9 @@ public abstract class Recursividad extends Simulador implements Acciones {
             else accionesCasoDecrementativo(false);
         }
     }
+    @Override
+    public void cleanComponents() {
+        super.cleanComponents();
+        setDecremento(true);
+    }
 }

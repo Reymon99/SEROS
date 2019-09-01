@@ -66,15 +66,15 @@ public abstract class Simulador extends Lienzo {
      * Instanciación y acomodamiento de los componentes del panel
      */
     private void init() {
-        codigo=new Switch("Visualización del Código",false);
-        pause=new Switch("Paso a Paso",false);
-        send=new ButtonSimulador("Enviar",true,e -> {
+        codigo = new Switch("Visualización del Código", false);
+        pause = new Switch("Paso a Paso", false);
+        send = new ButtonSimulador("Enviar", true, e -> {
             if (pause.isOnOff()) getAcciones().iteracion1();
             else getAcciones().iteracion0();
         });
-        clean=new ButtonSimulador("Limpiar",false,e -> getAcciones().clean());
-        nextIteracion=new ButtonSimulador("Siguiente",false, e -> getAcciones().iteracion1());
-        control =new JPanel(new GridBagLayout());
+        clean = new ButtonSimulador("Limpiar", false, e -> getAcciones().clean());
+        nextIteracion = new ButtonSimulador("Siguiente", false, e -> getAcciones().iteracion1());
+        control = new JPanel(new GridBagLayout());
         control.setBackground(Colour.GRIS_PANEL.getColor());
         JLabel desc=new JLabel("Descripción");
         desc.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
@@ -90,25 +90,25 @@ public abstract class Simulador extends Lienzo {
             }
         });
         Insets insets=new Insets(0,0,0,0);
-        Constrains.addComp(lienzo,this,new Rectangle(0,0,1,4),0,0,insets,GridBagConstraints.NORTHWEST,GridBagConstraints.NONE);
-        Constrains.addComp(getBack(), control,new Rectangle(0,0,1,2),0,0,new Insets(15,15,15,5),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addComp(getHome(), control,new Rectangle(1,0,1,2),0,0,new Insets(20,5,20,15),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addComp(control,this,new Rectangle(0,4,1,1),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addCompX(desc,this,new Rectangle(1,0,1,1),1,insets,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompIy(texto=new Texto(4,55),this,new Rectangle(1,1,1,1),1,0,insets,40,GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompIy(new ModernScrollPane(datos=new JPanel(new GridBagLayout())),this,new Rectangle(1,2,1,1),1,0,insets,200, GridBagConstraints.CENTER,GridBagConstraints.BOTH);
-        Constrains.addComp(codigos=new JTabbedPane(JTabbedPane.TOP),this,new Rectangle(1,3,1,2),1,1,insets,GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        Constrains.addComp(lienzo, this, new Rectangle(0, 0, 1, 4), 0, 0, insets, GridBagConstraints.NORTHWEST, GridBagConstraints.NONE);
+        Constrains.addComp(getBack(), control, new Rectangle(0, 0, 1, 2), 0, 0, new Insets(15, 15, 15, 5), GridBagConstraints.WEST, GridBagConstraints.NONE);
+        Constrains.addComp(getHome(), control, new Rectangle(1, 0, 1, 2), 0, 0, new Insets(20, 5, 20, 15), GridBagConstraints.WEST, GridBagConstraints.NONE);
+        Constrains.addComp(control, this, new Rectangle(0, 4, 1, 1), 1, 1, insets, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+        Constrains.addCompX(desc, this, new Rectangle(1, 0, 1, 1), 1, insets, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+        Constrains.addCompIy(texto = new Texto( 4, 55), this, new Rectangle(1, 1, 1, 1), 1, 0, insets, 40, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+        Constrains.addCompIy(new ModernScrollPane(datos = new JPanel(new GridBagLayout())), this, new Rectangle(1, 2, 1, 1), 1, 0, insets, 200, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+        Constrains.addComp(codigos = new JTabbedPane(JTabbedPane.TOP), this, new Rectangle(1, 3, 1, 2), 1, 1, insets, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
     }
     /**
      * Plantilla por defecto para reiniciar el simulador
      */
     public void cleanComponents(){
-        Eventos.enable(true,send,pause,getBack(),getHome());
-        Eventos.enable(false,nextIteracion,clean,codigo);
+        Eventos.enable(true, send, pause, getBack(), getHome());
+        Eventos.enable(false, nextIteracion, clean, codigo);
         pause.setOnOff(false);
         codigo.setOnOff(false);
         setIteracion(0);
-        Eventos.scroll((Editor) codigos.getComponentAt(0),0);
+        Eventos.scroll((Editor) codigos.getComponentAt(0), 0);
         ((Editor) codigos.getComponentAt(0)).setLine(false);
     }
     /**

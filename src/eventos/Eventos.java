@@ -6,6 +6,7 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.StringTokenizer;
 import gui.contenido.About;
@@ -63,7 +64,7 @@ public abstract class Eventos {
      * @param enable disponibilidad a dar a los componentes
      * @param components componentes a modificar disponibilidad
      */
-    public static void enable(boolean enable,Component... components) {
+    public static void enable(boolean enable, Component... components) {
         for (Component component : components) if (component instanceof Switch) ((Switch) component).setModificable(enable);
         else component.setEnabled(enable);
     }
@@ -83,7 +84,7 @@ public abstract class Eventos {
      * @param valor valor a dar a la variable en el árbol
      * @see Tree
      */
-    public static void variable(Tree tree,int index,Object valor){
+    public static void variable(Tree tree, int index, Object valor){
         tree.getDato(index).setValor(valor.toString());
         tree.updateUI();
     }
