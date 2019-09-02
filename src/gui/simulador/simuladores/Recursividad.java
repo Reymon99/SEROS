@@ -33,6 +33,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
         setAcciones(this);
         acomodamientoProducto();
         back("Panel de Ejercicios de Recursividad", Paneles.EJERCICIOS_RECURSIVIDAD);
+        getCodigos().setPackageName("recursividad");
     }
     /**
      * Indica el decremento o incremento de la iteración

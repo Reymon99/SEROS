@@ -39,6 +39,7 @@ public final class Punto extends Simulador implements Acciones {
         getSend().setText("Graficar");
         setDatos(punto);
         setTexto(Text.SIMULADOR_TDA_2);
+        getCodigos().setPackageName("tda");
     }
     /**
      * Muestra los datos y códigos que se asignan al eje x

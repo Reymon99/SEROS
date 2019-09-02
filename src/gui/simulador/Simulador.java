@@ -3,6 +3,7 @@ import eventos.Eventos;
 import gui.contenido.ButtonSimulador;
 import gui.contenido.Lienzo;
 import gui.contenido.Message;
+import gui.contenido.PackageCode;
 import gui.contenido.Switch;
 import gui.contenido.Texto;
 import gui.contenido.Tree;
@@ -24,7 +25,7 @@ public abstract class Simulador extends Lienzo {
     private JComponent lienzo;
     private JPanel datos;
     private JPanel control;
-    private JTabbedPane codigos;
+    private PackageCode codigos;
     private ButtonSimulador clean;
     private ButtonSimulador nextIteracion;
     private ButtonSimulador send;
@@ -97,7 +98,7 @@ public abstract class Simulador extends Lienzo {
         Constrains.addCompX(desc, this, new Rectangle(1, 0, 1, 1), 1, insets, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
         Constrains.addCompIy(texto = new Texto( 4, 55), this, new Rectangle(1, 1, 1, 1), 1, 0, insets, 40, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
         Constrains.addCompIy(new ModernScrollPane(datos = new JPanel(new GridBagLayout())), this, new Rectangle(1, 2, 1, 1), 1, 0, insets, 200, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-        Constrains.addComp(codigos = new JTabbedPane(JTabbedPane.TOP), this, new Rectangle(1, 3, 1, 2), 1, 1, insets, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+        Constrains.addComp(codigos = new PackageCode(), this, new Rectangle(1, 3, 1, 2), 1, 1, insets, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
     }
     /**
      * Plantilla por defecto para reiniciar el simulador
@@ -135,7 +136,7 @@ public abstract class Simulador extends Lienzo {
      * Añade los codigos que necesita el simulador
      * @param editor {@link Editor} con el código correspondiente
      */
-    public void addCodes(Editor editor){
+    protected void addCodes(Editor editor){
         codigos.add(editor.getName(), editor);
     }
     /**
@@ -158,7 +159,7 @@ public abstract class Simulador extends Lienzo {
      * Variables que se van a agregar
      * @param trees {@link Tree} a agregar
      */
-    public void setDatos(Tree... trees){
+    protected void setDatos(Tree... trees){
         for (int i = 0; i < trees.length; i++) Constrains.addComp(trees[i],datos,new Rectangle(0,i,1,1),1,1,new Insets(i==0 ? 7:1,10,i==trees.length-1 ? sizeTree(trees.length) : 1,5),GridBagConstraints.CENTER,GridBagConstraints.BOTH);
     }
     /**
@@ -193,7 +194,7 @@ public abstract class Simulador extends Lienzo {
      * Componente de área de Notificaciones
      * @return área de notificaciones
      */
-    public Texto getTexto() {
+    protected Texto getTexto() {
         return texto;
     }
     /**
@@ -207,21 +208,21 @@ public abstract class Simulador extends Lienzo {
      * Obtiene el área gráfica del simulador
      * @return área gráfica del simulador
      */
-    public JComponent getLienzo() {
+    protected JComponent getLienzo() {
         return lienzo;
     }
     /**
      * Obtiene el contenedor de los códigos del simulador
      * @return Contenedor de los códigos del simulador
      */
-    public JTabbedPane getCodigos() {
+    public PackageCode getCodigos() {
         return codigos;
     }
     /**
      * Obtiene la cantidad pulsaciones del paso a paso del simulador
      * @return cantidad de pulsaciones
      */
-    public int getIteracion() {
+    protected int getIteracion() {
         return iteracion;
     }
     /**
@@ -234,7 +235,7 @@ public abstract class Simulador extends Lienzo {
     /**
      * Incrementa a paso uno las pulsaciones del paso a paso del simulador en la ejecución
      */
-    public void incrementIteracion(){
+    protected void incrementIteracion(){
         iteracion++;
     }
     /**
@@ -247,7 +248,7 @@ public abstract class Simulador extends Lienzo {
      * Obtiene el componente de paso a paso del simulador
      * @return elección del paso a paso del simulador
      */
-    public Switch getPause() {
+    protected Switch getPause() {
         return pause;
     }
     /**
@@ -261,21 +262,21 @@ public abstract class Simulador extends Lienzo {
      * Boton de envio de datos al simulador
      * @return envio de datos
      */
-    public ButtonSimulador getSend() {
+    protected ButtonSimulador getSend() {
         return send;
     }
     /**
      * Boton de reinicio del simulador
      * @return reinicio del simulador
      */
-    public ButtonSimulador getClean() {
+    protected ButtonSimulador getClean() {
         return clean;
     }
     /**
      * Boton de paso a paso del simulador
      * @return boton del paso a paso
      */
-    public ButtonSimulador getNextIteracion() {
+    protected ButtonSimulador getNextIteracion() {
         return nextIteracion;
     }
 }
