@@ -66,4 +66,8 @@ public abstract class Archivos {
             return "No se pudo exportar el código del editor como archivo";
         }
     }
+    public static boolean createdFolder(File file, String folder) {
+        if (!file.exists() && file.isDirectory()) return new File(file.getAbsolutePath(), folder).mkdir();
+        return false;
+    }
 }
