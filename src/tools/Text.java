@@ -1,9 +1,9 @@
 package tools;
 public enum Text {
     VENTANA_PRINCIPAL("Ventana Principal SEROS"),
-    TDA("Un TDA o tipo de dato abstrato es un tipo de dato (clase) definida por el programador, que consta de datos (los cuales pueden ser primitivos, definidos por el lenguaje de programación u otro TDA) y operaciones (lo cuales son los métodos y funciones que controlan el comportamiento del TDA) que se pueden realizar sobre ellos."),
-    TDA_1("Los TDA también constan de dos especificaciones cuyas son:"),
-    TDA_2("1. La descripción matemática del conjunto de datos, que hace referencia a los atributos de un dato (clase) cuyos podemos evidenciar en la línea número 2 de la clase Punto.\n2. La descripción de las operaciones definidas en ciertos elementos de ese conjunto de datos, que hacen referencia a los métodos y funciones que afectan el comportamiento de los atributos definidos en un dato (clase) como los podemos evidenciar entre las líneas número 7 y 22 de la clase Punto."),
+    TDA("Un TDA o tipo de dato abstracto es un tipo de dato proveniente de una clase, siendo predefinida por el lenguaje de programación o definida por el programador, consta de representaciones (atributos de la clase, como datos primitivos del lenguaje de programación u otra TDA definido anteriormente) y operaciones (las cuales son las funciones y métodos que controlan el comportamiento del TDA), que se pueden realizar algorítmicamente sobre este."),
+    TDA_1("Los TDA constan de dos especificaciones, las cuales son:"),
+    TDA_2("1. La descripción del conjunto de representaciones de datos, que hace referencia a los atributos de una clase como podemos evidenciar en la línea número 2 y la línea número 3 de la clase Punto.\n2. La descripción de las operaciones definidas entre los elementos de la clase que se convertirá en un TDA, son las funciones y métodos que encontramos en este, permitiendo de esta forma controlar y modificar el comportamiento del TDA y sus representaciones, como se puede evidenciar entre la línea número 8 a la línea número 23 de la clase Punto."),
     TDA_3("Según lo leído podríamos decir que un TDA puede definirse mediante la siguiente ecuación:"),
     FORMULA_TDA("TDA = REPRESENTACIÓN (datos) + OPERACIONES (funciones y métodos)"),
     SIMULADOR_TDA_1("Muestra las coordenadas del punto dadas."),
