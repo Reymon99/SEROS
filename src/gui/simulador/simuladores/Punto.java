@@ -45,14 +45,14 @@ public final class Punto extends Simulador implements Acciones {
      * Muestra los datos y códigos que se asignan al eje x
      */
     private void asignacionX(){
-        base(Text.SIMULADOR_TDA_3, 5, 0, false);
+        base(Text.INSTANCIA_X, 5, 0, false);
         Eventos.variable(punto, 0, x.getValue());
     }
     /**
      * Muestra los datos y códigos que se asignan al eje y
      */
     private void asignacionY(){
-        base(Text.SIMULADOR_TDA_4, 6, 0, false);
+        base(Text.INSTANCIA_Y, 6, 0, false);
         Eventos.variable(punto, 1, y.getValue());
     }
     /**
