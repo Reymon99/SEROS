@@ -1,4 +1,5 @@
 #SEROS
+
 ##Simulador de Estructura de Datos
 SEROS es una herramienta de carácter pedagógico con el fin de enfocar el aprendizaje en la asignatura Estructura de Datos orientada en el programa de Ingeniería de Sistemas de la Universidad de la Amazonia; que comprende una de las áreas del conocimiento necesario en la formación base del ingeniero de sistemas. Permitiéndole a los estudiantes mejorar el concepto de la abstracción de las diferentes estructuras de datos que se imparten según el contenido curricular del programa de curso de la asignatura.
 
