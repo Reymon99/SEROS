@@ -5,7 +5,7 @@ public class Dato {
     private String valor;
     private boolean hash;
     public Dato(String tipoDato, String variable, String valor) {
-        this(tipoDato,variable,valor,false);
+        this(tipoDato, variable, valor, false);
     }
     public Dato(String tipoDato, String variable, String valor, boolean hash) {
         this.tipoDato = tipoDato;
@@ -75,7 +75,7 @@ public class Dato {
      * @return hash del dato
      */
     private String hashGenerator(){
-        return tipoDato+'@'+hashHex();
+        return tipoDato + '@' + hashHex();
     }
     /**
      * hash de la clase
@@ -86,6 +86,6 @@ public class Dato {
     }
     @Override
     public String toString() {
-        return variable+(valor.isEmpty() ? "" : " = "+valor+(hash ? hashGenerator() : ""));
+        return variable + (valor.isEmpty() ? "" : " = " + valor + (hash ? hashGenerator() : ""));
     }
 }

@@ -28,7 +28,9 @@ public final class About extends JDialog {
         init();
         pack();
         setLocationRelativeTo(component);
-        setIconImage(Objects.requireNonNull(Archivos.image("/resources/image/icon.png", -1, -1)).getImage());
+        setIconImage(Objects.requireNonNull(
+                Archivos.image("/resources/image/icon.png", -1, -1)).getImage()
+        );
         addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
@@ -37,13 +39,13 @@ public final class About extends JDialog {
         });
     }
     private void init(){
-        JLabel seros=new JLabel("Simulador de Estructura de Datos",SwingConstants.CENTER);
+        JLabel seros = new JLabel("Simulador de Estructura de Datos", SwingConstants.CENTER);
         seros.setFont(Fuentes.UBUNTU_LIGHT_30.getFont());
         seros.setHorizontalTextPosition(SwingConstants.CENTER);
-        JLabel seros1=new JLabel("Seros",SwingConstants.CENTER);
+        JLabel seros1 = new JLabel("Seros", SwingConstants.CENTER);
         seros1.setFont(Fuentes.UBUNTU_LIGHT_B_30.getFont());
         seros1.setHorizontalTextPosition(SwingConstants.CENTER);
-        Texto texto=new Texto(Text.ABOUT.toString());
+        Texto texto = new Texto(Text.ABOUT.toString());
         texto.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
         JLabel label = new JLabel(Text.LINK.toString());
         label.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
@@ -55,11 +57,56 @@ public final class About extends JDialog {
                 Eventos.link(Text.LINK.toString());
             }
         });
-        Constrains.addComp(new JLabel(Archivos.image("/resources/image/logo.png",200,-1)),getContentPane(),new Rectangle(0,0,1,1), 0,0,new Insets(30,15,3,15),GridBagConstraints.CENTER,GridBagConstraints.NONE);
-        Constrains.addComp(seros,getContentPane(),new Rectangle(0,1,1,1),0,0,new Insets(3,18,5,15),GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(seros1,getContentPane(),new Rectangle(0,2,1,1),0,0,new Insets(5,15,5,15),GridBagConstraints.NORTH,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(texto,getContentPane(),new Rectangle(0,3,1,1),1,0,new Insets(15,15,3,15),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(label,getContentPane(),new Rectangle(0,4,1,1),1,0,new Insets(0,15,30,15),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addComp(
+                new JLabel(Archivos.image("/resources/image/logo.png", 200, -1)),
+                getContentPane(),
+                new Rectangle(0, 0, 1, 1),
+                0,
+                0,
+                new Insets(30, 15, 3, 15),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.NONE
+        );
+        Constrains.addComp(
+                seros,
+                getContentPane(),
+                new Rectangle(0, 1, 1, 1),
+                0,
+                0,
+                new Insets(3, 18, 5, 15),
+                GridBagConstraints.NORTH,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addComp(
+                seros1,
+                getContentPane(),
+                new Rectangle(0, 2, 1, 1),
+                0,
+                0,
+                new Insets(5, 15, 5, 15),
+                GridBagConstraints.NORTH,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addComp(
+                texto,
+                getContentPane(),
+                new Rectangle(0, 3, 1, 1),
+                1,
+                0,
+                new Insets(15, 15, 3, 15),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addComp(
+                label,
+                getContentPane(),
+                new Rectangle(0, 4, 1, 1),
+                1,
+                0,
+                new Insets(0, 15, 30, 15),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
     }
     /**
      * Acción salir del {@link About} y reiniciar su estado inicial

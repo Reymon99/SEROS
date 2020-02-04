@@ -29,7 +29,10 @@ public final class Potencia extends Recursividad {
         base = new Tree(new Dato("int", "base", ""));
         exponente = new Tree(new Dato("int", "exponente", ""));
         setDatos(base, exponente);
-        setProducto(Eventos.html(Operaciones.operacion(Operaciones.exponente("b", "e"), "0")));
+        setProducto(Eventos.html(Operaciones.operacion(
+                Operaciones.exponente("b", "e"),
+                "0"
+        )));
         setTexto(Text.POTENCIA);
         addCodes(Editor.editor("/resources/codes/recursividad/Potencia.seros", "Potencia"));
     }
@@ -41,25 +44,43 @@ public final class Potencia extends Recursividad {
     }
     @Override
     protected void casoTerminal() {
-        base(Text.POTENCIA_1, Operaciones.potencia(valorBase.getValue(), valorExponente.getValue()),
-                String.valueOf(Operaciones.potencia(valorBase.getValue(), valorExponente.getValue())), true);
+        base(
+                Text.POTENCIA_1,
+                Operaciones.potencia(valorBase.getValue(), valorExponente.getValue()),
+                String.valueOf(Operaciones.potencia(valorBase.getValue(), valorExponente.getValue())),
+                true
+        );
     }
     @Override
     protected void casoDecrementativo() {
-        base(Text.CASO_RECURSIVO, 0, Operaciones.productoPotenciaUp(valorBase.getValue(), getIteracion() + 1), false);
+        base(
+                Text.CASO_RECURSIVO,
+                0,
+                Operaciones.productoPotenciaUp(valorBase.getValue(), getIteracion() + 1),
+                false
+        );
         incrementIteracion();
     }
     @Override
     protected void casoIncrementativo() {
-        base(Text.POTENCIA_3, Operaciones.potencia(valorBase.getValue(), getValor()),
-                Operaciones.productoPotenciaUpN(valorBase.getValue(), getIteracion(), getValor()), false);
+        base(
+                Text.POTENCIA_3,
+                Operaciones.potencia(valorBase.getValue(), getValor()),
+                Operaciones.productoPotenciaUpN(valorBase.getValue(), getIteracion(), getValor()),
+                false
+        );
         decrementIteracion();
     }
     @Override
     protected void casoBase(boolean found) {
-        base(found ? Text.POTENCIA_1 : Text.CASO_BASE_RETURN_2, Operaciones.potencia(valorBase.getValue(), getValor()),
-                found ? String.valueOf(Operaciones.potencia(valorBase.getValue(), getValor())) :
-                        Operaciones.productoPotenciaUp(valorBase.getValue(), valorExponente.getValue()), found);
+        base(
+                found ? Text.POTENCIA_1 : Text.CASO_BASE_RETURN_2,
+                Operaciones.potencia(valorBase.getValue(), getValor()),
+                found ?
+                        String.valueOf(Operaciones.potencia(valorBase.getValue(), getValor())) :
+                        Operaciones.productoPotenciaUp(valorBase.getValue(), valorExponente.getValue()),
+                found
+        );
         if (!found){
             setDecremento(false);
             decrementIteracion();
@@ -76,42 +97,73 @@ public final class Potencia extends Recursividad {
                 new LineLocation(0, 11, null, false)
         };
         return new Lines[]{
-                new Lines(this, new LineLocation(0, 11, Text.CASO_RECURSIVO_FINISHED.toString())) {
+                new Lines(
+                        this,
+                        new LineLocation(0, 11, Text.CASO_RECURSIVO_FINISHED.toString())
+                ) {
                     @Override
                     protected void actions() {
                         accionesCasoTerminal(false);
                     }
-                }, new Lines(this, lines[5]) {
+                },
+                new Lines(this, lines[5]) {
                     @Override
                     protected void actions() {
                         accionesCasoIncrementativo(false);
                     }
-                }, new Lines(this, lines[0], lines[1], lines[3],
-                        new LineLocation(0, 10, Text.CASO_RECURSIVO.toString()), lines[5]) {
+                },
+                new Lines(
+                        this,
+                        lines[0],
+                        lines[1],
+                        lines[3],
+                        new LineLocation(0, 10, Text.CASO_RECURSIVO.toString()),
+                        lines[5]
+                ) {
                     @Override
                     protected void actions() {
                         accionesCasoDecrementativo(false);
                     }
-                }, new Lines(this, lines[0], lines[1], lines[2],
-                        new LineLocation(0, 4, Text.ARITHMETIC.toString())) {
+                },
+                new Lines(
+                        this,
+                        lines[0],
+                        lines[1],
+                        lines[2],
+                        new LineLocation(0, 4, Text.ARITHMETIC.toString())
+                ) {
                     @Override
                     protected void actions() {
                         accionesCasoBase(false);
                     }
-                }, new Lines(this, lines[0], lines[1], lines[2],
+                },
+                new Lines(
+                        this,
+                        lines[0],
+                        lines[1],
+                        lines[2],
                         new LineLocation(0, 5, Text.CASO_BASE_FOUND.toString()),
-                        new LineLocation(0, 6, null, false)) {
+                        new LineLocation(0, 6, null, false)
+                ) {
                     @Override
                     protected void actions() {
                         accionesCasoBase(false);
                     }
-                }, new Lines(this, lines[0], lines[1], lines[3], lines[4],
-                        new LineLocation(0, -1, Text.CASO_BASE_RETURN_1.toString())) {
+                },
+                new Lines(
+                        this,
+                        lines[0],
+                        lines[1],
+                        lines[3],
+                        lines[4],
+                        new LineLocation(0, -1, Text.CASO_BASE_RETURN_1.toString())
+                ) {
                     @Override
                     protected void actions() {
                         accionesCasoBase(false);
                     }
-                }, new Lines(this, lines[0], lines[1], lines[3], lines[4]) {
+                },
+                new Lines(this, lines[0], lines[1], lines[3], lines[4]) {
                     @Override
                     protected void actions() {
                         accionesCasoBase(false);
@@ -122,7 +174,7 @@ public final class Potencia extends Recursividad {
     @Override
     protected boolean isCasoBase() {
         int basePot = Integer.parseInt(valorBase.getValue().toString());
-        return getValor()==1 || getValor()==0 || basePot == 1 || basePot == 0;
+        return getValor() == 1 || getValor() == 0 || basePot == 1 || basePot == 0;
     }
     @Override
     protected void accionesCasoBase(boolean code) {
@@ -141,12 +193,32 @@ public final class Potencia extends Recursividad {
     }
     @Override
     public void iteracion0() {
-        Eventos.enable(false, valorBase, valorExponente, getNextIteracion(), getSend(), getPause(), getBack(), getClean(), getCodigo(), getHome());
+        Eventos.enable(
+                false,
+                valorBase,
+                valorExponente,
+                getNextIteracion(),
+                getSend(),
+                getPause(),
+                getBack(),
+                getClean(),
+                getCodigo(),
+                getHome()
+        );
         Eventos.variable(base, -1, valorBase.getValue());
         Eventos.variable(exponente, -1, valorExponente.getValue());
-        if (Integer.parseInt(valorBase.getValue().toString()) == 0 && Integer.parseInt(valorExponente.getValue().toString()) == 0) casoArithmetic();
-        else base(Text.FACTORIAL_1, Operaciones.potencia(valorBase.getValue(), valorExponente.getValue()),
-                Operaciones.productoPotencia(Integer.parseInt(valorBase.getValue().toString()), Integer.parseInt(valorExponente.getValue().toString())), true);
+        if (
+                Integer.parseInt(valorBase.getValue().toString()) == 0 &&
+                        Integer.parseInt(valorExponente.getValue().toString()) == 0) casoArithmetic();
+        else base(
+                Text.FACTORIAL_1,
+                Operaciones.potencia(valorBase.getValue(), valorExponente.getValue()),
+                Operaciones.productoPotencia(
+                        Integer.parseInt(valorBase.getValue().toString()),
+                        Integer.parseInt(valorExponente.getValue().toString())
+                ),
+                true
+        );
     }
     @Override
     public void iteracion1() {
@@ -176,7 +248,12 @@ public final class Potencia extends Recursividad {
         } catch (IllegalArgumentException e) {
             setNumber(numberText.toString());
         }
-        setProducto(Text.INDETERMINADO.toString().equals(productoText) ? Text.INDETERMINADO.toString() :
-                Eventos.html(Operaciones.operacion(Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()), productoText)));
+        setProducto(
+                Text.INDETERMINADO.toString().equals(productoText) ?
+                        Text.INDETERMINADO.toString() : Eventos.html(Operaciones.operacion(
+                                Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()),
+                                productoText
+                        ))
+        );
     }
 }

@@ -7,18 +7,18 @@ public class Texto extends JTextArea {
     /**
      * Area de texto con parametros predefinidos enfocados hacia el proyecto
      */
-    public Texto(){
+    public Texto() {
         setEditable(false);
         setBackground(Colour.NEGRO_INDICE.getColor());
         setForeground(Colour.BLANCO.getColor());
-        setMargin(new Insets(3,5,0,7));
+        setMargin(new Insets(3, 5, 0, 7));
         setFont(Fuentes.UBUNTU_LIGHT_15.getFont());
     }
     /**
      * Area de texto con parametros predefinidos enfocados hacia el proyecto
      * @param text {@link String} a dar en el {@link Texto}
      */
-    public Texto(String text){
+    public Texto(String text) {
         super(text);
         init();
     }
@@ -47,7 +47,7 @@ public class Texto extends JTextArea {
         setCaretColor(Colour.BLANCO.getColor());
         setForeground(Colour.BLANCO.getColor());
         setBackground(Colour.AZUL_TEXT.getColor());
-        setMargin(new Insets(28,22,10,18));
+        setMargin(new Insets(28, 22, 10, 18));
     }
     private void init(){
         setFont(Fuentes.UBUNTU_LIGHT_20.getFont());

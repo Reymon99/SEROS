@@ -11,9 +11,11 @@ public class FuentesModificadas {
      */
     protected FuentesModificadas(String path){
         try{
-            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(font=Font.createFont(Font.TRUETYPE_FONT,getClass().getResourceAsStream(path)));
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(
+                    font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream(path))
+            );
         } catch (FontFormatException | IOException e) {
-            font=new Font(Font.MONOSPACED,Font.PLAIN,10);
+            font=new Font(Font.MONOSPACED, Font.PLAIN, 10);
         }
     }
     /**
@@ -22,7 +24,7 @@ public class FuentesModificadas {
      * @param size tamaño de la fuente
      * @return Font fuente deseada
      */
-    protected Font getFont(int style,int size){
+    protected Font getFont(int style, int size){
         return font.deriveFont(style, size);
     }
 }

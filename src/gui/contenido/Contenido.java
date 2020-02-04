@@ -26,7 +26,7 @@ public final class Contenido extends Lienzo {
             }
             @Override
             public void clean() {
-                Eventos.scroll(pane,0);
+                Eventos.scroll(pane, 0);
             }
         });
         init();
@@ -35,11 +35,11 @@ public final class Contenido extends Lienzo {
      * Instanciación y acomodamiento de los componentes del panel
      */
     private void init() {
-        title=new JLabel();
+        title = new JLabel();
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(Fuentes.UBUNTU_LIGHT_50.getFont());
         title.setOpaque(false);
-        contenido=new JPanel(new GridBagLayout());
+        contenido = new JPanel(new GridBagLayout());
         contenido.setOpaque(false);
         pane = new ModernScrollPane(contenido);
         pane.setWheelScrollingEnabled(true);
@@ -50,10 +50,46 @@ public final class Contenido extends Lienzo {
         pane.getVerticalScrollBar().setUnitIncrement(50);
         pane.setFocusable(true);
         back(Text.VENTANA_PRINCIPAL.toString(), Paneles.PRINCIPAL);
-        Constrains.addComp(title,this,new Rectangle(0,0,3,1), 1,1,new Insets(15,15,8,10), GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(pane,this,new Rectangle(0,1,3,1), 1,25,new Insets(5,20,10,15), GridBagConstraints.NORTH, GridBagConstraints.BOTH);
-        Constrains.addComp(getBack(),this,new Rectangle(0,2,1,1), 0,0,new Insets(10,7,10,2), GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
-        Constrains.addComp(getNext(),this,new Rectangle(2,2,1,1), 0,0,new Insets(10,2,10,7), GridBagConstraints.SOUTHEAST,GridBagConstraints.NONE);
+        Constrains.addComp(
+                title,
+                this,
+                new Rectangle(0, 0, 3, 1),
+                1,
+                1,
+                new Insets(15, 15, 8, 10),
+                GridBagConstraints.NORTH,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addComp(
+                pane,
+                this,
+                new Rectangle(0, 1, 3, 1),
+                1,
+                25,
+                new Insets(5, 20, 10, 15),
+                GridBagConstraints.NORTH,
+                GridBagConstraints.BOTH
+        );
+        Constrains.addComp(
+                getBack(),
+                this,
+                new Rectangle(0, 2, 1, 1),
+                0,
+                0,
+                new Insets(10, 7, 10, 2),
+                GridBagConstraints.SOUTHWEST,
+                GridBagConstraints.NONE
+        );
+        Constrains.addComp(
+                getNext(),
+                this,
+                new Rectangle(2, 2, 1, 1),
+                0,
+                0,
+                new Insets(10, 2, 10, 7),
+                GridBagConstraints.SOUTHEAST,
+                GridBagConstraints.NONE
+        );
     }
     /**
      * Descripción del contenido de la temática

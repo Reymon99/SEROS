@@ -106,8 +106,24 @@ public abstract class Recursividad extends Simulador implements Acciones {
      * Acomodamiento por defecto cuando se utiliza productos
      */
     private void acomodamientoProducto(){
-        Constrains.addCompX(number, getLienzo(),new Rectangle(0,0,1,1),1,new Insets(40,50,50,50), GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(producto, getLienzo(),new Rectangle(0,1,1,1),1,new Insets(40,30,50,30),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(
+                number,
+                getLienzo(),
+                new Rectangle(0, 0, 1, 1),
+                1,
+                new Insets(40, 50, 50, 50),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addCompX(
+                producto,
+                getLienzo(),
+                new Rectangle(0, 1, 1, 1),
+                1,
+                new Insets(40, 30, 50, 30),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
     }
     /**
      * Acción caso terminal
@@ -173,20 +189,77 @@ public abstract class Recursividad extends Simulador implements Acciones {
     }
     @Override
     protected void acomodamientoPanelControl(String title, JComponent... components) {
-        Constrains.addCompX(componentRegistro(title, components), getControl(),new Rectangle(2,0,1,1),1,new Insets(10,80,5,5), GridBagConstraints.EAST,GridBagConstraints.BOTH);
-        Constrains.addCompX(getSend(), getControl(),new Rectangle(3,0,1,1),1,new Insets(10,5,5,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getPause(), getControl(),new Rectangle(4,0,1,1),1,new Insets(10,5,5,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addCompX(getCodigo(), getControl(),new Rectangle(4,1,1,1),1,new Insets(5,8,10,100),GridBagConstraints.WEST,GridBagConstraints.NONE);
-        Constrains.addCompX(getNextIteracion(), getControl(),new Rectangle(3,1,1,1),1,new Insets(5,5,10,5),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getClean(), getControl(),new Rectangle(2,1,1,1),1,new Insets(5,80,10,5),GridBagConstraints.WEST,GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(
+                componentRegistro(title, components),
+                getControl(),
+                new Rectangle(2, 0, 1, 1),
+                1,
+                new Insets(10, 80, 5, 5),
+                GridBagConstraints.EAST,
+                GridBagConstraints.BOTH
+        );
+        Constrains.addCompX(
+                getSend(),
+                getControl(),
+                new Rectangle(3, 0, 1, 1),
+                1,
+                new Insets(10, 5, 5, 5),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addCompX(
+                getPause(),
+                getControl(),
+                new Rectangle(4, 0, 1, 1),
+                1,
+                new Insets(10, 5, 5, 100),
+                GridBagConstraints.WEST,
+                GridBagConstraints.NONE
+        );
+        Constrains.addCompX(
+                getCodigo(),
+                getControl(),
+                new Rectangle(4, 1, 1, 1),
+                1,
+                new Insets(5, 8, 10, 100),
+                GridBagConstraints.WEST,
+                GridBagConstraints.NONE
+        );
+        Constrains.addCompX(
+                getNextIteracion(),
+                getControl(),
+                new Rectangle(3, 1, 1, 1),
+                1,
+                new Insets(5, 5, 10, 5),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addCompX(
+                getClean(),
+                getControl(),
+                new Rectangle(2, 1, 1, 1),
+                1,
+                new Insets(5, 80, 10, 5),
+                GridBagConstraints.WEST,
+                GridBagConstraints.HORIZONTAL
+        );
     }
     @Override
     public void iteracion1() {
-        Eventos.enable(false, getClean(), getNextIteracion(), getSend(), getPause(), getBack(), getCodigo(), getHome());
+        Eventos.enable(
+                false,
+                getClean(),
+                getNextIteracion(),
+                getSend(),
+                getPause(),
+                getBack(),
+                getCodigo(),
+                getHome()
+        );
         if (isCasoBase()) {
             if (getCodigo().isOnOff()) accionesCasoBase(true);
             else accionesCasoBase(false);
-        } else if (getIteracion()==0 && !isDecremento()) {
+        } else if (getIteracion() == 0 && !isDecremento()) {
             if (getCodigo().isOnOff()) accionesCasoTerminal(true);
             else accionesCasoTerminal(false);
         } else if (!isDecremento()) {

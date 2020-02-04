@@ -34,7 +34,10 @@ public abstract class Simulador extends Lienzo {
     private Texto texto;
     public static final Dimension canvasSize;
     static {
-        canvasSize = new Dimension((int) (Toolkit.getDefaultToolkit().getScreenSize().width*0.73),(int) (Toolkit.getDefaultToolkit().getScreenSize().height*0.8));
+        canvasSize = new Dimension(
+                (int) (Toolkit.getDefaultToolkit().getScreenSize().width * 0.73),
+                (int) (Toolkit.getDefaultToolkit().getScreenSize().height * 0.8)
+        );
     }
     /**
      * Esquema de los simuladores del proyecto
@@ -51,7 +54,7 @@ public abstract class Simulador extends Lienzo {
      * @param components {@link JComponent}s de registro de datos
      */
     public Simulador(JComponent lienzo, String title, JComponent... components){
-        super(new GridBagLayout(),false);
+        super(new GridBagLayout(), false);
         this.lienzo = lienzo;
         this.lienzo.setPreferredSize(canvasSize);
         this.lienzo.setSize(canvasSize);
@@ -77,7 +80,7 @@ public abstract class Simulador extends Lienzo {
         nextIteracion = new ButtonSimulador("Siguiente", false, e -> getAcciones().iteracion1());
         control = new JPanel(new GridBagLayout());
         control.setBackground(Colour.GRIS_PANEL.getColor());
-        JLabel desc=new JLabel("Descripción");
+        JLabel desc = new JLabel("Descripción");
         desc.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
         desc.setForeground(Colour.BLANCO.getColor());
         desc.setBackground(Colour.AZUL_TITLE.getColor());
@@ -90,15 +93,88 @@ public abstract class Simulador extends Lienzo {
                 if (!pause.isOnOff() && codigo.isOnOff()) codigo.setOnOff(pause.isOnOff());
             }
         });
-        Insets insets=new Insets(0,0,0,0);
-        Constrains.addComp(lienzo, this, new Rectangle(0, 0, 1, 4), 0, 0, insets, GridBagConstraints.NORTHWEST, GridBagConstraints.NONE);
-        Constrains.addComp(getBack(), control, new Rectangle(0, 0, 1, 2), 0, 0, new Insets(15, 15, 15, 5), GridBagConstraints.WEST, GridBagConstraints.NONE);
-        Constrains.addComp(getHome(), control, new Rectangle(1, 0, 1, 2), 0, 0, new Insets(20, 5, 20, 15), GridBagConstraints.WEST, GridBagConstraints.NONE);
-        Constrains.addComp(control, this, new Rectangle(0, 4, 1, 1), 1, 1, insets, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-        Constrains.addCompX(desc, this, new Rectangle(1, 0, 1, 1), 1, insets, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
-        Constrains.addCompIy(texto = new Texto( 4, 55), this, new Rectangle(1, 1, 1, 1), 1, 0, insets, 40, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
-        Constrains.addCompIy(new ModernScrollPane(datos = new JPanel(new GridBagLayout())), this, new Rectangle(1, 2, 1, 1), 1, 0, insets, 200, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-        Constrains.addComp(codigos = new PackageCode(), this, new Rectangle(1, 3, 1, 2), 1, 1, insets, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+        Insets insets = new Insets(0, 0, 0, 0);
+        Constrains.addComp(
+                lienzo,
+                this,
+                new Rectangle(0, 0, 1, 4),
+                0,
+                0,
+                insets,
+                GridBagConstraints.NORTHWEST,
+                GridBagConstraints.NONE
+        );
+        Constrains.addComp(
+                getBack(),
+                control,
+                new Rectangle(0, 0, 1, 2),
+                0,
+                0,
+                new Insets(15, 15, 15, 5),
+                GridBagConstraints.WEST,
+                GridBagConstraints.NONE
+        );
+        Constrains.addComp(
+                getHome(),
+                control,
+                new Rectangle(1, 0, 1, 2),
+                0,
+                0,
+                new Insets(20, 5, 20, 15),
+                GridBagConstraints.WEST,
+                GridBagConstraints.NONE
+        );
+        Constrains.addComp(
+                control,
+                this,
+                new Rectangle(0, 4, 1, 1),
+                1,
+                1,
+                insets,
+                GridBagConstraints.CENTER,
+                GridBagConstraints.BOTH
+        );
+        Constrains.addCompX(
+                desc,
+                this,
+                new Rectangle(1, 0, 1, 1),
+                1,
+                insets,
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addCompIy(
+                texto = new Texto( 4, 55),
+                this,
+                new Rectangle(1, 1, 1, 1),
+                1,
+                0,
+                insets,
+                40,
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addCompIy(
+                new ModernScrollPane(datos = new JPanel(new GridBagLayout())),
+                this,
+                new Rectangle(1, 2, 1, 1),
+                1,
+                0,
+                insets,
+                200,
+                GridBagConstraints.CENTER,
+                GridBagConstraints.BOTH
+        );
+        Constrains.addComp(
+                codigos = new PackageCode(),
+                this,
+                new Rectangle(1, 3, 1, 2),
+                1,
+                1,
+                insets,
+                GridBagConstraints.CENTER,
+                GridBagConstraints.BOTH
+        );
     }
     /**
      * Plantilla por defecto para reiniciar el simulador
@@ -129,7 +205,8 @@ public abstract class Simulador extends Lienzo {
             box.add(component);
             if (component != components[components.length-1]) box.add(Box.createHorizontalStrut(1));
         }
-        if (Optional.ofNullable(title).isPresent()) box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), title));
+        if (Optional.ofNullable(title).isPresent())
+            box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), title));
         return box;
     }
     /**
@@ -160,7 +237,16 @@ public abstract class Simulador extends Lienzo {
      * @param trees {@link Tree} a agregar
      */
     protected void setDatos(Tree... trees){
-        for (int i = 0; i < trees.length; i++) Constrains.addComp(trees[i],datos,new Rectangle(0,i,1,1),1,1,new Insets(i==0 ? 7:1,10,i==trees.length-1 ? sizeTree(trees.length) : 1,5),GridBagConstraints.CENTER,GridBagConstraints.BOTH);
+        for (int i = 0; i < trees.length; i++) Constrains.addComp(
+                trees[i],
+                datos,
+                new Rectangle(0, i, 1, 1),
+                1,
+                1,
+                new Insets(i == 0 ? 7 : 1, 10, i == trees.length-1 ? sizeTree(trees.length) : 1,5),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.BOTH
+        );
     }
     /**
      * Da el tamaño del espacio libre en el panel datos
@@ -168,7 +254,7 @@ public abstract class Simulador extends Lienzo {
      * @return espacio libre en el panel
      */
     private int sizeTree(int length){
-        int size=200-(10*length);
+        int size = 200 - ( 10 * length);
         return size > 0 ? size : 8;
     }
     /**
@@ -179,11 +265,17 @@ public abstract class Simulador extends Lienzo {
      * @return menú para las opciones del Lienzo
      */
     private JPopupMenu menuLienzo(){
-        JPopupMenu menu=new JPopupMenu();
-        JMenuItem save=new JMenuItem("Exportar Lienzo");
+        JPopupMenu menu = new JPopupMenu();
+        JMenuItem save = new JMenuItem("Exportar Lienzo");
         save.addActionListener(e -> {
             try {
-                new Message(Archivos.exportImage(Eventos.saveFile(true), Eventos.createImageOf(lienzo)), lienzo).setVisible(true);
+                new Message(
+                        Archivos.exportImage(
+                                Eventos.saveFile(true),
+                                Eventos.createImageOf(lienzo)
+                        ),
+                        lienzo
+                ).setVisible(true);
             } catch (FileNotFoundException ex) {//None
             }
         });

@@ -43,23 +43,30 @@ public class Lienzo extends JPanel {
      * @param lienzo decide si se pinta el lienzo o no
      */
     private void init(boolean lienzo){
-        this.lienzo=lienzo;
-        back=new Boton(Archivos.image("/resources/image/back.png",-1,-1),Eventos.menu(Paneles.values()));
-        home=new Boton(Text.VENTANA_PRINCIPAL.toString(), Archivos.image("/resources/image/home.png", -1, -1), new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                acciones.clean();
-                Eventos.show(Paneles.PRINCIPAL);
-            }
-        });
-        next=new Boton(Archivos.image("/resources/image/next.png",-1,-1));
+        this.lienzo = lienzo;
+        back = new Boton(
+                Archivos.image("/resources/image/back.png",-1,-1),
+                Eventos.menu(Paneles.values())
+        );
+        home = new Boton(
+                Text.VENTANA_PRINCIPAL.toString(),
+                Archivos.image("/resources/image/home.png", -1, -1),
+                new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        acciones.clean();
+                        Eventos.show(Paneles.PRINCIPAL);
+                    }
+                }
+        );
+        next = new Boton(Archivos.image("/resources/image/next.png", -1, -1));
     }
     /**
      * Atributos del botón retroceder
      * @param toolTipText mensaje de ayuda
      * @param paneles panel a retroceder
      */
-    public void back(String toolTipText,Paneles paneles){
+    public void back(String toolTipText, Paneles paneles){
         back.setToolTipText(toolTipText);
         back.addMouseListener(new MouseAdapter() {
             @Override
@@ -74,7 +81,7 @@ public class Lienzo extends JPanel {
      * @param toolTipText mensaje de ayuda
      * @param paneles panel a avanzar
      */
-    public void next(String toolTipText,Paneles paneles){
+    public void next(String toolTipText, Paneles paneles){
         next.setToolTipText(toolTipText);
         next.addMouseListener(new MouseAdapter() {
             @Override
@@ -126,7 +133,16 @@ public class Lienzo extends JPanel {
     @Override
     public void paint(Graphics g) {
         if (lienzo) {
-            g.drawImage(Objects.requireNonNull(Archivos.image("/resources/image/Lienzo.jpg", -1, -1)).getImage(),0,0,getWidth(),getHeight(),this);
+            g.drawImage(
+                    Objects.requireNonNull(
+                            Archivos.image("/resources/image/Lienzo.jpg", -1, -1)
+                    ).getImage(),
+                    0,
+                    0,
+                    getWidth(),
+                    getHeight(),
+                    this
+            );
             setOpaque(false);
         }
         super.paint(g);

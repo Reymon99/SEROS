@@ -11,7 +11,7 @@ public final class Ejercicios extends Lienzo {
      * Planilla de los paneles de Ejercicios del Simulador
      */
     public Ejercicios(){
-        super(new GridBagLayout(),true);
+        super(new GridBagLayout(), true);
         setAcciones(new Acciones() {
             @Override
             public void iteracion0() {//None
@@ -30,13 +30,49 @@ public final class Ejercicios extends Lienzo {
      * Inicialización y acomodamiento de los componentes en el panel
      */
     private void init() {
-        panel=new JPanel(new FlowLayout(FlowLayout.CENTER,50,20));
+        panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 20));
         panel.setOpaque(false);
-        panel.setPreferredSize(new Dimension(1000,150));
-        Constrains.addComp(panel,this,new Rectangle(0,0,2,1),0.8,1,new Insets(70,40,15,40),GridBagConstraints.CENTER,GridBagConstraints.HORIZONTAL);
-        Constrains.addComp(texto=new Texto("",8,55),this,new Rectangle(0,1,2,1),1,1,new Insets(10,20,25,20),GridBagConstraints.SOUTH,GridBagConstraints.NONE);
-        Constrains.addComp(getBack(),this,new Rectangle(0,2,1,1),0,0,new Insets(10,7,10,5), GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
-        Constrains.addComp(getHome(),this,new Rectangle(1,2,1,1),0,0,new Insets(10,5,25,5),GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
+        panel.setPreferredSize(new Dimension(1000, 150));
+        Constrains.addComp(
+                panel,
+                this,
+                new Rectangle(0, 0, 2, 1),
+                0.8,
+                1,
+                new Insets(70, 40, 15, 40),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addComp(
+                texto = new Texto("", 8, 55),
+                this,
+                new Rectangle(0, 1, 2, 1),
+                1,
+                1,
+                new Insets(10, 20, 25, 20),
+                GridBagConstraints.SOUTH,
+                GridBagConstraints.NONE
+        );
+        Constrains.addComp(
+                getBack(),
+                this,
+                new Rectangle(0, 2, 1, 1),
+                0,
+                0,
+                new Insets(10, 7, 10, 5),
+                GridBagConstraints.SOUTHWEST,
+                GridBagConstraints.NONE
+        );
+        Constrains.addComp(
+                getHome(),
+                this,
+                new Rectangle(1, 2, 1, 1),
+                0,
+                0,
+                new Insets(10, 5, 25, 5),
+                GridBagConstraints.SOUTHWEST,
+                GridBagConstraints.NONE
+        );
     }
     /**
      * Se añaden los items al panel si no está vacia la lista de botones

@@ -1,4 +1,5 @@
 package hilos;
+import eventos.Eventos;
 import javax.swing.*;
 public class Imagen extends Thread {
     private boolean stop;
@@ -12,7 +13,7 @@ public class Imagen extends Thread {
      * @param images imagenes a mostrar
      */
     public Imagen(JLabel label, ImageIcon... images){
-        this(label,400,images);
+        this(label, 400, images);
     }
     /**
      * Muestra imagenes determinadas en un lapso de tiempo indicado, sucesivamente
@@ -21,28 +22,28 @@ public class Imagen extends Thread {
      * @param images imagenes a mostrar
      */
     public Imagen(JLabel label, int sleep, ImageIcon... images){
-        stop=pause=false;
-        this.sleep=sleep;
-        this.images=images;
-        this.label=label;
+        stop = pause = false;
+        this.sleep = sleep;
+        this.images = images;
+        this.label = label;
     }
     /**
      * Pausa el hilo sucesivo de las imagenes que se están mostrando
      */
     public void pausar(){
-        pause=true;
+        pause = true;
     }
     /**
      * Reinicia el hilo sucesivo después de haber sido pausado
      */
     public void reiniciar(){
-        pause=false;
+        pause = false;
     }
     /**
      * Detiene el hilo sucesivo de la imagenes que se están mostrando
      */
     public void parar(){
-        stop=pause=true;
+        stop = pause = true;
     }
     /**
      * Hilo sucesivo de las imagenes a ser mostradas
@@ -52,10 +53,7 @@ public class Imagen extends Thread {
         while (!stop){
             for (int i = 0; !pause; i++) {
                 label.setIcon(images[i]);
-                try {
-                    Thread.sleep(sleep);
-                } catch (InterruptedException e) {//None
-                }
+                Eventos.sleep(sleep);
             }
         }
     }

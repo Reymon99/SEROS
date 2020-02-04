@@ -13,7 +13,8 @@ public abstract class Constrains {
      * @param place     ubicación dentro del espacio del grid
      * @param stretch   llenado dentro del espacio del grid
      */
-    public static void addComp(Component component, Container container, Rectangle rectangle, double weightx, double weighty, Insets insets, int place, int stretch) {
+    public static void addComp(Component component, Container container, Rectangle rectangle, double weightx,
+                               double weighty, Insets insets, int place, int stretch) {
         GridBagConstraints grid = grid(rectangle, insets, place, stretch);
         grid.weightx = weightx;
         grid.weighty = weighty;
@@ -29,7 +30,8 @@ public abstract class Constrains {
      * @param place     ubicación dentro del espacio del grid
      * @param stretch   llenado dentro del espacio del grid
      */
-    public static void addCompX(Component component, Container container, Rectangle rectangle, double weightx, Insets insets, int place, int stretch) {
+    public static void addCompX(Component component, Container container, Rectangle rectangle, double weightx,
+                                Insets insets, int place, int stretch) {
         GridBagConstraints grid = grid(rectangle, insets, place, stretch);
         grid.weightx = weightx;
         container.add(component, grid);
@@ -44,7 +46,8 @@ public abstract class Constrains {
      * @param place     ubicación dentro del espacio del grid
      * @param stretch   llenado dentro del espacio del grid
      */
-    public static void addCompY(Component component, Container container, Rectangle rectangle, double weighty, Insets insets, int place, int stretch) {
+    public static void addCompY(Component component, Container container, Rectangle rectangle, double weighty,
+                                Insets insets, int place, int stretch) {
         GridBagConstraints grid = grid(rectangle, insets, place, stretch);
         grid.weighty = weighty;
         container.add(component, grid);
@@ -60,7 +63,8 @@ public abstract class Constrains {
      * @param place     ubicación dentro del espacio del grid
      * @param stretch   llenado dentro del espacio del grid
      */
-    public static void addCompI(Component component, Container container, Rectangle rectangle, Point2D.Double weight, Insets insets, Point ipad, int place, int stretch) {
+    public static void addCompI(Component component, Container container, Rectangle rectangle, Point2D.Double weight,
+                                Insets insets, Point ipad, int place, int stretch) {
         GridBagConstraints grid = grid(rectangle, insets, place, stretch);
         grid.weightx = weight.x;
         grid.weighty = weight.y;
@@ -80,7 +84,8 @@ public abstract class Constrains {
      * @param place     ubicación dentro del espacio del grid
      * @param stretch   llenado dentro del espacio del grid
      */
-    public static void addCompIx(Component component, Container container, Rectangle rectangle, double weightx, double weighty, Insets insets, int ipadx, int place, int stretch) {
+    public static void addCompIx(Component component, Container container, Rectangle rectangle, double weightx,
+                                 double weighty, Insets insets, int ipadx, int place, int stretch) {
         GridBagConstraints grid = grid(rectangle, insets, place, stretch);
         grid.weightx = weightx;
         grid.weighty = weighty;
@@ -99,7 +104,8 @@ public abstract class Constrains {
      * @param place     ubicación dentro del espacio del grid
      * @param stretch   llenado dentro del espacio del grid
      */
-    public static void addCompIy(Component component, Container container, Rectangle rectangle, double weightx, double weighty, Insets insets, int ipady, int place, int stretch) {
+    public static void addCompIy(Component component, Container container, Rectangle rectangle, double weightx,
+                                 double weighty, Insets insets, int ipady, int place, int stretch) {
         GridBagConstraints grid = grid(rectangle, insets, place, stretch);
         grid.weightx = weightx;
         grid.weighty = weighty;
@@ -117,7 +123,8 @@ public abstract class Constrains {
      * @param place     ubicación dentro del espacio del grid
      * @param stretch   llenado dentro del espacio del grid
      */
-    public static void addCompXIx(Component component, Container container, Rectangle rectangle, double weightx, Insets insets, int ipadx, int place, int stretch) {
+    public static void addCompXIx(Component component, Container container, Rectangle rectangle, double weightx,
+                                  Insets insets, int ipadx, int place, int stretch) {
         GridBagConstraints grid = grid(rectangle, insets, place, stretch);
         grid.weightx = weightx;
         grid.ipadx = ipadx;
@@ -134,7 +141,8 @@ public abstract class Constrains {
      * @param place     ubicación dentro del espacio del grid
      * @param stretch   llenado dentro del espacio del grid
      */
-    public static void addCompXIy(Component component, Container container, Rectangle rectangle, double weightx, Insets insets, int ipady, int place, int stretch) {
+    public static void addCompXIy(Component component, Container container, Rectangle rectangle, double weightx,
+                                  Insets insets, int ipady, int place, int stretch) {
         GridBagConstraints grid = grid(rectangle, insets, place, stretch);
         grid.weightx = weightx;
         grid.ipady = ipady;
@@ -151,7 +159,8 @@ public abstract class Constrains {
      * @param place     ubicación dentro del espacio del grid
      * @param stretch   llenado dentro del espacio del grid
      */
-    public static void addCompYIx(Component component, Container container, Rectangle rectangle, double weighty, Insets insets, int ipadx, int place, int stretch) {
+    public static void addCompYIx(Component component, Container container, Rectangle rectangle, double weighty,
+                                  Insets insets, int ipadx, int place, int stretch) {
         GridBagConstraints grid = grid(rectangle, insets, place, stretch);
         grid.weightx = weighty;
         grid.ipadx = ipadx;
@@ -168,7 +177,8 @@ public abstract class Constrains {
      * @param place     ubicación dentro del espacio del grid
      * @param stretch   llenado dentro del espacio del grid
      */
-    public static void addCompYIy(Component component, Container container, Rectangle rectangle, double weighty, Insets insets, int ipady, int place, int stretch) {
+    public static void addCompYIy(Component component, Container container, Rectangle rectangle, double weighty,
+                                  Insets insets, int ipady, int place, int stretch) {
         GridBagConstraints grid = grid(rectangle, insets, place, stretch);
         grid.weighty = weighty;
         grid.ipady = ipady;

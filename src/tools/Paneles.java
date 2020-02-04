@@ -23,7 +23,7 @@ public enum Paneles {
     POTENCIA("Simulador Potencia");
     private String n;
     Paneles(String n){
-        this.n=n;
+        this.n = n;
     }
     @Override
     public String toString() {

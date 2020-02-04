@@ -12,7 +12,7 @@ public class Save extends JFileChooser {
      */
     public Save(boolean isImage, String name){
         this(isImage);
-        setSelectedFile(new File(getCurrentDirectory(), name+(isImage ? ".jpg" : ".java")));
+        setSelectedFile(new File(getCurrentDirectory(), name + (isImage ? ".jpg" : ".java")));
     }
     /**
      * Selecciona la ruta donde se va a guardar la imagen del lienzo del simulador
@@ -22,7 +22,7 @@ public class Save extends JFileChooser {
         this.isImage = isImage;
         setFileSelectionMode(FILES_AND_DIRECTORIES);
         setFileFilter(new FileNameExtensionFilter(isImage ? "JPG Imagen" : "Java Archivo", isImage ? "jpg" : "java"));
-        setDialogTitle("Exportando "+(isImage ? "Imagen" : "Archivo"));
+        setDialogTitle("Exportando " + (isImage ? "Imagen" : "Archivo"));
     }
     /**
      * Da la ruta indicada por el usuario para guardar la imagen del lienzo del simulador
@@ -30,8 +30,10 @@ public class Save extends JFileChooser {
      */
     public File getFile() throws FileNotFoundException {
         int i = showSaveDialog(null);
-        File file=getSelectedFile();
-        if (i==APPROVE_OPTION) return file.getName().endsWith(isImage ? ".jpg" : ".java") ? file : new File(file.getAbsolutePath()+(isImage ? ".jpg" : ".java"));
+        File file = getSelectedFile();
+        if (i==APPROVE_OPTION)
+            return file.getName().endsWith(isImage ? ".jpg" : ".java") ?
+                    file : new File(file.getAbsolutePath() + (isImage ? ".jpg" : ".java"));
         else throw new FileNotFoundException("Ruta no especificada");
     }
 }

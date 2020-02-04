@@ -16,7 +16,11 @@ public abstract class Archivos {
      */
     public static ImageIcon image(String path, int width, int height) {
         try{
-            return new ImageIcon(ImageIO.read(Archivos.class.getResource(path)).getScaledInstance(width,height, Image.SCALE_DEFAULT));
+            return new ImageIcon(ImageIO.read(Archivos.class.getResource(path)).getScaledInstance(
+                    width,
+                    height,
+                    Image.SCALE_DEFAULT
+            ));
         } catch (IOException e) {
             return null;
         }
@@ -27,9 +31,9 @@ public abstract class Archivos {
      * @return contenido del archivo
      */
     public static String codefiles(String path){
-        StringBuilder txt=new StringBuilder();
+        StringBuilder txt = new StringBuilder();
         try{
-            BufferedReader br=new BufferedReader(new FileReader(Archivos.class.getResource(path).toURI().getPath()));
+            BufferedReader br = new BufferedReader(new FileReader(Archivos.class.getResource(path).toURI().getPath()));
             String cadena;
             while ((cadena=br.readLine())!=null) txt.append(cadena).append('\n');
             br.close();
@@ -45,7 +49,8 @@ public abstract class Archivos {
      */
     public static String exportImage(File file, RenderedImage image){
         try {
-            return ImageIO.write(image, "jpg", file) ? "Lienzo exportado exitosamente como imagen" : "No se pudo exportar el lienzo como imagen";
+            return ImageIO.write(image, "jpg", file) ?
+                    "Lienzo exportado exitosamente como imagen" : "No se pudo exportar el lienzo como imagen";
         } catch (IOException e) {
             return "No se pudo exportar el lienzo como imagen";
         }

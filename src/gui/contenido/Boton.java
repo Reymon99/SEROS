@@ -26,7 +26,7 @@ public class Boton extends JLabel {
      * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
      */
     public Boton(String tip, ImageIcon icon, MouseAdapter adapter){
-        super(icon,CENTER);
+        super(icon, CENTER);
         setToolTipText(tip);
         init(adapter);
     }
@@ -36,7 +36,7 @@ public class Boton extends JLabel {
      * @param icon {@link ImageIcon} icono de la etiqueta
      */
     public Boton(ImageIcon icon){
-        super(icon,CENTER);
+        super(icon, CENTER);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setOpaque(false);
     }
@@ -58,7 +58,7 @@ public class Boton extends JLabel {
      * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
      */
     public Boton(ImageIcon icon, String text, MouseAdapter adapter){
-        super(text,icon,CENTER);
+        super(text, icon, CENTER);
         setVerticalTextPosition(BOTTOM);
         setHorizontalTextPosition(CENTER);
         init(adapter);

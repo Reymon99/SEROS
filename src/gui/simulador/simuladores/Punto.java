@@ -27,8 +27,13 @@ public final class Punto extends Simulador implements Acciones {
         super("(x,y)", x, y);
         this.x = x;
         this.y = y;
-        punto=new Tree(new JTree.DynamicUtilTreeNode(new Dato("Punto", "punto", "", true),
-                new Dato[]{new Dato("int", "x", ""), new Dato( "int", "y", "")}));
+        punto = new Tree(new JTree.DynamicUtilTreeNode(
+                new Dato("Punto", "punto", "", true),
+                new Dato[]{
+                        new Dato("int", "x", ""),
+                        new Dato("int", "y", "")
+                }
+        ));
         punto.expandNode(0);
         graficador = new Graficador();
         getLienzo().setLayout(new BorderLayout());
@@ -59,8 +64,16 @@ public final class Punto extends Simulador implements Acciones {
      * Grafica las coordenadas (x,y) muestra los códigos asignados a estos
      */
     private void mostrarCoordenadas(){
-        base(Text.SIMULADOR_TDA_1, 22, ((Editor) getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum(), true);
-        graficador.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
+        base(
+                Text.SIMULADOR_TDA_1,
+                22,
+                ((Editor) getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum(),
+                true
+        );
+        graficador.graficar(
+                Integer.parseInt(x.getValue().toString()),
+                Integer.parseInt(y.getValue().toString())
+        );
     }
     /**
      * Acciones comunes de interactividad
@@ -77,11 +90,51 @@ public final class Punto extends Simulador implements Acciones {
     }
     @Override
     protected void acomodamientoPanelControl(String title, JComponent... components) {
-        Constrains.addCompX(componentRegistro(title, components), getControl(), new Rectangle(2, 0, 2, 1), 1, new Insets(3, 80, 5, 5), GridBagConstraints.EAST, GridBagConstraints.BOTH);
-        Constrains.addCompX(getSend(), getControl(), new Rectangle(4, 0, 2, 1), 1, new Insets(10, 5, 5, 100), GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getPause(), getControl(), new Rectangle( 2, 1, 1, 1), 1, new Insets( 5, 35, 10, 8), GridBagConstraints.EAST, GridBagConstraints.NONE);
-        Constrains.addCompX(getNextIteracion(), getControl(), new Rectangle( 3, 1, 2, 1), 1, new Insets(5, 8, 10, 8), GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
-        Constrains.addCompX(getClean(), getControl(), new Rectangle(5, 1, 1, 1), 1, new Insets(5, 5, 10, 100), GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL);
+        Constrains.addCompX(
+                componentRegistro(title, components),
+                getControl(),
+                new Rectangle(2, 0, 2, 1),
+                1,
+                new Insets(3, 80, 5, 5),
+                GridBagConstraints.EAST,
+                GridBagConstraints.BOTH
+        );
+        Constrains.addCompX(
+                getSend(),
+                getControl(),
+                new Rectangle(4, 0, 2, 1),
+                1,
+                new Insets(10, 5, 5, 100),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addCompX(
+                getPause(),
+                getControl(),
+                new Rectangle( 2, 1, 1, 1),
+                1,
+                new Insets( 5, 35, 10, 8),
+                GridBagConstraints.EAST,
+                GridBagConstraints.NONE
+        );
+        Constrains.addCompX(
+                getNextIteracion(),
+                getControl(),
+                new Rectangle(3, 1, 2, 1),
+                1,
+                new Insets(5, 8, 10, 8),
+                GridBagConstraints.CENTER,
+                GridBagConstraints.HORIZONTAL
+        );
+        Constrains.addCompX(
+                getClean(),
+                getControl(),
+                new Rectangle(5, 1, 1, 1),
+                1,
+                new Insets(5, 5, 10, 100),
+                GridBagConstraints.WEST,
+                GridBagConstraints.HORIZONTAL
+        );
     }
     @Override
     public void iteracion0() {
@@ -95,9 +148,19 @@ public final class Punto extends Simulador implements Acciones {
     }
     @Override
     public void iteracion1() {
-        Eventos.enable(false, getSend(), x, y, getPause(), getClean(), getBack(), getHome(), getNextIteracion());
-        if (getIteracion()==0) asignacionX();
-        else if (getIteracion()==1) asignacionY();
+        Eventos.enable(
+                false,
+                getSend(),
+                x,
+                y,
+                getPause(),
+                getClean(),
+                getBack(),
+                getHome(),
+                getNextIteracion()
+        );
+        if (getIteracion() == 0) asignacionX();
+        else if (getIteracion() == 1) asignacionY();
         else mostrarCoordenadas();
         incrementIteracion();
     }

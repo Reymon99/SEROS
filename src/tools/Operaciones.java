@@ -3,8 +3,9 @@ import eventos.Eventos;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
-public abstract class Operaciones {//Operaciones y demostraciones matemáticas
-    private static HashMap<Operacion,DecimalFormat> format;
+// Operaciones y demostraciones matemáticas
+public abstract class Operaciones {
+    private static HashMap<Operacion, DecimalFormat> format;
     static {
         Operaciones.format = new HashMap<>();
     }
@@ -73,7 +74,9 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
      * @return multiplicación recursiva de un valor inicial al factorial del valor final
      */
     public static String productUpFactorial(int i, int factorial){
-        return i == factorial ? Operaciones.formatNumber(Operaciones.factorial(factorial), Operacion.FACTORIAL) : i + " * " + Operaciones.productUpFactorial(i - 1, factorial);
+        return i == factorial ?
+                Operaciones.formatNumber(Operaciones.factorial(factorial), Operacion.FACTORIAL) :
+                i + " * " + Operaciones.productUpFactorial(i - 1, factorial);
     }
     /**
      * No da una cadena exponencial convertida por medio de HTML
@@ -103,7 +106,7 @@ public abstract class Operaciones {//Operaciones y demostraciones matemáticas
     public static String productoPotencia(int base, int exponente){
         if (exponente == 0) return "1";
         else if (exponente == 1) return String.valueOf(base);
-        else return base + " * " + productoPotencia(base, exponente-1);
+        else return base + " * " + productoPotencia(base, exponente - 1);
     }
     /**
      * Genera la multiplicación de una potencia dada

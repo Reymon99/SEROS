@@ -15,12 +15,13 @@ public class Tree extends JTree {
      */
     public Tree(DefaultMutableTreeNode node){
         super(new DefaultTreeModel(node));
-        this.node=node;
-        ImageIcon icon = Archivos.image("/resources/image/variable.png",-1,-1);
+        this.node = node;
+        ImageIcon icon = Archivos.image("/resources/image/variable.png", -1, -1);
         setCellRenderer(new DefaultTreeCellRenderer(){
             @Override
-            public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-                JLabel label=new JLabel(value.toString(),icon,LEFT);
+            public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
+                                                          boolean leaf, int row, boolean hasFocus) {
+                JLabel label = new JLabel(value.toString(), icon, LEFT);
                 label.setFont(UBUNTU_LIGHT_14.getFont());
                 return label;
             }
@@ -40,7 +41,8 @@ public class Tree extends JTree {
      * @return dato del nodo
      */
     public Dato getDato(int index){
-        return index==-1 ?  (Dato) node.getUserObject() : (Dato) ((DefaultMutableTreeNode)node.getChildAt(index)).getUserObject();
+        return index == -1 ?
+                (Dato) node.getUserObject() : (Dato) ((DefaultMutableTreeNode)node.getChildAt(index)).getUserObject();
     }
     /**
      * Añade nodos al nodo raíz

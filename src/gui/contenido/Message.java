@@ -25,7 +25,9 @@ public class Message extends JDialog {
         init();
         pack();
         setLocationRelativeTo(component);
-        setIconImage(Objects.requireNonNull(Archivos.image("/resources/image/icon.png", -1, -1)).getImage());
+        setIconImage(Objects.requireNonNull(
+                Archivos.image("/resources/image/icon.png", -1, -1)).getImage()
+        );
         addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
@@ -35,7 +37,8 @@ public class Message extends JDialog {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode()==KeyEvent.VK_ESCAPE || e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode()==KeyEvent.VK_SPACE) dispose();
+                if (e.getKeyCode()==KeyEvent.VK_ESCAPE ||
+                        e.getKeyCode()==KeyEvent.VK_ENTER || e.getKeyCode()==KeyEvent.VK_SPACE) dispose();
             }
         });
     }
@@ -43,7 +46,7 @@ public class Message extends JDialog {
      * Construcción del componente
      */
     private void init(){
-        JLabel label=new JLabel(message, JLabel.CENTER);
+        JLabel label = new JLabel(message, JLabel.CENTER);
         label.setFont(Fuentes.UBUNTU_LIGHT_20.getFont());
         label.setForeground(Colour.BLANCO_OPACO.getColor());
         getContentPane().add(label);

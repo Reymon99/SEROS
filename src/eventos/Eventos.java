@@ -24,23 +24,23 @@ public abstract class Eventos {
      *Establece el panel principal que contiene todos los paneles de proyecto
      * @param panel {@link JPanel}
      */
-    public static void setPanel(JPanel panel){
-        Eventos.panel=panel;
+    public static void setPanel(JPanel panel) {
+        Eventos.panel = panel;
     }
     /**
      * Mediante el nombre de los paneles definidos mediante un enum de String muestra el panel deseado en la intefaz gráfica
      * @see Paneles
      * @param panel {@link String}
      */
-    public static void show(Paneles panel){
+    public static void show(Paneles panel) {
         Contenedor.panelActivo = panel;
-        ((CardLayout)Eventos.panel.getLayout()).show(Eventos.panel,panel.toString());
+        ((CardLayout) Eventos.panel.getLayout()).show(Eventos.panel, panel.toString());
     }
     /**
      * Abre el navegador con el link fijado
      * @param url {@link String} url a abrir por el usuario
      */
-    public static void link(String url){
+    public static void link(String url) {
         try{
             if (Desktop.isDesktopSupported()) Desktop.getDesktop().browse(new URL(url).toURI());
         } catch (Exception e) {//None
@@ -52,9 +52,9 @@ public abstract class Eventos {
      * @param component {@link Component} en el cual se va a ejecutar el about
      * @see About
      */
-    public static void about(Component component){
+    public static void about(Component component) {
         if (About.show) {
-            About.show=false;
+            About.show = false;
             new About(component).setVisible(true);
         }
     }
@@ -64,8 +64,9 @@ public abstract class Eventos {
      * @param components componentes a modificar disponibilidad
      */
     public static void enable(boolean enable, Component... components) {
-        for (Component component : components) if (component instanceof Switch) ((Switch) component).setModificable(enable);
-        else component.setEnabled(enable);
+        for (Component component : components)
+            if (component instanceof Switch) ((Switch) component).setModificable(enable);
+            else component.setEnabled(enable);
     }
     /**
      * Valor a la posición del scroll dado
@@ -73,7 +74,7 @@ public abstract class Eventos {
      * @param value posición a dar al scroll
      * @see ModernScrollPane
      */
-    public static void scroll(ModernScrollPane pane, int value){
+    public static void scroll(ModernScrollPane pane, int value) {
         pane.getVerticalScrollBar().setValue(value);
     }
     /**
@@ -83,7 +84,7 @@ public abstract class Eventos {
      * @param valor valor a dar a la variable en el árbol
      * @see Tree
      */
-    public static void variable(Tree tree, int index, Object valor){
+    public static void variable(Tree tree, int index, Object valor) {
         tree.getDato(index).setValor(valor.toString());
         tree.updateUI();
     }
@@ -91,7 +92,7 @@ public abstract class Eventos {
      * Duerme el la ejecución lineal del proceso por los milisegundo establecidos
      * @param mili milisegundos a establecer
      */
-    public static void sleep(long mili){
+    public static void sleep(long mili) {
         try {
             Thread.sleep(mili);
         } catch (InterruptedException e) {//None
@@ -102,8 +103,8 @@ public abstract class Eventos {
      * @param n cadena a convertir
      * @return HTML de la cadena dada
      */
-    public static String html(String n){
-        return "<html>"+n+"</html>";
+    public static String html(String n) {
+        return "<html>" + n + "</html>";
     }
     /**
      * Opciones {@link JPopupMenu} para los componentes.</br>
@@ -111,30 +112,32 @@ public abstract class Eventos {
      * @param paneles paneles a navegar
      * @return opciones de componente
      */
-    public static JPopupMenu menu(Paneles... paneles){
-        JPopupMenu menu=new JPopupMenu();
-        boolean simulador=true;
-        boolean demostracion=true;
-        boolean ejercicios=true;
-        for (Paneles panel:paneles) {
-            if (panel.toString().contains("Simulador") || panel.toString().contains("Demostración") || panel.toString().contains("Ejercicios")){
+    public static JPopupMenu menu(Paneles... paneles) {
+        JPopupMenu menu = new JPopupMenu();
+        boolean simulador = true;
+        boolean demostracion = true;
+        boolean ejercicios = true;
+        for (Paneles panel : paneles) {
+            if (panel.toString().contains("Simulador") || panel.toString().contains("Demostración") ||
+                    panel.toString().contains("Ejercicios")){
                 if (panel.toString().contains("Simulador")) {
                     if (simulador) menu.addSeparator();
-                    simulador=false;
+                    simulador = false;
                 }
                 else if (panel.toString().contains("Ejercicios")) {
                     if (ejercicios) menu.addSeparator();
-                    ejercicios=false;
+                    ejercicios = false;
                 }
                 else if (panel.toString().contains("Demostración")) {
                     if (demostracion) menu.addSeparator();
-                    demostracion=false;
+                    demostracion = false;
                 }
             }
-            JMenuItem item=new JMenuItem(panel.toString());
+            JMenuItem item = new JMenuItem(panel.toString());
             item.addActionListener(e -> {
                 try {
-                    if (!Contenedor.panelActivo.equals(Paneles.PRINCIPAL)) Contenedor.paneles.get(Contenedor.panelActivo).getAcciones().clean();
+                    if (!Contenedor.panelActivo.equals(Paneles.PRINCIPAL))
+                        Contenedor.paneles.get(Contenedor.panelActivo).getAcciones().clean();
                 } catch (NullPointerException en){//None
                 } finally {
                     Eventos.show(panel);
@@ -167,8 +170,12 @@ public abstract class Eventos {
      * @param component componente a convetir en imagen
      * @return imagen creada a partir del componente dado
      */
-    public static RenderedImage createImageOf(Component component){
-        BufferedImage image=new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_RGB);
+    public static RenderedImage createImageOf(Component component) {
+        BufferedImage image = new BufferedImage(
+                component.getWidth(),
+                component.getHeight(),
+                BufferedImage.TYPE_INT_RGB
+        );
         component.paint(image.getGraphics());
         return image;
     }
@@ -178,11 +185,11 @@ public abstract class Eventos {
      * @param name nombre correspondiente del código empleado en el editor
      * @return retorna el código formateado correspondientemente a los paremetros de una clase Java
      */
-    public static String code(String code, String name){
+    public static String code(String code, String name) {
         if (Optional.ofNullable(code).isPresent() && !code.isEmpty()){
             String n = code.replaceAll(" {3}", "\t");
             if (code.contains("class")) return n;
-            StringTokenizer tokenizer=new StringTokenizer(code, "\n");
+            StringTokenizer tokenizer = new StringTokenizer(code, "\n");
             StringBuilder clas = new StringBuilder().append("public class ").append(name).append(" {\n");
             while (tokenizer.hasMoreTokens()) clas.append('\t').append(tokenizer.nextToken()).append('\n');
             return clas.append('}').toString();

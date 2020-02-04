@@ -31,7 +31,7 @@ public abstract class Lines extends Thread {
     private void lines(){
         lines.forEach(e -> {
             simulador.getCodigos().setSelectedIndex(e.getCode());
-            Eventos.scroll((((Editor) simulador.getCodigos().getComponentAt(e.getCode()))), e.getScroll());
+            Eventos.scroll(((Editor) simulador.getCodigos().getComponentAt(e.getCode())), e.getScroll());
             if (e.getLine() > 0) ((Editor) simulador.getCodigos().getComponentAt(e.getCode())).drawLineIn(e.getLine());
             if (Optional.ofNullable(e.getTexto()).isPresent()) simulador.setTexto(e.getTexto());
             if (e.isSleep()) Eventos.sleep(1270);

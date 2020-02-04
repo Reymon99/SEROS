@@ -11,7 +11,7 @@ public class View extends TextPane {
      */
     public View(){
         super();
-        line=false;
+        line = false;
     }
     /**
      * Fija si la linea se dibuja
@@ -27,7 +27,7 @@ public class View extends TextPane {
      */
     protected void drawLineIn(int lineaPixelSelected) {
         this.lineaPixelSelected = lineaPixelSelected;
-        line=true;
+        line = true;
         repaint();
     }
     /**
@@ -37,7 +37,16 @@ public class View extends TextPane {
     private void drawLine(Graphics2D g2) {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setPaint(Colour.RED_LINE_SELECTED.getColor());
-        g2.fill(new RoundRectangle2D.Double(getInsets().left - 3, lineaPixelSelected - g2.getFontMetrics(getFont()).getHeight() + 3, getWidth() - getInsets().left - 3, g2.getFontMetrics(getFont()).getHeight() + 1, 16, 16));
+        g2.fill(
+                new RoundRectangle2D.Double(
+                        getInsets().left - 3,
+                        lineaPixelSelected - g2.getFontMetrics(getFont()).getHeight() + 3,
+                        getWidth() - getInsets().left - 3,
+                        g2.getFontMetrics(getFont()).getHeight() + 1,
+                        16,
+                        16
+                )
+        );
     }
     @Override
     protected void paintComponent(Graphics g) {
