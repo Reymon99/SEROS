@@ -104,22 +104,49 @@ public class Graficador extends JLabel {
      * @return coordenadas de dibujo (x,y) según el cuadrante
      */
     private Point cuadrantes(Point point) {
-        Point pointAux = new Point();
-        // Cuandrante positivo
-        if (punto.x > 0 && punto.y > 0) pointAux.move(point.x + 7, point.y);
-        // Cuadrante negativo - positivo
-        else if (punto.x < 0 && punto.y > 0) pointAux.move(point.x - 22, point.y - 7);
-        // Cuadrante negativo
-        else if (punto.x < 0 && punto.y < 0) pointAux.move(point.x - 22, point.y + 17);
-        // Cuadrante positivo - negativo
-        else if (punto.x > 0 && punto.y < 0) pointAux.move(point.x - 17, point.y + 17);
-        // Punto medio
-        else if (punto.x == 0 && punto.y == 0) pointAux.move(point.x - 29, point.y - 9);
-        // x==0
-        else if (punto.x == 0) pointAux.move(point.x - 45, point.y - 2);
-        // y==0
-        else pointAux.move(point.x - 17, point.y + 19);
-        return pointAux;
+        if (punto.x > 0 && punto.y > 0) return cuadrante(Cuadrante.POSITIVO, point);
+        else if (punto.x < 0 && punto.y > 0) return cuadrante(Cuadrante.NEGATIVO_POSITIVO, point);
+        else if (punto.x < 0 && punto.y < 0) return cuadrante(Cuadrante.NEGATIVO, point);
+        else if (punto.x > 0 && punto.y < 0) return cuadrante(Cuadrante.POSITIVO_NEGATIVO, point);
+        else if (punto.x == 0 && punto.y == 0) return cuadrante(Cuadrante.MEDIO, point);
+        else if (punto.x == 0 && punto.y > 0) return cuadrante(Cuadrante.EJE_Y_POSITIVO, point);
+        else if (punto.x == 0) return cuadrante(Cuadrante.EJE_Y_NEGATIVO, point);
+        else if (punto.x > 0) return cuadrante(Cuadrante.EJE_X_POSITIVO, point);
+        return cuadrante(Cuadrante.EJE_X_NEGATIVO, point);
+    }
+    /**
+     * Establece el punto donde se escribirá el (x,y) según el cuadrante.
+     * @param posicion posición del cuadrante a trabajar
+     * @param point punto actual (x,y)
+     * @return punto (x,y)
+     */
+    private Point cuadrante(Cuadrante posicion, Point point) {
+        int coordenadas = (getFontMetrics(getFont()).stringWidth(coordenadas()) + 4);
+        int puntoMedio =  coordenadas / 2;
+        int ascent = getFontMetrics(getFont()).getAscent();
+        int halfAscent = ascent / 2;
+        return switch (posicion) {
+            case POSITIVO -> new Point(point.x + 7, point.y);
+            case NEGATIVO, EJE_X_POSITIVO, POSITIVO_NEGATIVO -> new Point(point.x - puntoMedio, point.y + ascent + 5);
+            case NEGATIVO_POSITIVO, EJE_X_NEGATIVO -> new Point(point.x - puntoMedio, point.y - 7);
+            case MEDIO -> new Point(point.x - coordenadas, point.y - ascent + 4);
+            case EJE_Y_POSITIVO -> new Point(point.x - coordenadas - 3, point.y + halfAscent);
+            case EJE_Y_NEGATIVO -> new Point(point.x + 7, point.y + halfAscent - 1);
+        };
+    }
+    /**
+     * Cuadrantes disponibles en el plano cartesiano
+     */
+    private enum Cuadrante {
+        POSITIVO,
+        NEGATIVO,
+        POSITIVO_NEGATIVO,
+        NEGATIVO_POSITIVO,
+        MEDIO,
+        EJE_X_POSITIVO,
+        EJE_X_NEGATIVO,
+        EJE_Y_POSITIVO,
+        EJE_Y_NEGATIVO
     }
     /**
      * Grafica las líneas de eje (x,y)
@@ -158,7 +185,7 @@ public class Graficador extends JLabel {
         if (punto.y == axis.y && graficar) point.y = punto.y == 0 ? halfScreenHeight() : i;
     }
     /**
-     * Guarda la posición en pantalla de las coordenadas X y Y
+     * Guarda la posición en pantalla de las coordenadas (x,y)
      * @param point puntos de las posiciones a guardar
      * @param i posición en pantalla vertical
      * @param j posición en pantalla horizontal
@@ -186,7 +213,7 @@ public class Graficador extends JLabel {
         }
     }
     /**
-     * Grafica la posición X y Y indicada en el axis X - Y del plano cartesiano
+     * Grafica la posición (x,y) indicada en el axis (x,y) del plano cartesiano
      * @param g2 pincel
      * @param point punto de coordenadas
      * @param i pixel en Y
@@ -201,13 +228,12 @@ public class Graficador extends JLabel {
         }
     }
     /**
-     * Dibuja el número correspondiente en el axis X y Y
+     * Dibuja el número correspondiente en el axis (x,y)
      * @param g2 pincel
      * @param i pixel en Y
      * @param j pixel en X
      */
     private void number(Graphics2D g2, int i, int j){
-        // y
         g2.drawString(
                 String.valueOf(axis.y),
                 posicion(
@@ -217,7 +243,6 @@ public class Graficador extends JLabel {
                 ),
                 i + 4
         );
-        // x
         g2.drawString(
                 String.valueOf(axis.x),
                 posicion(axis.x > 0, j - 4, j - 8),
