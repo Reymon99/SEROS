@@ -93,6 +93,14 @@ public abstract class Simulador extends Lienzo {
                 if (!pause.isOnOff() && codigo.isOnOff()) codigo.setOnOff(pause.isOnOff());
             }
         });
+        addComponents(
+                desc,
+                texto = new Texto( 4, 55),
+                new ModernScrollPane(datos = new JPanel(new GridBagLayout())),
+                codigos = new PackageCode()
+        );
+    }
+    private void addComponents(Component... components) {
         Insets insets = new Insets(0, 0, 0, 0);
         Constrains.addComp(
                 lienzo,
@@ -135,7 +143,7 @@ public abstract class Simulador extends Lienzo {
                 GridBagConstraints.BOTH
         );
         Constrains.addCompX(
-                desc,
+                components[0],
                 this,
                 new Rectangle(1, 0, 1, 1),
                 1,
@@ -144,7 +152,7 @@ public abstract class Simulador extends Lienzo {
                 GridBagConstraints.HORIZONTAL
         );
         Constrains.addCompIy(
-                texto = new Texto( 4, 55),
+                components[1],
                 this,
                 new Rectangle(1, 1, 1, 1),
                 1,
@@ -155,7 +163,7 @@ public abstract class Simulador extends Lienzo {
                 GridBagConstraints.HORIZONTAL
         );
         Constrains.addCompIy(
-                new ModernScrollPane(datos = new JPanel(new GridBagLayout())),
+                components[2],
                 this,
                 new Rectangle(1, 2, 1, 1),
                 1,
@@ -166,7 +174,7 @@ public abstract class Simulador extends Lienzo {
                 GridBagConstraints.BOTH
         );
         Constrains.addComp(
-                codigos = new PackageCode(),
+                components[3],
                 this,
                 new Rectangle(1, 3, 1, 2),
                 1,

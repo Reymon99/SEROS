@@ -7,8 +7,6 @@ import tools.Colour;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import java.io.FileNotFoundException;
-import java.util.StringTokenizer;
-
 public class Editor extends ModernScrollPane{
     private String name;
     /**
