@@ -30,7 +30,7 @@ public abstract class Archivos {
      * @param path ruta del archivo
      * @return contenido del archivo
      */
-    public static String codefiles(String path){
+    public static String codefiles(String path) {
         StringBuilder txt = new StringBuilder();
         try{
             BufferedReader br = new BufferedReader(new FileReader(Archivos.class.getResource(path).toURI().getPath()));
@@ -61,7 +61,7 @@ public abstract class Archivos {
      * @param text código a fijar en el archivo Java
      * @return informa acerca del camino favorable o no de la exportación del archivo Java
      */
-    public static String exportCode(File file, String text){
+    public static String exportCode(File file, String text) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             bw.write(text);

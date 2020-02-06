@@ -45,7 +45,7 @@ public final class About extends JDialog {
         JLabel seros1 = new JLabel("Seros", SwingConstants.CENTER);
         seros1.setFont(Fuentes.UBUNTU_LIGHT_B_30.getFont());
         seros1.setHorizontalTextPosition(SwingConstants.CENTER);
-        Texto texto = new Texto(Text.ABOUT.toString());
+        JTextArea texto = Components.getTexto(Text.ABOUT.toString());
         texto.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
         JLabel label = new JLabel(Text.LINK.toString());
         label.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());

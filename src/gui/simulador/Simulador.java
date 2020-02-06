@@ -1,12 +1,6 @@
 package gui.simulador;
 import eventos.Eventos;
-import gui.contenido.ButtonSimulador;
-import gui.contenido.Lienzo;
-import gui.contenido.Message;
-import gui.contenido.PackageCode;
-import gui.contenido.Switch;
-import gui.contenido.Texto;
-import gui.contenido.Tree;
+import gui.contenido.*;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.editor.Editor;
 import tools.Archivos;
@@ -26,12 +20,12 @@ public abstract class Simulador extends Lienzo {
     private JPanel datos;
     private JPanel control;
     private PackageCode codigos;
-    private ButtonSimulador clean;
-    private ButtonSimulador nextIteracion;
-    private ButtonSimulador send;
+    private JButton clean;
+    private JButton nextIteracion;
+    private JButton send;
     private Switch codigo;
     private Switch pause;
-    private Texto texto;
+    private JTextArea texto;
     public static final Dimension canvasSize;
     static {
         canvasSize = new Dimension(
@@ -72,12 +66,12 @@ public abstract class Simulador extends Lienzo {
     private void init() {
         codigo = new Switch("Visualización del Código", false);
         pause = new Switch("Paso a Paso", false);
-        send = new ButtonSimulador("Enviar", true, e -> {
+        send = Components.getButtonSimulador("Enviar", true, e -> {
             if (pause.isOnOff()) getAcciones().iteracion1();
             else getAcciones().iteracion0();
         });
-        clean = new ButtonSimulador("Limpiar", false, e -> getAcciones().clean());
-        nextIteracion = new ButtonSimulador("Siguiente", false, e -> getAcciones().iteracion1());
+        clean = Components.getButtonSimulador("Limpiar", false, e -> getAcciones().clean());
+        nextIteracion = Components.getButtonSimulador("Siguiente", false, e -> getAcciones().iteracion1());
         control = new JPanel(new GridBagLayout());
         control.setBackground(Colour.GRIS_PANEL.getColor());
         JLabel desc = new JLabel("Descripción");
@@ -95,7 +89,7 @@ public abstract class Simulador extends Lienzo {
         });
         addComponents(
                 desc,
-                texto = new Texto( 4, 55),
+                texto = Components.getTexto(4, 55),
                 new ModernScrollPane(datos = new JPanel(new GridBagLayout())),
                 codigos = new PackageCode()
         );
@@ -277,7 +271,7 @@ public abstract class Simulador extends Lienzo {
         JMenuItem save = new JMenuItem("Exportar Lienzo");
         save.addActionListener(e -> {
             try {
-                new Message(
+                Components.getMessage(
                         Archivos.exportImage(
                                 Eventos.saveFile(true),
                                 Eventos.createImageOf(lienzo)
@@ -294,7 +288,7 @@ public abstract class Simulador extends Lienzo {
      * Componente de área de Notificaciones
      * @return área de notificaciones
      */
-    protected Texto getTexto() {
+    protected JTextArea getTexto() {
         return texto;
     }
     /**
@@ -362,21 +356,21 @@ public abstract class Simulador extends Lienzo {
      * Boton de envio de datos al simulador
      * @return envio de datos
      */
-    protected ButtonSimulador getSend() {
+    protected JButton getSend() {
         return send;
     }
     /**
      * Boton de reinicio del simulador
      * @return reinicio del simulador
      */
-    protected ButtonSimulador getClean() {
+    protected JButton getClean() {
         return clean;
     }
     /**
      * Boton de paso a paso del simulador
      * @return boton del paso a paso
      */
-    protected ButtonSimulador getNextIteracion() {
+    protected JButton getNextIteracion() {
         return nextIteracion;
     }
 }

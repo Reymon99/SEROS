@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 public class Demostracion extends Lienzo {
     private JLabel image;
-    private Texto texto;
+    private JTextArea texto;
     private JPanel botones;
     /**
      * Plantilla para los paneles de Demostración
@@ -53,7 +53,7 @@ public class Demostracion extends Lienzo {
                 GridBagConstraints.HORIZONTAL
         );
         Constrains.addComp(
-                texto = new Texto("", 10, 55),
+                texto = Components.getTexto("", 10, 55),
                 this,
                 new Rectangle(0, 2, 3, 1),
                 1,

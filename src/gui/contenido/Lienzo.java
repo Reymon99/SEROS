@@ -12,9 +12,9 @@ import java.util.Objects;
 public class Lienzo extends JPanel {
     private boolean lienzo;
     private Acciones acciones;
-    private Boton back;
-    private Boton home;
-    private Boton next;
+    private JLabel back;
+    private JLabel home;
+    private JLabel next;
     /**
      * Esquema de los paneles del simulador
      */
@@ -44,11 +44,11 @@ public class Lienzo extends JPanel {
      */
     private void init(boolean lienzo){
         this.lienzo = lienzo;
-        back = new Boton(
+        back = Components.getBoton(
                 Archivos.image("/resources/image/back.png",-1,-1),
                 Eventos.menu(Paneles.values())
         );
-        home = new Boton(
+        home = Components.getBoton(
                 Text.VENTANA_PRINCIPAL.toString(),
                 Archivos.image("/resources/image/home.png", -1, -1),
                 new MouseAdapter() {
@@ -59,7 +59,7 @@ public class Lienzo extends JPanel {
                     }
                 }
         );
-        next = new Boton(Archivos.image("/resources/image/next.png", -1, -1));
+        next = Components.getBoton(Archivos.image("/resources/image/next.png", -1, -1));
     }
     /**
      * Atributos del botón retroceder
@@ -95,21 +95,21 @@ public class Lienzo extends JPanel {
      * Obtiene el componente retorno al panel anterior
      * @return Retorna al panel anterior
      */
-    public Boton getBack() {
+    public JLabel getBack() {
         return back;
     }
     /**
      * Obtiene el componente de retorno al panel principal
      * @return Retorna al panel principal de Seros
      */
-    public Boton getHome() {
+    public JLabel getHome() {
         return home;
     }
     /**
      * Obtiene el componente retorno al panel siguiente
      * @return Retorna al panel siguiente
      */
-    public Boton getNext() {
+    public JLabel getNext() {
         return next;
     }
     /**

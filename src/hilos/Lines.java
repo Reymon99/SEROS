@@ -1,6 +1,5 @@
 package hilos;
 import eventos.Eventos;
-import gui.contenido.Texto;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
 import java.util.Arrays;
@@ -13,7 +12,7 @@ public abstract class Lines extends Thread {
      * Hilo recorredor de líneas en el Editor.<br>
      * Modifica el texto del componente en determinadas líneas.
      * Habilita el boton deseado a utilizar
-     * @param simulador simulador correspondiente en el cual el componente {@link Texto} se ubicarán los textos de las líneas correspondientes, y el componente {@link Editor} en el cual se seleccionarán las líneas dispuestas en {@link Lines#lines}.
+     * @param simulador simulador correspondiente en el cual el componente {@link gui.contenido.Components#getBoton} se ubicarán los textos de las líneas correspondientes, y el componente {@link Editor} en el cual se seleccionarán las líneas dispuestas en {@link Lines#lines}.
      * @param lines números de las líneas a seleccionar con sus respectivos texto, desde nulos a su contenido correspondiente.
      */
     protected Lines(Simulador simulador, LineLocation... lines) {

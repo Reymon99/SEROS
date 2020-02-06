@@ -21,7 +21,7 @@ public enum Colour {
     SCROLL_PRESSED(new Color(220, 220, 200, 200)),
     GRAY_DISABLED(new Color(131, 131, 131)),
     VERDE_ACTIVO(new Color(75, 216, 101)),
-    BLANCO_DESHABILITADO(new Color(216, 217,  219)),
+    BLANCO_DESHABILITADO(new Color(216, 217, 219)),
     RED_LINE_SELECTED(new Color(235, 0, 0, 50)),
     LINE_FOREGROUND(new Color(15, 125, 162));
     private Color color;

@@ -4,8 +4,8 @@ import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
 public final class Ejercicios extends Lienzo {
-    private Boton[] botones;
-    private Texto texto;
+    private JLabel[] botones;
+    private JTextArea texto;
     private JPanel panel;
     /**
      * Planilla de los paneles de Ejercicios del Simulador
@@ -44,7 +44,7 @@ public final class Ejercicios extends Lienzo {
                 GridBagConstraints.HORIZONTAL
         );
         Constrains.addComp(
-                texto = new Texto("", 8, 55),
+                texto = Components.getTexto("", 8, 55),
                 this,
                 new Rectangle(0, 1, 2, 1),
                 1,
@@ -78,13 +78,13 @@ public final class Ejercicios extends Lienzo {
      * Se añaden los items al panel si no está vacia la lista de botones
      */
     private void items(){
-        if (botones.length!=0) for (Boton boton:botones) panel.add(boton);
+        if (botones.length!=0) for (JLabel boton:botones) panel.add(boton);
     }
     /**
      * Listado de los Botones de los ejercicios
      * @return botones
      */
-    public Boton[] getBotones() {
+    public JLabel[] getBotones() {
         return botones;
     }
     /**
@@ -96,9 +96,9 @@ public final class Ejercicios extends Lienzo {
      *     <li>mouseExited - información cuando el mouse salga del componente</li>
      *     <li>mouseClicked - acción a realizar cuando hallá un click en el componente</li>
      * </ul>
-     * @param botones listado de {@link Boton} listo para añadir al panel
+     * @param botones listado de Botones listos para añadir al panel
      */
-    public void setBotones(Boton... botones) {
+    public void setBotones(JLabel... botones) {
         this.botones = botones;
         items();
     }
@@ -106,7 +106,7 @@ public final class Ejercicios extends Lienzo {
      * Componente de Texto
      * @return texto
      */
-    public Texto getTexto() {
+    public JTextArea getTexto() {
         return texto;
     }
     /**

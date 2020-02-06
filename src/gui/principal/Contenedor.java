@@ -64,7 +64,7 @@ public final class Contenedor extends JPanel {
     private Lienzo principal(){
         Lienzo lienzo = new Lienzo(new GridBagLayout(), true);
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "TDA",
                         "Tipos de Datos Abstratos",
                         Archivos.image("/resources/image/TDA.png", -1, -1),
@@ -84,7 +84,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Modularidad",
                         "Division de tareas",
                         Archivos.image("/resources/image/Modularidad y Mapas.png", -1, -1),
@@ -104,7 +104,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Recursividad",
                         "Métodos Recursivos",
                         Archivos.image("/resources/image/Recursividad.png", -1, -1),
@@ -129,7 +129,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Arreglos",
                         "Vectores y Matrices",
                         Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1),
@@ -149,7 +149,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Nodos",
                         "Enlazamiento de Datos",
                         Archivos.image("/resources/image/Nodos.png", -1, -1),
@@ -169,7 +169,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Ordenamiento",
                         "Métodos de Ordenamiento Interno",
                         Archivos.image("/resources/image/Ordenamiento.png", -1, -1),
@@ -189,7 +189,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Busqueda",
                         "Métodos de Busqueda",
                         Archivos.image("/resources/image/Busqueda.png", -1, -1),
@@ -209,7 +209,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Pilas",
                         "Pilas Dinámicas y Estáticas",
                         Archivos.image("/resources/image/Pilas.png", -1, -1),
@@ -229,7 +229,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Colas",
                         "Colas Dinámicas y Estáticas",
                         Archivos.image("/resources/image/Colas.png", -1, -1),
@@ -249,7 +249,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Listas",
                         "Listas Enlazadas",
                         Archivos.image("/resources/image/Listas Enlazadas.png", -1, -1),
@@ -269,7 +269,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Árboles",
                         "Árboles Binarios y AVL",
                         Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1),
@@ -289,7 +289,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addCompY(
-                new Boton(
+                Components.getBoton(
                         "Grafos",
                         "Algoritmo del Camino más Corto",
                         Archivos.image("/resources/image/Grafos.png", -1, -1),
@@ -309,7 +309,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                new Boton(
+                Components.getBoton(
                         "Acerca de Seros",
                         Archivos.image("/resources/image/about.png", -1, -1),
                         new MouseAdapter() {
@@ -342,7 +342,7 @@ public final class Contenedor extends JPanel {
         formula.setFont(Fuentes.PURISA_18.getFont());
         formula.setOpaque(false);
         Constrains.addComp(
-                new Texto(Text.TDA.toString()),
+                Components.getTexto(Text.TDA.toString()),
                 con.getContenido(),
                 new Rectangle(0, 0, 1, 1),
                 1,
@@ -362,7 +362,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                new Texto(Text.TDA_1.toString()),
+                Components.getTexto(Text.TDA_1.toString()),
                 con.getContenido(),
                 new Rectangle(0, 2, 1, 1),
                 1,
@@ -372,7 +372,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.HORIZONTAL
         );
         Constrains.addComp(
-                new Texto(Text.TDA_2.toString()),
+                Components.getTexto(Text.TDA_2.toString()),
                 con.getContenido(),
                 new Rectangle(0, 3, 1, 1),
                 1,
@@ -382,7 +382,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.HORIZONTAL
         );
         Constrains.addComp(
-                new Texto(Text.TDA_3.toString()),
+                Components.getTexto(Text.TDA_3.toString()),
                 con.getContenido(),
                 new Rectangle(0, 4, 1, 1),
                 1,
@@ -412,7 +412,7 @@ public final class Contenedor extends JPanel {
         con.getTitle().setText("Modularidad");
         con.next("Demostración Interactiva de Modularidad", Paneles.DEMOSTRACION_MODULARIDAD);
         Constrains.addComp(
-                new Texto(Text.MODULARIDAD.toString()),
+                Components.getTexto(Text.MODULARIDAD.toString()),
                 con.getContenido(),
                 new Rectangle(0, 0, 1, 1),
                 1,
@@ -432,7 +432,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                new Texto(Text.MODULARIDAD_1.toString()),
+                Components.getTexto(Text.MODULARIDAD_1.toString()),
                 con.getContenido(),
                 new Rectangle(0, 2, 1, 1),
                 1,
@@ -468,7 +468,7 @@ public final class Contenedor extends JPanel {
         }
         con.next("Panel de Ejercicios de Recursividad", Paneles.EJERCICIOS_RECURSIVIDAD);
         Constrains.addComp(
-                new Texto(Text.RECURSIVIDAD.toString()),
+                Components.getTexto(Text.RECURSIVIDAD.toString()),
                 con.getContenido(),
                 new Rectangle(0, 0, 1, 1),
                 1,
@@ -508,7 +508,7 @@ public final class Contenedor extends JPanel {
         con.getTitle().setText("Nodos");
         con.next("", null);
         Constrains.addComp(
-                new Texto(Text.NODOS.toString()),
+                Components.getTexto(Text.NODOS.toString()),
                 con.getContenido(),
                 new Rectangle(0, 0, 1, 1),
                 1,
@@ -528,7 +528,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                new Texto(Text.NODOS_1.toString()),
+                Components.getTexto(Text.NODOS_1.toString()),
                 con.getContenido(),
                 new Rectangle(0, 2, 1, 1),
                 1,
@@ -548,7 +548,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                new Texto(Text.NODOS_2.toString()),
+                Components.getTexto(Text.NODOS_2.toString()),
                 con.getContenido(),
                 new Rectangle(0, 4, 1, 1),
                 1,
@@ -618,7 +618,7 @@ public final class Contenedor extends JPanel {
         con.getTitle().setText("Arreglos");
         con.next("", null);
         Constrains.addComp(
-                new Texto(Text.ARREGLOS.toString()),
+                Components.getTexto(Text.ARREGLOS.toString()),
                 con.getContenido(),
                 new Rectangle(0, 0, 1, 1),
                 1,
@@ -638,7 +638,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                new Texto(Text.ARREGLOS_1.toString()),
+                Components.getTexto(Text.ARREGLOS_1.toString()),
                 con.getContenido(),
                 new Rectangle(0, 2, 1, 1),
                 1,
@@ -658,7 +658,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                new Texto(Text.ARREGLOS_2.toString()),
+                Components.getTexto(Text.ARREGLOS_2.toString()),
                 con.getContenido(),
                 new Rectangle(0, 4, 1, 1),
                 1,
@@ -691,7 +691,7 @@ public final class Contenedor extends JPanel {
         MouseAdapter mouse = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Eventos.show(switch (((Boton) e.getSource()).getText()) {
+                Eventos.show(switch (((JLabel) e.getSource()).getText()) {
                     case "Factorial" -> Paneles.FACTORIAL;
                     case "Potencia" -> Paneles.POTENCIA;
                     default -> Contenedor.panelActivo;
@@ -699,7 +699,7 @@ public final class Contenedor extends JPanel {
             }
             @Override
             public void mouseEntered(MouseEvent e) {
-                ejercicios.setTexto(switch (((Boton) e.getSource()).getText()) {
+                ejercicios.setTexto(switch (((JLabel) e.getSource()).getText()) {
                     case "Factorial" -> "Simulación recursiva para Factorial";
                     case "Potencia" -> "Simulación recursiva para Potencia";
                     default -> "";
@@ -711,8 +711,8 @@ public final class Contenedor extends JPanel {
             }
         };
         ejercicios.setBotones(
-                new Boton(Archivos.image("/resources/image/factorial.png", -1, -1), "Factorial", mouse),
-                new Boton(Archivos.image("/resources/image/potencia.png", -1, -1), "Potencia", mouse)
+                Components.getBoton(Archivos.image("/resources/image/factorial.png", -1, -1), "Factorial", mouse),
+                Components.getBoton(Archivos.image("/resources/image/potencia.png", -1, -1), "Potencia", mouse)
         );
         return ejercicios;
     }

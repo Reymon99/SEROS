@@ -1,6 +1,6 @@
 package gui.editor;
 import eventos.Eventos;
-import gui.contenido.Message;
+import gui.contenido.Components;
 import gui.contenido.scroll.ModernScrollPane;
 import tools.Archivos;
 import tools.Colour;
@@ -80,7 +80,7 @@ public class Editor extends ModernScrollPane{
         JMenuItem save = new JMenuItem("Exportar Código");
         save.addActionListener(e -> {
             try{
-                new Message(
+                Components.getMessage(
                         Archivos.exportCode(
                                 Eventos.saveFile(false, getName()),
                                 Eventos.code(((View) getView()).getText(), getName())
