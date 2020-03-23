@@ -1,6 +1,10 @@
 package gui.simulador;
 import eventos.Eventos;
-import gui.contenido.*;
+import gui.contenido.Components;
+import gui.contenido.Lienzo;
+import gui.contenido.PackageCode;
+import gui.contenido.Switch;
+import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.editor.Editor;
 import tools.Archivos;
@@ -26,13 +30,6 @@ public abstract class Simulador extends Lienzo {
     private Switch codigo;
     private Switch pause;
     private JTextArea texto;
-    public static final Dimension canvasSize;
-    static {
-        canvasSize = new Dimension(
-                (int) (Toolkit.getDefaultToolkit().getScreenSize().width * 0.73),
-                (int) (Toolkit.getDefaultToolkit().getScreenSize().height * 0.8)
-        );
-    }
     /**
      * Esquema de los simuladores del proyecto
      * @param title título de los componentes de registro de datos
@@ -49,10 +46,11 @@ public abstract class Simulador extends Lienzo {
      */
     public Simulador(JComponent lienzo, String title, JComponent... components){
         super(new GridBagLayout(), false);
+        Dimension dimCanvas = canvasSize();
         this.lienzo = lienzo;
-        this.lienzo.setPreferredSize(canvasSize);
-        this.lienzo.setSize(canvasSize);
-        this.lienzo.setMinimumSize(canvasSize);
+        this.lienzo.setPreferredSize(dimCanvas);
+        this.lienzo.setSize(dimCanvas);
+        this.lienzo.setMinimumSize(dimCanvas);
         this.lienzo.setComponentPopupMenu(menuLienzo());
         this.lienzo.setBorder(BorderFactory.createEtchedBorder(0));
         this.lienzo.setBackground(Colour.BLANCO_OPACO.getColor());
@@ -87,10 +85,12 @@ public abstract class Simulador extends Lienzo {
                 if (!pause.isOnOff() && codigo.isOnOff()) codigo.setOnOff(pause.isOnOff());
             }
         });
+        datos = new JPanel(new GridBagLayout());
+        datos.setToolTipText("Variables de Simulación");
         addComponents(
                 desc,
                 texto = Components.getTexto(4, 55),
-                new ModernScrollPane(datos = new JPanel(new GridBagLayout())),
+                new ModernScrollPane(datos),
                 codigos = new PackageCode()
         );
     }
@@ -163,7 +163,7 @@ public abstract class Simulador extends Lienzo {
                 1,
                 0,
                 insets,
-                200,
+                190,
                 GridBagConstraints.CENTER,
                 GridBagConstraints.BOTH
         );
@@ -372,5 +372,16 @@ public abstract class Simulador extends Lienzo {
      */
     protected JButton getNextIteracion() {
         return nextIteracion;
+    }
+    /**
+     * Porciona el tamaño de completo de la pantalla para el lienzo de simulación (canvas)
+     * @return width 73% height 80%
+     */
+    public static Dimension canvasSize() {
+        Dimension dimScreen = Toolkit.getDefaultToolkit().getScreenSize();
+        return new Dimension(
+                (int) (dimScreen.width * 0.73),
+                (int) (dimScreen.height * 0.8)
+        );
     }
 }

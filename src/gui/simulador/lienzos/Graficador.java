@@ -47,14 +47,14 @@ public class Graficador extends JLabel {
      * @return mitad del ancho del Canvas
      */
     private int halfScreenWidth(){
-        return Simulador.canvasSize.width / 2;
+        return Simulador.canvasSize().width / 2;
     }
     /**
      * Divide el alto de la dimensión del Canvas
      * @return mitad del alto del Canvas
      */
     private int halfScreenHeight(){
-        return Simulador.canvasSize.height / 2;
+        return Simulador.canvasSize().height / 2;
     }
     /**
      * Inicio o fin de la linea X
