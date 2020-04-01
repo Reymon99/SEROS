@@ -34,6 +34,7 @@ public final class Contenedor extends JPanel {
         init();
         Eventos.setPanel(this);
         Eventos.show(Contenedor.panelActivo);
+        Archivos.destroyCodes();
     }
     /**
      * Se añaden los paneles secundarios al principal<br>

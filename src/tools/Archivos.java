@@ -79,4 +79,13 @@ public abstract class Archivos {
         }
         return codes;
     }
+    /**
+     * Destruye todos los pseudocódigos cargados en el proyecto
+     */
+    public static void destroyCodes() {
+        if (Optional.ofNullable(codes).isPresent()) {
+            codes = null;
+            System.gc();
+        }
+    }
 }
