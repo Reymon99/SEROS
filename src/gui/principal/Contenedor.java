@@ -1,6 +1,11 @@
 package gui.principal;
 import eventos.Eventos;
-import gui.contenido.*;
+import gui.contenido.Components;
+import gui.contenido.Contenido;
+import gui.contenido.Demostracion;
+import gui.contenido.Ejercicios;
+import gui.contenido.Lienzo;
+import gui.contenido.TextPane;
 import gui.editor.Editor;
 import gui.simulador.simuladores.Punto;
 import gui.simulador.simuladores.recursividad.Factorial;
@@ -352,7 +357,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.HORIZONTAL
         );
         Constrains.addComp(
-                Editor.editor("/resources/codes/tda/Punto.seros", "Punto"),
+                Editor.editor("Punto"),
                 con.getContenido(),
                 new Rectangle(0, 1, 1, 1),
                 0,

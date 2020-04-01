@@ -24,7 +24,7 @@ public final class Factorial extends Recursividad {
         this.valorDato = valorDato;
         Operaciones.addFormat(Operaciones.Operacion.FACTORIAL, "#,###,###");
         setDatos(this.variableN = new Tree(new Dato("int", "n", "")));
-        addCodes(Editor.editor("/resources/codes/recursividad/Factorial.seros", "Factorial"));
+        addCodes(Editor.editor("Factorial"));
         setTexto(Text.FACTORIAL);
         setProducto(Operaciones.operacion("n!", "0"));
     }

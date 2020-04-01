@@ -6,11 +6,9 @@ import java.awt.*;
 import java.awt.image.RenderedImage;
 import java.io.*;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.Optional;
-
 public abstract class Archivos {
     /**
      * Convierte y moldea una Imagen para ser utilizada en el proyecto
@@ -29,22 +27,6 @@ public abstract class Archivos {
         } catch (IOException e) {
             return null;
         }
-    }
-    /**
-     * Lee los archivos de texto que contiene el código formateado para ser utilizado en el proyecto
-     * @param path ruta del archivo
-     * @return contenido del archivo
-     */
-    public static String codefiles(String path) {
-        StringBuilder txt = new StringBuilder();
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(Archivos.class.getResource(path).toURI().getPath()));
-            String cadena;
-            while ((cadena=br.readLine())!=null) txt.append(cadena).append('\n');
-            br.close();
-        } catch (URISyntaxException | IOException e) {//None
-        }
-        return txt.toString();
     }
     /**
      * Exporta una determinada imagen tomada de un componente del proyecto a la ruta indicada
@@ -83,14 +65,14 @@ public abstract class Archivos {
     /**
      * Contiene cada uno de los pseudocódigos usados en el proyecto SEROS
      */
-    private static Map<String, ArrayList<ArrayList<String>>> codes;
+    private static LinkedHashMap<String, ArrayList<ArrayList<String>>> codes;
     /**
      * Carga el archivo .yml que contiene los diversos pseudocódigos del proyecto en el caso de haber
      * sidos cargados con anterioridad, de lo contrario a esto solo retornará los pseudocódigos
      * preestablecidos y cargados con anterioridad
      * @return pseudocódigos del proyecto SEROS
      */
-    public static Map<String, ArrayList<ArrayList<String>>> getCodes() {
+    public static LinkedHashMap<String, ArrayList<ArrayList<String>>> getCodes() {
         if (Optional.ofNullable(codes).isEmpty()) {
             Yaml yaml = new Yaml();
             codes = yaml.load(Archivos.class.getResourceAsStream("/resources/codes/codes.yml"));

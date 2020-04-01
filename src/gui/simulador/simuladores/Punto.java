@@ -39,7 +39,7 @@ public final class Punto extends Simulador implements Acciones {
         getLienzo().setLayout(new BorderLayout());
         getLienzo().add(graficador, BorderLayout.CENTER);
         setAcciones(this);
-        addCodes(Editor.editor("/resources/codes/tda/Punto.seros", "Punto"));
+        addCodes(Editor.editor("Punto"));
         back("Tipos de Datos Abstractos", Paneles.TDA);
         getSend().setText("Graficar");
         setDatos(punto);

@@ -34,7 +34,7 @@ public final class Potencia extends Recursividad {
                 "0"
         )));
         setTexto(Text.POTENCIA);
-        addCodes(Editor.editor("/resources/codes/recursividad/Potencia.seros", "Potencia"));
+        addCodes(Editor.editor("Potencia"));
     }
     /**
      * Acción del caso base 0 lanzando una excepción aritmética

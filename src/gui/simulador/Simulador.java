@@ -216,7 +216,7 @@ public abstract class Simulador extends Lienzo {
      * @param editor {@link Editor} con el código correspondiente
      */
     protected void addCodes(Editor editor){
-        codigos.add(editor.getName(), editor);
+        codigos.add(editor.getCode(), editor);
     }
     /**
      * Fijar un texto determinado en el área de notificaciones

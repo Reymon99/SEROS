@@ -7,31 +7,45 @@ import tools.Colour;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 public class Editor extends ModernScrollPane{
-    private String name;
+    /**
+     * Pseudocódigo a emplear en el {@link Editor}
+     */
+    private final String code;
     /**
      * Editor sintexico de código a utilizar en la interfaz gráfica del proyecto
+     * @param view área del pseudocódigo del {@link Editor}
+     * @param indice indices del {@link Editor}
+     * @param code pseudocódigo a implementar
      */
-    private Editor(View view, Indice indice) {
+    private Editor(View view, Indice indice, String code) {
         super(view, indice);
+        this.code = code;
         setComponentPopupMenu(menuCode());
         ((View) getView()).setComponentPopupMenu(menuCode());
+        fragmentador();
     }
     /**
-     * Decodifica el texto del archivo .seros
-     * para poder desfragmentar el código contenido,
-     * y así poder asignar los colores respectivos de la sintaxis
-     * @param n código a emplear mediante texto codificado
+     * Obtiene el pseudocódigo a emplear del archivo YAML,
+     * y lo va fragmentando con sus colores de identación respectivos
      */
-    private void text(String n) {
-        for (String e: n.replaceAll("\t", "   ").split("_")){
-            if (e.endsWith("n")) append(e,Colour.NARANJA);
-            else if(e.endsWith("m")) append(e,Colour.MORADO);
-            else if(e.endsWith("a")) append(e, Colour.AMARILLO);
-            else if(e.endsWith("b")) append(e, Colour.AZUL);
-            else if(e.endsWith("v")) append(e,Colour.VERDE);
-            else if(e.endsWith("w")) append(e,Colour.BLANCO);
+    private void fragmentador() {
+        try {
+            Archivos.getCodes().get(code).forEach(this::identacion);
+        } catch (NullPointerException e) {
+            setText("No Code");
         }
+    }
+    /**
+     * Identa la sintaxis respectiva con su {@link Colour}
+     * @param split sintaxis y color a identar
+     */
+    private void identacion(ArrayList<String> split) {
+        append(
+                split.get(0).replaceAll("\t", "   "),
+                Colour.valueOf(split.get(1))
+        );
     }
     /**
      * Añade fragmentos de código al Editor,
@@ -40,10 +54,7 @@ public class Editor extends ModernScrollPane{
      * @param colour color respectivo del fragmento del código
      */
     private void append(String code, Colour colour) {
-        ((View) getView()).append(
-                code.substring(0, code.length() - 1),
-                colour.getColor()
-        );
+        ((View) getView()).append(code, colour.getColor());
     }
     /**
      * Selecciona una linea determinada
@@ -66,7 +77,7 @@ public class Editor extends ModernScrollPane{
      * @param text {@link String}
      */
     public void setText(String text){
-        ((View) getView()).setText(text);
+        append(text, Colour.BLANCO);
     }
     /**
      * Opciones para el Editor</br>
@@ -82,8 +93,8 @@ public class Editor extends ModernScrollPane{
             try{
                 Components.getMessage(
                         Archivos.exportCode(
-                                Eventos.saveFile(false, getName()),
-                                Eventos.code(((View) getView()).getText(), getName())
+                                Eventos.saveFile(false, getCode()),
+                                Eventos.code(((View) getView()).getText(), getCode())
                         ),
                         null
                 ).setVisible(true);
@@ -97,28 +108,16 @@ public class Editor extends ModernScrollPane{
      * Da el nombre del código
      * @return nombre del código
      */
-    public String getName(){
-        return name;
-    }
-    /**
-     * Fija un nuevo nombre para el código
-     * @param name nombre para el código
-     */
-    public void setName(String name){
-        this.name = name;
+    public String getCode(){
+        return code;
     }
     /**
      * Creación de un nuevo Editor
-     * @param path {@link String} ruta del archivo a mostrar
-     * @param name nombre del código a añadir
+     * @param code pseudocódigo a implementar en el {@link Editor}
      * @return editor con contenido integrado
-     * @see Archivos#codefiles(String)
      */
-    public static Editor editor(String path, String name){
+    public static Editor editor(String code){
         View view = new View();
-        Editor editor = new Editor(view, new Indice(view));
-        editor.text(Archivos.codefiles(path));
-        editor.setName(name);
-        return editor;
+        return new Editor(view, new Indice(view), code);
     }
 }

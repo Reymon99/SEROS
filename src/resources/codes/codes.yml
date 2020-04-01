@@ -80,3 +80,5 @@ Punto:
   - [";\n", NARANJA]
   - ["\t}\n", BLANCO]
   - ["}", BLANCO]
+Factorial:
+Potencia:
