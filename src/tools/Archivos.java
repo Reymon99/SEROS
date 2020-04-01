@@ -1,4 +1,5 @@
 package tools;
+import org.yaml.snakeyaml.Yaml;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -6,6 +7,10 @@ import java.awt.image.RenderedImage;
 import java.io.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Optional;
+
 public abstract class Archivos {
     /**
      * Convierte y moldea una Imagen para ser utilizada en el proyecto
@@ -74,5 +79,22 @@ public abstract class Archivos {
     public static boolean createdFolder(File file, String folder) {
         if (!file.exists() && file.isDirectory()) return new File(file.getAbsolutePath(), folder).mkdir();
         return false;
+    }
+    /**
+     * Contiene cada uno de los pseudocódigos usados en el proyecto SEROS
+     */
+    private static Map<String, ArrayList<ArrayList<String>>> codes;
+    /**
+     * Carga el archivo .yml que contiene los diversos pseudocódigos del proyecto en el caso de haber
+     * sidos cargados con anterioridad, de lo contrario a esto solo retornará los pseudocódigos
+     * preestablecidos y cargados con anterioridad
+     * @return pseudocódigos del proyecto SEROS
+     */
+    public static Map<String, ArrayList<ArrayList<String>>> getCodes() {
+        if (Optional.ofNullable(codes).isEmpty()) {
+            Yaml yaml = new Yaml();
+            codes = yaml.load(Archivos.class.getResourceAsStream("/resources/codes/codes.yml"));
+        }
+        return codes;
     }
 }
