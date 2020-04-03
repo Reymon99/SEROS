@@ -14,11 +14,11 @@ import tools.Archivos;
 import tools.Constrains;
 import tools.Fuentes;
 import tools.Paneles;
-import tools.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 public final class Contenedor extends JPanel {
     public static HashMap<Paneles, Lienzo> paneles;
     public static Paneles panelActivo;
@@ -34,7 +34,6 @@ public final class Contenedor extends JPanel {
         init();
         Eventos.setPanel(this);
         Eventos.show(Contenedor.panelActivo);
-        Archivos.destroyCodes();
     }
     /**
      * Se añaden los paneles secundarios al principal<br>
@@ -344,11 +343,12 @@ public final class Contenedor extends JPanel {
         Contenido con = new Contenido();
         con.getTitle().setText("Tipos de Datos Abstratos (tda)");
         con.next("Simulador TDA", Paneles.SIMULADOR_TDA);
-        JLabel formula = new JLabel(Text.FORMULA_TDA.toString(), SwingConstants.CENTER);
+        LinkedHashMap<String, String> contenido = Archivos.getContenidos("tda");
+        JLabel formula = new JLabel(contenido.get("formula"), SwingConstants.CENTER);
         formula.setFont(Fuentes.PURISA_18.getFont());
         formula.setOpaque(false);
         Constrains.addComp(
-                Components.getTexto(Text.TDA.toString()),
+                Components.getTexto(contenido.get("parrafo.1")),
                 con.getContenido(),
                 new Rectangle(0, 0, 1, 1),
                 1,
@@ -368,7 +368,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                Components.getTexto(Text.TDA_1.toString()),
+                Components.getTexto(contenido.get("parrafo.2")),
                 con.getContenido(),
                 new Rectangle(0, 2, 1, 1),
                 1,
@@ -378,7 +378,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.HORIZONTAL
         );
         Constrains.addComp(
-                Components.getTexto(Text.TDA_2.toString()),
+                Components.getTexto(contenido.get("parrafo.3")),
                 con.getContenido(),
                 new Rectangle(0, 3, 1, 1),
                 1,
@@ -388,7 +388,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.HORIZONTAL
         );
         Constrains.addComp(
-                Components.getTexto(Text.TDA_3.toString()),
+                Components.getTexto(contenido.get("parrafo.4")),
                 con.getContenido(),
                 new Rectangle(0, 4, 1, 1),
                 1,
@@ -417,8 +417,9 @@ public final class Contenedor extends JPanel {
         Contenido con = new Contenido();
         con.getTitle().setText("Modularidad");
         con.next("Demostración Interactiva de Modularidad", Paneles.DEMOSTRACION_MODULARIDAD);
+        LinkedHashMap<String, String> contenido = Archivos.getContenidos("modularidad");
         Constrains.addComp(
-                Components.getTexto(Text.MODULARIDAD.toString()),
+                Components.getTexto(contenido.get("parrafo.1")),
                 con.getContenido(),
                 new Rectangle(0, 0, 1, 1),
                 1,
@@ -438,7 +439,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                Components.getTexto(Text.MODULARIDAD_1.toString()),
+                Components.getTexto(contenido.get("parrafo.2")),
                 con.getContenido(),
                 new Rectangle(0, 2, 1, 1),
                 1,
@@ -467,14 +468,15 @@ public final class Contenedor extends JPanel {
         Contenido con = new Contenido();
         con.getTitle().setText("Recursividad");
         TextPane editor = new TextPane(false);
-        String[] recur = Text.RECURSIVIDAD_1.toString().split("\u279c");
+        LinkedHashMap<String, String> contenido = Archivos.getContenidos("recursividad");
+        String[] recur = contenido.get("parrafo.2").split("\u279c");
         for (String n: recur){
             editor.append(n, Fuentes.PURISA_22.getFont());
             if (!n.equals(recur[recur.length-1])) editor.append("\u279c", Fuentes.SEGOE_UI_SYMBOL_22.getFont());
         }
         con.next("Panel de Ejercicios de Recursividad", Paneles.EJERCICIOS_RECURSIVIDAD);
         Constrains.addComp(
-                Components.getTexto(Text.RECURSIVIDAD.toString()),
+                Components.getTexto(contenido.get("parrafo.1")),
                 con.getContenido(),
                 new Rectangle(0, 0, 1, 1),
                 1,
@@ -513,8 +515,9 @@ public final class Contenedor extends JPanel {
         Contenido con = new Contenido();
         con.getTitle().setText("Nodos");
         con.next("", null);
+        LinkedHashMap<String, String> contenido = Archivos.getContenidos("nodos");
         Constrains.addComp(
-                Components.getTexto(Text.NODOS.toString()),
+                Components.getTexto(contenido.get("parrafo.1")),
                 con.getContenido(),
                 new Rectangle(0, 0, 1, 1),
                 1,
@@ -534,7 +537,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                Components.getTexto(Text.NODOS_1.toString()),
+                Components.getTexto(contenido.get("parrafo.2")),
                 con.getContenido(),
                 new Rectangle(0, 2, 1, 1),
                 1,
@@ -554,7 +557,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                Components.getTexto(Text.NODOS_2.toString()),
+                Components.getTexto(contenido.get("parrafo.3")),
                 con.getContenido(),
                 new Rectangle(0, 4, 1, 1),
                 1,
@@ -623,8 +626,9 @@ public final class Contenedor extends JPanel {
         Contenido con = new Contenido();
         con.getTitle().setText("Arreglos");
         con.next("", null);
+        LinkedHashMap<String, String> contenido = Archivos.getContenidos("arreglos");
         Constrains.addComp(
-                Components.getTexto(Text.ARREGLOS.toString()),
+                Components.getTexto(contenido.get("parrafo.1")),
                 con.getContenido(),
                 new Rectangle(0, 0, 1, 1),
                 1,
@@ -644,7 +648,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                Components.getTexto(Text.ARREGLOS_1.toString()),
+                Components.getTexto(contenido.get("parrafo.2")),
                 con.getContenido(),
                 new Rectangle(0, 2, 1, 1),
                 1,
@@ -664,7 +668,7 @@ public final class Contenedor extends JPanel {
                 GridBagConstraints.NONE
         );
         Constrains.addComp(
-                Components.getTexto(Text.ARREGLOS_2.toString()),
+                Components.getTexto(contenido.get("parrafo.3")),
                 con.getContenido(),
                 new Rectangle(0, 4, 1, 1),
                 1,
@@ -770,7 +774,7 @@ public final class Contenedor extends JPanel {
      */
     private Demostracion demoModularidad(){
         Demostracion demostracion = new Demostracion("/resources/image/moduDemo1.png");
-        demostracion.setTexto(Text.DEMOSTRACION_MODULARIDAD.toString());
+        demostracion.setTexto(Archivos.getContenidos("modularidad").get("demostracion"));
         JButton demo1 = new JButton("Inventar");
         JButton demo2 = new JButton("Programar");
         JButton demo3 = new JButton("Leer");

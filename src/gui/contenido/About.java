@@ -3,14 +3,15 @@ import eventos.Eventos;
 import tools.Archivos;
 import tools.Colour;
 import tools.Fuentes;
-import tools.Text;
 import tools.Constrains;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 public final class About extends JDialog {
     public static boolean show;
+    private String link;
     static {
         About.show = true;
     }
@@ -20,7 +21,7 @@ public final class About extends JDialog {
      * Desarrollo y versión.
      * @param component {@link Component} del cual es dependiente, para que al ejecutarse se centre respectivamente hacia este.
      */
-    public About(Component component){
+    public About(Component component) {
         setTitle("Acerca de Seros");
         setUndecorated(true);
         setFocusable(true);
@@ -38,23 +39,24 @@ public final class About extends JDialog {
             }
         });
     }
-    private void init(){
+    private void init() {
+        LinkedHashMap<String, String> contenido = Archivos.getContenidos("about");
         JLabel seros = new JLabel("Simulador de Estructura de Datos", SwingConstants.CENTER);
         seros.setFont(Fuentes.UBUNTU_LIGHT_30.getFont());
         seros.setHorizontalTextPosition(SwingConstants.CENTER);
         JLabel seros1 = new JLabel("Seros", SwingConstants.CENTER);
         seros1.setFont(Fuentes.UBUNTU_LIGHT_B_30.getFont());
         seros1.setHorizontalTextPosition(SwingConstants.CENTER);
-        JTextArea texto = Components.getTexto(Text.ABOUT.toString());
+        JTextArea texto = Components.getTexto(contenido.get("description"));
         texto.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
-        JLabel label = new JLabel(Text.LINK.toString());
+        JLabel label = new JLabel(link = contenido.get("link"));
         label.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
         label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         label.setForeground(Colour.CURIOUS_BLUE.getColor());
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Eventos.link(Text.LINK.toString());
+                Eventos.link(link);
             }
         });
         Constrains.addComp(
@@ -111,7 +113,7 @@ public final class About extends JDialog {
     /**
      * Acción salir del {@link About} y reiniciar su estado inicial
      */
-    private void exit(){
+    private void exit() {
         About.show = true;
         dispose();
     }
