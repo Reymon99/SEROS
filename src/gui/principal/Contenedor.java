@@ -34,6 +34,7 @@ public final class Contenedor extends JPanel {
         init();
         Eventos.setPanel(this);
         Eventos.show(Contenedor.panelActivo);
+        Eventos.destroyers();
     }
     /**
      * Se añaden los paneles secundarios al principal<br>
@@ -60,6 +61,7 @@ public final class Contenedor extends JPanel {
         paneles.put(Paneles.LISTAS_ENLAZADAS, listas());
         paneles.put(Paneles.ARBOLES, arboles());
         paneles.put(Paneles.GRAFOS, grafos());
+        // añadir los paneles secundarios al panel principal
         paneles.forEach((k,v) -> add(k.toString(), v));
     }
     /**

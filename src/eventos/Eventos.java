@@ -14,6 +14,8 @@ import gui.contenido.Switch;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.principal.Contenedor;
+import tools.Archivos;
+import tools.Fuentes;
 import tools.Paneles;
 public abstract class Eventos {
     /**
@@ -195,5 +197,17 @@ public abstract class Eventos {
             return clas.append('}').toString();
         }
         return "";
+    }
+    /**
+     * Eliminación de los objetos de un solo uso y cargue en el proyecto, liberando RAM en este proceso
+     * @see Archivos#destroyCodes()
+     * @see Archivos#destroyContenidos()
+     * @see Fuentes.Fonts#destroyFonts()
+     */
+    public static void destroyers() {
+        Archivos.destroyCodes();
+        Archivos.destroyContenidos();
+        Fuentes.Fonts.destroyFonts();
+        System.gc();
     }
 }
