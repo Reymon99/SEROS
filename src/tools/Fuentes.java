@@ -1,6 +1,7 @@
 package tools;
 import java.awt.*;
 import java.io.IOException;
+import java.util.Optional;
 import java.util.TreeMap;
 public enum Fuentes {
     UBUNTU_LIGHT_12(Fonts.getFont("UbuntuLight", Font.PLAIN, 12)),
@@ -77,7 +78,7 @@ public enum Fuentes {
     /**
      * Registro de las fuentes tipográficas cargadas en el proyecto
      */
-    private abstract static class Fonts {
+    public abstract static class Fonts {
         /**
          * Fuentes creadas y cargadas en el proyecto
          */
@@ -96,6 +97,12 @@ public enum Fuentes {
         protected static Font getFont(String name, int style, int size) {
             if (!fonts.containsKey(name)) fonts.put(name, new CreateFonts("/resources/fonts/" + name + ".ttf"));
             return fonts.get(name).getFont(style, size);
+        }
+        /**
+         * Destruye todas las Fuentes tipográficas cargadas en el proyecto, para liberar memoria
+         */
+        public static void destroyFonts() {
+            if (Optional.ofNullable(fonts).isPresent()) fonts = null;
         }
     }
 }
