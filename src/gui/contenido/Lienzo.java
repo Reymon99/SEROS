@@ -1,51 +1,58 @@
 package gui.contenido;
+
 import eventos.Eventos;
 import tools.Acciones;
 import tools.Archivos;
 import tools.Paneles;
 import tools.Text;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Objects;
+
 public class Lienzo extends JPanel {
     private boolean lienzo;
     private Acciones acciones;
     private JLabel back;
     private JLabel home;
     private JLabel next;
+
     /**
      * Esquema de los paneles del simulador
      */
-    public Lienzo(){
+    public Lienzo() {
         this(false);
     }
+
     /**
      * Esquema de los paneles del simulador
      * @param lienzo decide si se pinta el lienzo o no
      */
-    public Lienzo(boolean lienzo){
+    public Lienzo(boolean lienzo) {
         super();
         init(lienzo);
     }
+
     /**
      * Esquema de los paneles del simulador
      * @param manager {@link LayoutManager} a utilizar
-     * @param lienzo decide si se pinta el lienzo o no
+     * @param lienzo  decide si se pinta el lienzo o no
      */
-    public Lienzo(LayoutManager manager, boolean lienzo){
+    public Lienzo(LayoutManager manager, boolean lienzo) {
         super(manager);
         init(lienzo);
     }
+
     /**
      * Inicializador de componente
      * @param lienzo decide si se pinta el lienzo o no
      */
-    private void init(boolean lienzo){
+    private void init(boolean lienzo) {
         this.lienzo = lienzo;
         back = Components.getBoton(
-                Archivos.image("/resources/image/back.png",-1,-1),
+                Archivos.image("/resources/image/back.png", -1, -1),
                 Eventos.menu(Paneles.values())
         );
         home = Components.getBoton(
@@ -61,12 +68,13 @@ public class Lienzo extends JPanel {
         );
         next = Components.getBoton(Archivos.image("/resources/image/next.png", -1, -1));
     }
+
     /**
      * Atributos del botón retroceder
      * @param toolTipText mensaje de ayuda
-     * @param paneles panel a retroceder
+     * @param paneles     panel a retroceder
      */
-    public void back(String toolTipText, Paneles paneles){
+    public void back(String toolTipText, Paneles paneles) {
         back.setToolTipText(toolTipText);
         back.addMouseListener(new MouseAdapter() {
             @Override
@@ -76,12 +84,13 @@ public class Lienzo extends JPanel {
             }
         });
     }
+
     /**
      * Atributos del botón avanzar
      * @param toolTipText mensaje de ayuda
-     * @param paneles panel a avanzar
+     * @param paneles     panel a avanzar
      */
-    public void next(String toolTipText, Paneles paneles){
+    public void next(String toolTipText, Paneles paneles) {
         next.setToolTipText(toolTipText);
         next.addMouseListener(new MouseAdapter() {
             @Override
@@ -91,6 +100,7 @@ public class Lienzo extends JPanel {
             }
         });
     }
+
     /**
      * Obtiene el componente retorno al panel anterior
      * @return Retorna al panel anterior
@@ -98,6 +108,7 @@ public class Lienzo extends JPanel {
     public JLabel getBack() {
         return back;
     }
+
     /**
      * Obtiene el componente de retorno al panel principal
      * @return Retorna al panel principal de Seros
@@ -105,6 +116,7 @@ public class Lienzo extends JPanel {
     public JLabel getHome() {
         return home;
     }
+
     /**
      * Obtiene el componente retorno al panel siguiente
      * @return Retorna al panel siguiente
@@ -112,6 +124,7 @@ public class Lienzo extends JPanel {
     public JLabel getNext() {
         return next;
     }
+
     /**
      * Obtiene las acciones a realizar en el panel
      * @return acciones del panel
@@ -119,6 +132,7 @@ public class Lienzo extends JPanel {
     public Acciones getAcciones() {
         return acciones;
     }
+
     /**
      * Da nuevas acciones al panel
      * @param acciones nuevas acciones
@@ -126,6 +140,7 @@ public class Lienzo extends JPanel {
     public void setAcciones(Acciones acciones) {
         this.acciones = acciones;
     }
+
     /**
      * Tapiz del panel
      * @param g {@link Graphics}

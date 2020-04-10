@@ -1,20 +1,25 @@
 package gui.contenido;
+
 import eventos.Eventos;
 import tools.Archivos;
 import tools.Colour;
 import tools.Fuentes;
 import tools.Constrains;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedHashMap;
 import java.util.Objects;
+
 public final class About extends JDialog {
     public static boolean show;
     private String link;
+
     static {
         About.show = true;
     }
+
     /**
      * Ventana Acerca de Seros.<br>
      * Logo y descripción del proyecto.<br>
@@ -39,6 +44,7 @@ public final class About extends JDialog {
             }
         });
     }
+
     private void init() {
         LinkedHashMap<String, String> contenido = Archivos.getContenidos("about");
         JLabel seros = new JLabel("Simulador de Estructura de Datos", SwingConstants.CENTER);
@@ -110,6 +116,7 @@ public final class About extends JDialog {
                 GridBagConstraints.HORIZONTAL
         );
     }
+
     /**
      * Acción salir del {@link About} y reiniciar su estado inicial
      */

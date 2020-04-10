@@ -1,4 +1,5 @@
 package gui.simulador.simuladores;
+
 import eventos.Eventos;
 import gui.contenido.Tree;
 import gui.editor.Editor;
@@ -9,13 +10,16 @@ import tools.Constrains;
 import tools.Dato;
 import tools.Paneles;
 import tools.Text;
+
 import javax.swing.*;
 import java.awt.*;
+
 public final class Punto extends Simulador implements Acciones {
-    private JSpinner x;
-    private JSpinner y;
-    private Tree punto;
-    private Graficador graficador;
+    private final JSpinner x;
+    private final JSpinner y;
+    private final Tree punto;
+    private final Graficador graficador;
+
     /**
      * Simulador para la temática TDA<br>
      * Simula un punto en el eje cartesiano
@@ -24,7 +28,7 @@ public final class Punto extends Simulador implements Acciones {
      * @see Acciones
      */
     public Punto(JSpinner x, JSpinner y) {
-        super("(x,y)", x, y);
+        super("(x, y)", x, y);
         this.x = x;
         this.y = y;
         punto = new Tree(new JTree.DynamicUtilTreeNode(
@@ -46,24 +50,27 @@ public final class Punto extends Simulador implements Acciones {
         setTexto(Text.SIMULADOR_TDA_2);
         getCodigos().setPackageName("tda");
     }
+
     /**
      * Muestra los datos y códigos que se asignan al eje x
      */
-    private void asignacionX(){
+    private void asignacionX() {
         base(Text.INSTANCIA_X, 5, 0, false);
         Eventos.variable(punto, 0, x.getValue());
     }
+
     /**
      * Muestra los datos y códigos que se asignan al eje y
      */
-    private void asignacionY(){
+    private void asignacionY() {
         base(Text.INSTANCIA_Y, 6, 0, false);
         Eventos.variable(punto, 1, y.getValue());
     }
+
     /**
-     * Grafica las coordenadas (x,y) muestra los códigos asignados a estos
+     * Grafica las coordenadas (x, y) muestra los códigos asignados a estos
      */
-    private void mostrarCoordenadas(){
+    private void mostrarCoordenadas() {
         base(
                 Text.SIMULADOR_TDA_1,
                 22,
@@ -75,19 +82,21 @@ public final class Punto extends Simulador implements Acciones {
                 Integer.parseInt(y.getValue().toString())
         );
     }
+
     /**
      * Acciones comunes de interactividad
-     * @param text {@link Text} a fijar
-     * @param line línea seleccionar
+     * @param text   {@link Text} a fijar
+     * @param line   línea seleccionar
      * @param scroll posición del scroll a fijar
-     * @param clean acción de habilitar la opción de limpiar o de interactividad
+     * @param clean  acción de habilitar la opción de limpiar o de interactividad
      */
-    private void base(Text text, int line, int scroll, boolean clean){
+    private void base(Text text, int line, int scroll, boolean clean) {
         setTexto(text);
         Eventos.scroll((Editor) getCodigos().getComponentAt(0), scroll);
         ((Editor) getCodigos().getComponentAt(0)).drawLineIn(line);
         Eventos.enable(true, clean ? getClean() : getNextIteracion(), getBack(), getHome());
     }
+
     @Override
     protected void acomodamientoPanelControl(String title, JComponent... components) {
         Constrains.addCompX(
@@ -111,9 +120,9 @@ public final class Punto extends Simulador implements Acciones {
         Constrains.addCompX(
                 getPause(),
                 getControl(),
-                new Rectangle( 2, 1, 1, 1),
+                new Rectangle(2, 1, 1, 1),
                 1,
-                new Insets( 5, 35, 10, 8),
+                new Insets(5, 35, 10, 8),
                 GridBagConstraints.EAST,
                 GridBagConstraints.NONE
         );
@@ -136,6 +145,7 @@ public final class Punto extends Simulador implements Acciones {
                 GridBagConstraints.HORIZONTAL
         );
     }
+
     @Override
     public void iteracion0() {
         graficador.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
@@ -146,6 +156,7 @@ public final class Punto extends Simulador implements Acciones {
         Eventos.variable(punto, 1, y.getValue());
         punto.expandNode(0);
     }
+
     @Override
     public void iteracion1() {
         Eventos.enable(
@@ -164,6 +175,7 @@ public final class Punto extends Simulador implements Acciones {
         else mostrarCoordenadas();
         incrementIteracion();
     }
+
     @Override
     public void clean() {
         cleanComponents();

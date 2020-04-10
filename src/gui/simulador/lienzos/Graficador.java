@@ -1,82 +1,94 @@
 package gui.simulador.lienzos;
+
 import gui.simulador.Simulador;
 import tools.Fuentes;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
+
 public class Graficador extends JLabel {
     private boolean graficar;
-    private Point punto;
-    private Point axis;
+    private final Point punto;
+    private final Point axis;
+
     /**
      * Grafica un punto en una coordenada dada
      */
-    public Graficador(){
+    public Graficador() {
         setFont(Fuentes.UBUNTU_LIGHT_12.getFont());
         graficar = false;
         punto = new Point();
         axis = new Point();
     }
+
     /**
      * Grafica un punto con las coordenadas dadas
      * @param x int coordenada en x
      * @param y int coordenada en y
      */
-    public void graficar(int x, int y){
+    public void graficar(int x, int y) {
         punto.move(x, y);
         graficar = true;
         repaint();
     }
+
     /**
      * Coordenadas dadas del punto
      * @return coordenadas formateadas
      */
-    private String coordenadas(){
+    private String coordenadas() {
         return "(" + punto.x + "," + punto.y + ")";
     }
+
     /**
      * Limpia la grafica de las coordenadas que han sido graficadas
      */
-    public void limpiar(){
+    public void limpiar() {
         punto.move(0, 0);
         graficar = false;
         repaint();
     }
+
     /**
      * Divide el ancho de la dimensión del Canvas
      * @return mitad del ancho del Canvas
      */
-    private int halfScreenWidth(){
+    private int halfScreenWidth() {
         return Simulador.canvasSize().width / 2;
     }
+
     /**
      * Divide el alto de la dimensión del Canvas
      * @return mitad del alto del Canvas
      */
-    private int halfScreenHeight(){
+    private int halfScreenHeight() {
         return Simulador.canvasSize().height / 2;
     }
+
     /**
      * Inicio o fin de la linea X
      * @param cuadrante true: + | false: -
      */
-    private int positionX(boolean cuadrante){
+    private int positionX(boolean cuadrante) {
         return cuadrante ? halfScreenWidth() + 280 : halfScreenWidth() - 280;
     }
+
     /**
      * Inicio o fin de la linea Y
      * @param cuadrante true: + | false: -
      */
-    private int positionY(boolean cuadrante){
+    private int positionY(boolean cuadrante) {
         return cuadrante ? halfScreenHeight() - 280 : halfScreenHeight() + 280;
     }
+
     /**
      * Grafica las coordenadas dadas según el estado de graficación
-     * @param g2 pincel
+     * @param g2    pincel
      * @param point punto de graficación de coordenadas
      */
-    private void graficarCoordenada(Graphics2D g2, Point point){
-        if (graficar){
+    private void graficarCoordenada(Graphics2D g2, Point point) {
+        if (graficar) {
             // cuadrante (x,y)
             Point pointAux = cuadrantes(point);
             g2.drawString(coordenadas(), pointAux.x, pointAux.y);
@@ -98,10 +110,11 @@ public class Graficador extends JLabel {
             g2.drawString(".", point.x - 5, point.y + 4);
         }
     }
+
     /**
-     * Establece las coordenadas de dibujo del (x,y), según el cuadrante donde se encuentre
-     * @param point coordenadas (x,y) del punto
-     * @return coordenadas de dibujo (x,y) según el cuadrante
+     * Establece las coordenadas de dibujo del (x, y), según el cuadrante donde se encuentre
+     * @param point coordenadas (x, y) del punto
+     * @return coordenadas de dibujo (x, y) según el cuadrante
      */
     private Point cuadrantes(Point point) {
         if (punto.x > 0 && punto.y > 0) return cuadrante(Cuadrante.POSITIVO, point);
@@ -114,15 +127,16 @@ public class Graficador extends JLabel {
         else if (punto.x > 0) return cuadrante(Cuadrante.EJE_X_POSITIVO, point);
         return cuadrante(Cuadrante.EJE_X_NEGATIVO, point);
     }
+
     /**
-     * Establece el punto donde se escribirá el (x,y) según el cuadrante.
+     * Establece el punto donde se escribirá el (x, y) según el cuadrante.
      * @param posicion posición del cuadrante a trabajar
-     * @param point punto actual (x,y)
-     * @return punto (x,y)
+     * @param point    punto actual (x, y)
+     * @return punto (x, y)
      */
     private Point cuadrante(Cuadrante posicion, Point point) {
         int coordenadas = (getFontMetrics(getFont()).stringWidth(coordenadas()) + 4);
-        int puntoMedio =  coordenadas / 2;
+        int puntoMedio = coordenadas / 2;
         int ascent = getFontMetrics(getFont()).getAscent();
         int halfAscent = ascent / 2;
         return switch (posicion) {
@@ -134,6 +148,7 @@ public class Graficador extends JLabel {
             case EJE_Y_NEGATIVO -> new Point(point.x + 7, point.y + halfAscent - 1);
         };
     }
+
     /**
      * Cuadrantes disponibles en el plano cartesiano
      */
@@ -148,8 +163,9 @@ public class Graficador extends JLabel {
         EJE_Y_POSITIVO,
         EJE_Y_NEGATIVO
     }
+
     /**
-     * Grafica las líneas de eje (x,y)
+     * Grafica las líneas de eje (x, y)
      * @param g2 pincel
      */
     private void eje(Graphics2D g2) {
@@ -168,42 +184,46 @@ public class Graficador extends JLabel {
                 positionY(false)
         ));
     }
+
     /**
      * Guarda la posición en pantalla de la coordenada X
      * @param point Si x = 0 toma la mitad de la pantalla de lo contrario tomará la coodernada de j
-     * @param j pixel X
+     * @param j     pixel X
      */
-    private void puntoCoordenadaX(Point point, int j){
+    private void puntoCoordenadaX(Point point, int j) {
         if (punto.x == axis.x && graficar) point.x = punto.x == 0 ? halfScreenWidth() : j;
     }
+
     /**
      * Guarda la posición en pantalla de la coordenada Y
      * @param point Si y = 0 toma la mitad de la pantalla de lo contrario tomará la coodernada de i
-     * @param i pixel X
+     * @param i     pixel X
      */
-    private void puntoCoordenadaY(Point point, int i){
+    private void puntoCoordenadaY(Point point, int i) {
         if (punto.y == axis.y && graficar) point.y = punto.y == 0 ? halfScreenHeight() : i;
     }
+
     /**
-     * Guarda la posición en pantalla de las coordenadas (x,y)
+     * Guarda la posición en pantalla de las coordenadas (x, y)
      * @param point puntos de las posiciones a guardar
-     * @param i posición en pantalla vertical
-     * @param j posición en pantalla horizontal
+     * @param i     posición en pantalla vertical
+     * @param j     posición en pantalla horizontal
      */
-    private void puntoCoordenadas(Point point, int i, int j){
+    private void puntoCoordenadas(Point point, int i, int j) {
         puntoCoordenadaX(point, j);
         puntoCoordenadaY(point, i);
     }
+
     /**
      * Grafica los valores del axis X y el axis Y
-     * @param g2 pincel
+     * @param g2    pincel
      * @param point punto a guardar las coordenas
      */
-    private void valoresAxisXY(Graphics2D g2, Point point){
+    private void valoresAxisXY(Graphics2D g2, Point point) {
         axis.move(-10, 10);
         int i = positionY(true) + axis.y;
         int j = positionX(false) + axis.y;
-        while (i <= positionY(false)){
+        while (i <= positionY(false)) {
             // Coordenas en pixeles del punto a graficar
             puntoCoordenadas(point, i, j);
             // axis corelativo de (x,y)
@@ -212,28 +232,30 @@ public class Graficador extends JLabel {
             j += 27;
         }
     }
+
     /**
-     * Grafica la posición (x,y) indicada en el axis (x,y) del plano cartesiano
-     * @param g2 pincel
+     * Grafica la posición (x, y) indicada en el axis (x, y) del plano cartesiano
+     * @param g2    pincel
      * @param point punto de coordenadas
-     * @param i pixel en Y
-     * @param j pixel en X
+     * @param i     pixel en Y
+     * @param j     pixel en X
      */
-    private void axisXY(Graphics2D g2, Point point, int i, int j){
-        if (i != 290 && j != halfScreenWidth()){
+    private void axisXY(Graphics2D g2, Point point, int i, int j) {
+        if (i != 290 && j != halfScreenWidth()) {
             axis(g2, i, j);
             if (axis.x == 0 && axis.y == 0) axisZero(point, i, j);
             number(g2, i, j);
             axis.move(axis.x + 1, axis.y - 1);
         }
     }
+
     /**
-     * Dibuja el número correspondiente en el axis (x,y)
+     * Dibuja el número correspondiente en el axis (x, y)
      * @param g2 pincel
-     * @param i pixel en Y
-     * @param j pixel en X
+     * @param i  pixel en Y
+     * @param j  pixel en X
      */
-    private void number(Graphics2D g2, int i, int j){
+    private void number(Graphics2D g2, int i, int j) {
         g2.drawString(
                 String.valueOf(axis.y),
                 posicion(
@@ -249,38 +271,42 @@ public class Graficador extends JLabel {
                 posicion(axis.x > 0, halfScreenHeight() - 6, halfScreenHeight() + 15)
         );
     }
+
     /**
      * Posición doble a pocesionar
      * @param expr expresión de posecionamiento a evaluar
-     * @param a valor 'a' a retornar
-     * @param b valor 'b' a retornar
+     * @param a    valor 'a' a retornar
+     * @param b    valor 'b' a retornar
      * @return si la expresión es verdadera devolverá a 'a' de lo contrario devolverá a 'b'
      */
-    private int posicion(boolean expr, int a, int b){
+    private int posicion(boolean expr, int a, int b) {
         return expr ? a : b;
     }
+
     /**
-     * Pinta el axis (x,y) en el plano cartesiano
+     * Pinta el axis (x, y) en el plano cartesiano
      * @param g2 pincel
-     * @param i pixel en Y
-     * @param j pixel en X
+     * @param i  pixel en Y
+     * @param j  pixel en X
      */
-    private void axis(Graphics2D g2, int i, int j){
+    private void axis(Graphics2D g2, int i, int j) {
         // y
         g2.draw(new Line2D.Double(halfScreenWidth() - 2, i, halfScreenWidth() + 2, i));
         // x
-        g2.draw(new Line2D.Double(j ,halfScreenHeight() - 2, j, halfScreenHeight() + 2));
+        g2.draw(new Line2D.Double(j, halfScreenHeight() - 2, j, halfScreenHeight() + 2));
     }
+
     /**
-     * Cuando (x,y) equivalen cero se pasan al siguiente axis a dibujar
+     * Cuando (x, y) equivalen cero se pasan al siguiente axis a dibujar
      * @param point punto de coordenadas
-     * @param i pixel en Y
-     * @param j pixel en X
+     * @param i     pixel en Y
+     * @param j     pixel en X
      */
-    private void axisZero(Point point, int i, int j){
+    private void axisZero(Point point, int i, int j) {
         axis.move(1, -1);
         puntoCoordenadas(point, i, j);
     }
+
     /**
      * Dibuja y grafica el punto en las coordenadas dadas
      * @param g {@link Graphics}

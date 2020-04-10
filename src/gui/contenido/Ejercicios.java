@@ -1,24 +1,30 @@
 package gui.contenido;
+
 import tools.Acciones;
 import tools.Constrains;
+
 import javax.swing.*;
 import java.awt.*;
+
 public final class Ejercicios extends Lienzo {
     private JLabel[] botones;
     private JTextArea texto;
     private JPanel panel;
+
     /**
      * Planilla de los paneles de Ejercicios del Simulador
      */
-    public Ejercicios(){
+    public Ejercicios() {
         super(new GridBagLayout(), true);
         setAcciones(new Acciones() {
             @Override
             public void iteracion0() {//None
             }
+
             @Override
             public void iteracion1() {//None
             }
+
             @Override
             public void clean() {
                 texto.setText("");
@@ -26,6 +32,7 @@ public final class Ejercicios extends Lienzo {
         });
         init();
     }
+
     /**
      * Inicialización y acomodamiento de los componentes en el panel
      */
@@ -74,12 +81,14 @@ public final class Ejercicios extends Lienzo {
                 GridBagConstraints.NONE
         );
     }
+
     /**
      * Se añaden los items al panel si no está vacia la lista de botones
      */
-    private void items(){
-        if (botones.length!=0) for (JLabel boton:botones) panel.add(boton);
+    private void items() {
+        if (botones.length != 0) for (JLabel boton : botones) panel.add(boton);
     }
+
     /**
      * Listado de los Botones de los ejercicios
      * @return botones
@@ -87,6 +96,7 @@ public final class Ejercicios extends Lienzo {
     public JLabel[] getBotones() {
         return botones;
     }
+
     /**
      * Botones de los ejercicios de las temáticas a simuladores<br>
      * Agregar los botones con iconos de 100px de ancho
@@ -102,6 +112,7 @@ public final class Ejercicios extends Lienzo {
         this.botones = botones;
         items();
     }
+
     /**
      * Componente de Texto
      * @return texto
@@ -109,11 +120,12 @@ public final class Ejercicios extends Lienzo {
     public JTextArea getTexto() {
         return texto;
     }
+
     /**
      * Da un nuevo mensaje al componente
      * @param texto nuevo mensaje
      */
-    public void setTexto(String texto){
+    public void setTexto(String texto) {
         this.texto.setText(texto);
     }
 }

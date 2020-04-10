@@ -1,37 +1,44 @@
 package gui.editor;
+
 import gui.contenido.TextPane;
 import tools.Colour;
+
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
+
 public class View extends TextPane {
     private boolean line;
     private int lineaPixelSelected;
+
     /**
      * Vista del Editor
      */
-    public View(){
+    public View() {
         super();
         line = false;
     }
+
     /**
-     * Fija si la linea se dibuja
+     * Fija si la línea se dibuja
      * @param line true: Se dibuja false: No se dibuja
      */
     public void setLine(boolean line) {
         this.line = line;
         repaint();
     }
+
     /**
-     * Selecciona una linea determinada a dibujar
-     * @param lineaPixelSelected linea a seleccionar
+     * Selecciona una línea determinada a dibujar
+     * @param lineaPixelSelected línea a seleccionar
      */
     protected void drawLineIn(int lineaPixelSelected) {
         this.lineaPixelSelected = lineaPixelSelected;
         line = true;
         repaint();
     }
+
     /**
-     * Dibuja una linea seleccionada
+     * Dibuja una línea seleccionada
      * @param g2 {@link Graphics2D} pincel
      */
     private void drawLine(Graphics2D g2) {
@@ -48,6 +55,7 @@ public class View extends TextPane {
                 )
         );
     }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -1,23 +1,28 @@
 package gui.contenido;
+
 import tools.Dato;
 import tools.Archivos;
+
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
+
 import static tools.Fuentes.UBUNTU_LIGHT_14;
+
 public class Tree extends JTree {
-    private DefaultMutableTreeNode node;
+    private final DefaultMutableTreeNode node;
+
     /**
      * JTree configurado al proyecto
      * @param node nodo raíz
      */
-    public Tree(DefaultMutableTreeNode node){
+    public Tree(DefaultMutableTreeNode node) {
         super(new DefaultTreeModel(node));
         this.node = node;
         ImageIcon icon = Archivos.image("/resources/image/variable.png", -1, -1);
-        setCellRenderer(new DefaultTreeCellRenderer(){
+        setCellRenderer(new DefaultTreeCellRenderer() {
             @Override
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
                                                           boolean leaf, int row, boolean hasFocus) {
@@ -28,34 +33,38 @@ public class Tree extends JTree {
         });
         setOpaque(false);
     }
+
     /**
      * JTree configurado al proyecto
      * @param dato dato en el nodo raíz
      */
-    public Tree(Dato dato){
+    public Tree(Dato dato) {
         this(new DefaultMutableTreeNode(dato));
     }
+
     /**
      * Obtiene un nodo hijo en una determinada posición
      * @param index posición del nodo
      * @return dato del nodo
      */
-    public Dato getDato(int index){
+    public Dato getDato(int index) {
         return index == -1 ?
-                (Dato) node.getUserObject() : (Dato) ((DefaultMutableTreeNode)node.getChildAt(index)).getUserObject();
+                (Dato) node.getUserObject() : (Dato) ((DefaultMutableTreeNode) node.getChildAt(index)).getUserObject();
     }
+
     /**
      * Añade nodos al nodo raíz
      * @param node {@link DefaultMutableTreeNode} a agregar
      */
-    public void addNode(DefaultMutableTreeNode node){
+    public void addNode(DefaultMutableTreeNode node) {
         this.node.add(node);
     }
+
     /**
      * Expande un nodo indicado del árbol
      * @param row fila en el que está el nodo a expandir
      */
-    public void expandNode(int row){
+    public void expandNode(int row) {
         fireTreeExpanded(getPathForRow(row));
     }
 }

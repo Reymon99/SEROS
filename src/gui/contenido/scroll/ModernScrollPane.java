@@ -1,36 +1,42 @@
 package gui.contenido.scroll;
+
 import javax.swing.*;
 import java.awt.*;
+
 public class ModernScrollPane extends JScrollPane {
     protected static final int THUMB_SIZE;
     private static final int SB_SIZE;
+
     static {
         THUMB_SIZE = 8;
         SB_SIZE = 10;
     }
+
     /**
      * JScrollPane con interfaz personalizada
      * @param view componente a integrar el scroll
      */
-    public ModernScrollPane(Component view){
+    public ModernScrollPane(Component view) {
         this(view, VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_AS_NEEDED);
     }
+
     /**
      * JScrollPane con interfaz personalizada
      * @param view componente a integrar el scroll
      * @param area componente a agregar al header
      */
-    public ModernScrollPane(Component view, JPanel area){
+    public ModernScrollPane(Component view, JPanel area) {
         this(view);
         setRowHeaderView(area);
     }
+
     /**
      * JScrollPane con interfaz personalizada
      * @param view componente a integrar el scroll
-     * @param vsb acción del scroll vertical
-     * @param hsb acción del scroll horizontal
+     * @param vsb  acción del scroll vertical
+     * @param hsb  acción del scroll horizontal
      */
-    public ModernScrollPane(Component view, int vsb, int hsb){
+    public ModernScrollPane(Component view, int vsb, int hsb) {
         super(vsb, hsb);
         setBorder(BorderFactory.createEmptyBorder());
         JScrollBar vertical = getVerticalScrollBar();
@@ -45,6 +51,7 @@ public class ModernScrollPane extends JScrollPane {
         setComponentZOrder(getViewport(), 2);
         viewport.setView(view);
     }
+
     private ScrollPaneLayout modernLayout() {
         return new ScrollPaneLayout() {
             @Override
@@ -52,10 +59,11 @@ public class ModernScrollPane extends JScrollPane {
                 super.layoutContainer(parent);
                 Rectangle availR = availR(parent);
                 if (vsb != null) vsb.setBounds(scrollBar(availR, isVerticalScrollBarfNecessary(), false));
-                if (hsb != null) hsb.setBounds(scrollBar(availR, isHorizontalScrollBarNecessary(),true));
+                if (hsb != null) hsb.setBounds(scrollBar(availR, isHorizontalScrollBarNecessary(), true));
             }
         };
     }
+
     /**
      * Nos da a saber si el scroll trabajado es vertical
      * @return verdadero si el scroll es vertical
@@ -65,6 +73,7 @@ public class ModernScrollPane extends JScrollPane {
         Dimension viewSize = viewport.getViewSize();
         return viewSize.getHeight() > viewRect.getHeight();
     }
+
     /**
      * Nos da a saber si el scroll trabajado es horizontal
      * @return verdadero si el scroll es horizontal
@@ -74,20 +83,23 @@ public class ModernScrollPane extends JScrollPane {
         Dimension viewSize = viewport.getViewSize();
         return viewSize.getWidth() > viewRect.getWidth();
     }
+
     /**
      * Obtiene el componente añadido al scroll
      * @return componente en el scroll
      */
-    protected Component getView(){
+    protected Component getView() {
         return viewport.getView();
     }
+
     /**
      * Obtiene el componente de Indice en el scroll
      * @return indice
      */
-    protected Component getIndice(){
+    protected Component getIndice() {
         return rowHeader.getView();
     }
+
     private Rectangle availR(Container parent) {
         Rectangle availR = parent.getBounds();
         availR.x = availR.y = 0;
@@ -98,6 +110,7 @@ public class ModernScrollPane extends JScrollPane {
         availR.height -= insets.top + insets.bottom;
         return availR;
     }
+
     private Rectangle scrollBar(Rectangle availR, boolean needed, boolean horizontal) {
         Rectangle rectangle = new Rectangle();
         if (horizontal) {

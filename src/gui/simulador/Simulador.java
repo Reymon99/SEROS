@@ -1,4 +1,5 @@
 package gui.simulador;
+
 import eventos.Eventos;
 import gui.contenido.Components;
 import gui.contenido.Lienzo;
@@ -12,15 +13,17 @@ import tools.Colour;
 import tools.Constrains;
 import tools.Fuentes;
 import tools.Text;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.util.Optional;
+
 public abstract class Simulador extends Lienzo {
     private Integer iteracion;
-    private JComponent lienzo;
+    private final JComponent lienzo;
     private JPanel datos;
     private JPanel control;
     private PackageCode codigos;
@@ -30,21 +33,23 @@ public abstract class Simulador extends Lienzo {
     private Switch codigo;
     private Switch pause;
     private JTextArea texto;
+
     /**
      * Esquema de los simuladores del proyecto
-     * @param title título de los componentes de registro de datos
+     * @param title      título de los componentes de registro de datos
      * @param components {@link JComponent}s de registro de datos
      */
-    public Simulador(String title, JComponent... components){
+    public Simulador(String title, JComponent... components) {
         this(new JPanel(new GridBagLayout()), title, components);
     }
+
     /**
      * Esquema de los simuladores del proyecto
-     * @param lienzo {@link JComponent} a mostrar el objeto simulado
-     * @param title título de los componentes de registro de datos
+     * @param lienzo     {@link JComponent} a mostrar el objeto simulado
+     * @param title      título de los componentes de registro de datos
      * @param components {@link JComponent}s de registro de datos
      */
-    public Simulador(JComponent lienzo, String title, JComponent... components){
+    public Simulador(JComponent lienzo, String title, JComponent... components) {
         super(new GridBagLayout(), false);
         Dimension dimCanvas = canvasSize();
         this.lienzo = lienzo;
@@ -58,6 +63,7 @@ public abstract class Simulador extends Lienzo {
         init();
         acomodamientoPanelControl(title, components);
     }
+
     /**
      * Instanciación y acomodamiento de los componentes del panel
      */
@@ -94,6 +100,7 @@ public abstract class Simulador extends Lienzo {
                 codigos = new PackageCode()
         );
     }
+
     private void addComponents(Component... components) {
         Insets insets = new Insets(0, 0, 0, 0);
         Constrains.addComp(
@@ -178,10 +185,11 @@ public abstract class Simulador extends Lienzo {
                 GridBagConstraints.BOTH
         );
     }
+
     /**
      * Plantilla por defecto para reiniciar el simulador
      */
-    public void cleanComponents(){
+    public void cleanComponents() {
         Eventos.enable(true, send, pause, getBack(), getHome());
         Eventos.enable(false, nextIteracion, clean, codigo);
         pause.setOnOff(false);
@@ -190,75 +198,84 @@ public abstract class Simulador extends Lienzo {
         Eventos.scroll((Editor) codigos.getComponentAt(0), 0);
         ((Editor) codigos.getComponentAt(0)).setLine(false);
     }
+
     /**
      * Plantilla por defecto de acomodamiento para el panel de control
-     * @param title título de los componentes de registro de datos
+     * @param title      título de los componentes de registro de datos
      * @param components {@link JComponent}s de registro de datos
      */
     protected abstract void acomodamientoPanelControl(String title, JComponent... components);
+
     /**
      * Componentes de registro de datos
-     * @param title título del borde
+     * @param title      título del borde
      * @param components {@link JComponent}s de registro
      */
-    protected Box componentRegistro(String title, JComponent... components){
+    protected Box componentRegistro(String title, JComponent... components) {
         Box box = Box.createHorizontalBox();
         for (JComponent component : components) {
             box.add(component);
-            if (component != components[components.length-1]) box.add(Box.createHorizontalStrut(1));
+            if (component != components[components.length - 1]) box.add(Box.createHorizontalStrut(1));
         }
         if (Optional.ofNullable(title).isPresent())
             box.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(), title));
         return box;
     }
+
     /**
      * Añade los codigos que necesita el simulador
      * @param editor {@link Editor} con el código correspondiente
      */
-    protected void addCodes(Editor editor){
+    protected void addCodes(Editor editor) {
         codigos.add(editor.getCode(), editor);
     }
+
     /**
      * Fijar un texto determinado en el área de notificaciones
      * @param texto texto a fijar determinadamente
      */
-    public void setTexto(String texto){
+    public void setTexto(String texto) {
         this.texto.setEditable(true);
         this.texto.setText(texto);
         this.texto.setEditable(false);
     }
+
     /**
      * Fijar un texto determinado en el área de notificaciones
      * @param texto texto a fijar determinadamente
      */
-    public void setTexto(Text texto){
+    public void setTexto(Text texto) {
         setTexto(texto.toString());
     }
+
     /**
      * Variables que se van a agregar
      * @param trees {@link Tree} a agregar
      */
-    protected void setDatos(Tree... trees){
-        for (int i = 0; i < trees.length; i++) Constrains.addComp(
-                trees[i],
-                datos,
-                new Rectangle(0, i, 1, 1),
-                1,
-                1,
-                new Insets(i == 0 ? 7 : 1, 10, i == trees.length-1 ? sizeTree(trees.length) : 1,5),
-                GridBagConstraints.CENTER,
-                GridBagConstraints.BOTH
-        );
+    protected void setDatos(Tree... trees) {
+        for (int i = 0; i < trees.length; i++)
+            Constrains.addComp(
+                    trees[i],
+                    datos,
+                    new Rectangle(0, i, 1, 1),
+                    1,
+                    1,
+                    new Insets(i == 0 ? 7 : 1, 10, i == trees.length - 1 ? sizeTree(trees.length) : 1, 5),
+                    GridBagConstraints.CENTER,
+                    GridBagConstraints.BOTH
+            );
     }
+
     /**
      * Da el tamaño del espacio libre en el panel datos
      * @param length {@link Tree} en el panel
      * @return espacio libre en el panel
      */
-    private int sizeTree(int length){
-        int size = 200 - ( 10 * length);
+    private int sizeTree(int length) {
+        int size = 200 - (10 * length);
         return size > 0 ? size : 8;
     }
+
     /**
      * Opciones para el lienzo</br>
      * <ul>
@@ -266,7 +283,7 @@ public abstract class Simulador extends Lienzo {
      * </ul>
      * @return menú para las opciones del Lienzo
      */
-    private JPopupMenu menuLienzo(){
+    private JPopupMenu menuLienzo() {
         JPopupMenu menu = new JPopupMenu();
         JMenuItem save = new JMenuItem("Exportar Lienzo");
         save.addActionListener(e -> {
@@ -284,6 +301,7 @@ public abstract class Simulador extends Lienzo {
         menu.add(save);
         return menu;
     }
+
     /**
      * Componente de área de Notificaciones
      * @return área de notificaciones
@@ -291,6 +309,7 @@ public abstract class Simulador extends Lienzo {
     protected JTextArea getTexto() {
         return texto;
     }
+
     /**
      * Panel de control de comandos del simulador
      * @return panel de control
@@ -298,6 +317,7 @@ public abstract class Simulador extends Lienzo {
     protected JPanel getControl() {
         return control;
     }
+
     /**
      * Obtiene el área gráfica del simulador
      * @return área gráfica del simulador
@@ -305,6 +325,7 @@ public abstract class Simulador extends Lienzo {
     protected JComponent getLienzo() {
         return lienzo;
     }
+
     /**
      * Obtiene el contenedor de los códigos del simulador
      * @return Contenedor de los códigos del simulador
@@ -312,6 +333,7 @@ public abstract class Simulador extends Lienzo {
     public PackageCode getCodigos() {
         return codigos;
     }
+
     /**
      * Obtiene la cantidad pulsaciones del paso a paso del simulador
      * @return cantidad de pulsaciones
@@ -319,6 +341,7 @@ public abstract class Simulador extends Lienzo {
     protected int getIteracion() {
         return iteracion;
     }
+
     /**
      * Fija un nuevo valor a la iteración de pulsaciones del simulador
      * @param iteracion nuevo valor de iteración
@@ -326,18 +349,21 @@ public abstract class Simulador extends Lienzo {
     private void setIteracion(Integer iteracion) {
         this.iteracion = iteracion;
     }
+
     /**
      * Incrementa a paso uno las pulsaciones del paso a paso del simulador en la ejecución
      */
-    protected void incrementIteracion(){
+    protected void incrementIteracion() {
         iteracion++;
     }
+
     /**
      * Decrementa a paso uno las pulsaciones del paso a paso del simulador en la ejecución
      */
-    protected void decrementIteracion(){
+    protected void decrementIteracion() {
         iteracion--;
     }
+
     /**
      * Obtiene el componente de paso a paso del simulador
      * @return elección del paso a paso del simulador
@@ -345,6 +371,7 @@ public abstract class Simulador extends Lienzo {
     protected Switch getPause() {
         return pause;
     }
+
     /**
      * Obtiene el componente de visualización del código en el paso a paso en el simulador
      * @return visualización del paso a paso
@@ -352,6 +379,7 @@ public abstract class Simulador extends Lienzo {
     protected Switch getCodigo() {
         return codigo;
     }
+
     /**
      * Boton de envio de datos al simulador
      * @return envio de datos
@@ -359,6 +387,7 @@ public abstract class Simulador extends Lienzo {
     protected JButton getSend() {
         return send;
     }
+
     /**
      * Boton de reinicio del simulador
      * @return reinicio del simulador
@@ -366,6 +395,7 @@ public abstract class Simulador extends Lienzo {
     protected JButton getClean() {
         return clean;
     }
+
     /**
      * Boton de paso a paso del simulador
      * @return boton del paso a paso
@@ -373,6 +403,7 @@ public abstract class Simulador extends Lienzo {
     protected JButton getNextIteracion() {
         return nextIteracion;
     }
+
     /**
      * Porciona el tamaño de completo de la pantalla para el lienzo de simulación (canvas)
      * @return width 73% height 80%

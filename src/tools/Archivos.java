@@ -1,5 +1,7 @@
 package tools;
+
 import org.yaml.snakeyaml.Yaml;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -9,16 +11,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Optional;
+
 public abstract class Archivos {
     /**
      * Convierte y moldea una Imagen para ser utilizada en el proyecto
-     * @param path String
-     * @param width int
+     * @param path   String
+     * @param width  int
      * @param height int
      * @return ImageIcon
      */
     public static ImageIcon image(String path, int width, int height) {
-        try{
+        try {
             return new ImageIcon(ImageIO.read(Archivos.class.getResource(path)).getScaledInstance(
                     width,
                     height,
@@ -28,13 +31,14 @@ public abstract class Archivos {
             return null;
         }
     }
+
     /**
      * Exporta una determinada imagen tomada de un componente del proyecto a la ruta indicada
-     * @param file ruta a exportar imagen
+     * @param file  ruta a exportar imagen
      * @param image imagen de un componente del proyecto
      * @return informa acerca del camino favorable o no de la exportación de la imagen
      */
-    public static String exportImage(File file, RenderedImage image){
+    public static String exportImage(File file, RenderedImage image) {
         try {
             return ImageIO.write(image, "jpg", file) ?
                     "Lienzo exportado exitosamente como imagen" : "No se pudo exportar el lienzo como imagen";
@@ -42,6 +46,7 @@ public abstract class Archivos {
             return "No se pudo exportar el lienzo como imagen";
         }
     }
+
     /**
      * Exporta un determinado archivo de código Java de un determinado {@link gui.editor.Editor}
      * @param file ruta a exportar código Java
@@ -58,14 +63,17 @@ public abstract class Archivos {
             return "No se pudo exportar el código del editor como archivo";
         }
     }
+
     public static boolean createdFolder(File file, String folder) {
         if (!file.exists() && file.isDirectory()) return new File(file.getAbsolutePath(), folder).mkdir();
         return false;
     }
+
     /**
      * Contiene cada uno de los pseudocódigos usados en el proyecto SEROS
      */
     private static LinkedHashMap<String, ArrayList<ArrayList<String>>> codes;
+
     /**
      * Carga el archivo .yml que contiene los diversos pseudocódigos del proyecto, en el caso de haber
      * sidos cargados con anterioridad, de lo contrario a esto solo retornará los pseudocódigos
@@ -79,19 +87,22 @@ public abstract class Archivos {
         }
         return codes;
     }
+
     /**
      * Destruye todos los pseudocódigos cargados en el proyecto
      */
     public static void destroyCodes() {
         if (Optional.ofNullable(codes).isPresent()) codes = null;
     }
+
     /**
      * Contiene cada uno de los contenidos temáticos de las Estructuras de Datos empleados en el proyecto
      */
     private static LinkedHashMap<String, LinkedHashMap<String, String>> contenidos;
+
     /**
      * Carga el archivo .yml que contiene los diversos contenidos temáticos del proyecto, en el caso de haber sidos
-     * cargados con anterioridad, de los contrario a esto solo retornará el contenido temático deseado
+     * cargados con anterioridad, de lo contrario a esto solo retornará el contenido temático deseado
      * @param tema contenido temático a retornar
      * @return contenido temático deseado
      */
@@ -102,6 +113,7 @@ public abstract class Archivos {
         }
         return contenidos.get(tema);
     }
+
     /**
      * Destruye todos los contenidos temáticos cargados en el proyecto
      */

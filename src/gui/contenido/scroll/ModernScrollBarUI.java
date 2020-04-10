@@ -1,18 +1,24 @@
 package gui.contenido.scroll;
+
 import tools.Colour;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
+
 import static gui.contenido.scroll.ModernScrollPane.THUMB_SIZE;
+
 public class ModernScrollBarUI extends BasicScrollBarUI {
-    private ModernScrollPane sp;
+    private final ModernScrollPane sp;
+
     /**
      * Interfaz personalizada al JScrollBar
      * @param sp {@link JScrollPane} que va se le va a personalizar los JScrollBar´s
      */
-    protected ModernScrollBarUI(ModernScrollPane sp){
+    protected ModernScrollBarUI(ModernScrollPane sp) {
         this.sp = sp;
     }
+
     /**
      * Se oculta el botón de decremento en el JScrollBar
      * @param orientation orientación del scroll
@@ -22,6 +28,7 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
     protected JButton createDecreaseButton(int orientation) {
         return new InvisibleScrollBarButton();
     }
+
     /**
      * Se oculta el botón de incremento en el JScrollBar
      * @param orientation orientación del scroll
@@ -31,6 +38,7 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
     protected JButton createIncreaseButton(int orientation) {
         return new InvisibleScrollBarButton();
     }
+
     /**
      * Se le da una nueva interfaz al JScrollBar
      */
@@ -43,9 +51,9 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
         int height = Math.max(orientation == JScrollBar.VERTICAL ? thumbBounds.height : THUMB_SIZE, THUMB_SIZE);
         Color color;
         JScrollBar sb = (JScrollBar) c;
-        if(!sb.isEnabled()) return;
-        else if(isDragging) color = Colour.SCROLL_DRAGGING.getColor();
-        else if(isThumbRollover()) color = Colour.SCROLL_ROLLOVER.getColor();
+        if (!sb.isEnabled()) return;
+        else if (isDragging) color = Colour.SCROLL_DRAGGING.getColor();
+        else if (isThumbRollover()) color = Colour.SCROLL_ROLLOVER.getColor();
         else color = Colour.SCROLL_PRESSED.getColor();
         Graphics2D graphics2D = (Graphics2D) g.create();
         graphics2D.setColor(color);
@@ -54,11 +62,13 @@ public class ModernScrollBarUI extends BasicScrollBarUI {
         graphics2D.drawRoundRect(x, y, width, height, 10, 10);
         graphics2D.dispose();
     }
+
     @Override
     protected void setThumbBounds(int x, int y, int width, int height) {
         super.setThumbBounds(x, y, width, height);
         sp.repaint();
     }
+
     /**
      * Botón de incremento y decremento del ScrollBar
      */

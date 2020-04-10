@@ -1,8 +1,11 @@
 package gui.principal;
+
 import tools.Archivos;
+
 import java.awt.*;
 import java.util.Objects;
 import javax.swing.*;
+
 public final class Desktop extends JFrame {
     /**
      * Frame del proyecto
@@ -17,6 +20,7 @@ public final class Desktop extends JFrame {
                 Archivos.image("/resources/image/icon.png", -1, -1)).getImage()
         );
     }
+
     public static void main(String[] args) {
         new Desktop().setVisible(true);
     }

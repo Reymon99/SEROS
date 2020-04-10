@@ -1,4 +1,5 @@
 package gui.principal;
+
 import eventos.Eventos;
 import gui.contenido.Components;
 import gui.contenido.Contenido;
@@ -14,18 +15,22 @@ import tools.Archivos;
 import tools.Constrains;
 import tools.Fuentes;
 import tools.Paneles;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+
 public final class Contenedor extends JPanel {
     public static HashMap<Paneles, Lienzo> paneles;
     public static Paneles panelActivo;
+
     static {
         paneles = new HashMap<>();
         panelActivo = Paneles.PRINCIPAL;
     }
+
     /**
      * Contenedor de los paneles del proyecto
      */
@@ -36,6 +41,7 @@ public final class Contenedor extends JPanel {
         Eventos.show(Contenedor.panelActivo);
         Eventos.destroyers();
     }
+
     /**
      * Se añaden los paneles secundarios al principal<br>
      * Se agrega el evento para circular entre los paneles
@@ -62,13 +68,14 @@ public final class Contenedor extends JPanel {
         paneles.put(Paneles.ARBOLES, arboles());
         paneles.put(Paneles.GRAFOS, grafos());
         // añadir los paneles secundarios al panel principal
-        paneles.forEach((k,v) -> add(k.toString(), v));
+        paneles.forEach((k, v) -> add(k.toString(), v));
     }
+
     /**
      * Menu principal de la interfaz gráfica del proyecto
      * @return panel principal de SEROS
      */
-    private Lienzo principal(){
+    private Lienzo principal() {
         Lienzo lienzo = new Lienzo(new GridBagLayout(), true);
         Constrains.addCompY(
                 Components.getBoton(
@@ -86,7 +93,7 @@ public final class Contenedor extends JPanel {
                 lienzo,
                 new Rectangle(0, 0, 1, 4),
                 0,
-                new Insets( 30, 57, 30, 18),
+                new Insets(30, 57, 30, 18),
                 GridBagConstraints.CENTER,
                 GridBagConstraints.NONE
         );
@@ -191,7 +198,7 @@ public final class Contenedor extends JPanel {
                 lienzo,
                 new Rectangle(2, 0, 1, 2),
                 0,
-                new Insets( 30, 18, 13, 18),
+                new Insets(30, 18, 13, 18),
                 GridBagConstraints.SOUTH,
                 GridBagConstraints.NONE
         );
@@ -211,7 +218,7 @@ public final class Contenedor extends JPanel {
                 lienzo,
                 new Rectangle(2, 2, 1, 2),
                 0,
-                new Insets( 13, 18, 30, 18),
+                new Insets(13, 18, 30, 18),
                 GridBagConstraints.NORTH,
                 GridBagConstraints.NONE
         );
@@ -231,7 +238,7 @@ public final class Contenedor extends JPanel {
                 lienzo,
                 new Rectangle(3, 0, 1, 2),
                 0,
-                new Insets( 30, 18, 13, 18),
+                new Insets(30, 18, 13, 18),
                 GridBagConstraints.CENTER,
                 GridBagConstraints.NONE
         );
@@ -336,12 +343,13 @@ public final class Contenedor extends JPanel {
         );
         return lienzo;
     }
+
     /**
      * Contenido del panel TDA
      * @see Contenido
      * @see Contenedor#simuladorTda()
      */
-    private Contenido tda(){
+    private Contenido tda() {
         Contenido con = new Contenido();
         con.getTitle().setText("Tipos de Datos Abstratos (tda)");
         con.next("Simulador TDA", Paneles.SIMULADOR_TDA);
@@ -411,11 +419,12 @@ public final class Contenedor extends JPanel {
         );
         return con;
     }
+
     /**
      * Contenido del panel Modularidad
      * @see Contenido
      */
-    private Contenido modularidad(){
+    private Contenido modularidad() {
         Contenido con = new Contenido();
         con.getTitle().setText("Modularidad");
         con.next("Demostración Interactiva de Modularidad", Paneles.DEMOSTRACION_MODULARIDAD);
@@ -452,29 +461,31 @@ public final class Contenedor extends JPanel {
         );
         return con;
     }
+
     /**
      * Contenido del panel Pilas
      * @see Contenido
      */
-    private Contenido pilas(){
+    private Contenido pilas() {
         Contenido con = new Contenido();
         con.getTitle().setText("Pilas");
         con.next("", null);
         return con;
     }
+
     /**
      * Contenido del panel Recursividad
      * @see Contenido
      */
-    private Contenido recursividad(){
+    private Contenido recursividad() {
         Contenido con = new Contenido();
         con.getTitle().setText("Recursividad");
         TextPane editor = new TextPane(false);
         LinkedHashMap<String, String> contenido = Archivos.getContenidos("recursividad");
         String[] recur = contenido.get("parrafo.2").split("\u279c");
-        for (String n: recur){
+        for (String n : recur) {
             editor.append(n, Fuentes.PURISA_22.getFont());
-            if (!n.equals(recur[recur.length-1])) editor.append("\u279c", Fuentes.SEGOE_UI_SYMBOL_22.getFont());
+            if (!n.equals(recur[recur.length - 1])) editor.append("\u279c", Fuentes.SEGOE_UI_SYMBOL_22.getFont());
         }
         con.next("Panel de Ejercicios de Recursividad", Paneles.EJERCICIOS_RECURSIVIDAD);
         Constrains.addComp(
@@ -499,21 +510,23 @@ public final class Contenedor extends JPanel {
         );
         return con;
     }
+
     /**
      * Contenido del panel Ordenamiento
      * @see Contenido
      */
-    private Contenido ordenamiento(){
+    private Contenido ordenamiento() {
         Contenido con = new Contenido();
         con.getTitle().setText("Ordenamiento");
         con.next("", null);
         return con;
     }
+
     /**
      * Contenido del panel Nodos
      * @see Contenido
      */
-    private Contenido nodos(){
+    private Contenido nodos() {
         Contenido con = new Contenido();
         con.getTitle().setText("Nodos");
         con.next("", null);
@@ -580,51 +593,56 @@ public final class Contenedor extends JPanel {
         );
         return con;
     }
+
     /**
      * Contenido del panel Listas
      * @see Contenido
      */
-    private Contenido listas(){
+    private Contenido listas() {
         Contenido con = new Contenido();
         con.getTitle().setText("Listas Enlazadas");
         con.next("", null);
         return con;
     }
+
     /**
      * Contenido del panel Grafos
      * @see Contenido
      */
-    private Contenido grafos(){
+    private Contenido grafos() {
         Contenido con = new Contenido();
         con.getTitle().setText("Grafos");
         con.next("", null);
         return con;
     }
+
     /**
      * Contenido del panel Colas
      * @see Contenido
      */
-    private Contenido colas(){
+    private Contenido colas() {
         Contenido con = new Contenido();
         con.getTitle().setText("Colas");
         con.next("", null);
         return con;
     }
+
     /**
      * Contenido del panel Busqueda
      * @see Contenido
      */
-    private Contenido busqueda(){
+    private Contenido busqueda() {
         Contenido con = new Contenido();
         con.getTitle().setText("Busqueda");
         con.next("", null);
         return con;
     }
+
     /**
      * Contenido del panel Arreglos
      * @see Contenido
      */
-    private Contenido arreglos(){
+    private Contenido arreglos() {
         Contenido con = new Contenido();
         con.getTitle().setText("Arreglos");
         con.next("", null);
@@ -681,23 +699,25 @@ public final class Contenedor extends JPanel {
         );
         return con;
     }
+
     /**
      * Contenido del panel Arboles
      * @see Contenido
      */
-    private Contenido arboles(){
+    private Contenido arboles() {
         Contenido con = new Contenido();
         con.getTitle().setText("Arboles");
         con.next("", null);
         return con;
     }
+
     /**
      * Ejercicios simulados de recursividad
      * @return panel de simuladores en recursividad
      * @see Ejercicios
      * @see Contenedor#recursividad()
      */
-    private Ejercicios ejerciciosRecursivos(){
+    private Ejercicios ejerciciosRecursivos() {
         Ejercicios ejercicios = new Ejercicios();
         ejercicios.back("Recursividad", Paneles.RECURSIVIDAD);
         MouseAdapter mouse = new MouseAdapter() {
@@ -709,6 +729,7 @@ public final class Contenedor extends JPanel {
                     default -> Contenedor.panelActivo;
                 });
             }
+
             @Override
             public void mouseEntered(MouseEvent e) {
                 ejercicios.setTexto(switch (((JLabel) e.getSource()).getText()) {
@@ -717,6 +738,7 @@ public final class Contenedor extends JPanel {
                     default -> "";
                 });
             }
+
             @Override
             public void mouseExited(MouseEvent e) {
                 ejercicios.getTexto().setText("");
@@ -728,6 +750,7 @@ public final class Contenedor extends JPanel {
         );
         return ejercicios;
     }
+
     /**
      * Simulador para la temática TDA<br>
      * Simula un punto en el eje cartesiano
@@ -735,13 +758,14 @@ public final class Contenedor extends JPanel {
      * @see Punto
      * @see Contenedor#tda()
      */
-    private Punto simuladorTda(){
+    private Punto simuladorTda() {
         JSpinner x = new JSpinner(new SpinnerNumberModel(0, -10, 10, 1));
         JSpinner y = new JSpinner(new SpinnerNumberModel(0, -10, 10, 1));
         ((JSpinner.NumberEditor) x.getEditor()).getTextField().setEditable(false);
         ((JSpinner.NumberEditor) y.getEditor()).getTextField().setEditable(false);
         return new Punto(x, y);
     }
+
     /**
      * Simulador para la temática Recursividad<br>
      * Simulador para el proceso recursivo del factorial
@@ -749,11 +773,12 @@ public final class Contenedor extends JPanel {
      * @see Factorial
      * @see Contenedor#recursividad()
      */
-    private Factorial factorial(){
+    private Factorial factorial() {
         JSpinner valorDato = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
         ((JSpinner.NumberEditor) valorDato.getEditor()).getTextField().setEditable(false);
         return new Factorial(valorDato);
     }
+
     /**
      * Simulador para la temática Recursividad<br>
      * Simulador para el proceso recursivo del potencia
@@ -761,20 +786,21 @@ public final class Contenedor extends JPanel {
      * @see Potencia
      * @see Contenedor#recursividad()
      */
-    private Potencia potencia(){
+    private Potencia potencia() {
         JSpinner valorBase = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
         JSpinner valorExponente = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
         ((JSpinner.NumberEditor) valorBase.getEditor()).getTextField().setEditable(false);
         ((JSpinner.NumberEditor) valorExponente.getEditor()).getTextField().setEditable(false);
         return new Potencia(valorBase, valorExponente);
     }
+
     /**
      * Demostración utilizada en Modularidad
      * @return Demostración de Modularidad
      * @see Demostracion
      * @see Contenedor#modularidad()
      */
-    private Demostracion demoModularidad(){
+    private Demostracion demoModularidad() {
         Demostracion demostracion = new Demostracion("/resources/image/moduDemo1.png");
         demostracion.setTexto(Archivos.getContenidos("modularidad").get("demostracion"));
         JButton demo1 = new JButton("Inventar");

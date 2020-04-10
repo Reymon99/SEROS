@@ -1,4 +1,5 @@
 package tools;
+
 public enum Text {
     VENTANA_PRINCIPAL("Ventana Principal SEROS"),
     SIMULADOR_TDA_1("Muestra las coordenadas del punto dadas."),
@@ -21,10 +22,12 @@ public enum Text {
     ARITHMETIC("Se encontró un error aritmético"),
     ARITHMETIC_1("Se lanza error aritmético."),
     INDETERMINADO("Indeterminado");
-    private String n;
-    Text(String n){
+    private final String n;
+
+    Text(String n) {
         this.n = n;
     }
+
     /**
      * Contiene todos los textos utilizados en títulos, enunciado, contenidos, y notificaciones de proyecto
      * @return enunciado deseado

@@ -1,12 +1,15 @@
 package gui.contenido;
+
 import tools.Colour;
 import tools.Fuentes;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+
 public class Switch extends JComponent {
     private boolean modificable;
     private String text;
@@ -26,16 +29,17 @@ public class Switch extends JComponent {
      * Color del interruptor cuando está deshabilitado
      */
     private final Color DISABLED_COMPONENT_COLOR = Colour.GRAY_DISABLED.getColor();
+
     /**
      * Componente de estados Switch
-     * @param text texto del componente
+     * @param text  texto del componente
      * @param onOff estado del Switch
      */
-    public Switch(String text,boolean onOff) {
+    public Switch(String text, boolean onOff) {
         super();
         this.onOff = onOff;
-        this.text=text;
-        modificable=true;
+        this.text = text;
+        modificable = true;
         Dimension dim = new Dimension(
                 35 + 1 + getFontMetrics(Fuentes.UBUNTU_LIGHT_14.getFont()).stringWidth(text),
                 20
@@ -59,6 +63,7 @@ public class Switch extends JComponent {
             }
         });
     }
+
     /**
      * Retorna el estado del interruptor
      * @return boolean true: On | false: OFF
@@ -66,6 +71,7 @@ public class Switch extends JComponent {
     public boolean isOnOff() {
         return onOff;
     }
+
     /**
      * Modifica el estado del Switch
      * @param onOff nuevo estado del Switch
@@ -74,6 +80,7 @@ public class Switch extends JComponent {
         this.onOff = onOff;
         repaint();
     }
+
     /**
      * Retorna el color de fondo del componente
      * @return color de fondo del componente
@@ -81,6 +88,7 @@ public class Switch extends JComponent {
     public Color getBackgroundColor() {
         return backgroundColor;
     }
+
     /**
      * Modifica el color de fondo del componente
      * @param backgroundColor nuevo color de fondo del componente
@@ -89,6 +97,7 @@ public class Switch extends JComponent {
         this.backgroundColor = backgroundColor;
         repaint();
     }
+
     /**
      * Retorna el color de estado del Switch
      * @return color de estado del Switch
@@ -96,6 +105,7 @@ public class Switch extends JComponent {
     public Color getButtonColor() {
         return buttonColor;
     }
+
     /**
      * Modifica el color de estado del Switch
      * @param buttonColor nuevo color de estado del Switch
@@ -104,6 +114,7 @@ public class Switch extends JComponent {
         this.buttonColor = buttonColor;
         repaint();
     }
+
     /**
      * Retorna si el estado del Switch puede ser modificado
      * @return true: modificable false: no modificable
@@ -111,6 +122,7 @@ public class Switch extends JComponent {
     public boolean isModificable() {
         return modificable;
     }
+
     /**
      * Modifica si el estado del Switch puede ser modificado
      * @param modificable nuevo estado de modificación
@@ -118,6 +130,7 @@ public class Switch extends JComponent {
     public void setModificable(boolean modificable) {
         this.modificable = modificable;
     }
+
     /**
      * Retorna el texto del componente
      * @return texto del componente
@@ -125,8 +138,9 @@ public class Switch extends JComponent {
     public String getText() {
         return text;
     }
+
     /**
-     * Según el estado del opaque este se pintará
+     * Según el estado opaque este se pintará
      * @param g2 pincel
      */
     private void opaque1(Graphics2D g2) {
@@ -143,6 +157,7 @@ public class Switch extends JComponent {
             );
         }
     }
+
     /**
      * Según el estado del enable este se pintará
      * @param g2 pincel
@@ -155,6 +170,7 @@ public class Switch extends JComponent {
         // componente deshabilitado
         else g2.draw(new RoundRectangle2D.Double(2, 2, 31, 16, 16, 16));
     }
+
     /**
      * Según el estado del {@link Switch} este se pintará
      * @param g2 pincel
@@ -166,6 +182,7 @@ public class Switch extends JComponent {
         //OFF a la derecha
         else g2.fillOval(19, 4, 11, 11);
     }
+
     /**
      * Pintará el texto del componente
      * @param g2 pincel
@@ -174,6 +191,7 @@ public class Switch extends JComponent {
         g2.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
         g2.drawString(text, 36, 15);
     }
+
     /**
      * Modifica el texto del componente
      * @param text nuevo texto
@@ -182,6 +200,7 @@ public class Switch extends JComponent {
         this.text = text;
         repaint();
     }
+
     /**
      * Construcción del componente Switch
      */

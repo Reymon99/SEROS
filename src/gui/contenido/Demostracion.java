@@ -1,33 +1,40 @@
 package gui.contenido;
+
 import tools.Acciones;
 import tools.Archivos;
 import tools.Constrains;
+
 import javax.swing.*;
 import java.awt.*;
+
 public class Demostracion extends Lienzo {
     private JLabel image;
     private JTextArea texto;
     private JPanel botones;
+
     /**
      * Plantilla para los paneles de Demostración
      * @param path ruta de imagen a utilizar
      */
-    public Demostracion(String path){
+    public Demostracion(String path) {
         super(new GridBagLayout(), true);
         setAcciones(new Acciones() {
             @Override
             public void iteracion0() {//none
             }
+
             @Override
             public void iteracion1() {//none
             }
+
             @Override
             public void clean() {
                 setIcon(path);
             }
         });
-        init(Archivos.image(path ,-1, -1));
+        init(Archivos.image(path, -1, -1));
     }
+
     /**
      * Construcción del panel
      * @param icon imagen a mostrar en el panel
@@ -84,10 +91,11 @@ public class Demostracion extends Lienzo {
         );
         botones.setOpaque(false);
     }
+
     /**
      * Añade el componente de navegación siguiente, en el caso de nesecitarse
      */
-    public void nextPanel(){
+    public void nextPanel() {
         Constrains.addComp(
                 getNext(),
                 this,
@@ -99,6 +107,7 @@ public class Demostracion extends Lienzo {
                 GridBagConstraints.NONE
         );
     }
+
     /**
      * Establece los ítems que se van a utilizar en el panel,</br>
      * <ul>
@@ -106,21 +115,23 @@ public class Demostracion extends Lienzo {
      * </ul>
      * @param buttons ítems a añadir al panel
      */
-    public void setBotones(JButton... buttons){
+    public void setBotones(JButton... buttons) {
         for (JButton button : buttons) botones.add(button);
     }
+
     /**
      * Fija el texto de explicación del panel
      * @param text texto a fijar en el panel
      */
-    public void setTexto(String text){
+    public void setTexto(String text) {
         texto.setText(text);
     }
+
     /**
      * Imagen a fijar el panel
      * @param path ruta del archivo de imagen
      */
-    public void setIcon(String path){
+    public void setIcon(String path) {
         image.setIcon(Archivos.image(path, -1, -1));
     }
 }

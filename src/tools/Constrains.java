@@ -1,6 +1,8 @@
 package tools;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
+
 public abstract class Constrains {
     /**
      * Añade y distribuye el componente dentro del eje X y Y de la interfaz gráfica
@@ -20,6 +22,7 @@ public abstract class Constrains {
         grid.weighty = weighty;
         container.add(component, grid);
     }
+
     /**
      * Añade y distribuye el componente dentro del eje X de la interfaz gráfica
      * @param component {@link Component} a añadir dentro del {@link Container}
@@ -36,6 +39,7 @@ public abstract class Constrains {
         grid.weightx = weightx;
         container.add(component, grid);
     }
+
     /**
      * Añade y distribuye el componente dentro del eje Y de la interfaz gráfica
      * @param component {@link Component} a añadir dentro del {@link Container}
@@ -52,6 +56,7 @@ public abstract class Constrains {
         grid.weighty = weighty;
         container.add(component, grid);
     }
+
     /**
      * Añade y distribuye el componente dentro del eje X y Y de la interfaz gráfica con un tamaño fijo hacia el eje X y Y
      * @param component {@link Component} a añadir dentro del {@link Container}
@@ -72,6 +77,7 @@ public abstract class Constrains {
         grid.ipady = ipad.y;
         container.add(component, grid);
     }
+
     /**
      * Añade y distribuye el componente dentro del eje X y Y de la interfaz gráfica con un tamaño fijo hacia el eje X
      * @param component {@link Component} a añadir dentro del {@link Container}
@@ -92,6 +98,7 @@ public abstract class Constrains {
         grid.ipadx = ipadx;
         container.add(component, grid);
     }
+
     /**
      * Añade y distribuye el componente dentro del eje X y Y de la interfaz gráfica con un tamaño fijo hacia el eje Y
      * @param component {@link Component} a añadir dentro del {@link Container}
@@ -112,6 +119,7 @@ public abstract class Constrains {
         grid.ipady = ipady;
         container.add(component, grid);
     }
+
     /**
      * Añade y distribuye el componente dentro del eje X de la interfaz gráfica con un tamaño fijo hacia el eje X
      * @param component {@link Component} a añadir dentro del {@link Container}
@@ -130,6 +138,7 @@ public abstract class Constrains {
         grid.ipadx = ipadx;
         container.add(component, grid);
     }
+
     /**
      * Añade y distribuye el componente dentro del eje X de la interfaz gráfica con un tamaño fijo hacia el eje Y
      * @param component {@link Component} a añadir dentro del {@link Container}
@@ -148,6 +157,7 @@ public abstract class Constrains {
         grid.ipady = ipady;
         container.add(component, grid);
     }
+
     /**
      * Añade y distribuye el componente dentro del eje Y de la interfaz gráfica con un tamaño fijo hacia el eje X
      * @param component {@link Component} a añadir dentro del {@link Container}
@@ -166,6 +176,7 @@ public abstract class Constrains {
         grid.ipadx = ipadx;
         container.add(component, grid);
     }
+
     /**
      * Añade y distribuye el componente dentro del eje Y de la interfaz gráfica con un tamaño fijo hacia el eje Y
      * @param component {@link Component} a añadir dentro del {@link Container}
@@ -184,6 +195,7 @@ public abstract class Constrains {
         grid.ipady = ipady;
         container.add(component, grid);
     }
+
     /**
      * Distribución por defecto del grid
      * @param r       posicionamiento del componente

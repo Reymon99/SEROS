@@ -1,34 +1,40 @@
 package gui.editor;
+
 import tools.Colour;
+
 import java.awt.*;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
+
 public class Indice extends JPanel {
     private final static int HEIGHT;
-    private JTextComponent component;
+    private final JTextComponent component;
     private int minimumDisplayDigits;
     private int lineForeground;
     private int lastDigits;
     private int lastHeight;
-    private Insets insets;
-    private HashMap<String, Integer> lineNumber;
+    private final Insets insets;
+    private final HashMap<String, Integer> lineNumber;
     private HashMap<String, FontMetrics> fonts;
+
     static {
         HEIGHT = Integer.MAX_VALUE - 1000000;
     }
+
     /**
-     * Indice de lineas de un componente de Texto
+     * Índice de líneas de un componente de Texto
      * @param component componente de texto
      */
     Indice(JTextComponent component) {
         this(component, 1);
     }
+
     /**
-     * Indice de lineas de un componente de Texto
-     * @param component componente de texto
+     * Índice de líneas de un componente de Texto
+     * @param component            componente de texto
      * @param minimumDisplayDigits mínimo de los dígitos que se va a trabajar
      */
     private Indice(JTextComponent component, int minimumDisplayDigits) {
@@ -47,33 +53,37 @@ public class Indice extends JPanel {
             public void insertUpdate(DocumentEvent e) {
                 documentChanged();
             }
+
             @Override
             public void removeUpdate(DocumentEvent e) {
                 documentChanged();
             }
+
             @Override
             public void changedUpdate(DocumentEvent e) {
                 documentChanged();
             }
         });
     }
+
     /**
-     * Linea a pintar
-     * @param i linea
+     * Línea a pintar
+     * @param line linea
      */
-    protected void lineForegroundIn(int i){
-        lineForeground = i;
+    protected void lineForegroundIn(int line) {
+        lineForeground = line;
         repaint();
     }
+
     /**
      * Acción del evento de Document
-     * Modifica el ancho del panel según el número de dígitos del indice
+     * Modifica el ancho del panel según el número de dígitos del índice
      */
-    private void documentChanged(){
+    private void documentChanged() {
         SwingUtilities.invokeLater(() -> {
-            try{
+            try {
                 Rectangle rectangle = (Rectangle) component.modelToView2D(component.getDocument().getLength());
-                if (rectangle != null && rectangle.y != lastHeight){
+                if (rectangle != null && rectangle.y != lastHeight) {
                     setPreferredWidth();
                     repaint();
                     lastHeight = rectangle.y;
@@ -82,6 +92,7 @@ public class Indice extends JPanel {
             }
         });
     }
+
     /**
      * Modifica el número mínimo de dígitos
      * @param minimumDisplayDigits nuevo número mínimo de dígitos
@@ -90,13 +101,14 @@ public class Indice extends JPanel {
         this.minimumDisplayDigits = minimumDisplayDigits;
         setPreferredWidth();
     }
+
     /**
-     * Fija el tamaño determinado del Indice
+     * Fija el tamaño determinado del Índice
      */
     private void setPreferredWidth() {
         Element root = component.getDocument().getDefaultRootElement();
         int digits = Math.max(String.valueOf(root.getElementCount()).length(), minimumDisplayDigits);
-        if (lastDigits != digits){
+        if (lastDigits != digits) {
             lastDigits = digits;
             Dimension d = getPreferredSize();
             d.setSize(insets.left + insets.right + getFontMetrics(getFont()).charWidth('0') * digits, HEIGHT);
@@ -105,6 +117,7 @@ public class Indice extends JPanel {
             setSize(d);
         }
     }
+
     /**
      * Obtiene el número de la fila del texto
      * @param rowStartOffset posición de la fila
@@ -115,6 +128,7 @@ public class Indice extends JPanel {
         int index = root.getElementIndex(rowStartOffset);
         return root.getElement(index).getStartOffset() == rowStartOffset ? String.valueOf(index + 1) : "";
     }
+
     /**
      * Obtiene posición en X
      * @param stringWidth ancho del texto
@@ -123,10 +137,11 @@ public class Indice extends JPanel {
     private int getOffsetX(int stringWidth) {
         return getSize().width - insets.right - stringWidth;
     }
+
     /**
      * Obtiene posición en Y
      * @param rowStartOffset posición de la fila
-     * @param metrics {@link FontMetrics} del componente de Texto
+     * @param metrics        {@link FontMetrics} del componente de Texto
      * @return posición en Y
      */
     private int getOffsetY(int rowStartOffset, FontMetrics metrics) throws BadLocationException {
@@ -156,24 +171,26 @@ public class Indice extends JPanel {
         }
         return y - descent;
     }
+
     /**
      * Indica la posición de los números en los indices a mostrar
      * @return posiciones de los indices
      */
-    protected HashMap<String, Integer> getLineNumber(){
+    protected HashMap<String, Integer> getLineNumber() {
         return lineNumber;
     }
+
     /**
      * Dibuja los números de los indices
      * @param rowStartOffset inicio del indice
-     * @param endOffset fin del indice
-     * @param g pincel
-     * @param metrics medidas del indice
+     * @param endOffset      fin del indice
+     * @param g              pincel
+     * @param metrics        medidas del indice
      */
-    private void paintNumbers(int rowStartOffset, int endOffset, Graphics g, FontMetrics metrics){
+    private void paintNumbers(int rowStartOffset, int endOffset, Graphics g, FontMetrics metrics) {
         AtomicInteger rowStart = new AtomicInteger(rowStartOffset);
-        while (rowStart.get() <= endOffset){
-            try{
+        while (rowStart.get() <= endOffset) {
+            try {
                 String n = getTextLineNumber(rowStart.get());
                 g.setColor(
                         Integer.parseInt(n.isBlank() ? "-1" : n) == lineForeground ?
@@ -188,11 +205,12 @@ public class Indice extends JPanel {
             }
         }
     }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Colour.SCROLL_ROLLOVER.getColor());
-        g.drawLine(getWidth() - 1, getY(),getWidth() - 1, getHeight());
+        g.drawLine(getWidth() - 1, getY(), getWidth() - 1, getHeight());
         Rectangle clip = g.getClipBounds();
         paintNumbers(
                 component.viewToModel2D(new Point(0, clip.y)),

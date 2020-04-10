@@ -1,19 +1,22 @@
 package gui.contenido;
+
 import tools.Archivos;
 import tools.Colour;
 import tools.Fuentes;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Objects;
+
 public abstract class Components {
     /**
      * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
      * para permitirles funcionar como botones
-     * @param text {@link String} text de la etiqueta
-     * @param tip {@link String} tool tip de la etiqueta
-     * @param icon {@link ImageIcon} icono de la etiqueta
-     * @param menu opciones {@link JPopupMenu} del ítem
+     * @param text    {@link String} text de la etiqueta
+     * @param tip     {@link String} tool tip de la etiqueta
+     * @param icon    {@link ImageIcon} icono de la etiqueta
+     * @param menu    opciones {@link JPopupMenu} del ítem
      * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
      */
     public static JLabel getBoton(String text, String tip, ImageIcon icon, JPopupMenu menu, MouseAdapter adapter) {
@@ -22,11 +25,12 @@ public abstract class Components {
         label.setComponentPopupMenu(menu);
         return label;
     }
+
     /**
      * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
      * para permitirles funcionar como botones
-     * @param tip {@link String} tool tip de la etiqueta
-     * @param icon {@link ImageIcon} icono de la etiqueta
+     * @param tip     {@link String} tool tip de la etiqueta
+     * @param icon    {@link ImageIcon} icono de la etiqueta
      * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
      */
     public static JLabel getBoton(String tip, ImageIcon icon, MouseAdapter adapter) {
@@ -34,6 +38,7 @@ public abstract class Components {
         label.setToolTipText(tip);
         return initBoton(label, adapter);
     }
+
     /**
      * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
      * para permitirles funcionar como botones
@@ -45,6 +50,7 @@ public abstract class Components {
         label.setOpaque(false);
         return label;
     }
+
     /**
      * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
      * para permitirles funcionar como botones
@@ -56,19 +62,21 @@ public abstract class Components {
         label.setComponentPopupMenu(menu);
         return label;
     }
+
     /**
      * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
      * para permitirles funcionar como botones
-     * @param icon {@link ImageIcon} icono de la etiqueta
-     * @param text {@link String} text de la etiqueta
+     * @param icon    {@link ImageIcon} icono de la etiqueta
+     * @param text    {@link String} text de la etiqueta
      * @param adapter {@link MouseAdapter} evento del mouse de la etiqueta
      */
     public static JLabel getBoton(ImageIcon icon, String text, MouseAdapter adapter) {
         JLabel label = new JLabel(text, icon, SwingConstants.CENTER);
         label.setVerticalTextPosition(SwingConstants.BOTTOM);
         label.setHorizontalTextPosition(SwingConstants.CENTER);
-        return initBoton(label,adapter);
+        return initBoton(label, adapter);
     }
+
     private static JLabel initBoton(JLabel label, MouseAdapter adapter) {
         label.setFont(Fuentes.PURISA_18.getFont());
         label.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -76,10 +84,11 @@ public abstract class Components {
         label.addMouseListener(adapter);
         return label;
     }
+
     /**
      * Boton enfocado al Simulador del Proyecto
-     * @param text {@link String} en el boton
-     * @param enable estado de habilidez
+     * @param text     {@link String} en el boton
+     * @param enable   estado de habilidez
      * @param listener acción del evento del botón
      */
     public static JButton getButtonSimulador(String text, boolean enable, ActionListener listener) {
@@ -90,9 +99,10 @@ public abstract class Components {
         button.addActionListener(listener);
         return button;
     }
+
     /**
      * Notifica la información de la acción realizada
-     * @param message información a notificar
+     * @param message   información a notificar
      * @param component {@link Component} padre
      */
     public static JDialog getMessage(String message, Component component) {
@@ -125,8 +135,9 @@ public abstract class Components {
         });
         return dialog;
     }
+
     /**
-     * Area de texto con parametros predefinidos enfocados hacia el proyecto
+     * Área de texto con parametros predefinidos enfocados hacia el proyecto
      */
     public static JTextArea getTexto() {
         JTextArea area = new JTextArea();
@@ -137,17 +148,19 @@ public abstract class Components {
         area.setFont(Fuentes.UBUNTU_LIGHT_15.getFont());
         return area;
     }
+
     /**
-     * Area de texto con parametros predefinidos enfocados hacia el proyecto
+     * Área de texto con parametros predefinidos enfocados hacia el proyecto
      * @param text {@link String} a dar en el Texto
      */
     public static JTextArea getTexto(String text) {
         return initTexto(new JTextArea(text));
     }
+
     /**
-     * Area de texto con parametros predefinidos enfocados hacia el proyecto
-     * @param text {@link String} a dar en el Texto
-     * @param rows filas
+     * Área de texto con parametros predefinidos enfocados hacia el proyecto
+     * @param text    {@link String} a dar en el Texto
+     * @param rows    filas
      * @param columns columnas
      */
     public static JTextArea getTexto(String text, int rows, int columns) {
@@ -155,9 +168,10 @@ public abstract class Components {
         area.setBorder(BorderFactory.createSoftBevelBorder(1));
         return initTexto(area);
     }
+
     /**
-     * Area de texto con parametros predefinidos enfocados hacia el proyecto
-     * @param rows filas
+     * Área de texto con parametros predefinidos enfocados hacia el proyecto
+     * @param rows    filas
      * @param columns columnas
      */
     public static JTextArea getTexto(int rows, int columns) {
@@ -169,9 +183,10 @@ public abstract class Components {
         area.setCaretColor(Colour.BLANCO.getColor());
         area.setForeground(Colour.BLANCO.getColor());
         area.setBackground(Colour.AZUL_TEXT.getColor());
-        area.setMargin(new Insets(28,22, 10, 18));
+        area.setMargin(new Insets(28, 22, 10, 18));
         return area;
     }
+
     private static JTextArea initTexto(JTextArea area) {
         area.setFont(Fuentes.UBUNTU_LIGHT_20.getFont());
         area.setTabSize(2);

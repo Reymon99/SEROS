@@ -1,4 +1,5 @@
 package gui.simulador.simuladores.recursividad;
+
 import eventos.Eventos;
 import gui.contenido.Tree;
 import gui.editor.Editor;
@@ -8,10 +9,13 @@ import hilos.Lines;
 import tools.Dato;
 import tools.Operaciones;
 import tools.Text;
+
 import javax.swing.*;
+
 public final class Factorial extends Recursividad {
-    private JSpinner valorDato;
-    private Tree variableN;
+    private final JSpinner valorDato;
+    private final Tree variableN;
+
     /**
      * Simulador para la temática Recursividad<br>
      * Simulador para el proceso recursivo del factorial
@@ -28,6 +32,7 @@ public final class Factorial extends Recursividad {
         setTexto(Text.FACTORIAL);
         setProducto(Operaciones.operacion("n!", "0"));
     }
+
     @Override
     protected void casoTerminal() {
         base(
@@ -37,6 +42,7 @@ public final class Factorial extends Recursividad {
                 true
         );
     }
+
     @Override
     protected void casoDecrementativo() {
         base(
@@ -47,6 +53,7 @@ public final class Factorial extends Recursividad {
         );
         incrementIteracion();
     }
+
     @Override
     protected void casoIncrementativo() {
         base(
@@ -57,6 +64,7 @@ public final class Factorial extends Recursividad {
         );
         decrementIteracion();
     }
+
     @Override
     protected void casoBase(boolean found) {
         base(
@@ -70,9 +78,10 @@ public final class Factorial extends Recursividad {
             setDecremento(false);
         }
     }
+
     @Override
     protected Lines[] lines() {
-        LineLocation[] lines = new LineLocation[] {
+        LineLocation[] lines = new LineLocation[]{
                 new LineLocation(0, 1, null),
                 new LineLocation(0, 2, Text.CASO_BASE.toString()),
                 new LineLocation(0, 5, null, false)
@@ -118,10 +127,12 @@ public final class Factorial extends Recursividad {
                 }
         };
     }
+
     @Override
     protected boolean isCasoBase() {
         return getValor() == 1 || getValor() == 0;
     }
+
     @Override
     protected void accionesCasoBase(boolean code) {
         if (code) lines()[3].start();
@@ -130,6 +141,7 @@ public final class Factorial extends Recursividad {
             casoBase(n == 1 || n == 0);
         }
     }
+
     @Override
     public void iteracion0() {
         Eventos.enable(
@@ -154,6 +166,7 @@ public final class Factorial extends Recursividad {
                 true
         );
     }
+
     @Override
     public void iteracion1() {
         Eventos.enable(false, valorDato);
@@ -161,6 +174,7 @@ public final class Factorial extends Recursividad {
         Eventos.variable(variableN, -1, getValor());
         super.iteracion1();
     }
+
     @Override
     public void clean() {
         cleanComponents();
@@ -171,8 +185,9 @@ public final class Factorial extends Recursividad {
         setNumber(String.valueOf(0));
         setProducto(Operaciones.operacion("n!", "0"));
     }
+
     @Override
-    protected void base(Text text, Object numberText, String productoText, boolean clean){
+    protected void base(Text text, Object numberText, String productoText, boolean clean) {
         super.base(text, numberText, productoText, clean);
         setNumber(numberText.toString());
         setProducto(Operaciones.operacion(valorDato.getValue().toString() + '!', productoText));

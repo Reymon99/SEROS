@@ -1,4 +1,5 @@
 package gui.simulador.simuladores.recursividad;
+
 import eventos.Eventos;
 import gui.contenido.Tree;
 import gui.editor.Editor;
@@ -8,15 +9,18 @@ import hilos.Lines;
 import tools.Dato;
 import tools.Operaciones;
 import tools.Text;
+
 import javax.swing.*;
+
 public final class Potencia extends Recursividad {
-    private JSpinner valorBase;
-    private JSpinner valorExponente;
-    private Tree base;
-    private Tree exponente;
+    private final JSpinner valorBase;
+    private final JSpinner valorExponente;
+    private final Tree base;
+    private final Tree exponente;
+
     /**
      * Simulador para la temática Recursividad<br>
-     * Simulador para el proceso recursivo del potencia
+     * Simulador para el proceso recursivo de la potencia
      * @see Recursividad
      * @see gui.simulador.Simulador
      * @see tools.Acciones
@@ -36,12 +40,14 @@ public final class Potencia extends Recursividad {
         setTexto(Text.POTENCIA);
         addCodes(Editor.editor("Potencia"));
     }
+
     /**
      * Acción del caso base 0 lanzando una excepción aritmética
      */
     private void casoArithmetic() {
         base(Text.ARITHMETIC_1, '-', Text.INDETERMINADO.toString(), true);
     }
+
     @Override
     protected void casoTerminal() {
         base(
@@ -51,6 +57,7 @@ public final class Potencia extends Recursividad {
                 true
         );
     }
+
     @Override
     protected void casoDecrementativo() {
         base(
@@ -61,6 +68,7 @@ public final class Potencia extends Recursividad {
         );
         incrementIteracion();
     }
+
     @Override
     protected void casoIncrementativo() {
         base(
@@ -71,6 +79,7 @@ public final class Potencia extends Recursividad {
         );
         decrementIteracion();
     }
+
     @Override
     protected void casoBase(boolean found) {
         base(
@@ -81,11 +90,12 @@ public final class Potencia extends Recursividad {
                         Operaciones.productoPotenciaUp(valorBase.getValue(), valorExponente.getValue()),
                 found
         );
-        if (!found){
+        if (!found) {
             setDecremento(false);
             decrementIteracion();
         }
     }
+
     @Override
     protected Lines[] lines() {
         LineLocation[] lines = new LineLocation[]{
@@ -171,16 +181,18 @@ public final class Potencia extends Recursividad {
                 }
         };
     }
+
     @Override
     protected boolean isCasoBase() {
         int basePot = Integer.parseInt(valorBase.getValue().toString());
         return getValor() == 1 || getValor() == 0 || basePot == 1 || basePot == 0;
     }
+
     @Override
     protected void accionesCasoBase(boolean code) {
         int basePot = Integer.parseInt(valorBase.getValue().toString());
-        if (getValor() == 0){
-            if (basePot == 0){
+        if (getValor() == 0) {
+            if (basePot == 0) {
                 if (code) lines()[3].start();
                 else casoArithmetic();
             } else if (code) lines()[4].start();
@@ -191,6 +203,7 @@ public final class Potencia extends Recursividad {
         } else if (code) lines()[6].start();
         else casoBase(false);
     }
+
     @Override
     public void iteracion0() {
         Eventos.enable(
@@ -220,6 +233,7 @@ public final class Potencia extends Recursividad {
                 true
         );
     }
+
     @Override
     public void iteracion1() {
         Eventos.enable(false, valorBase, valorExponente);
@@ -228,6 +242,7 @@ public final class Potencia extends Recursividad {
         Eventos.variable(exponente, -1, getValor());
         super.iteracion1();
     }
+
     @Override
     public void clean() {
         cleanComponents();
@@ -240,10 +255,11 @@ public final class Potencia extends Recursividad {
         Eventos.variable(base, -1, "");
         Eventos.variable(exponente, -1, "");
     }
+
     @Override
     protected void base(Text text, Object numberText, String productoText, boolean clean) {
         super.base(text, numberText, productoText, clean);
-        try{
+        try {
             setNumber(Operaciones.formatNumber(numberText, Operaciones.Operacion.POTENCIA));
         } catch (IllegalArgumentException e) {
             setNumber(numberText.toString());
@@ -251,9 +267,9 @@ public final class Potencia extends Recursividad {
         setProducto(
                 Text.INDETERMINADO.toString().equals(productoText) ?
                         Text.INDETERMINADO.toString() : Eventos.html(Operaciones.operacion(
-                                Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()),
-                                productoText
-                        ))
+                        Operaciones.exponente(valorBase.getValue(), valorExponente.getValue()),
+                        productoText
+                ))
         );
     }
 }

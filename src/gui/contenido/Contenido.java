@@ -1,4 +1,5 @@
 package gui.contenido;
+
 import eventos.Eventos;
 import gui.contenido.scroll.ModernScrollPane;
 import tools.Acciones;
@@ -6,24 +7,29 @@ import tools.Constrains;
 import tools.Fuentes;
 import tools.Paneles;
 import tools.Text;
+
 import javax.swing.*;
 import java.awt.*;
+
 public final class Contenido extends Lienzo {
     private JPanel contenido;
     private JLabel title;
     private ModernScrollPane pane;
+
     /**
      * Esquema de los paneles de contenido del proyecto
      */
-    public Contenido(){
-        super(new GridBagLayout(),true);
+    public Contenido() {
+        super(new GridBagLayout(), true);
         setAcciones(new Acciones() {
             @Override
             public void iteracion0() {//None
             }
+
             @Override
             public void iteracion1() {//None
             }
+
             @Override
             public void clean() {
                 Eventos.scroll(pane, 0);
@@ -31,6 +37,7 @@ public final class Contenido extends Lienzo {
         });
         init();
     }
+
     /**
      * Instanciación y acomodamiento de los componentes del panel
      */
@@ -91,6 +98,7 @@ public final class Contenido extends Lienzo {
                 GridBagConstraints.NONE
         );
     }
+
     /**
      * Descripción del contenido de la temática
      * @return contenido {@link JPanel}
@@ -98,6 +106,7 @@ public final class Contenido extends Lienzo {
     public JPanel getContenido() {
         return contenido;
     }
+
     /**
      * Título del contenido
      * @return title {@link JLabel}
