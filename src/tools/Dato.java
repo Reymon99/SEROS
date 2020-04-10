@@ -87,7 +87,7 @@ public class Dato {
      * @return hash del dato
      */
     private String hashGenerator() {
-        return tipoDato + '@' + hashHex();
+        return valor.isEmpty() || "null".equals(valor) ? "null" : tipoDato + '@' + hashHex();
     }
 
     /**
@@ -95,7 +95,7 @@ public class Dato {
      * @return hash
      */
     private String hashHex() {
-        return valor.isEmpty() || "null".equals(valor) ? "null" : Integer.toHexString(valor.hashCode());
+        return Integer.toHexString(valor.hashCode());
     }
 
     @Override
