@@ -25,7 +25,8 @@ public enum Colour {
     VERDE_ACTIVO(new Color(75, 216, 101)),
     BLANCO_DESHABILITADO(new Color(216, 217, 219)),
     RED_LINE_SELECTED(new Color(235, 0, 0, 50)),
-    LINE_FOREGROUND(new Color(15, 125, 162));
+    LINE_FOREGROUND(new Color(15, 125, 162)),
+    LAVANDA(new Color(156, 118, 226, 95));
     private final Color color;
 
     /**
