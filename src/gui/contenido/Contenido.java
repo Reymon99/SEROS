@@ -1,9 +1,11 @@
 package gui.contenido;
 
+import org.constrains.Constrains;
+import org.constrains.Weight;
+
 import eventos.Eventos;
 import gui.contenido.scroll.ModernScrollPane;
 import tools.Acciones;
-import tools.Constrains;
 import tools.Fuentes;
 import tools.Paneles;
 import tools.Text;
@@ -57,45 +59,38 @@ public final class Contenido extends Lienzo {
         pane.getVerticalScrollBar().setUnitIncrement(50);
         pane.setFocusable(true);
         back(Text.VENTANA_PRINCIPAL.toString(), Paneles.PRINCIPAL);
+        Weight weight00 = new Weight(0, 0);
         Constrains.addComp(
                 title,
                 this,
                 new Rectangle(0, 0, 3, 1),
-                1,
-                1,
+                new Weight(1, 1),
                 new Insets(15, 15, 8, 10),
-                GridBagConstraints.NORTH,
-                GridBagConstraints.HORIZONTAL
+                new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL)
         );
         Constrains.addComp(
                 pane,
                 this,
                 new Rectangle(0, 1, 3, 1),
-                1,
-                25,
+                new Weight(1, 25),
                 new Insets(5, 20, 10, 15),
-                GridBagConstraints.NORTH,
-                GridBagConstraints.BOTH
+                new Point(GridBagConstraints.NORTH, GridBagConstraints.BOTH)
         );
         Constrains.addComp(
                 getBack(),
                 this,
                 new Rectangle(0, 2, 1, 1),
-                0,
-                0,
+                weight00,
                 new Insets(10, 7, 10, 2),
-                GridBagConstraints.SOUTHWEST,
-                GridBagConstraints.NONE
+                new Point(GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE)
         );
         Constrains.addComp(
                 getNext(),
                 this,
                 new Rectangle(2, 2, 1, 1),
-                0,
-                0,
+                weight00,
                 new Insets(10, 2, 10, 7),
-                GridBagConstraints.SOUTHEAST,
-                GridBagConstraints.NONE
+                new Point(GridBagConstraints.SOUTHEAST, GridBagConstraints.NONE)
         );
     }
 

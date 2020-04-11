@@ -1,8 +1,10 @@
 package gui.contenido;
 
+import org.constrains.Constrains;
+
+import org.constrains.Weight;
 import tools.Acciones;
 import tools.Archivos;
-import tools.Constrains;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,54 +42,48 @@ public class Demostracion extends Lienzo {
      * @param icon imagen a mostrar en el panel
      */
     private void init(ImageIcon icon) {
+        Weight weight11 = new Weight(1, 1);
+        Weight weight00 = new Weight(0, 0);
+        Point placeSWN = new Point(GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
         Constrains.addComp(
                 image = new JLabel(icon),
                 this,
                 new Rectangle(0, 0, 3, 1),
-                1, 1,
+                weight11,
                 new Insets(20, 30, 8, 15),
-                GridBagConstraints.CENTER,
-                GridBagConstraints.NONE
+                new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE)
         );
         Constrains.addComp(
                 botones = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10)),
                 this,
                 new Rectangle(0, 1, 3, 1),
-                1,
-                1,
+                weight11,
                 new Insets(5, 30, 3, 20),
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL
+                new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL)
         );
         Constrains.addComp(
                 texto = Components.getTexto("", 10, 55),
                 this,
                 new Rectangle(0, 2, 3, 1),
-                1,
-                1,
+                weight11,
                 new Insets(5, 90, 10, 80),
-                GridBagConstraints.SOUTH,
-                GridBagConstraints.BOTH
+                new Point(GridBagConstraints.SOUTH, GridBagConstraints.BOTH)
         );
         Constrains.addComp(
                 getBack(),
                 this,
                 new Rectangle(0, 3, 1, 1),
-                0,
-                0,
+                weight00,
                 new Insets(10, 7, 10, 5),
-                GridBagConstraints.SOUTHWEST,
-                GridBagConstraints.NONE
+                placeSWN
         );
         Constrains.addComp(
                 getHome(),
                 this,
                 new Rectangle(1, 3, 1, 1),
-                0,
-                0,
+                weight00,
                 new Insets(10, 5, 25, 5),
-                GridBagConstraints.SOUTHWEST,
-                GridBagConstraints.NONE
+                placeSWN
         );
         botones.setOpaque(false);
     }
@@ -100,11 +96,9 @@ public class Demostracion extends Lienzo {
                 getNext(),
                 this,
                 new Rectangle(2, 3, 1, 1),
-                0,
-                0,
+                new Weight(0, 0),
                 new Insets(10, 50, 10, 7),
-                GridBagConstraints.SOUTHEAST,
-                GridBagConstraints.NONE
+                new Point(GridBagConstraints.SOUTHEAST, GridBagConstraints.NONE)
         );
     }
 

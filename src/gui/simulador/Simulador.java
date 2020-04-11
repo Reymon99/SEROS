@@ -1,5 +1,8 @@
 package gui.simulador;
 
+import org.constrains.Constrains;
+import org.constrains.Weight;
+
 import eventos.Eventos;
 import gui.contenido.Components;
 import gui.contenido.Lienzo;
@@ -10,7 +13,6 @@ import gui.contenido.scroll.ModernScrollPane;
 import gui.editor.Editor;
 import tools.Archivos;
 import tools.Colour;
-import tools.Constrains;
 import tools.Fuentes;
 import tools.Text;
 
@@ -103,45 +105,42 @@ public abstract class Simulador extends Lienzo {
 
     private void addComponents(Component... components) {
         Insets insets = new Insets(0, 0, 0, 0);
+        Weight weight00 = new Weight(0, 0);
+        Weight weight10 = new Weight(1, 0);
+        Point placeWN = new Point(GridBagConstraints.WEST, GridBagConstraints.NONE);
+        Point placeCH = new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+        Point placeCB = new Point(GridBagConstraints.CENTER, GridBagConstraints.BOTH);
         Constrains.addComp(
                 lienzo,
                 this,
                 new Rectangle(0, 0, 1, 4),
-                0,
-                0,
+                weight00,
                 insets,
-                GridBagConstraints.NORTHWEST,
-                GridBagConstraints.NONE
+                new Point(GridBagConstraints.NORTHWEST, GridBagConstraints.NONE)
         );
         Constrains.addComp(
                 getBack(),
                 control,
                 new Rectangle(0, 0, 1, 2),
-                0,
-                0,
+                weight00,
                 new Insets(15, 15, 15, 5),
-                GridBagConstraints.WEST,
-                GridBagConstraints.NONE
+                placeWN
         );
         Constrains.addComp(
                 getHome(),
                 control,
                 new Rectangle(1, 0, 1, 2),
-                0,
-                0,
+                weight00,
                 new Insets(20, 5, 20, 15),
-                GridBagConstraints.WEST,
-                GridBagConstraints.NONE
+                placeWN
         );
         Constrains.addComp(
                 control,
                 this,
                 new Rectangle(0, 4, 1, 1),
-                1,
-                1,
+                weight00,
                 insets,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.BOTH
+                placeCB
         );
         Constrains.addCompX(
                 components[0],
@@ -149,40 +148,33 @@ public abstract class Simulador extends Lienzo {
                 new Rectangle(1, 0, 1, 1),
                 1,
                 insets,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL
+                placeCH
         );
         Constrains.addCompIy(
                 components[1],
                 this,
                 new Rectangle(1, 1, 1, 1),
-                1,
-                0,
+                weight10,
                 insets,
                 40,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL
+                placeCH
         );
         Constrains.addCompIy(
                 components[2],
                 this,
                 new Rectangle(1, 2, 1, 1),
-                1,
-                0,
+                weight10,
                 insets,
                 190,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.BOTH
+                placeCB
         );
         Constrains.addComp(
                 components[3],
                 this,
                 new Rectangle(1, 3, 1, 2),
-                1,
-                1,
+                new Weight(1, 1),
                 insets,
-                GridBagConstraints.CENTER,
-                GridBagConstraints.BOTH
+                placeCB
         );
     }
 
@@ -258,11 +250,9 @@ public abstract class Simulador extends Lienzo {
                     trees[i],
                     datos,
                     new Rectangle(0, i, 1, 1),
-                    1,
-                    1,
+                    new Weight(1, 1),
                     new Insets(i == 0 ? 7 : 1, 10, i == trees.length - 1 ? sizeTree(trees.length) : 1, 5),
-                    GridBagConstraints.CENTER,
-                    GridBagConstraints.BOTH
+                    new Point(GridBagConstraints.CENTER, GridBagConstraints.BOTH)
             );
     }
 

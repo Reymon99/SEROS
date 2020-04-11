@@ -1,12 +1,13 @@
 package gui.simulador.simuladores;
 
+import org.constrains.Constrains;
+
 import eventos.Eventos;
 import gui.contenido.Tree;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
 import gui.simulador.lienzos.Graficador;
 import tools.Acciones;
-import tools.Constrains;
 import tools.Dato;
 import tools.Paneles;
 import tools.Text;
@@ -99,14 +100,14 @@ public final class Punto extends Simulador implements Acciones {
 
     @Override
     protected void acomodamientoPanelControl(String title, JComponent... components) {
+        Point placeCH = new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(
                 componentRegistro(title, components),
                 getControl(),
                 new Rectangle(2, 0, 2, 1),
                 1,
                 new Insets(3, 80, 5, 5),
-                GridBagConstraints.EAST,
-                GridBagConstraints.BOTH
+                new Point(GridBagConstraints.EAST, GridBagConstraints.BOTH)
         );
         Constrains.addCompX(
                 getSend(),
@@ -114,8 +115,7 @@ public final class Punto extends Simulador implements Acciones {
                 new Rectangle(4, 0, 2, 1),
                 1,
                 new Insets(10, 5, 5, 100),
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL
+                placeCH
         );
         Constrains.addCompX(
                 getPause(),
@@ -123,8 +123,7 @@ public final class Punto extends Simulador implements Acciones {
                 new Rectangle(2, 1, 1, 1),
                 1,
                 new Insets(5, 35, 10, 8),
-                GridBagConstraints.EAST,
-                GridBagConstraints.NONE
+                new Point(GridBagConstraints.EAST, GridBagConstraints.NONE)
         );
         Constrains.addCompX(
                 getNextIteracion(),
@@ -132,8 +131,7 @@ public final class Punto extends Simulador implements Acciones {
                 new Rectangle(3, 1, 2, 1),
                 1,
                 new Insets(5, 8, 10, 8),
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL
+                placeCH
         );
         Constrains.addCompX(
                 getClean(),
@@ -141,8 +139,7 @@ public final class Punto extends Simulador implements Acciones {
                 new Rectangle(5, 1, 1, 1),
                 1,
                 new Insets(5, 5, 10, 100),
-                GridBagConstraints.WEST,
-                GridBagConstraints.HORIZONTAL
+                new Point(GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL)
         );
     }
 

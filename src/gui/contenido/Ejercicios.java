@@ -1,7 +1,9 @@
 package gui.contenido;
 
+import org.constrains.Constrains;
+import org.constrains.Weight;
+
 import tools.Acciones;
-import tools.Constrains;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,45 +42,39 @@ public final class Ejercicios extends Lienzo {
         panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 50, 20));
         panel.setOpaque(false);
         panel.setPreferredSize(new Dimension(1000, 150));
+        Weight weight00 = new Weight(0, 0);
+        Point placeSWN = new Point(GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
         Constrains.addComp(
                 panel,
                 this,
                 new Rectangle(0, 0, 2, 1),
-                0.8,
-                1,
+                new Weight(0.8, 1),
                 new Insets(70, 40, 15, 40),
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL
+                new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL)
         );
         Constrains.addComp(
                 texto = Components.getTexto("", 8, 55),
                 this,
                 new Rectangle(0, 1, 2, 1),
-                1,
-                1,
+                new Weight(1, 1),
                 new Insets(10, 20, 25, 20),
-                GridBagConstraints.SOUTH,
-                GridBagConstraints.NONE
+                new Point(GridBagConstraints.SOUTH, GridBagConstraints.NONE)
         );
         Constrains.addComp(
                 getBack(),
                 this,
                 new Rectangle(0, 2, 1, 1),
-                0,
-                0,
+                weight00,
                 new Insets(10, 7, 10, 5),
-                GridBagConstraints.SOUTHWEST,
-                GridBagConstraints.NONE
+                placeSWN
         );
         Constrains.addComp(
                 getHome(),
                 this,
                 new Rectangle(1, 2, 1, 1),
-                0,
-                0,
+                weight00,
                 new Insets(10, 5, 25, 5),
-                GridBagConstraints.SOUTHWEST,
-                GridBagConstraints.NONE
+                placeSWN
         );
     }
 

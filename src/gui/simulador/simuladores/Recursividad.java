@@ -1,10 +1,11 @@
 package gui.simulador.simuladores;
 
+import org.constrains.Constrains;
+
 import eventos.Eventos;
 import gui.simulador.Simulador;
 import hilos.Lines;
 import tools.Acciones;
-import tools.Constrains;
 import tools.Fuentes;
 import tools.Paneles;
 import tools.Text;
@@ -120,14 +121,14 @@ public abstract class Recursividad extends Simulador implements Acciones {
      * Acomodamiento por defecto cuando se utiliza productos
      */
     private void acomodamientoProducto() {
+        Point placeCH = new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(
                 number,
                 getLienzo(),
                 new Rectangle(0, 0, 1, 1),
                 1,
                 new Insets(40, 50, 50, 50),
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL
+                placeCH
         );
         Constrains.addCompX(
                 producto,
@@ -135,8 +136,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
                 new Rectangle(0, 1, 1, 1),
                 1,
                 new Insets(40, 30, 50, 30),
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL
+                placeCH
         );
     }
 
@@ -214,14 +214,15 @@ public abstract class Recursividad extends Simulador implements Acciones {
 
     @Override
     protected void acomodamientoPanelControl(String title, JComponent... components) {
+        Point placeWN = new Point(GridBagConstraints.WEST, GridBagConstraints.NONE);
+        Point placeCH = new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(
                 componentRegistro(title, components),
                 getControl(),
                 new Rectangle(2, 0, 1, 1),
                 1,
                 new Insets(10, 80, 5, 5),
-                GridBagConstraints.EAST,
-                GridBagConstraints.BOTH
+                new Point(GridBagConstraints.EAST, GridBagConstraints.BOTH)
         );
         Constrains.addCompX(
                 getSend(),
@@ -229,8 +230,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
                 new Rectangle(3, 0, 1, 1),
                 1,
                 new Insets(10, 5, 5, 5),
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL
+                placeCH
         );
         Constrains.addCompX(
                 getPause(),
@@ -238,8 +238,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
                 new Rectangle(4, 0, 1, 1),
                 1,
                 new Insets(10, 5, 5, 100),
-                GridBagConstraints.WEST,
-                GridBagConstraints.NONE
+                placeWN
         );
         Constrains.addCompX(
                 getCodigo(),
@@ -247,8 +246,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
                 new Rectangle(4, 1, 1, 1),
                 1,
                 new Insets(5, 8, 10, 100),
-                GridBagConstraints.WEST,
-                GridBagConstraints.NONE
+                placeWN
         );
         Constrains.addCompX(
                 getNextIteracion(),
@@ -256,8 +254,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
                 new Rectangle(3, 1, 1, 1),
                 1,
                 new Insets(5, 5, 10, 5),
-                GridBagConstraints.CENTER,
-                GridBagConstraints.HORIZONTAL
+                placeCH
         );
         Constrains.addCompX(
                 getClean(),
@@ -265,8 +262,7 @@ public abstract class Recursividad extends Simulador implements Acciones {
                 new Rectangle(2, 1, 1, 1),
                 1,
                 new Insets(5, 80, 10, 5),
-                GridBagConstraints.WEST,
-                GridBagConstraints.HORIZONTAL
+                new Point(GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL)
         );
     }
 
