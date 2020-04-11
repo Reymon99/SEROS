@@ -15,7 +15,7 @@ public enum Paneles {
     PILAS("Pilas"),
     COLAS("Colas"),
     LISTAS_ENLAZADAS("Listas Enlazadas"),
-    ARBOLES("Arboles"),
+    ARBOLES("Árboles"),
     GRAFOS("Grafos"),
     DEMOSTRACION_MODULARIDAD("Demostración Modularidad"),
     EJERCICIOS_RECURSIVIDAD("Ejercicios Recursividad"),
