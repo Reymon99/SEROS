@@ -14,6 +14,16 @@ import java.util.Optional;
 
 public abstract class Archivos {
     /**
+     * Contiene cada uno de los pseudocódigos usados en el proyecto SEROS
+     */
+    private static LinkedHashMap<String, ArrayList<ArrayList<String>>> codes;
+
+    /**
+     * Contiene cada uno de los contenidos temáticos de las Estructuras de Datos empleados en el proyecto
+     */
+    private static LinkedHashMap<String, LinkedHashMap<String, String>> contenidos;
+
+    /**
      * Convierte y moldea una Imagen para ser utilizada en el proyecto
      * @param path   String
      * @param width  int
@@ -70,11 +80,6 @@ public abstract class Archivos {
     }
 
     /**
-     * Contiene cada uno de los pseudocódigos usados en el proyecto SEROS
-     */
-    private static LinkedHashMap<String, ArrayList<ArrayList<String>>> codes;
-
-    /**
      * Carga el archivo .yml que contiene los diversos pseudocódigos del proyecto, en el caso de haber
      * sidos cargados con anterioridad, de lo contrario a esto solo retornará los pseudocódigos
      * preestablecidos y cargados con anterioridad
@@ -94,11 +99,6 @@ public abstract class Archivos {
     public static void destroyCodes() {
         if (Optional.ofNullable(codes).isPresent()) codes = null;
     }
-
-    /**
-     * Contiene cada uno de los contenidos temáticos de las Estructuras de Datos empleados en el proyecto
-     */
-    private static LinkedHashMap<String, LinkedHashMap<String, String>> contenidos;
 
     /**
      * Carga el archivo .yml que contiene los diversos contenidos temáticos del proyecto, en el caso de haber sidos
