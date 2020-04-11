@@ -9,12 +9,14 @@ import gui.contenido.Contenido;
 import gui.contenido.Demostracion;
 import gui.contenido.Ejercicios;
 import gui.contenido.Lienzo;
+import gui.contenido.ModernButton;
 import gui.contenido.TextPane;
 import gui.editor.Editor;
 import gui.simulador.simuladores.Punto;
 import gui.simulador.simuladores.recursividad.Factorial;
 import gui.simulador.simuladores.recursividad.Potencia;
 import tools.Archivos;
+import tools.Colour;
 import tools.Fuentes;
 import tools.Paneles;
 
@@ -76,263 +78,69 @@ public final class Contenedor extends JPanel {
     /**
      * Menu principal de la interfaz gráfica del proyecto
      * @return panel principal de SEROS
+     * @see Contenedor#itemsPrincipal()
      */
     private Lienzo principal() {
         Lienzo lienzo = new Lienzo(new GridBagLayout(), true);
-        Point placeCN = new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE);
-        Point placeSN = new Point(GridBagConstraints.SOUTH, GridBagConstraints.NONE);
-        Point placeNN = new Point(GridBagConstraints.NORTH, GridBagConstraints.NONE);
-        Constrains.addCompY(
-                Components.getBoton(
-                        "TDA",
-                        "Tipos de Datos Abstratos",
-                        Archivos.image("/resources/image/TDA.png", -1, -1),
-                        Eventos.menu(Paneles.TDA, Paneles.SIMULADOR_TDA),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.TDA);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(0, 0, 1, 4),
-                0,
-                new Insets(30, 57, 30, 18),
-                placeCN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Modularidad",
-                        "Division de tareas",
-                        Archivos.image("/resources/image/Modularidad y Mapas.png", -1, -1),
-                        Eventos.menu(Paneles.MODULARIDAD, Paneles.DEMOSTRACION_MODULARIDAD),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.MODULARIDAD);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(1, 0, 1, 1),
-                0,
-                new Insets(30, 18, 0, 18),
-                placeCN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Recursividad",
-                        "Métodos Recursivos",
-                        Archivos.image("/resources/image/Recursividad.png", -1, -1),
-                        Eventos.menu(
-                                Paneles.RECURSIVIDAD,
-                                Paneles.EJERCICIOS_RECURSIVIDAD,
-                                Paneles.FACTORIAL,
-                                Paneles.POTENCIA
-                        ),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.RECURSIVIDAD);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(1, 1, 1, 1),
-                0,
-                new Insets(13, 18, 13, 18),
-                placeCN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Arreglos",
-                        "Vectores y Matrices",
-                        Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1),
-                        Eventos.menu(Paneles.ARREGLOS),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.ARREGLOS);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(1, 2, 1, 1),
-                0,
-                new Insets(13, 18, 13, 18),
-                placeCN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Nodos",
-                        "Enlazamiento de Datos",
-                        Archivos.image("/resources/image/Nodos.png", -1, -1),
-                        Eventos.menu(Paneles.NODOS),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.NODOS);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(1, 3, 1, 1),
-                0,
-                new Insets(13, 18, 30, 18),
-                placeCN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Ordenamiento",
-                        "Métodos de Ordenamiento Interno",
-                        Archivos.image("/resources/image/Ordenamiento.png", -1, -1),
-                        Eventos.menu(Paneles.ORDENAMIENTO),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.ORDENAMIENTO);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(2, 0, 1, 2),
-                0,
-                new Insets(30, 18, 13, 18),
-                placeSN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Busqueda",
-                        "Métodos de Busqueda",
-                        Archivos.image("/resources/image/Busqueda.png", -1, -1),
-                        Eventos.menu(Paneles.BUSQUEDA),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.BUSQUEDA);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(2, 2, 1, 2),
-                0,
-                new Insets(13, 18, 30, 18),
-                placeNN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Pilas",
-                        "Pilas Dinámicas y Estáticas",
-                        Archivos.image("/resources/image/Pilas.png", -1, -1),
-                        Eventos.menu(Paneles.PILAS),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.PILAS);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(3, 0, 1, 2),
-                0,
-                new Insets(30, 18, 13, 18),
-                placeCN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Colas",
-                        "Colas Dinámicas y Estáticas",
-                        Archivos.image("/resources/image/Colas.png", -1, -1),
-                        Eventos.menu(Paneles.COLAS),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.COLAS);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(3, 1, 1, 2),
-                0,
-                new Insets(13, 18, 13, 13),
-                placeCN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Listas",
-                        "Listas Enlazadas",
-                        Archivos.image("/resources/image/Listas Enlazadas.png", -1, -1),
-                        Eventos.menu(Paneles.LISTAS_ENLAZADAS),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.LISTAS_ENLAZADAS);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(3, 2, 1, 2),
-                0,
-                new Insets(13, 18, 30, 18),
-                placeCN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Árboles",
-                        "Árboles Binarios y AVL",
-                        Archivos.image("/resources/image/Arreglos y Arboles.png", -1, -1),
-                        Eventos.menu(Paneles.ARBOLES),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.ARBOLES);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(4, 0, 1, 2),
-                0,
-                new Insets(30, 18, 13, 75),
-                placeSN
-        );
-        Constrains.addCompY(
-                Components.getBoton(
-                        "Grafos",
-                        "Algoritmo del Camino más Corto",
-                        Archivos.image("/resources/image/Grafos.png", -1, -1),
-                        Eventos.menu(Paneles.GRAFOS),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.show(Paneles.GRAFOS);
-                            }
-                        }
-                ),
-                lienzo,
-                new Rectangle(4, 2, 1, 2),
-                0,
-                new Insets(13, 18, 30, 75),
-                placeNN
-        );
         Constrains.addComp(
-                Components.getBoton(
-                        "Acerca de Seros",
-                        Archivos.image("/resources/image/about.png", -1, -1),
-                        new MouseAdapter() {
-                            @Override
-                            public void mouseReleased(MouseEvent e) {
-                                Eventos.about(lienzo);
-                            }
-                        }
-                ),
+                itemsPrincipal(),
                 lienzo,
-                new Rectangle(6, 3, 1, 1),
-                new Weight(0, 0),
-                new Insets(0, 0, 6, 0),
-                new Point(GridBagConstraints.SOUTHEAST, GridBagConstraints.NONE)
+                new Rectangle(0, 0, 1, 1),
+                new Weight(1, 1),
+                new Insets(5, 5, 5, 5),
+                new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE)
         );
         return lienzo;
+    }
+
+    /**
+     * Contiene los ítems de cada uno de los contenidos que tiene SEROS
+     * @return ítems organizados en una grilla
+     * @see ModernButton#ModernButton(Paneles, Colour, String, Paneles...)
+     */
+    private JPanel itemsPrincipal() {
+        JPanel items = new JPanel(new GridLayout(3, 4, 25, 20));
+        items.setOpaque(false);
+        items.add(new ModernButton(
+                Paneles.TDA, Colour.FACIL, "Tipo de Datos Abstractos",  // Parametros
+                Paneles.SIMULADOR_TDA  // Opciones del menu
+        ));
+        items.add(new ModernButton(
+                Paneles.MODULARIDAD, Colour.FACIL, "División de tareas",
+                Paneles.DEMOSTRACION_MODULARIDAD
+        ));
+        items.add(new ModernButton(
+                Paneles.RECURSIVIDAD, Colour.INTERMEDIO, "Métodos Recursivos",
+                Paneles.EJERCICIOS_RECURSIVIDAD, Paneles.FACTORIAL, Paneles.POTENCIA
+        ));
+        items.add(new ModernButton(
+                Paneles.ARREGLOS, Colour.FACIL, "Vectores y Matrices"
+        ));
+        items.add(new ModernButton(
+                Paneles.NODOS, Colour.INTERMEDIO, "Enlazamiento de Datos"
+        ));
+        items.add(new ModernButton(
+                Paneles.ORDENAMIENTO, Colour.FACIL, "Métodos de Ordenamiento Interno"
+        ));
+        items.add(new ModernButton(
+                Paneles.BUSQUEDA, Colour.FACIL, "Métodos de Busqueda"
+        ));
+        items.add(new ModernButton(
+                Paneles.PILAS, Colour.INTERMEDIO, "Pilas Dinámicas y Estáticas"
+        ));
+        items.add(new ModernButton(
+                Paneles.COLAS, Colour.INTERMEDIO, "Colas Dinámicas y Estáticas"
+        ));
+        items.add(new ModernButton(
+                Paneles.LISTAS_ENLAZADAS, Colour.INTERMEDIO, "Listas Simples, Dobles y Circulares"
+        ));
+        items.add(new ModernButton(
+                Paneles.ARBOLES, Colour.DIFICIL, "Árboles Binarios y AVL"
+        ));
+        items.add(new ModernButton(
+                Paneles.GRAFOS, Colour.DIFICIL, "Algoritmo del Camino más Corto"
+        ));
+        return items;
     }
 
     /**
