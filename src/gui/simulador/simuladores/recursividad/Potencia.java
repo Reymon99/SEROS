@@ -1,6 +1,6 @@
 package gui.simulador.simuladores.recursividad;
 
-import eventos.Eventos;
+import acciones.Eventos;
 import gui.contenido.Tree;
 import gui.editor.Editor;
 import gui.simulador.simuladores.Recursividad;

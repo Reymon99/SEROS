@@ -4,7 +4,8 @@ import org.constrains.Constrains;
 import org.constrains.View;
 import org.constrains.Weight;
 
-import eventos.Eventos;
+import acciones.Contenidos;
+import acciones.Eventos;
 import tools.Archivos;
 import tools.Colour;
 import tools.Fuentes;
@@ -60,7 +61,7 @@ public final class About extends JDialog {
     }
 
     private void init() {
-        LinkedHashMap<String, String> contenido = Archivos.getContenidos("about");
+        LinkedHashMap<String, String> contenido = Contenidos.getContenidos("about");
         JLabel seros = new JLabel("Simulador de Estructura de Datos", SwingConstants.CENTER);
         seros.setFont(Fuentes.UBUNTU_LIGHT_30.getFont());
         seros.setHorizontalTextPosition(SwingConstants.CENTER);

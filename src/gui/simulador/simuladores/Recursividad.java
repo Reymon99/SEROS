@@ -3,7 +3,7 @@ package gui.simulador.simuladores;
 import org.constrains.Constrains;
 import org.constrains.View;
 
-import eventos.Eventos;
+import acciones.Eventos;
 import gui.simulador.Simulador;
 import hilos.Lines;
 import tools.Acciones;

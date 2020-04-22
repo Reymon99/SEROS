@@ -4,7 +4,8 @@ import org.constrains.Constrains;
 import org.constrains.View;
 import org.constrains.Weight;
 
-import eventos.Eventos;
+import acciones.Contenidos;
+import acciones.Eventos;
 import gui.contenido.Components;
 import gui.contenido.Contenido;
 import gui.contenido.Demostracion;
@@ -118,49 +119,49 @@ public final class Contenedor extends JPanel {
     /**
      * Contiene los ítems de cada uno de los contenidos que tiene SEROS
      * @return ítems organizados en una grilla
-     * @see ModernButton#ModernButton(Paneles, Colour, String, String, Paneles...)
+     * @see ModernButton#ModernButton(Paneles, Colour, String, Paneles...)
      */
     private JPanel itemsPrincipal() {
         JPanel items = new JPanel(new GridLayout(3, 4, 25, 20));
         items.setOpaque(false);
         items.add(new ModernButton(
-                Paneles.TDA, Colour.FACIL, "Tipo de Datos Abstractos", "TDA", // Parametros
+                Paneles.TDA, Colour.FACIL, "TDA", // Parametros
                 Paneles.SIMULADOR_TDA  // Opciones del menu
         ));
         items.add(new ModernButton(
-                Paneles.MODULARIDAD, Colour.FACIL, "División de tareas", "Modularidad y Mapas",
+                Paneles.MODULARIDAD, Colour.FACIL, "Modularidad y Mapas",
                 Paneles.DEMOSTRACION_MODULARIDAD
         ));
         items.add(new ModernButton(
-                Paneles.RECURSIVIDAD, Colour.INTERMEDIO, "Métodos Recursivos", "Recursividad",
+                Paneles.RECURSIVIDAD, Colour.INTERMEDIO, "Recursividad",
                 Paneles.EJERCICIOS_RECURSIVIDAD, Paneles.FACTORIAL, Paneles.POTENCIA
         ));
         items.add(new ModernButton(
-                Paneles.ARREGLOS, Colour.FACIL, "Vectores y Matrices", "Arreglos y Arboles"
+                Paneles.ARREGLOS, Colour.FACIL, "Arreglos y Arboles"
         ));
         items.add(new ModernButton(
-                Paneles.NODOS, Colour.INTERMEDIO, "Enlazamiento de Datos", "Nodos"
+                Paneles.NODOS, Colour.INTERMEDIO, "Nodos"
         ));
         items.add(new ModernButton(
-                Paneles.ORDENAMIENTO, Colour.FACIL, "Métodos de Ordenamiento Interno", "Ordenamiento"
+                Paneles.ORDENAMIENTO, Colour.FACIL, "Ordenamiento"
         ));
         items.add(new ModernButton(
-                Paneles.BUSQUEDA, Colour.FACIL, "Métodos de Busqueda", "Busqueda"
+                Paneles.BUSQUEDA, Colour.FACIL, "Busqueda"
         ));
         items.add(new ModernButton(
-                Paneles.PILAS, Colour.INTERMEDIO, "Pilas Dinámicas y Estáticas", "Pilas"
+                Paneles.PILAS, Colour.INTERMEDIO, "Pilas"
         ));
         items.add(new ModernButton(
-                Paneles.COLAS, Colour.INTERMEDIO, "Colas Dinámicas y Estáticas", "Colas"
+                Paneles.COLAS, Colour.INTERMEDIO, "Colas"
         ));
         items.add(new ModernButton(
-                Paneles.LISTAS, Colour.INTERMEDIO, "Listas Simples, Dobles y Circulares", "Listas"
+                Paneles.LISTAS, Colour.INTERMEDIO, "Listas"
         ));
         items.add(new ModernButton(
-                Paneles.ARBOLES, Colour.DIFICIL, "Árboles Binarios y AVL", "Arreglos y Arboles"
+                Paneles.ARBOLES, Colour.DIFICIL, "Arreglos y Arboles"
         ));
         items.add(new ModernButton(
-                Paneles.GRAFOS, Colour.DIFICIL, "Algoritmo del Camino más Corto", "Grafos"
+                Paneles.GRAFOS, Colour.DIFICIL, "Grafos"
         ));
         return items;
     }
@@ -189,7 +190,7 @@ public final class Contenedor extends JPanel {
         Contenido con = new Contenido();
         con.getTitle().setText("Tipos de Datos Abstratos (tda)");
         con.next("Simulador TDA", Paneles.SIMULADOR_TDA);
-        LinkedHashMap<String, String> contenido = Archivos.getContenidos("tda");
+        LinkedHashMap<String, String> contenido = Contenidos.getContenidos("tda");
         JLabel formula = new JLabel(contenido.get("formula"), SwingConstants.CENTER);
         formula.setFont(Fuentes.PURISA_18.getFont());
         formula.setOpaque(false);
@@ -249,7 +250,7 @@ public final class Contenedor extends JPanel {
         Contenido con = new Contenido();
         con.getTitle().setText("Modularidad");
         con.next("Demostración Interactiva de Modularidad", Paneles.DEMOSTRACION_MODULARIDAD);
-        LinkedHashMap<String, String> contenido = Archivos.getContenidos("modularidad");
+        LinkedHashMap<String, String> contenido = Contenidos.getContenidos("modularidad");
         Weight weight11 = new Weight(1, 1);
         Point placeNH = new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(
@@ -298,7 +299,7 @@ public final class Contenedor extends JPanel {
         Contenido con = new Contenido();
         con.getTitle().setText("Recursividad");
         TextPane editor = new TextPane(false);
-        LinkedHashMap<String, String> contenido = Archivos.getContenidos("recursividad");
+        LinkedHashMap<String, String> contenido = Contenidos.getContenidos("recursividad");
         String[] recur = contenido.get("parrafo.2").split("\u279c");
         for (String n : recur) {
             editor.append(n, Fuentes.PURISA_22.getFont());
@@ -341,7 +342,7 @@ public final class Contenedor extends JPanel {
         Contenido con = new Contenido();
         con.getTitle().setText("Nodos");
         con.next("", null);
-        LinkedHashMap<String, String> contenido = Archivos.getContenidos("nodos");
+        LinkedHashMap<String, String> contenido = Contenidos.getContenidos("nodos");
         Weight weight11 = new Weight(1, 1);
         Point placeNH = new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Point placeCN = new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE);
@@ -450,7 +451,7 @@ public final class Contenedor extends JPanel {
         Contenido con = new Contenido();
         con.getTitle().setText("Arreglos");
         con.next("", null);
-        LinkedHashMap<String, String> contenido = Archivos.getContenidos("arreglos");
+        LinkedHashMap<String, String> contenido = Contenidos.getContenidos("arreglos");
         Weight weight11 = new Weight(1, 1);
         Point placeNH = new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Point placeCN = new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE);
@@ -600,7 +601,7 @@ public final class Contenedor extends JPanel {
      */
     private Demostracion demoModularidad() {
         Demostracion demostracion = new Demostracion("/resources/image/moduDemo1.png");
-        demostracion.setTexto(Archivos.getContenidos("modularidad").get("demostracion"));
+        demostracion.setTexto(Contenidos.getContenidos("modularidad").get("demostracion"));
         JButton demo1 = new JButton("Inventar");
         JButton demo2 = new JButton("Programar");
         JButton demo3 = new JButton("Leer");

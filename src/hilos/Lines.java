@@ -1,6 +1,6 @@
 package hilos;
 
-import eventos.Eventos;
+import acciones.Eventos;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
 

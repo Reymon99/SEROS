@@ -10,21 +10,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Optional;
 
 public abstract class Archivos {
-    /**
-     * Contiene cada uno de los pseudocódigos usados en el proyecto SEROS
-     */
-    private static LinkedHashMap<String, ArrayList<ArrayList<String>>> codes;
-
-    /**
-     * Contiene cada uno de los contenidos temáticos de las Estructuras de Datos empleados en el proyecto
-     */
-    private static LinkedHashMap<String, LinkedHashMap<String, String>> contenidos;
-
     /**
      * Convierte y moldea una Imagen para ser utilizada en el proyecto
      * @param path   String
@@ -101,44 +88,11 @@ public abstract class Archivos {
     }
 
     /**
-     * Carga el archivo .yml que contiene los diversos pseudocódigos del proyecto, en el caso de haber
-     * sidos cargados con anterioridad, de lo contrario a esto solo retornará los pseudocódigos
-     * preestablecidos y cargados con anterioridad
-     * @return pseudocódigos del proyecto SEROS
+     * Carga el archivo .YML especificado en la ruta /resources/
+     * @param fileYaml nombre del archivo YAML a especificar
+     * @return contenido del archivo YAML especificado
      */
-    public static LinkedHashMap<String, ArrayList<ArrayList<String>>> getCodes() {
-        if (Optional.ofNullable(codes).isEmpty()) {
-            Yaml yaml = new Yaml();
-            codes = yaml.load(Archivos.class.getResourceAsStream("/resources/codes/codes.yml"));
-        }
-        return codes;
-    }
-
-    /**
-     * Destruye todos los pseudocódigos cargados en el proyecto
-     */
-    public static void destroyCodes() {
-        if (Optional.ofNullable(codes).isPresent()) codes = null;
-    }
-
-    /**
-     * Carga el archivo .yml que contiene los diversos contenidos temáticos del proyecto, en el caso de haber sidos
-     * cargados con anterioridad, de lo contrario a esto solo retornará el contenido temático deseado
-     * @param tema contenido temático a retornar
-     * @return contenido temático deseado
-     */
-    public static LinkedHashMap<String, String> getContenidos(String tema) {
-        if (Optional.ofNullable(contenidos).isEmpty()) {
-            Yaml yaml = new Yaml();
-            contenidos = yaml.load(Archivos.class.getResourceAsStream("/resources/texts/contenidos.yml"));
-        }
-        return contenidos.get(tema);
-    }
-
-    /**
-     * Destruye todos los contenidos temáticos cargados en el proyecto
-     */
-    public static void destroyContenidos() {
-        if (Optional.ofNullable(contenidos).isPresent()) contenidos = null;
+    public static Object readYAML(String fileYaml) {
+        return new Yaml().load(Archivos.class.getResourceAsStream("/resources/" + fileYaml));
     }
 }

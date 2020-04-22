@@ -3,7 +3,7 @@ package gui.simulador.simuladores.tda;
 import org.constrains.Constrains;
 import org.constrains.View;
 
-import eventos.Eventos;
+import acciones.Eventos;
 import gui.contenido.Tree;
 import gui.editor.Editor;
 import gui.simulador.Simulador;

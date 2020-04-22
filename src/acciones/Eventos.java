@@ -1,4 +1,4 @@
-package eventos;
+package acciones;
 
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.StringTokenizer;
+import java.util.stream.Stream;
 
 import gui.contenido.About;
 import gui.contenido.Save;
@@ -222,14 +223,22 @@ public abstract class Eventos {
 
     /**
      * Eliminación de los objetos de un solo uso y cargue en el proyecto, liberando RAM en este proceso
-     * @see Archivos#destroyCodes()
-     * @see Archivos#destroyContenidos()
+     * @see Contenidos#destroyers()
      * @see Fuentes.Fonts#destroyFonts()
      */
     public static void destroyers() {
-        Archivos.destroyCodes();
-        Archivos.destroyContenidos();
+        Contenidos.destroyers();
         Fuentes.Fonts.destroyFonts();
         System.gc();
+    }
+
+    /**
+     * Une dos arrays del mismo tipo de dato
+     * @param first primer array
+     * @param second segundo array
+     * @return array con el contenido del primer y segundo array
+     */
+    public static Paneles[] joinArrays(Paneles[] first, Paneles[] second) {
+        return Stream.of(first, second).flatMap(Stream::of).toArray(Paneles[]::new);
     }
 }

@@ -4,7 +4,8 @@ import org.constrains.Constrains;
 import org.constrains.View;
 import org.constrains.Weight;
 
-import eventos.Eventos;
+import acciones.Contenidos;
+import acciones.Eventos;
 import tools.Archivos;
 import tools.Colour;
 import tools.Fuentes;
@@ -25,7 +26,6 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 public class ModernButton extends JPanel {
     /**
@@ -75,34 +75,26 @@ public class ModernButton extends JPanel {
      * Boton moderno
      * @param panel           panel al cual va a acceder el boton
      * @param nivelDificultad color significativo al nivel de dificultad que representa el boton
-     * @param toolTipText     mensaje toolTipText del boton
+     * @param imagen          imagen icono del boton
      * @param menuPaneles     paneles que contendrá el {@link JPopupMenu} del boton
      * @see Paneles
      * @see Eventos#show(Paneles)
      * @see Eventos#menu(Paneles...)
      */
-    public ModernButton(Paneles panel, Colour nivelDificultad, String toolTipText, Paneles... menuPaneles) {
-        this(
-                panel.toString().charAt(0),
-                panel.toString(),
-                nivelDificultad,
-                toolTipText,
-                Eventos.menu(Stream.of(new Paneles[]{panel}, menuPaneles).flatMap(Stream::of).toArray(Paneles[]::new)),
-                e -> Eventos.show(panel)
-        );
-    }
-
-    public ModernButton(Paneles panel, Colour nivelDificultad, String toolTipText, String imagen, Paneles... menuPaneles) {
+    public ModernButton(Paneles panel, Colour nivelDificultad, String imagen, Paneles... menuPaneles) {
         this(
                 ' ',
                 panel.toString(),
                 nivelDificultad,
-                toolTipText,
-                Eventos.menu(Stream.of(new Paneles[]{panel}, menuPaneles).flatMap(Stream::of).toArray(Paneles[]::new)),
+                "",
+                Eventos.menu(Eventos.joinArrays(new Paneles[]{panel}, menuPaneles)),
                 e -> Eventos.show(panel)
         );
         letra.setText("");
         letra.setIcon(Archivos.image(imagen + ".png"));
+        setToolTipText(Contenidos.getToolTips(
+                panel.toString().contains("Ejercicios") ? "ejercicios" : "principal").get(panel.toString())
+        );
     }
 
     /**

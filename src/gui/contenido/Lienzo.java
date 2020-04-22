@@ -1,6 +1,6 @@
 package gui.contenido;
 
-import eventos.Eventos;
+import acciones.Eventos;
 import tools.Acciones;
 import tools.Archivos;
 import tools.Paneles;

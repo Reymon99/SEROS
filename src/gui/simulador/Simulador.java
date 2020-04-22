@@ -4,7 +4,7 @@ import org.constrains.Constrains;
 import org.constrains.View;
 import org.constrains.Weight;
 
-import eventos.Eventos;
+import acciones.Eventos;
 import gui.contenido.Components;
 import gui.contenido.Lienzo;
 import gui.contenido.PackageCode;

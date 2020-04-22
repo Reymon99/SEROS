@@ -1,6 +1,6 @@
 package hilos;
 
-import eventos.Eventos;
+import acciones.Eventos;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

@@ -1,6 +1,7 @@
 package gui.editor;
 
-import eventos.Eventos;
+import acciones.Contenidos;
+import acciones.Eventos;
 import gui.contenido.Components;
 import gui.contenido.scroll.ModernScrollPane;
 import tools.Archivos;
@@ -37,7 +38,7 @@ public class Editor extends ModernScrollPane {
      */
     private void fragmentador() {
         try {
-            Archivos.getCodes().get(code).forEach(this::identacion);
+            Contenidos.getCodes().get(code).forEach(this::identacion);
         } catch (NullPointerException e) {
             setText("No Code");
         }
