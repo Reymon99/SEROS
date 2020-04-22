@@ -3,10 +3,10 @@ package gui.simulador.simuladores;
 import org.constrains.Constrains;
 import org.constrains.View;
 
+import acciones.Acciones;
 import acciones.Eventos;
 import gui.simulador.Simulador;
 import hilos.Lines;
-import tools.Acciones;
 import tools.Fuentes;
 import tools.Paneles;
 import tools.Text;

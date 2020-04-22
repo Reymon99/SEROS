@@ -1,6 +1,4 @@
-package tools;
-
-import acciones.Eventos;
+package acciones;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;

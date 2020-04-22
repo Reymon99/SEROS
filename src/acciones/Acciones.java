@@ -1,4 +1,4 @@
-package tools;
+package acciones;
 
 public interface Acciones {
     /**

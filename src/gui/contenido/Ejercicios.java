@@ -4,7 +4,7 @@ import org.constrains.Constrains;
 import org.constrains.View;
 import org.constrains.Weight;
 
-import tools.Acciones;
+import acciones.Acciones;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

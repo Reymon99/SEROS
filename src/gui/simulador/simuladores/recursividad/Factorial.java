@@ -1,13 +1,14 @@
 package gui.simulador.simuladores.recursividad;
 
+import acciones.Acciones;
 import acciones.Eventos;
+import acciones.Operaciones;
 import gui.contenido.Tree;
 import gui.editor.Editor;
 import gui.simulador.simuladores.Recursividad;
 import hilos.LineLocation;
 import hilos.Lines;
 import tools.Dato;
-import tools.Operaciones;
 import tools.Text;
 
 import javax.swing.JSpinner;
@@ -21,7 +22,7 @@ public final class Factorial extends Recursividad {
      * Simulador para el proceso recursivo del factorial
      * @see Recursividad
      * @see gui.simulador.Simulador
-     * @see tools.Acciones
+     * @see Acciones
      */
     public Factorial(JSpinner valorDato) {
         super(null, valorDato);

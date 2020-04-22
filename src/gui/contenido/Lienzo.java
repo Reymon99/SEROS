@@ -1,7 +1,7 @@
 package gui.contenido;
 
+import acciones.Acciones;
 import acciones.Eventos;
-import tools.Acciones;
 import tools.Archivos;
 import tools.Paneles;
 import tools.Text;

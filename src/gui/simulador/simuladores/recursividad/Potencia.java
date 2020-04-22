@@ -1,5 +1,6 @@
 package gui.simulador.simuladores.recursividad;
 
+import acciones.Acciones;
 import acciones.Eventos;
 import gui.contenido.Tree;
 import gui.editor.Editor;
@@ -7,7 +8,7 @@ import gui.simulador.simuladores.Recursividad;
 import hilos.LineLocation;
 import hilos.Lines;
 import tools.Dato;
-import tools.Operaciones;
+import acciones.Operaciones;
 import tools.Text;
 
 import javax.swing.JSpinner;
@@ -23,7 +24,7 @@ public final class Potencia extends Recursividad {
      * Simulador para el proceso recursivo de la potencia
      * @see Recursividad
      * @see gui.simulador.Simulador
-     * @see tools.Acciones
+     * @see Acciones
      */
     public Potencia(JSpinner valorBase, JSpinner valorExponente) {
         super("Base  -  Exponente", valorBase, valorExponente);

@@ -3,12 +3,12 @@ package gui.simulador.simuladores.tda;
 import org.constrains.Constrains;
 import org.constrains.View;
 
+import acciones.Acciones;
 import acciones.Eventos;
 import gui.contenido.Tree;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
 import gui.simulador.lienzos.Cartesiano;
-import tools.Acciones;
 import tools.Dato;
 import tools.Paneles;
 import tools.Text;
