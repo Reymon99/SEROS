@@ -51,7 +51,7 @@ public abstract class Components {
      * @param adapter evento del mouse de la etiqueta
      */
     public static JLabel getBoton(String tip, String icon, Consumer<MouseEvent> adapter) {
-        JLabel label = new JLabel(Archivos.image(icon + ".png"), SwingConstants.CENTER);
+        JLabel label = new JLabel(Archivos.image("/resources/image/" + icon + ".png"), SwingConstants.CENTER);
         label.setToolTipText(tip);
         return initBoton(label, new MouseAdapter() {
             @Override
@@ -152,9 +152,7 @@ public abstract class Components {
         dialog.getContentPane().add(label);
         dialog.pack();
         dialog.setLocationRelativeTo(component);
-        dialog.setIconImage(Objects.requireNonNull(
-                Archivos.image("/resources/image/icon.png", -1, -1)
-        ).getImage());
+        dialog.setIconImage(Objects.requireNonNull(Archivos.image("/resources/image/icon.png")).getImage());
         dialog.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {

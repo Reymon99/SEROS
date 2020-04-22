@@ -54,12 +54,12 @@ public class Lienzo extends JPanel {
     private void init(boolean lienzo) {
         this.lienzo = lienzo;
         back = Components.getBoton(
-                Archivos.image("/resources/image/back.png", -1, -1),
+                Archivos.image("/resources/image/back.png"),
                 Eventos.menu(Paneles.values())
         );
         home = Components.getBoton(
                 Text.VENTANA_PRINCIPAL.toString(),
-                Archivos.image("/resources/image/home.png", -1, -1),
+                Archivos.image("/resources/image/home.png"),
                 new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
@@ -68,7 +68,7 @@ public class Lienzo extends JPanel {
                     }
                 }
         );
-        next = Components.getBoton(Archivos.image("/resources/image/next.png", -1, -1));
+        next = Components.getBoton(Archivos.image("/resources/image/next.png"));
     }
 
     /**
@@ -152,7 +152,7 @@ public class Lienzo extends JPanel {
         if (lienzo) {
             g.drawImage(
                     Objects.requireNonNull(
-                            Archivos.image("/resources/image/Lienzo.jpg", -1, -1)
+                            Archivos.image("/resources/image/Lienzo.jpg")
                     ).getImage(),
                     0,
                     0,

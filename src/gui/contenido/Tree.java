@@ -22,7 +22,7 @@ public class Tree extends JTree {
     public Tree(DefaultMutableTreeNode node) {
         super(new DefaultTreeModel(node));
         this.node = node;
-        ImageIcon icon = Archivos.image("/resources/image/variable.png", -1, -1);
+        ImageIcon icon = Archivos.image("/resources/image/variable.png");
         setCellRenderer(new DefaultTreeCellRenderer() {
             @Override
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,

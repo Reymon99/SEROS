@@ -520,8 +520,8 @@ public final class Contenedor extends JPanel {
             }
         };
         ejercicios.setBotones(
-                Components.getBoton(Archivos.image("/resources/image/factorial.png", -1, -1), "Factorial", mouse),
-                Components.getBoton(Archivos.image("/resources/image/potencia.png", -1, -1), "Potencia", mouse)
+                Components.getBoton(Archivos.image("/resources/image/factorial.png"), "Factorial", mouse),
+                Components.getBoton(Archivos.image("/resources/image/potencia.png"), "Potencia", mouse)
         );
         return ejercicios;
     }

@@ -22,7 +22,6 @@ import gui.contenido.Switch;
 import gui.contenido.Tree;
 import gui.contenido.scroll.ModernScrollPane;
 import gui.principal.Contenedor;
-import tools.Archivos;
 import tools.Fuentes;
 import tools.Paneles;
 

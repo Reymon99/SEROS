@@ -37,7 +37,7 @@ public abstract class Archivos {
      * @return Imagen lista para ser usada en el proyecto
      */
     public static ImageIcon image(String path) {
-        return image(path, -1, -1);
+        return image(path, -1);
     }
 
     /**

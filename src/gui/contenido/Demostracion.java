@@ -44,7 +44,7 @@ public class Demostracion extends Lienzo {
                 setIcon(path);
             }
         });
-        init(Archivos.image(path, -1, -1));
+        init(Archivos.image(path));
     }
 
     /**
@@ -130,6 +130,6 @@ public class Demostracion extends Lienzo {
      * @param path ruta del archivo de imagen
      */
     public void setIcon(String path) {
-        image.setIcon(Archivos.image(path, -1, -1));
+        image.setIcon(Archivos.image(path));
     }
 }

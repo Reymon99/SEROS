@@ -16,9 +16,7 @@ public final class Desktop extends JFrame {
         setLayout(new GridBagLayout());
         setContentPane(new Contenedor());
         setExtendedState(MAXIMIZED_BOTH);
-        setIconImage(Objects.requireNonNull(
-                Archivos.image("/resources/image/icon.png", -1, -1)).getImage()
-        );
+        setIconImage(Objects.requireNonNull(Archivos.image("/resources/image/icon.png")).getImage());
     }
 
     public static void main(String[] args) {
