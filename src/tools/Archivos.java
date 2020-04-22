@@ -33,21 +33,21 @@ public abstract class Archivos {
 
     /**
      * Convierte y moldea una Imagen con su tamaño original para ser utilizada en el proyecto
-     * @param file nombre de la imagen encontrada en resources/image
+     * @param path ruta de la imagen
      * @return Imagen lista para ser usada en el proyecto
      */
-    public static ImageIcon image(String file) {
-        return image("/resources/image/" + file, -1, -1);
+    public static ImageIcon image(String path) {
+        return image(path, -1, -1);
     }
 
     /**
      * Convierte y moldea una Imagen para ser utilizada en el proyecto
-     * @param file nombre de la imagen encontrada en resources/imagen
+     * @param path ruta de la imagen
      * @param dimension tamaño a dar a la imagen en width y weight
      * @return Imagen con el tamaño deseado lista para ser usada en el proyecto
      */
-    public static ImageIcon image(String file, int dimension) {
-        return image("/resources/image/" + file, dimension, dimension);
+    public static ImageIcon image(String path, int dimension) {
+        return image(path, dimension, dimension);
     }
 
     /**

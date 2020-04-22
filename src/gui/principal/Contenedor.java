@@ -119,50 +119,26 @@ public final class Contenedor extends JPanel {
     /**
      * Contiene los ítems de cada uno de los contenidos que tiene SEROS
      * @return ítems organizados en una grilla
-     * @see ModernButton#ModernButton(Paneles, Colour, String, Paneles...)
+     * @see ModernButton#ModernButton(Paneles, Colour, Paneles...)
      */
     private JPanel itemsPrincipal() {
         JPanel items = new JPanel(new GridLayout(3, 4, 25, 20));
         items.setOpaque(false);
+        items.add(new ModernButton(Paneles.TDA, Colour.FACIL, Paneles.SIMULADOR_TDA));
+        items.add(new ModernButton(Paneles.MODULARIDAD, Colour.FACIL, Paneles.DEMOSTRACION_MODULARIDAD));
         items.add(new ModernButton(
-                Paneles.TDA, Colour.FACIL, "TDA", // Parametros
-                Paneles.SIMULADOR_TDA  // Opciones del menu
+                Paneles.RECURSIVIDAD, Colour.INTERMEDIO,  // Parametros
+                Paneles.EJERCICIOS_RECURSIVIDAD, Paneles.FACTORIAL, Paneles.POTENCIA  // Opciones del menu
         ));
-        items.add(new ModernButton(
-                Paneles.MODULARIDAD, Colour.FACIL, "Modularidad y Mapas",
-                Paneles.DEMOSTRACION_MODULARIDAD
-        ));
-        items.add(new ModernButton(
-                Paneles.RECURSIVIDAD, Colour.INTERMEDIO, "Recursividad",
-                Paneles.EJERCICIOS_RECURSIVIDAD, Paneles.FACTORIAL, Paneles.POTENCIA
-        ));
-        items.add(new ModernButton(
-                Paneles.ARREGLOS, Colour.FACIL, "Arreglos y Arboles"
-        ));
-        items.add(new ModernButton(
-                Paneles.NODOS, Colour.INTERMEDIO, "Nodos"
-        ));
-        items.add(new ModernButton(
-                Paneles.ORDENAMIENTO, Colour.FACIL, "Ordenamiento"
-        ));
-        items.add(new ModernButton(
-                Paneles.BUSQUEDA, Colour.FACIL, "Busqueda"
-        ));
-        items.add(new ModernButton(
-                Paneles.PILAS, Colour.INTERMEDIO, "Pilas"
-        ));
-        items.add(new ModernButton(
-                Paneles.COLAS, Colour.INTERMEDIO, "Colas"
-        ));
-        items.add(new ModernButton(
-                Paneles.LISTAS, Colour.INTERMEDIO, "Listas"
-        ));
-        items.add(new ModernButton(
-                Paneles.ARBOLES, Colour.DIFICIL, "Arreglos y Arboles"
-        ));
-        items.add(new ModernButton(
-                Paneles.GRAFOS, Colour.DIFICIL, "Grafos"
-        ));
+        items.add(new ModernButton(Paneles.ARREGLOS, Colour.FACIL));
+        items.add(new ModernButton(Paneles.NODOS, Colour.INTERMEDIO));
+        items.add(new ModernButton(Paneles.ORDENAMIENTO, Colour.FACIL));
+        items.add(new ModernButton(Paneles.BUSQUEDA, Colour.FACIL));
+        items.add(new ModernButton(Paneles.PILAS, Colour.INTERMEDIO));
+        items.add(new ModernButton(Paneles.COLAS, Colour.INTERMEDIO));
+        items.add(new ModernButton(Paneles.LISTAS, Colour.INTERMEDIO));
+        items.add(new ModernButton(Paneles.ARBOLES, Colour.DIFICIL));
+        items.add(new ModernButton(Paneles.GRAFOS, Colour.DIFICIL));
         return items;
     }
 

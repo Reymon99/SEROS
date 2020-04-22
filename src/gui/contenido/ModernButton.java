@@ -75,13 +75,12 @@ public class ModernButton extends JPanel {
      * Boton moderno
      * @param panel           panel al cual va a acceder el boton
      * @param nivelDificultad color significativo al nivel de dificultad que representa el boton
-     * @param imagen          imagen icono del boton
      * @param menuPaneles     paneles que contendrá el {@link JPopupMenu} del boton
      * @see Paneles
      * @see Eventos#show(Paneles)
      * @see Eventos#menu(Paneles...)
      */
-    public ModernButton(Paneles panel, Colour nivelDificultad, String imagen, Paneles... menuPaneles) {
+    public ModernButton(Paneles panel, Colour nivelDificultad, Paneles... menuPaneles) {
         this(
                 ' ',
                 panel.toString(),
@@ -91,7 +90,7 @@ public class ModernButton extends JPanel {
                 e -> Eventos.show(panel)
         );
         letra.setText("");
-        letra.setIcon(Archivos.image(imagen + ".png"));
+        letra.setIcon(Archivos.image(panel.getPathIcon()));
         setToolTipText(Contenidos.getToolTips(
                 panel.toString().contains("Ejercicios") ? "ejercicios" : "principal").get(panel.toString())
         );
