@@ -11,7 +11,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Line2D;
 
-public class Graficador extends JLabel {
+public class Cartesiano extends JLabel {
     private boolean graficar;
     private final Point punto;
     private final Point axis;
@@ -19,7 +19,7 @@ public class Graficador extends JLabel {
     /**
      * Grafica un punto en una coordenada dada
      */
-    public Graficador() {
+    public Cartesiano() {
         setFont(Fuentes.UBUNTU_LIGHT_12.getFont());
         graficar = false;
         punto = new Point();

@@ -7,7 +7,7 @@ import eventos.Eventos;
 import gui.contenido.Tree;
 import gui.editor.Editor;
 import gui.simulador.Simulador;
-import gui.simulador.lienzos.Graficador;
+import gui.simulador.lienzos.Cartesiano;
 import tools.Acciones;
 import tools.Dato;
 import tools.Paneles;
@@ -26,12 +26,12 @@ public final class Punto extends Simulador implements Acciones {
     private final JSpinner x;
     private final JSpinner y;
     private final Tree punto;
-    private final Graficador graficador;
+    private final Cartesiano cartesiano;
 
     /**
      * Simulador para la temática TDA<br>
      * Simula un punto en el eje cartesiano
-     * @see Graficador
+     * @see Cartesiano
      * @see Simulador
      * @see Acciones
      */
@@ -47,9 +47,9 @@ public final class Punto extends Simulador implements Acciones {
                 }
         ));
         punto.expandNode(0);
-        graficador = new Graficador();
+        cartesiano = new Cartesiano();
         getLienzo().setLayout(new BorderLayout());
-        getLienzo().add(graficador, BorderLayout.CENTER);
+        getLienzo().add(cartesiano, BorderLayout.CENTER);
         setAcciones(this);
         addCodes(Editor.editor("Punto"));
         back("Tipos de Datos Abstractos", Paneles.TDA);
@@ -85,7 +85,7 @@ public final class Punto extends Simulador implements Acciones {
                 ((Editor) getCodigos().getComponentAt(0)).getVerticalScrollBar().getMaximum(),
                 true
         );
-        graficador.graficar(
+        cartesiano.graficar(
                 Integer.parseInt(x.getValue().toString()),
                 Integer.parseInt(y.getValue().toString())
         );
@@ -147,7 +147,7 @@ public final class Punto extends Simulador implements Acciones {
 
     @Override
     public void iteracion0() {
-        graficador.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
+        cartesiano.graficar(Integer.parseInt(x.getValue().toString()), Integer.parseInt(y.getValue().toString()));
         Eventos.enable(true, getClean(), getBack(), getHome());
         Eventos.enable(false, getSend(), x, y, getPause(), getNextIteracion());
         setTexto(Text.SIMULADOR_TDA_1);
@@ -178,7 +178,7 @@ public final class Punto extends Simulador implements Acciones {
     @Override
     public void clean() {
         cleanComponents();
-        graficador.limpiar();
+        cartesiano.limpiar();
         Eventos.variable(punto, 0, "");
         Eventos.variable(punto, 1, "");
         Eventos.enable(true, x, y);
