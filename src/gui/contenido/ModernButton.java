@@ -5,6 +5,7 @@ import org.constrains.View;
 import org.constrains.Weight;
 
 import eventos.Eventos;
+import tools.Archivos;
 import tools.Colour;
 import tools.Fuentes;
 import tools.Paneles;
@@ -89,6 +90,19 @@ public class ModernButton extends JPanel {
                 Eventos.menu(Stream.of(new Paneles[]{panel}, menuPaneles).flatMap(Stream::of).toArray(Paneles[]::new)),
                 e -> Eventos.show(panel)
         );
+    }
+
+    public ModernButton(Paneles panel, Colour nivelDificultad, String toolTipText, String imagen, Paneles... menuPaneles) {
+        this(
+                ' ',
+                panel.toString(),
+                nivelDificultad,
+                toolTipText,
+                Eventos.menu(Stream.of(new Paneles[]{panel}, menuPaneles).flatMap(Stream::of).toArray(Paneles[]::new)),
+                e -> Eventos.show(panel)
+        );
+        letra.setText("");
+        letra.setIcon(Archivos.image(imagen + ".png"));
     }
 
     /**

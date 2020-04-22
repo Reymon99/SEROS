@@ -82,7 +82,7 @@ public final class Contenedor extends JPanel {
         paneles.put(Paneles.BUSQUEDA, busqueda());
         paneles.put(Paneles.PILAS, pilas());
         paneles.put(Paneles.COLAS, colas());
-        paneles.put(Paneles.LISTAS_ENLAZADAS, listas());
+        paneles.put(Paneles.LISTAS, listas());
         paneles.put(Paneles.ARBOLES, arboles());
         paneles.put(Paneles.GRAFOS, grafos());
         // Añadir los paneles secundarios al panel principal
@@ -118,49 +118,49 @@ public final class Contenedor extends JPanel {
     /**
      * Contiene los ítems de cada uno de los contenidos que tiene SEROS
      * @return ítems organizados en una grilla
-     * @see ModernButton#ModernButton(Paneles, Colour, String, Paneles...)
+     * @see ModernButton#ModernButton(Paneles, Colour, String, String, Paneles...)
      */
     private JPanel itemsPrincipal() {
         JPanel items = new JPanel(new GridLayout(3, 4, 25, 20));
         items.setOpaque(false);
         items.add(new ModernButton(
-                Paneles.TDA, Colour.FACIL, "Tipo de Datos Abstractos",  // Parametros
+                Paneles.TDA, Colour.FACIL, "Tipo de Datos Abstractos", "TDA", // Parametros
                 Paneles.SIMULADOR_TDA  // Opciones del menu
         ));
         items.add(new ModernButton(
-                Paneles.MODULARIDAD, Colour.FACIL, "División de tareas",
+                Paneles.MODULARIDAD, Colour.FACIL, "División de tareas", "Modularidad y Mapas",
                 Paneles.DEMOSTRACION_MODULARIDAD
         ));
         items.add(new ModernButton(
-                Paneles.RECURSIVIDAD, Colour.INTERMEDIO, "Métodos Recursivos",
+                Paneles.RECURSIVIDAD, Colour.INTERMEDIO, "Métodos Recursivos", "Recursividad",
                 Paneles.EJERCICIOS_RECURSIVIDAD, Paneles.FACTORIAL, Paneles.POTENCIA
         ));
         items.add(new ModernButton(
-                Paneles.ARREGLOS, Colour.FACIL, "Vectores y Matrices"
+                Paneles.ARREGLOS, Colour.FACIL, "Vectores y Matrices", "Arreglos y Arboles"
         ));
         items.add(new ModernButton(
-                Paneles.NODOS, Colour.INTERMEDIO, "Enlazamiento de Datos"
+                Paneles.NODOS, Colour.INTERMEDIO, "Enlazamiento de Datos", "Nodos"
         ));
         items.add(new ModernButton(
-                Paneles.ORDENAMIENTO, Colour.FACIL, "Métodos de Ordenamiento Interno"
+                Paneles.ORDENAMIENTO, Colour.FACIL, "Métodos de Ordenamiento Interno", "Ordenamiento"
         ));
         items.add(new ModernButton(
-                Paneles.BUSQUEDA, Colour.FACIL, "Métodos de Busqueda"
+                Paneles.BUSQUEDA, Colour.FACIL, "Métodos de Busqueda", "Busqueda"
         ));
         items.add(new ModernButton(
-                Paneles.PILAS, Colour.INTERMEDIO, "Pilas Dinámicas y Estáticas"
+                Paneles.PILAS, Colour.INTERMEDIO, "Pilas Dinámicas y Estáticas", "Pilas"
         ));
         items.add(new ModernButton(
-                Paneles.COLAS, Colour.INTERMEDIO, "Colas Dinámicas y Estáticas"
+                Paneles.COLAS, Colour.INTERMEDIO, "Colas Dinámicas y Estáticas", "Colas"
         ));
         items.add(new ModernButton(
-                Paneles.LISTAS_ENLAZADAS, Colour.INTERMEDIO, "Listas Simples, Dobles y Circulares"
+                Paneles.LISTAS, Colour.INTERMEDIO, "Listas Simples, Dobles y Circulares", "Listas"
         ));
         items.add(new ModernButton(
-                Paneles.ARBOLES, Colour.DIFICIL, "Árboles Binarios y AVL"
+                Paneles.ARBOLES, Colour.DIFICIL, "Árboles Binarios y AVL", "Arreglos y Arboles"
         ));
         items.add(new ModernButton(
-                Paneles.GRAFOS, Colour.DIFICIL, "Algoritmo del Camino más Corto"
+                Paneles.GRAFOS, Colour.DIFICIL, "Algoritmo del Camino más Corto", "Grafos"
         ));
         return items;
     }

@@ -14,7 +14,7 @@ public enum Paneles {
     BUSQUEDA("Busqueda"),
     PILAS("Pilas"),
     COLAS("Colas"),
-    LISTAS_ENLAZADAS("Listas Enlazadas"),
+    LISTAS("Listas Enlazadas"),
     ARBOLES("Árboles"),
     GRAFOS("Grafos"),
     DEMOSTRACION_MODULARIDAD("Demostración Modularidad"),
