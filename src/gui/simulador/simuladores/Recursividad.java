@@ -11,8 +11,13 @@ import tools.Fuentes;
 import tools.Paneles;
 import tools.Text;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.Optional;
 
 public abstract class Recursividad extends Simulador implements Acciones {

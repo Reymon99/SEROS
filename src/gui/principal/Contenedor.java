@@ -13,7 +13,7 @@ import gui.contenido.Lienzo;
 import gui.contenido.ModernButton;
 import gui.contenido.TextPane;
 import gui.editor.Editor;
-import gui.simulador.simuladores.Punto;
+import gui.simulador.simuladores.tda.Punto;
 import gui.simulador.simuladores.recursividad.Factorial;
 import gui.simulador.simuladores.recursividad.Potencia;
 import tools.Archivos;

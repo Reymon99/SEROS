@@ -10,7 +10,7 @@ import tools.Dato;
 import tools.Operaciones;
 import tools.Text;
 
-import javax.swing.*;
+import javax.swing.JSpinner;
 
 public final class Potencia extends Recursividad {
     private final JSpinner valorBase;

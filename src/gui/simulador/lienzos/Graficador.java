@@ -3,8 +3,12 @@ package gui.simulador.lienzos;
 import gui.simulador.Simulador;
 import tools.Fuentes;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JLabel;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.geom.Line2D;
 
 public class Graficador extends JLabel {
@@ -76,7 +80,7 @@ public class Graficador extends JLabel {
 
     /**
      * Inicio o fin de la linea Y
-     * @param cuadrante true: + | false: -
+     * @param cuadrante true: - | false: +
      */
     private int positionY(boolean cuadrante) {
         return cuadrante ? halfScreenHeight() - 280 : halfScreenHeight() + 280;
@@ -290,10 +294,8 @@ public class Graficador extends JLabel {
      * @param j  pixel en X
      */
     private void axis(Graphics2D g2, int i, int j) {
-        // y
-        g2.draw(new Line2D.Double(halfScreenWidth() - 2, i, halfScreenWidth() + 2, i));
-        // x
-        g2.draw(new Line2D.Double(j, halfScreenHeight() - 2, j, halfScreenHeight() + 2));
+        g2.draw(new Line2D.Double(halfScreenWidth() - 2, i, halfScreenWidth() + 2, i));  // y
+        g2.draw(new Line2D.Double(j, halfScreenHeight() - 2, j, halfScreenHeight() + 2));  // x
     }
 
     /**

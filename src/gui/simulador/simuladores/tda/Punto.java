@@ -1,4 +1,4 @@
-package gui.simulador.simuladores;
+package gui.simulador.simuladores.tda;
 
 import org.constrains.Constrains;
 import org.constrains.View;
@@ -13,8 +13,14 @@ import tools.Dato;
 import tools.Paneles;
 import tools.Text;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JComponent;
+import javax.swing.JSpinner;
+import javax.swing.JTree;
+import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 public final class Punto extends Simulador implements Acciones {
     private final JSpinner x;
