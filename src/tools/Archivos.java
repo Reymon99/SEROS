@@ -6,7 +6,9 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.image.RenderedImage;
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -38,8 +40,27 @@ public abstract class Archivos {
                     Image.SCALE_DEFAULT
             ));
         } catch (IOException e) {
-            return null;
+            throw new IllegalArgumentException("Imagen " + path + " no encontrada.");
         }
+    }
+
+    /**
+     * Convierte y moldea una Imagen con su tamaño original para ser utilizada en el proyecto
+     * @param file nombre de la imagen encontrada en resources/image
+     * @return Imagen lista para ser usada en el proyecto
+     */
+    public static ImageIcon image(String file) {
+        return image("/resources/image/" + file, -1, -1);
+    }
+
+    /**
+     * Convierte y moldea una Imagen para ser utilizada en el proyecto
+     * @param file nombre de la imagen encontrada en resources/imagen
+     * @param dimension tamaño a dar a la imagen en width y weight
+     * @return Imagen con el tamaño deseado lista para ser usada en el proyecto
+     */
+    public static ImageIcon image(String file, int dimension) {
+        return image("/resources/image/" + file, dimension, dimension);
     }
 
     /**

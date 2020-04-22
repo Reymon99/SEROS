@@ -22,7 +22,9 @@ import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 public abstract class Components {
     /**
@@ -39,6 +41,24 @@ public abstract class Components {
         label.setToolTipText(tip);
         label.setComponentPopupMenu(menu);
         return label;
+    }
+
+    /**
+     * Etiqueta con parametros predefinidos enfocados hacia el proyecto,<br>
+     * para permitirles funcionar como botones
+     * @param tip     tool tip de la etiqueta
+     * @param icon    icono de la etiqueta
+     * @param adapter evento del mouse de la etiqueta
+     */
+    public static JLabel getBoton(String tip, String icon, Consumer<MouseEvent> adapter) {
+        JLabel label = new JLabel(Archivos.image(icon + ".png"), SwingConstants.CENTER);
+        label.setToolTipText(tip);
+        return initBoton(label, new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                adapter.accept(e);
+            }
+        });
     }
 
     /**

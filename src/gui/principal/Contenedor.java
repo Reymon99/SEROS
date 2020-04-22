@@ -28,6 +28,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import java.awt.CardLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -92,17 +93,25 @@ public final class Contenedor extends JPanel {
      * Menu principal de la interfaz gráfica del proyecto
      * @return panel principal de SEROS
      * @see Contenedor#itemsPrincipal()
+     * @see Contenedor#infoPrincipal(Lienzo)
      */
     private Lienzo principal() {
         Lienzo lienzo = new Lienzo(new GridBagLayout(), true);
+        Point pointCN = new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE);
         Constrains.addComp(
                 new View(itemsPrincipal(), lienzo),
                 new Rectangle(0, 0, 1, 1),
                 new Weight(1, 1),
                 new Insets(5, 5, 5, 5),
-                new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE)
+                pointCN
         );
-        // Agregar about
+        Constrains.addComp(
+                new View(infoPrincipal(lienzo), lienzo),
+                new Rectangle(0, 1, 1, 1),
+                new Weight(0, 0),
+                new Insets(5, 10, 20, 10),
+                pointCN
+        );
         return lienzo;
     }
 
@@ -154,6 +163,21 @@ public final class Contenedor extends JPanel {
                 Paneles.GRAFOS, Colour.DIFICIL, "Algoritmo del Camino más Corto"
         ));
         return items;
+    }
+
+    /**
+     * Contiene los ítems de información de SEROS
+     * @param lienzo ventana sobre la cual se abrirá los {@link javax.swing.JDialog}
+     * @return ítems de información organizados horizontalmente
+     * @see Eventos#about(java.awt.Component)
+     */
+    private JPanel infoPrincipal(Lienzo lienzo) {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 20));
+        panel.setOpaque(false);
+        panel.add(Components.getBoton("Buscar Ejercicios", "search", e -> Eventos.about(lienzo)));
+        panel.add(Components.getBoton("Documentación Pseudocódigo", "pseudo", e -> Eventos.about(lienzo)));
+        panel.add(Components.getBoton("Acerca de Seros", "about", e -> Eventos.about(lienzo)));
+        return panel;
     }
 
     /**

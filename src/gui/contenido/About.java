@@ -43,7 +43,6 @@ public final class About extends JDialog {
      */
     public About(Component component) {
         setTitle("Acerca de Seros");
-        setUndecorated(true);
         setFocusable(true);
         getContentPane().setLayout(new GridBagLayout());
         init();
