@@ -2,9 +2,9 @@ package gui.principal;
 
 import tools.Archivos;
 
-import java.awt.*;
+import java.awt.GridBagLayout;
 import java.util.Objects;
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public final class Desktop extends JFrame {
     /**

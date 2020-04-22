@@ -1,6 +1,7 @@
 package gui.contenido;
 
 import org.constrains.Constrains;
+import org.constrains.View;
 import org.constrains.Weight;
 
 import eventos.Eventos;
@@ -10,8 +11,15 @@ import tools.Fuentes;
 import tools.Paneles;
 import tools.Text;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 public final class Contenido extends Lienzo {
     private JPanel contenido;
@@ -61,32 +69,28 @@ public final class Contenido extends Lienzo {
         back(Text.VENTANA_PRINCIPAL.toString(), Paneles.PRINCIPAL);
         Weight weight00 = new Weight(0, 0);
         Constrains.addComp(
-                title,
-                this,
+                new View(title, this),
                 new Rectangle(0, 0, 3, 1),
                 new Weight(1, 1),
                 new Insets(15, 15, 8, 10),
                 new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL)
         );
         Constrains.addComp(
-                pane,
-                this,
+                new View(pane, this),
                 new Rectangle(0, 1, 3, 1),
                 new Weight(1, 25),
                 new Insets(5, 20, 10, 15),
                 new Point(GridBagConstraints.NORTH, GridBagConstraints.BOTH)
         );
         Constrains.addComp(
-                getBack(),
-                this,
+                new View(getBack(), this),
                 new Rectangle(0, 2, 1, 1),
                 weight00,
                 new Insets(10, 7, 10, 2),
                 new Point(GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE)
         );
         Constrains.addComp(
-                getNext(),
-                this,
+                new View(getNext(), this),
                 new Rectangle(2, 2, 1, 1),
                 weight00,
                 new Insets(10, 2, 10, 7),

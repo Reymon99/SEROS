@@ -1,15 +1,16 @@
 package gui.contenido;
 
-import tools.Dato;
 import tools.Archivos;
+import tools.Dato;
+import tools.Fuentes;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
-import java.awt.*;
-
-import static tools.Fuentes.UBUNTU_LIGHT_14;
+import java.awt.Component;
 
 public class Tree extends JTree {
     private final DefaultMutableTreeNode node;
@@ -27,7 +28,7 @@ public class Tree extends JTree {
             public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
                                                           boolean leaf, int row, boolean hasFocus) {
                 JLabel label = new JLabel(value.toString(), icon, LEFT);
-                label.setFont(UBUNTU_LIGHT_14.getFont());
+                label.setFont(Fuentes.UBUNTU_LIGHT_14.getFont());
                 return label;
             }
         });

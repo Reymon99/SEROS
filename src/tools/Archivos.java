@@ -3,8 +3,8 @@ package tools;
 import org.yaml.snakeyaml.Yaml;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ImageIcon;
+import java.awt.Image;
 import java.awt.image.RenderedImage;
 import java.io.*;
 import java.io.IOException;

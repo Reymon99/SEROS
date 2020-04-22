@@ -1,6 +1,7 @@
 package gui.contenido;
 
 import org.constrains.Constrains;
+import org.constrains.View;
 import org.constrains.Weight;
 
 import eventos.Eventos;
@@ -8,9 +9,21 @@ import tools.Archivos;
 import tools.Colour;
 import tools.Fuentes;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
@@ -72,40 +85,38 @@ public final class About extends JDialog {
         Point placeNH = new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Point placeCH = new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(
-                new JLabel(Archivos.image("/resources/image/logo.png", 200, -1)),
-                getContentPane(),
+                new View(
+                        new JLabel(Archivos.image("/resources/image/logo.png", 200, -1)),
+                        getContentPane()
+                ),
                 new Rectangle(0, 0, 1, 1),
                 weight00,
                 new Insets(30, 15, 3, 15),
                 new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE)
         );
         Constrains.addComp(
-                seros,
-                getContentPane(),
+                new View(seros, getContentPane()),
                 new Rectangle(0, 1, 1, 1),
                 weight00,
                 new Insets(3, 18, 5, 15),
                 placeNH
         );
         Constrains.addComp(
-                seros1,
-                getContentPane(),
+                new View(seros1, getContentPane()),
                 new Rectangle(0, 2, 1, 1),
                 weight00,
                 new Insets(5, 15, 5, 15),
                 placeNH
         );
         Constrains.addComp(
-                texto,
-                getContentPane(),
+                new View(texto, getContentPane()),
                 new Rectangle(0, 3, 1, 1),
                 weight10,
                 new Insets(15, 15, 3, 15),
                 placeCH
         );
         Constrains.addComp(
-                label,
-                getContentPane(),
+                new View(label, getContentPane()),
                 new Rectangle(0, 4, 1, 1),
                 weight10,
                 new Insets(0, 15, 30, 15),

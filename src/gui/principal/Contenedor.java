@@ -1,6 +1,7 @@
 package gui.principal;
 
 import org.constrains.Constrains;
+import org.constrains.View;
 import org.constrains.Weight;
 
 import eventos.Eventos;
@@ -20,9 +21,21 @@ import tools.Colour;
 import tools.Fuentes;
 import tools.Paneles;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
+import java.awt.CardLayout;
+import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -83,13 +96,13 @@ public final class Contenedor extends JPanel {
     private Lienzo principal() {
         Lienzo lienzo = new Lienzo(new GridBagLayout(), true);
         Constrains.addComp(
-                itemsPrincipal(),
-                lienzo,
+                new View(itemsPrincipal(), lienzo),
                 new Rectangle(0, 0, 1, 1),
                 new Weight(1, 1),
                 new Insets(5, 5, 5, 5),
                 new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE)
         );
+        // Agregar about
         return lienzo;
     }
 
@@ -160,48 +173,42 @@ public final class Contenedor extends JPanel {
         Point placeNH = new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Point placeCN = new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE);
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.1")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.1")), con.getContenido()),
                 new Rectangle(0, 0, 1, 1),
                 weight11,
                 new Insets(10, 25, 15, 12),
                 placeNH
         );
         Constrains.addComp(
-                Editor.editor("Punto"),
-                con.getContenido(),
+                new View(Editor.editor("Punto"), con.getContenido()),
                 new Rectangle(0, 1, 1, 1),
                 new Weight(0, 0),
                 new Insets(5, 5, 5, 5),
                 placeCN
         );
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.2")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.2")), con.getContenido()),
                 new Rectangle(0, 2, 1, 1),
                 weight11,
                 new Insets(10, 25, 3, 12),
                 placeNH
         );
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.3")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.3")), con.getContenido()),
                 new Rectangle(0, 3, 1, 1),
                 weight11,
                 new Insets(3, 40, 3, 12),
                 new Point(GridBagConstraints.NORTHEAST, GridBagConstraints.HORIZONTAL)
         );
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.4")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.4")), con.getContenido()),
                 new Rectangle(0, 4, 1, 1),
                 weight11,
                 new Insets(5, 25, 5, 12),
                 placeNH
         );
         Constrains.addComp(
-                formula,
-                con.getContenido(),
+                new View(formula, con.getContenido()),
                 new Rectangle(0, 5, 1, 1),
                 weight11,
                 new Insets(10, 25, 5, 25),
@@ -222,24 +229,24 @@ public final class Contenedor extends JPanel {
         Weight weight11 = new Weight(1, 1);
         Point placeNH = new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.1")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.1")), con.getContenido()),
                 new Rectangle(0, 0, 1, 1),
                 weight11,
                 new Insets(10, 25, 5, 12),
                 placeNH
         );
         Constrains.addComp(
-                new JLabel(Archivos.image("/resources/image/saluda.png", -1, 290)),
-                con.getContenido(),
+                new View(
+                        new JLabel(Archivos.image("/resources/image/saluda.png", -1, 290)),
+                        con.getContenido()
+                ),
                 new Rectangle(0, 1, 1, 1),
                 weight11,
                 new Insets(3, 7, 7, 7),
                 new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE)
         );
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.2")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.2")), con.getContenido()),
                 new Rectangle(0, 2, 1, 1),
                 weight11,
                 new Insets(10, 25, 15, 12),
@@ -275,16 +282,14 @@ public final class Contenedor extends JPanel {
         }
         con.next("Panel de Ejercicios de Recursividad", Paneles.EJERCICIOS_RECURSIVIDAD);
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.1")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.1")), con.getContenido()),
                 new Rectangle(0, 0, 1, 1),
                 new Weight(1, 1),
                 new Insets(10, 25, 1, 12),
                 new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL)
         );
         Constrains.addComp(
-                editor,
-                con.getContenido(),
+                new View(editor, con.getContenido()),
                 new Rectangle(0, 1, 1, 1),
                 new Weight(0.2, 1),
                 new Insets(7, 25, 180, 25),
@@ -317,48 +322,50 @@ public final class Contenedor extends JPanel {
         Point placeNH = new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Point placeCN = new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE);
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.1")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.1")), con.getContenido()),
                 new Rectangle(0, 0, 1, 1),
                 weight11,
                 new Insets(10, 25, 1, 12),
                 placeNH
         );
         Constrains.addComp(
-                new JLabel(Archivos.image("/resources/image/nodo.png", -1, 89)),
-                con.getContenido(),
+                new View(
+                        new JLabel(Archivos.image("/resources/image/nodo.png", -1, 89)),
+                        con.getContenido()
+                ),
                 new Rectangle(0, 1, 1, 1),
                 weight11,
                 new Insets(1, 3, 1, 3),
                 placeCN
         );
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.2")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.2")), con.getContenido()),
                 new Rectangle(0, 2, 1, 1),
                 weight11,
                 new Insets(5, 25, 15, 12),
                 placeNH
         );
         Constrains.addComp(
-                new JLabel(Archivos.image("/resources/image/memoria.png", -1, 150)),
-                con.getContenido(),
+                new View(
+                        new JLabel(Archivos.image("/resources/image/memoria.png", -1, 150)),
+                        con.getContenido()),
                 new Rectangle(0, 3, 1, 1),
                 weight11,
                 new Insets(3, 3, 3, 3),
                 placeCN
         );
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.3")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.3")), con.getContenido()),
                 new Rectangle(0, 4, 1, 1),
                 weight11,
                 new Insets(10, 25, 5, 12),
                 placeNH
         );
         Constrains.addComp(
-                new JLabel(Archivos.image("/resources/image/mateo.png", -1, 450)),
-                con.getContenido(),
+                new View(
+                        new JLabel(Archivos.image("/resources/image/mateo.png", -1, 450)),
+                        con.getContenido()
+                ),
                 new Rectangle(0, 5, 1, 1),
                 weight11,
                 new Insets(10, 3, 10, 3),
@@ -424,40 +431,41 @@ public final class Contenedor extends JPanel {
         Point placeNH = new Point(GridBagConstraints.NORTH, GridBagConstraints.HORIZONTAL);
         Point placeCN = new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE);
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.1")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.1")), con.getContenido()),
                 new Rectangle(0, 0, 1, 1),
                 weight11,
                 new Insets(10, 25, 8, 12),
                 placeNH
         );
         Constrains.addComp(
-                new JLabel(Archivos.image("/resources/image/arreglo.png", -1, 170)),
-                con.getContenido(),
+                new View(
+                        new JLabel(Archivos.image("/resources/image/arreglo.png", -1, 170)),
+                        con.getContenido()
+                ),
                 new Rectangle(0, 1, 1, 1),
                 weight11,
                 new Insets(5, 5, 5, 5),
                 placeCN
         );
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.2")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.2")), con.getContenido()),
                 new Rectangle(0, 2, 1, 1),
                 weight11,
                 new Insets(8, 25, 8, 12),
                 placeNH
         );
         Constrains.addComp(
-                new JLabel(Archivos.image("/resources/image/arregloDatos.png", -1, 130)),
-                con.getContenido(),
+                new View(
+                        new JLabel(Archivos.image("/resources/image/arregloDatos.png", -1, 130)),
+                        con.getContenido()
+                ),
                 new Rectangle(0, 3, 1, 1),
                 weight11,
                 new Insets(5, 5, 5, 5),
                 placeCN
         );
         Constrains.addComp(
-                Components.getTexto(contenido.get("parrafo.3")),
-                con.getContenido(),
+                new View(Components.getTexto(contenido.get("parrafo.3")), con.getContenido()),
                 new Rectangle(0, 4, 1, 1),
                 weight11,
                 new Insets(8, 25, 10, 12),

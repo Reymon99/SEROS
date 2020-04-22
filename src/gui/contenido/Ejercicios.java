@@ -1,12 +1,21 @@
 package gui.contenido;
 
 import org.constrains.Constrains;
+import org.constrains.View;
 import org.constrains.Weight;
 
 import tools.Acciones;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 public final class Ejercicios extends Lienzo {
     private JLabel[] botones;
@@ -45,32 +54,28 @@ public final class Ejercicios extends Lienzo {
         Weight weight00 = new Weight(0, 0);
         Point placeSWN = new Point(GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
         Constrains.addComp(
-                panel,
-                this,
+                new View(panel, this),
                 new Rectangle(0, 0, 2, 1),
                 new Weight(0.8, 1),
                 new Insets(70, 40, 15, 40),
                 new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL)
         );
         Constrains.addComp(
-                texto = Components.getTexto("", 8, 55),
-                this,
+                new View(texto = Components.getTexto("", 8, 55), this),
                 new Rectangle(0, 1, 2, 1),
                 new Weight(1, 1),
                 new Insets(10, 20, 25, 20),
                 new Point(GridBagConstraints.SOUTH, GridBagConstraints.NONE)
         );
         Constrains.addComp(
-                getBack(),
-                this,
+                new View(getBack(), this),
                 new Rectangle(0, 2, 1, 1),
                 weight00,
                 new Insets(10, 7, 10, 5),
                 placeSWN
         );
         Constrains.addComp(
-                getHome(),
-                this,
+                new View(getHome(), this),
                 new Rectangle(1, 2, 1, 1),
                 weight00,
                 new Insets(10, 5, 25, 5),

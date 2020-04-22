@@ -1,6 +1,7 @@
 package gui.simulador.simuladores;
 
 import org.constrains.Constrains;
+import org.constrains.View;
 
 import eventos.Eventos;
 import gui.simulador.Simulador;
@@ -123,16 +124,14 @@ public abstract class Recursividad extends Simulador implements Acciones {
     private void acomodamientoProducto() {
         Point placeCH = new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(
-                number,
-                getLienzo(),
+                new View(number, getLienzo()),
                 new Rectangle(0, 0, 1, 1),
                 1,
                 new Insets(40, 50, 50, 50),
                 placeCH
         );
         Constrains.addCompX(
-                producto,
-                getLienzo(),
+                new View(producto, getLienzo()),
                 new Rectangle(0, 1, 1, 1),
                 1,
                 new Insets(40, 30, 50, 30),
@@ -217,48 +216,42 @@ public abstract class Recursividad extends Simulador implements Acciones {
         Point placeWN = new Point(GridBagConstraints.WEST, GridBagConstraints.NONE);
         Point placeCH = new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
         Constrains.addCompX(
-                componentRegistro(title, components),
-                getControl(),
+                new View(componentRegistro(title, components), getControl()),
                 new Rectangle(2, 0, 1, 1),
                 1,
                 new Insets(10, 80, 5, 5),
                 new Point(GridBagConstraints.EAST, GridBagConstraints.BOTH)
         );
         Constrains.addCompX(
-                getSend(),
-                getControl(),
+                new View(getSend(), getControl()),
                 new Rectangle(3, 0, 1, 1),
                 1,
                 new Insets(10, 5, 5, 5),
                 placeCH
         );
         Constrains.addCompX(
-                getPause(),
-                getControl(),
+                new View(getPause(), getControl()),
                 new Rectangle(4, 0, 1, 1),
                 1,
                 new Insets(10, 5, 5, 100),
                 placeWN
         );
         Constrains.addCompX(
-                getCodigo(),
-                getControl(),
+                new View(getCodigo(), getControl()),
                 new Rectangle(4, 1, 1, 1),
                 1,
                 new Insets(5, 8, 10, 100),
                 placeWN
         );
         Constrains.addCompX(
-                getNextIteracion(),
-                getControl(),
+                new View(getNextIteracion(), getControl()),
                 new Rectangle(3, 1, 1, 1),
                 1,
                 new Insets(5, 5, 10, 5),
                 placeCH
         );
         Constrains.addCompX(
-                getClean(),
-                getControl(),
+                new View(getClean(), getControl()),
                 new Rectangle(2, 1, 1, 1),
                 1,
                 new Insets(5, 80, 10, 5),

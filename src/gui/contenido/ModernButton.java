@@ -1,6 +1,7 @@
 package gui.contenido;
 
 import org.constrains.Constrains;
+import org.constrains.View;
 import org.constrains.Weight;
 
 import eventos.Eventos;
@@ -8,8 +9,18 @@ import tools.Colour;
 import tools.Fuentes;
 import tools.Paneles;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.function.Consumer;
@@ -106,24 +117,21 @@ public class ModernButton extends JPanel {
         this.nivelDificultad.setCursor(getCursor());
         this.nivelDificultad.addMouseListener(getMouseListeners()[0]);
         Constrains.addComp(
-                this.letra,
-                this,
+                new View(this.letra, this),
                 new Rectangle(0, 0, 1, 1),
                 new Weight(1, 1),
                 new Insets(15, 5, 5, 5),
                 new Point(GridBagConstraints.CENTER, GridBagConstraints.BOTH)
         );
         Constrains.addCompX(
-                this.texto,
-                this,
+                new View(this.texto, this),
                 new Rectangle(0, 1, 1, 1),
                 0.5,
                 new Insets(2, 5, 5, 5),
                 new Point(GridBagConstraints.NORTH, GridBagConstraints.NONE)
         );
         Constrains.addCompX(
-                this.nivelDificultad,
-                this,
+                new View(this.nivelDificultad, this),
                 new Rectangle(0, 2, 1, 1),
                 1,
                 new Insets(8, 0, 0, 0),

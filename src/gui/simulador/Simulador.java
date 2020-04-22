@@ -1,6 +1,7 @@
 package gui.simulador;
 
 import org.constrains.Constrains;
+import org.constrains.View;
 import org.constrains.Weight;
 
 import eventos.Eventos;
@@ -16,8 +17,23 @@ import tools.Colour;
 import tools.Fuentes;
 import tools.Text;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JTextArea;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
@@ -111,48 +127,42 @@ public abstract class Simulador extends Lienzo {
         Point placeCH = new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
         Point placeCB = new Point(GridBagConstraints.CENTER, GridBagConstraints.BOTH);
         Constrains.addComp(
-                lienzo,
-                this,
+                new View(lienzo, this),
                 new Rectangle(0, 0, 1, 4),
                 weight00,
                 insets,
                 new Point(GridBagConstraints.NORTHWEST, GridBagConstraints.NONE)
         );
         Constrains.addComp(
-                getBack(),
-                control,
+                new View(getBack(), control),
                 new Rectangle(0, 0, 1, 2),
                 weight00,
                 new Insets(15, 15, 15, 5),
                 placeWN
         );
         Constrains.addComp(
-                getHome(),
-                control,
+                new View(getHome(), control),
                 new Rectangle(1, 0, 1, 2),
                 weight00,
                 new Insets(20, 5, 20, 15),
                 placeWN
         );
         Constrains.addComp(
-                control,
-                this,
+                new View(control, this),
                 new Rectangle(0, 4, 1, 1),
                 weight00,
                 insets,
                 placeCB
         );
         Constrains.addCompX(
-                components[0],
-                this,
+                new View(components[0], this),
                 new Rectangle(1, 0, 1, 1),
                 1,
                 insets,
                 placeCH
         );
         Constrains.addCompIy(
-                components[1],
-                this,
+                new View(components[1], this),
                 new Rectangle(1, 1, 1, 1),
                 weight10,
                 insets,
@@ -160,8 +170,7 @@ public abstract class Simulador extends Lienzo {
                 placeCH
         );
         Constrains.addCompIy(
-                components[2],
-                this,
+                new View(components[2], this),
                 new Rectangle(1, 2, 1, 1),
                 weight10,
                 insets,
@@ -169,8 +178,7 @@ public abstract class Simulador extends Lienzo {
                 placeCB
         );
         Constrains.addComp(
-                components[3],
-                this,
+                new View(components[3], this),
                 new Rectangle(1, 3, 1, 2),
                 new Weight(1, 1),
                 insets,
@@ -247,8 +255,7 @@ public abstract class Simulador extends Lienzo {
     protected void setDatos(Tree... trees) {
         for (int i = 0; i < trees.length; i++)
             Constrains.addComp(
-                    trees[i],
-                    datos,
+                    new View(trees[i], datos),
                     new Rectangle(0, i, 1, 1),
                     new Weight(1, 1),
                     new Insets(i == 0 ? 7 : 1, 10, i == trees.length - 1 ? sizeTree(trees.length) : 1, 5),

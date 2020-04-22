@@ -3,7 +3,9 @@ package gui.editor;
 import gui.contenido.TextPane;
 import tools.Colour;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.geom.RoundRectangle2D;
 
 public class View extends TextPane {

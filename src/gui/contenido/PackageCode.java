@@ -1,6 +1,8 @@
 package gui.contenido;
 
-import javax.swing.*;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JTabbedPane;
 
 public class PackageCode extends JTabbedPane {
     private String packageName;

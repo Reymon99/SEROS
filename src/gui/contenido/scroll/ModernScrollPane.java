@@ -1,7 +1,15 @@
 package gui.contenido.scroll;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JScrollBar;
+import javax.swing.ScrollPaneLayout;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Rectangle;
 
 public class ModernScrollPane extends JScrollPane {
     protected static final int THUMB_SIZE;

@@ -1,13 +1,23 @@
 package gui.contenido;
 
 import org.constrains.Constrains;
-
+import org.constrains.View;
 import org.constrains.Weight;
+
 import tools.Acciones;
 import tools.Archivos;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 public class Demostracion extends Lienzo {
     private JLabel image;
@@ -46,40 +56,35 @@ public class Demostracion extends Lienzo {
         Weight weight00 = new Weight(0, 0);
         Point placeSWN = new Point(GridBagConstraints.SOUTHWEST, GridBagConstraints.NONE);
         Constrains.addComp(
-                image = new JLabel(icon),
-                this,
+                new View(image = new JLabel(icon), this),
                 new Rectangle(0, 0, 3, 1),
                 weight11,
                 new Insets(20, 30, 8, 15),
                 new Point(GridBagConstraints.CENTER, GridBagConstraints.NONE)
         );
         Constrains.addComp(
-                botones = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10)),
-                this,
+                new View(botones = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10)), this),
                 new Rectangle(0, 1, 3, 1),
                 weight11,
                 new Insets(5, 30, 3, 20),
                 new Point(GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL)
         );
         Constrains.addComp(
-                texto = Components.getTexto("", 10, 55),
-                this,
+                new View(texto = Components.getTexto("", 10, 55), this),
                 new Rectangle(0, 2, 3, 1),
                 weight11,
                 new Insets(5, 90, 10, 80),
                 new Point(GridBagConstraints.SOUTH, GridBagConstraints.BOTH)
         );
         Constrains.addComp(
-                getBack(),
-                this,
+                new View(getBack(), this),
                 new Rectangle(0, 3, 1, 1),
                 weight00,
                 new Insets(10, 7, 10, 5),
                 placeSWN
         );
         Constrains.addComp(
-                getHome(),
-                this,
+                new View(getHome(), this),
                 new Rectangle(1, 3, 1, 1),
                 weight00,
                 new Insets(10, 5, 25, 5),
@@ -93,8 +98,7 @@ public class Demostracion extends Lienzo {
      */
     public void nextPanel() {
         Constrains.addComp(
-                getNext(),
-                this,
+                new View(getNext(), this),
                 new Rectangle(2, 3, 1, 1),
                 new Weight(0, 0),
                 new Insets(10, 50, 10, 7),

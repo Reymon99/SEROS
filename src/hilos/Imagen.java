@@ -2,7 +2,8 @@ package hilos;
 
 import eventos.Eventos;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Imagen extends Thread {
     private boolean stop;
