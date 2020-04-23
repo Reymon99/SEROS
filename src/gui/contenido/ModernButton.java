@@ -11,6 +11,7 @@ import tools.Colour;
 import tools.Fuentes;
 import tools.Paneles;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -108,7 +109,7 @@ public class ModernButton extends JPanel {
 
     private void init(char letra, String texto, Color nivelDificultad) {
         this.letra = new JLabel(String.valueOf(letra), SwingConstants.CENTER);
-        this.letra.setFont(Fuentes.UBUNTU_MONO_B_82.getFont());
+        this.letra.setFont(Fuentes.UBUNTU_MONO_B_96.getFont());
         this.letra.setCursor(getCursor());
         this.letra.addMouseListener(getMouseListeners()[0]);
         this.texto = new JLabel(texto, SwingConstants.CENTER);
@@ -163,6 +164,16 @@ public class ModernButton extends JPanel {
     }
 
     /**
+     * Fija una nueva letra central en el boton
+     * @param letra nueva letra central
+     */
+    public void setLetra(String letra) {
+        this.letra.setText(letra);
+        this.letra.updateUI();
+        updateUI();
+    }
+
+    /**
      * Fija un nuevo texto descriptivo en el boton
      * @param texto nuevo texto descriptivo
      */
@@ -204,5 +215,15 @@ public class ModernButton extends JPanel {
         letra.setComponentPopupMenu(popup);
         texto.setComponentPopupMenu(popup);
         nivelDificultad.setComponentPopupMenu(popup);
+    }
+
+    /**
+     * Fija un nuevo {@link ImageIcon} en letra
+     * @param icon nuevo {@link ImageIcon}
+     */
+    public void setIcon(ImageIcon icon) {
+        letra.setIcon(icon);
+        letra.updateUI();
+        updateUI();
     }
 }

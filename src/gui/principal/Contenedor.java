@@ -19,6 +19,7 @@ import gui.simulador.simuladores.recursividad.Factorial;
 import gui.simulador.simuladores.recursividad.Potencia;
 import tools.Archivos;
 import tools.Colour;
+import tools.Ejercicio;
 import tools.Fuentes;
 import tools.Paneles;
 
@@ -36,8 +37,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -491,38 +490,16 @@ public final class Contenedor extends JPanel {
      * @return panel de simuladores en recursividad
      * @see Ejercicios
      * @see Contenedor#recursividad()
+     * @see Paneles
+     * @see Ejercicio
      */
     private Ejercicios ejerciciosRecursivos() {
-        Ejercicios ejercicios = new Ejercicios();
-        ejercicios.back("Recursividad", Paneles.RECURSIVIDAD);
-        MouseAdapter mouse = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Eventos.show(switch (((JLabel) e.getSource()).getText()) {
-                    case "Factorial" -> Paneles.FACTORIAL;
-                    case "Potencia" -> Paneles.POTENCIA;
-                    default -> Contenedor.panelActivo;
-                });
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                ejercicios.setTexto(switch (((JLabel) e.getSource()).getText()) {
-                    case "Factorial" -> "Simulación recursiva para Factorial";
-                    case "Potencia" -> "Simulación recursiva para Potencia";
-                    default -> "";
-                });
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                ejercicios.getTexto().setText("");
-            }
-        };
-        ejercicios.setBotones(
-                Components.getBoton(Archivos.image("/resources/image/factorial.png"), "Factorial", mouse),
-                Components.getBoton(Archivos.image("/resources/image/potencia.png"), "Potencia", mouse)
+        Ejercicios ejercicios = new Ejercicios(
+                Paneles.EJERCICIOS_RECURSIVIDAD,
+                new Ejercicio(Paneles.FACTORIAL, Colour.INTERMEDIO),
+                new Ejercicio(Paneles.POTENCIA, Colour.INTERMEDIO)
         );
+        ejercicios.back(Paneles.RECURSIVIDAD.toString(), Paneles.RECURSIVIDAD);
         return ejercicios;
     }
 

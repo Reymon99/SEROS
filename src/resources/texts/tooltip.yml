@@ -8,9 +8,10 @@ principal:
   Busqueda: Métodos de Busqueda
   Pilas: Pilas Dinámicas y Estáticas
   Colas: Colas Dinámicas y Estáticas
-  'Listas Enlazadas': Listas Simples, Dobles y Circulares
+  Listas Enlazadas: Listas Simples, Dobles y Circulares
   Árboles: Árboles Binarios y AVL
   Grafos: Algoritmo del Camino más Corto
 ejercicios:
-
+  Simulador Factorial: Simulación recursiva para Factorial
+  Simulador Potencia: Simulación recursiva para Potencia
 paneles:

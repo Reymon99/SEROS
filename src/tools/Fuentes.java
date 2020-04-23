@@ -22,7 +22,7 @@ public enum Fuentes {
     DIALOG_35(new Font(Font.DIALOG, Font.BOLD, 35)),
     SEGOE_UI_SYMBOL_22(Fonts.getFont("Segoe UI Symbol", Font.PLAIN, 22)),
     UBUNTU_MONO_14(Fonts.getFont("UbuntuMono-R", Font.PLAIN, 14)),
-    UBUNTU_MONO_B_82(Fonts.getFont("UbuntuMono-R", Font.BOLD, 82));
+    UBUNTU_MONO_B_96(Fonts.getFont("UbuntuMono-R", Font.BOLD, 96));
     private final Font font;
 
     Fuentes(Font font) {

@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 import java.util.Objects;
 
 public class Lienzo extends JPanel {
-    private boolean lienzo;
+    private final boolean lienzo;
     private Acciones acciones;
     private JLabel back;
     private JLabel home;
@@ -34,7 +34,8 @@ public class Lienzo extends JPanel {
      */
     public Lienzo(boolean lienzo) {
         super();
-        init(lienzo);
+        this.lienzo = lienzo;
+        init();
     }
 
     /**
@@ -44,15 +45,14 @@ public class Lienzo extends JPanel {
      */
     public Lienzo(LayoutManager manager, boolean lienzo) {
         super(manager);
-        init(lienzo);
+        this.lienzo = lienzo;
+        init();
     }
 
     /**
      * Inicializador de componente
-     * @param lienzo decide si se pinta el lienzo o no
      */
-    private void init(boolean lienzo) {
-        this.lienzo = lienzo;
+    private void init() {
         back = Components.getBoton(
                 Archivos.image("/resources/image/back.png"),
                 Eventos.menu(Paneles.values())
@@ -151,9 +151,7 @@ public class Lienzo extends JPanel {
     public void paint(Graphics g) {
         if (lienzo) {
             g.drawImage(
-                    Objects.requireNonNull(
-                            Archivos.image("/resources/image/Lienzo.jpg")
-                    ).getImage(),
+                    Objects.requireNonNull(Archivos.image("/resources/image/Lienzo.jpg")).getImage(),
                     0,
                     0,
                     getWidth(),

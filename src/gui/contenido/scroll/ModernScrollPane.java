@@ -134,4 +134,20 @@ public class ModernScrollPane extends JScrollPane {
         }
         return rectangle;
     }
+
+    /**
+     * Modifica el valor de posición del {@link javax.swing.JScrollPane.ScrollBar} horizontal
+     * @param value valor de posición horizontal
+     */
+    public void setHorizontalValue(int value) {
+        getHorizontalScrollBar().setValue(value);
+    }
+
+    /**
+     * Modifica el valor de posición del {@link javax.swing.JScrollPane.ScrollBar} vertical
+     * @param value valor de posición vertical
+     */
+    public void setVerticalValue(int value) {
+        getVerticalScrollBar().setValue(value);
+    }
 }
