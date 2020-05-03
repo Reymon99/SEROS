@@ -11,6 +11,7 @@ import tools.Colour;
 import tools.Fuentes;
 import tools.Paneles;
 
+import javax.swing.border.Border;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,11 +22,16 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.RoundRectangle2D;
 import java.util.function.Consumer;
 
 public class ModernButton extends JPanel {
@@ -61,6 +67,7 @@ public class ModernButton extends JPanel {
         this.evento = evento;
         setBackground(Colour.LAVANDA.getColor());
         setCursor(new Cursor(Cursor.HAND_CURSOR));
+        setBorder(new RoundBorder(6));
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -225,5 +232,38 @@ public class ModernButton extends JPanel {
         letra.setIcon(icon);
         letra.updateUI();
         updateUI();
+    }
+
+    /**
+     * Redondea el borde de un {@link Component}
+     */
+    private static final class RoundBorder implements Border {
+        private final int radius;
+
+        /**
+         * crea una instancia de {@link Border} que redondeará el {@link Component} en el que es aplicado
+         * @param radius radio aplicado al borde del {@link Component}
+         */
+        public RoundBorder(int radius) {
+            this.radius = radius;
+        }
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setPaint(Colour.LAVANDA.getColor());
+            g2.draw(new RoundRectangle2D.Double(x, y, width - 1, height - 1, radius, radius));
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c) {
+            return new Insets(this.radius, this.radius + 1, this.radius + 2, this.radius);
+        }
+
+        @Override
+        public boolean isBorderOpaque() {
+            return true;
+        }
     }
 }
