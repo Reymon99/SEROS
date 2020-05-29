@@ -63,7 +63,7 @@ public final class About extends JDialog {
         JLabel seros = new JLabel("Simulador de Estructura de Datos", SwingConstants.CENTER);
         seros.setFont(Fuentes.UBUNTU_LIGHT_30.getFont());
         seros.setHorizontalTextPosition(SwingConstants.CENTER);
-        JLabel seros1 = new JLabel("Seros", SwingConstants.CENTER);
+        JLabel seros1 = new JLabel("SimuladorTDA", SwingConstants.CENTER);
         seros1.setFont(Fuentes.UBUNTU_LIGHT_B_30.getFont());
         seros1.setHorizontalTextPosition(SwingConstants.CENTER);
         JTextArea texto = Components.getTexto(contenido.get("description"));
